@@ -1,0 +1,28 @@
+.socialStatsContainer {
+    background-color: white;
+    border: var(--border);
+    padding: 10px;
+    border-radius: 6px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+
+}
+.subContainerTwitter {
+    width: 32%;
+    height: 250px;
+    background-color: rgb(140, 223, 195);
+    display: flex;
+}
+.subContainerDiscord {
+    width: 32%;
+    height: 250px;
+    background-color: rgb(140, 211, 223);
+    display: flex;
+}
+.subContainerTelegram {
+    width: 32%;
+    height: 250px;
+    background-color: rgb(140, 162, 223);
+    display: flex;
+}

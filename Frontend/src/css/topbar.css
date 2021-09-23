@@ -1,0 +1,43 @@
+.topbar {
+    background-color: #fcfafa;
+    line-height: 30px;
+    overflow-x: hidden;
+    margin-left: var(--sidebar-width);
+    border-bottom: 1px solid rgb(207, 207, 207);
+}
+.logoutbutton {
+    float: right;
+    margin-right: 25px;
+    cursor: pointer;
+    color: var(--text-primary); 
+}
+.logoutbutton:hover {
+    color: black;
+}
+
+.sidebarbutton {
+    margin-left: 25px;
+    cursor: pointer;
+    font-size: larger;
+    font-weight: bolder;
+    position: absolute;
+    color: var(--text-primary); ; 
+}
+.sidebarbutton:hover {
+    color: black;
+}
+
+.topNavigation {
+    list-style: none;
+    text-decoration: none;
+    margin-left: 80px;
+    position: absolute;
+}
+.topNavigationItem {
+    padding-right: 20px;
+    text-decoration: none;
+    color: var(--text-primary); ;
+}
+.topNavigationItem:hover {
+    color: black;
+}

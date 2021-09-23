@@ -1,0 +1,48 @@
+:root {
+   --secondary: #3c4b64; 
+   --background: #f1f3f7;
+   --content-background: #dddfe2;
+   --content-background-light: #f8f5f5;
+   --text-primary: rgb(87, 87, 87);
+
+   --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   --transition: all ease-in-out 300ms;
+   --sidebar-width: 240px;
+   --display-true: flex;
+   --border: 1px solid rgba(15, 15, 15, 0.3);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans", sans-serif;
+}
+
+select.form-control,
+textarea.form-control,
+input.form-control {
+  font-size: 16px;
+}
+input[type=file] {
+  width: 100%;
+}
+#contentpage {
+  overflow-x: hidden;
+  margin-left: var(--sidebar-width);
+  height: 100%;
+  transition: 0.5s;
+  padding: 25px;
+  height: calc(100vh - 81px);
+  background-color: var(--background);
+}
+.ListIcon {
+  padding-right: 5px;
+}

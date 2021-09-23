@@ -1,0 +1,50 @@
+.markdownPress {
+    background-color: white;
+    padding: 10px;
+    border-radius: 6px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    border: var(--border)
+}
+.markdownPress:hover {
+    cursor: pointer;
+}
+
+.markdownPressClose {
+    background-color: white;
+    padding: 10px;
+    border-radius: 6px;
+    flex-direction: row;
+    display: none;
+    justify-content: space-between;
+    border: var(--border)
+}
+.markdownPressClose:hover {
+    cursor: pointer;
+}
+
+#mdEditor {
+    width: 100%;
+    height: 75%;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    border: var(--border);
+    background-color: white;
+    border-radius: 6px;
+    margin-top: 25px;
+    overflow: hidden;
+ }
+#back {
+    cursor: pointer;
+}
+.submitNotesButton {
+    margin-left: calc(-100% + 175px);
+    margin-bottom: 25px;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+}

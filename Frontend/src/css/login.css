@@ -1,0 +1,162 @@
+.container {  
+    margin-right: auto;
+    margin-left: auto;
+}
+.NavBar {
+    margin-top: 15px;
+    overflow: visible!important;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    border: 1px solid #e7e7e7;
+    width: 68vw;
+    height: 50px;
+    max-width: 1170px;
+}
+
+.NavbarBrand {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-primary);;
+    text-decoration: none;
+    list-style: none;
+    display:inline;
+    margin-top: 15px;
+    float: left;
+}
+
+.navButtons {
+    border: none;
+    color: var(--text-primary);
+    text-decoration: none; 
+    padding: 17px 10px 15px 10px;
+    display:inline;
+    float: right;
+}
+.navButtons:hover {
+    background-color: #e7e7e7;
+}
+.navButtons:active {
+    background-color: #e7e7e7;
+}
+
+
+.loginform {
+    display: block;
+    overflow: visible!important;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 350px;
+}
+.signupform {
+    width: 350px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 100px;
+
+}
+
+.label {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.form-group-login {
+    border: 1px solid #cfcece;
+    padding: 10px 16px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 318px;
+
+}
+
+.form-group-signup {
+    border: 1px solid #cfcece;
+    padding: 10px 16px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 318px;
+}
+.LoginButton {
+    border: 1px solid #cfcece;
+    background-color: transparent;
+    padding: 10px 16px;
+    border-radius: 6px;
+    line-height: 1.3333333;
+    cursor: pointer;
+    font-size: 18px;
+    color: #777;
+    width: 350px;
+}
+.LoginButton:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.errorTextLogin {
+    border: 1px solid rgb(209, 13, 13);
+    color: rgb(209, 13, 13);
+    padding: 10px 16px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 318px;
+}
+
+.successTextLogin {
+    border: 1px solid rgb(52, 124, 3);
+    color: rgb(52, 124, 3);
+    padding: 10px 16px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 318px;
+}
+@media all and (min-width: 480px) {
+  
+    .logo {
+      height: 250px;
+      width: 250px;
+      padding-top: 60px;
+      padding-bottom: 25px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    } 
+  }
+
+  @media all and (max-width: 680px) {
+  
+    .NavBar {
+    width: 88vw;
+    }
+    .logo {
+      height: 150px;
+      width: 150px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      
+    } 
+    
+  }
+
+  @media all and (max-height: 768px) {
+
+    .logo {
+      height: 150px;
+      width: 150px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    } 
+    
+  }
+
+
