@@ -10,14 +10,14 @@ export const SidebarItemsMain = [
         icon: <AiOutlineDashboard />
     },
     {
+        name: "Übersicht",
+        route: '/overview',
+        icon: <TeamNoes />
+    },
+    {
         name: "Meetings",
         route: '/meetings',
         icon: <MeetIcon />
-    },
-    {
-        name: "Teamnotes",
-        route: '/notes',
-        icon: <TeamNoes />
     },
 ];
 

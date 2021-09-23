@@ -9,7 +9,7 @@ import Entry from './Screens/Entry'
 import Coworker from './Screens/coworker'
 import NotFound from "./Screens/notfound";
 import Meetings from "./Screens/Meetings";
-import Teamnotes from "./Screens/Teamnotes";
+import Overview from "./Screens/Overview";
 
 function Routes() {
     return (
@@ -20,7 +20,7 @@ function Routes() {
           <PrivateRoute restricted={false} component={Entry} path="/" exact />
           <PrivateRoute restricted={false} component={Coworker} path="/members" exact />
           <PrivateRoute restricted={false} component={Meetings} path="/meetings" exact />
-          <PrivateRoute restricted={false} component={Teamnotes} path="/notes" exact />
+          <PrivateRoute restricted={false} component={Overview} path="/overview" exact />
 
           <PublicRoute restricted={false} component={NotFound}/>
  
