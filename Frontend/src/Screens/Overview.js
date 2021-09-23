@@ -9,7 +9,15 @@ function Overview() {
     
         <div id="contentpage">
         <div className="overviewContainer">
+        <div className="games">
         Overview
+        </div>
+        <div className="games">
+        Overview2
+        </div>
+        <div className="games">
+        Overview3
+        </div>
         </div>
         </div>
       </div>

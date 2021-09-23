@@ -7,3 +7,14 @@
     display: flex;
     justify-content: space-between;
 }
+.games {
+    height: 250px;
+    width: 250px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 30px;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+  }
