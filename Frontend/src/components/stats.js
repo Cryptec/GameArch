@@ -7,7 +7,7 @@ import isLogin from '../utils/index'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
-class Socialstats extends Component {
+class Stats extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -41,26 +41,15 @@ class Socialstats extends Component {
     }
 
     async FetchTwitter() {
-        
-        axios({
-            method: "GET",
-            withCredentials: true,
-            credentials: 'include',
-            url: `${API_ENDPOINT}/api/meetingNotes`,
-            headers: { 'Content-Type': 'application/json' },
-            
-        }).then((response, props) => {
-            console.log(response)
-        });
-        this.setState({ isLoadingTwitter: true })
-        const responseTwitter = await fetch(`${API_ENDPOINT}/api/twitter`, {
+        this.setState({ isLoadingDiscord: true })
+        const responseDiscord = await fetch(`${API_ENDPOINT}/api/discord`, {
             credentials: 'include'
         })
-        if (responseTwitter.ok) {
-            const followers = await responseTwitter.json()
-            this.setState({ followers, isLoadingTwitter: false })
+        if (responseDiscord.ok) {
+            const discordusers = await responseDiscord.json()
+            this.setState({ discordusers, isLoadingDiscord: false })
         } else {
-            this.setState({ isErrorTwitter: true, isLoadingTwitter: false })
+            this.setState({ isErrorDiscord: true, isLoadingDiscord: false })
         }
     }
     async FetchDiscord() {
@@ -191,4 +180,4 @@ class Socialstats extends Component {
 
 
 }
-export default Socialstats
+export default Stats

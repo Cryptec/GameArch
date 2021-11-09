@@ -1,4 +1,5 @@
 import React from 'react'
+import Stats from '../components/stats'
 
 
 function Entry() {
@@ -8,7 +9,7 @@ function Entry() {
     
         <div id="contentpage">
            
-           Home
+           <Stats />
 
         </div>
       </div>
