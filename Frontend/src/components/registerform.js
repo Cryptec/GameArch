@@ -115,7 +115,7 @@ handleShowSuccess = () =>{
 
     axios({
       method: 'POST',
-      url: `${API_ENDPOINT}/api/users`,
+      url: `${API_ENDPOINT}/api/register`,
       headers: { 'Content-Type': 'application/json' },
       data: {
         name: this.state.name,

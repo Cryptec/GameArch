@@ -14,11 +14,6 @@ export const SidebarItemsMain = [
         route: '/overview',
         icon: <TeamNoes />
     },
-    {
-        name: "Meetings",
-        route: '/meetings',
-        icon: <MeetIcon />
-    },
 ];
 
 export const SidebarItemsResources = [
