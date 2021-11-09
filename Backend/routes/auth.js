@@ -33,8 +33,8 @@ router.post('/register', async (req, res) => {
 /**
  * Get all employees
  */
-router.get("/employees", checkAuthentication, (req, res, next) => {
-    var sql = "select * from Employees"
+router.get("/users", checkAuthentication, (req, res, next) => {
+    var sql = "select * from Users"
     var params = []
     db.all(sql, params, (err, rows) => {
       if (err) {
@@ -48,8 +48,8 @@ router.get("/employees", checkAuthentication, (req, res, next) => {
 /**
  * Get employee by id
  */
-router.get("/employees/:id",checkAuthentication, (req, res, next) => {
-    var sql = "select * from Employees where id = ?"
+router.get("/user/:id",checkAuthentication, (req, res, next) => {
+    var sql = "select * from Users where id = ?"
     var params = [req.params.id]
     db.get(sql, params, (err, row) => {
         if (err) {
@@ -81,9 +81,9 @@ router.post('/login', function(req, res, next) {
 /**
  * delete employee by id
  */
-router.delete("/api/employee/:id", checkAuthentication, (req, res, next) => {
+router.delete("/api/user/:id", checkAuthentication, (req, res, next) => {
   db.run(
-      'DELETE FROM Employees WHERE id = ?',
+      'DELETE FROM Users WHERE id = ?',
       req.params.id,
       function (err, result) {
           if (err){

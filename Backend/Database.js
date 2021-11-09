@@ -10,7 +10,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         throw err
     } else {
         console.log('Connected to the SQLite database.')
-        db.run(`CREATE TABLE Employees (
+        db.run(`CREATE TABLE Users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name text UNIQUE, 
             email text UNIQUE, 
@@ -26,15 +26,15 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 }
             })
 
-        db.run(`CREATE TABLE Meetingnotes (
+        db.run(`CREATE TABLE Games (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            meetingnote text UNIQUE
+            games text UNIQUE
             )`,
             (err) => {
                 if (err) {
                     // Table already created
                 } else {
-                    console.log("First start, Create Meetingnotes Table!")
+                    console.log("First start, Create Games Table!")
                 }
             })
     }

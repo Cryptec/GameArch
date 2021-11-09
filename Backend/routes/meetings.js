@@ -4,8 +4,8 @@ require('dotenv').config()
 
 
 // Routes
-router.get('/meetingnotes', function (req, res) {
-    return res.send('meetingnote');
+router.get('/games', function (req, res) {
+    return res.send('Games');
 });
 
 module.exports = router;

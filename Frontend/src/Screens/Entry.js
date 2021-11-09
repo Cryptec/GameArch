@@ -1,5 +1,4 @@
 import React from 'react'
-import Socialstats from '../components/socialstats'
 
 
 function Entry() {
@@ -9,7 +8,7 @@ function Entry() {
     
         <div id="contentpage">
            
-           <Socialstats />
+           Home
 
         </div>
       </div>

@@ -6,7 +6,7 @@ const db = require('../Database');
  * - this is not really a reliable way to do this, but likely the easiest for now.
  */
 const check_first_start = function(callback) {
-	db.get(`SELECT * FROM Employees WHERE name = ?`,['admin'], async (err, user) => {
+	db.get(`SELECT * FROM Users WHERE name = ?`,['admin'], async (err, user) => {
 		if (user)
 			callback(false)
 		else

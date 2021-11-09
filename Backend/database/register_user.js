@@ -18,7 +18,7 @@ const register_user = async function register_user(name, email, password) {
 			return resolve(false)
 		}
 		var hashedPassword = await argon2.hash(password + SALT);
-		var sql ='INSERT INTO Employees (name, email, password) VALUES (?,?,?)'
+		var sql ='INSERT INTO Users (name, email, password) VALUES (?,?,?)'
 		var params =[name, email, hashedPassword]
 		db.run(sql, params, function (err, res) {
 			if (err) {
