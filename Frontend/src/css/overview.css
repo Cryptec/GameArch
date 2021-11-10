@@ -18,11 +18,13 @@
     align-items: center;
     display: flex;
   }
-.addgames {
+.addGamesButton {
     height: 270px;
     width: 250px;
     background: white;
-    border: 2px solid rgb(105, 104, 104);
+    border: 2px rgb(105, 104, 104);
+    color: rgb(105, 104, 104);
+    font-size: large;
     border-radius: 30px;
     justify-content: space-around;
     flex-direction: column;
@@ -30,4 +32,10 @@
     display: flex;
     border-style: dashed;
     cursor: pointer;
+    text-decoration: none;
+}
+.addGamesButton:hover {
+    border: 2px solid black;
+    color: black;
+    border-style: dashed;
 }

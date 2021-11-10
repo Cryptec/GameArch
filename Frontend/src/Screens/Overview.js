@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Overview() {
 
@@ -8,7 +9,7 @@ function Overview() {
         <div id="contentpage">
         <div className="overviewContainer">
            
-           <div className="addgames">add games</div>
+           <Link to='/addgame' className="addGamesButton">add games</Link>
 
         </div>
         </div>
