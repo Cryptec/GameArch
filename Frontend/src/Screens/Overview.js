@@ -1,4 +1,5 @@
 import React from 'react'
+import AddGame from '../components/addGame'
 
 import '../css/overview.css'
 
@@ -9,15 +10,7 @@ function Overview() {
     
         <div id="contentpage">
         <div className="overviewContainer">
-        <div className="games">
-        Overview
-        </div>
-        <div className="games">
-        Overview2
-        </div>
-        <div className="games">
-        Overview3
-        </div>
+          <AddGame />
         </div>
         </div>
       </div>
