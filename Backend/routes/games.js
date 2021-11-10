@@ -16,7 +16,7 @@ router.post("/newgame", checkAuthentication, async (req, res, next) => {
         res.status(400).json({ "error": err.message });
         return;
       }
-      res.status(200).json(rows);
+      return res.send({success: true});
     });
   });
 
