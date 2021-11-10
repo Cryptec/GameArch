@@ -1,7 +1,4 @@
 import React from 'react'
-import AddGame from '../components/addGame'
-
-import '../css/overview.css'
 
 function Overview() {
 
@@ -10,7 +7,9 @@ function Overview() {
     
         <div id="contentpage">
         <div className="overviewContainer">
-          <AddGame />
+           
+           <div className="addgames">add games</div>
+
         </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { GithubIcon, AiOutlineDashboard, MeetIcon, TeamNoes, MediaIcon } from "../assets/icons";
+import { GithubIcon, AiOutlineDashboard, TeamNoes, MediaIcon } from "../assets/icons";
 
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_LINK
 

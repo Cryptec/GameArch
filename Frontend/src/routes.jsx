@@ -9,6 +9,7 @@ import Entry from './Screens/Entry'
 import Coworker from './Screens/coworker'
 import NotFound from "./Screens/notfound";
 import Overview from "./Screens/Overview";
+import AddGame from "./Screens/addGame";
 
 function Routes() {
     return (
@@ -19,6 +20,7 @@ function Routes() {
           <PrivateRoute restricted={false} component={Entry} path="/" exact />
           <PrivateRoute restricted={false} component={Coworker} path="/members" exact />
           <PrivateRoute restricted={false} component={Overview} path="/overview" exact />
+          <PrivateRoute restricted={false} component={AddGame} path="/addgame" exact />
 
           <PublicRoute restricted={false} component={NotFound}/>
  
