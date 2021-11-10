@@ -28,7 +28,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
 
         db.run(`CREATE TABLE Games (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            games text UNIQUE
+            title text UNIQUE
             )`,
             (err) => {
                 if (err) {
