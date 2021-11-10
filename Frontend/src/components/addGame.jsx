@@ -7,7 +7,7 @@ class AddGame extends Component {
 
     render() {
         return (
-            <div className="games">addgame</div>
+            <div className="addgames">addgame</div>
         )
     }
  
