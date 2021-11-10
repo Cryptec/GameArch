@@ -17,7 +17,7 @@ class AddGame extends Component {
 
     return (
       <div>
-    
+     
         <div id="contentpage">
         <div className="contentContainer">
            
