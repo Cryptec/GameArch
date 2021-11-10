@@ -19,7 +19,7 @@ class AddGame extends Component {
       <div>
     
         <div id="contentpage">
-        <div className="overviewContainer">
+        <div className="contentContainer">
            
            <h3>Add a Game</h3>
 

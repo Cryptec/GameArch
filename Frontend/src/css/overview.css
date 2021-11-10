@@ -7,6 +7,12 @@
     display: flex;
     justify-content: space-between;
 }
+.contentContainer {
+    background-color: white;
+    border: var(--border);
+    padding: 10px;
+    border-radius: 6px;
+}
 .games {
     height: 270px;
     width: 250px;
