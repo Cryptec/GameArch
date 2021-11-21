@@ -14,6 +14,15 @@
 .logoutbutton:hover {
     color: black;
 }
+.authuser {
+    float: right;
+    margin-right: 25px;
+    cursor: pointer;
+    color: var(--text-primary); 
+}
+.authuser:hover {
+    color: black;
+}
 
 .sidebarbutton {
     margin-left: 25px;

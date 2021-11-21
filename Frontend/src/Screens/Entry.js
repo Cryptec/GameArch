@@ -1,5 +1,4 @@
 import React from 'react'
-import Stats from '../components/stats'
 
 
 function Entry() {
@@ -8,9 +7,9 @@ function Entry() {
       <div>
     
         <div id="contentpage">
-           
-           <Stats />
-
+          <div className="overviewContainer">
+           Home
+          </div>
         </div>
       </div>
     )

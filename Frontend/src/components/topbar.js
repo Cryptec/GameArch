@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { logout, isLogin } from '../utils'
+import { logout, isLogin, userName } from '../utils'
 import { openNav, closeNav } from './handler'
 
 import '../css/topbar.css'
@@ -12,19 +12,24 @@ class Topbar extends Component {
 
         this.state = {
             isLogin: isLogin(),
-            nav: true
+            nav: true,
+            user: ""
         }
     }
+    
+async componentWillMount() {
+    await this.setState({user: userName()})
+}
 
-    handleLogout = () => {
-        logout()
-        this.props.history.push('/login')
-        this.setState({
-            isLogin: false,
-            nav: true
-        })
-    }
-
+handleLogout = () => {
+    logout()
+    this.props.history.push('/login')
+    this.setState({
+    isLogin: false,
+    nav: true,
+    user: ""
+    })
+}
 
 toggleOpen = () => {
     openNav()
@@ -41,6 +46,9 @@ toggleNav = () => {
 }
 
     render() {
+
+       const activeUser = this.state.user || 'undefined'
+
         return (
             <div className="topbar" id="topbar">
                 <div className="sidebarbutton" onClick={this.toggleNav}>
@@ -52,7 +60,9 @@ toggleNav = () => {
                     <Link to='/members' className="topNavigationItem">Users</Link>
                   </li>
                 </div>
-
+                <div className="authuser">   
+                    Hello, {activeUser}
+                </div>
                 <div className="logoutbutton">
                     {this.state.isLogin ? (
                         <div onClick={() => this.handleLogout()}>Logout</div>

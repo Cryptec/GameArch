@@ -42,13 +42,13 @@ render() {
         <div id="contentpage">
         <div className="userstable">
         <table id="tblData">
-          <thead>
+          
            
               <th style={{ borderTopLeftRadius: "4px" }}>Name</th>
               <th>email</th>
               <th style={{ borderTopRightRadius: "4px" }}></th>
             
-          </thead>
+       
           <tbody>
             {this.renderTableRows()}
           </tbody>
