@@ -38,6 +38,17 @@ class AddGame extends Component {
 
                   />
                  </label>
+                 <br />
+                 <label className="label">
+                 Image: 
+                 <br />
+                  <input
+                  type="file"
+                  name="file"
+                  placerholder="Upload picture"
+                  onChange={this.handleChange.bind(this)}
+                  />
+                 </label>
                  <button>
                     Add Game
                  </button>

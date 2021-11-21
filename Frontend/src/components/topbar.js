@@ -17,7 +17,7 @@ class Topbar extends Component {
         }
     }
     
-async componentWillMount() {
+async componentDidMount() {
     await this.setState({user: userName()})
 }
 

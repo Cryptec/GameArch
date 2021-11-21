@@ -13,8 +13,8 @@
     border-radius: 6px;
 }
 .games {
-    height: 270px;
-    width: 250px;
+    height: 220px;
+    width: 200px;
     margin: 10px;
     background: white;
     border: 2px solid black;
@@ -25,8 +25,8 @@
     display: flex;
   }
 .addGamesButton {
-    height: 270px;
-    width: 250px;
+    height: 220px;
+    width: 200px;
     margin: 10px;
     background: white;
     border: 2px rgb(105, 104, 104);
