@@ -61,7 +61,7 @@ toggleNav = () => {
                   </li>
                 </div>
                 <div className="authuser">   
-                    Hello, {activeUser}
+                    Hello, <b>{activeUser}</b>
                 </div>
                 <div className="logoutbutton">
                     {this.state.isLogin ? (
