@@ -1,4 +1,4 @@
-import { GithubIcon, AiOutlineDashboard, TeamNoes, MediaIcon, LogoutIcon } from "../assets/icons";
+import { GithubIcon, AiOutlineDashboard, BsCollection, MediaIcon, LogoutIcon, GrAdd } from "../assets/icons";
 
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_LINK
 
@@ -12,15 +12,15 @@ export const SidebarItemsMain = [
     {
         name: "Übersicht",
         route: '/overview',
-        icon: <TeamNoes />
+        icon: <BsCollection />
     },
 ];
 
 export const SidebarItemsResources = [
     {
-        name: "GitHub",
-        link: `${GITHUB_LINK}`,
-        icon: <GithubIcon />
+        name: "Add Games",
+        link: `/addgame`,
+        icon: <GrAdd />
     },
     {
         name: "Media",

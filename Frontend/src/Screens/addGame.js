@@ -52,9 +52,9 @@ class AddGame extends Component {
                   />
                  </label>
 
-                 <div className="games">
-                 <img src={this.state.file} width="190" height="auto"/>
-                 <text>{this.state.title}</text>
+                 <div className="gamesPreview">
+                 <text className="textPreview">{this.state.title}</text>
+                 <img src={this.state.file} className="imagePreview"/>
                  </div>
 
                  <br />
@@ -88,12 +88,12 @@ handleSubmit(event) {
       credentials: 'include',
       url: `${API_ENDPOINT}/api/newgame`,
       headers: { 'Content-Type': 'application/json' },
-      data: { title: this.state.title}
+      data: { title: this.state.title, file: this.state.file}
       
   }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-          this.setState({ title: "" })
+          this.setState({ title: "", file: "" })
           console.log("Successfully added");
       } 
   });

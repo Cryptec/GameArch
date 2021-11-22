@@ -32,8 +32,10 @@ async componentDidMount() {
         <div id="contentpage">
         <div className="overviewContainer">
            {this.renderGames()}
-           <Link to='/addgame' className="addGamesButton">add games</Link>
-
+           <Link to='/addgame' className="addGamesButton">
+             <div>add games</div>
+             <div style={{fontSize: 50}}>+</div>
+           </Link>
         </div>
         </div>
       </div>
@@ -45,7 +47,9 @@ renderGames = () => {
 
     return (
 
-        <div key={game.id} className="games">{game.title}</div>
+        <div key={game.id} className="gamesShow">
+          <text className="textShow">{game.title}</text>
+        </div>
 
     )
   })
