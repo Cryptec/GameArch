@@ -5,6 +5,8 @@ import { openNav, closeNav } from './handler'
 
 import '../css/topbar.css'
 import '../css/sidebar.css'
+import '../css/dropdown.css'
+
 
 class Topbar extends Component {
     constructor(props) {
@@ -13,13 +15,43 @@ class Topbar extends Component {
         this.state = {
             isLogin: isLogin(),
             nav: true,
-            user: ""
+            user: "",
+            open: false,
         }
     }
     
 async componentDidMount() {
-    await this.setState({user: userName()})
+    await this.setState({user: userName()});
+    document.addEventListener("mousedown", this.handleClickOutside);
 }
+
+componentWillUnmount() {
+  document.removeEventListener("mousedown", this.handleClickOutside);
+}
+
+handleClickOutside = (event) => {
+  if (
+    this.container.current &&
+    !this.container.current.contains(event.target)
+  ) {
+    this.setState({
+      open: false,
+    });
+  }
+};
+
+handleDropdownClick = () => {
+    this.setState((state) => {
+      return {
+        open: !state.open,
+        };
+    });
+};
+
+container = React.createRef();
+state = {
+  open: false,
+};
 
 handleLogout = () => {
     logout()
@@ -60,17 +92,28 @@ toggleNav = () => {
                     <Link to='/members' className="topNavigationItem">Users</Link>
                   </li>
                 </div>
-                <div className="authuser">   
+                <div className="wrapper" ref={this.container} onClick={this.handleDropdownClick}>
+                <div className="authuser">
                     Hello, <b>{activeUser}</b>
                 </div>
-                <div className="logoutbutton">
-                    {this.state.isLogin ? (
-                        <div onClick={() => this.handleLogout()}>Logout</div>
-                    ) : (
-                        <Link to='/login' onClick={() => this.handleLogout()}>
-                            Logout
-                        </Link>
-                    )}
+
+                {this.state.open && (
+                    <div class="dropdown">
+                        <ul className="list">
+
+                            <li className="list-item"> Settings </li>
+                            <li className="list-item">
+                                    {this.state.isLogin ? (
+                                        <div onClick={() => this.handleLogout()}>Logout</div>
+                                    ) : (
+                                        <Link to='/login' onClick={() => this.handleLogout()}>
+                                            Logout
+                                        </Link>
+                                    )}
+                            </li>
+                        </ul>
+                    </div>
+                )}
                 </div>
     
             </div>
