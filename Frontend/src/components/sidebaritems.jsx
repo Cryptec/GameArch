@@ -1,4 +1,4 @@
-import { GithubIcon, AiOutlineDashboard, BsCollection, MediaIcon, LogoutIcon, GrAdd } from "../assets/icons";
+import { AiOutlineDashboard, BsCollection, MediaIcon, LogoutIcon, GrAdd } from "../assets/icons";
 
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_LINK
 

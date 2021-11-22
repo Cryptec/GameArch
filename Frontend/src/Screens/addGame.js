@@ -20,9 +20,13 @@ class AddGame extends Component {
       <div>
      
         <div id="contentpage">
-        <div className="contentContainer">
-           
-           <h3>Add a Game</h3>
+        <div className="contentContainerInputForm">
+        <div className="gamesPreview">
+                 <text className="textPreview">{this.state.title}</text>
+                 <img src={this.state.file} className="imagePreview" alt=""/>
+        </div>
+
+        <div className="inputForm">
 
            <form onSubmit={this.handleSubmit.bind(this)} method="POST">
 
@@ -52,20 +56,17 @@ class AddGame extends Component {
                   />
                  </label>
 
-                 <div className="gamesPreview">
-                 <text className="textPreview">{this.state.title}</text>
-                 <img src={this.state.file} className="imagePreview"/>
-                 </div>
-
                  <br />
-                 <button>
+                 <br />
+                 <button className="addButton">
                     Add Game
                  </button>
 
             </form>
-        </div>
-        </div>
+            </div>
 
+        </div>
+        </div>
       </div>
     )
   }
