@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { SidebarItemsMain, SidebarItemsResources, SidebarItemsEimag } from './sidebaritems'
+import { SidebarItemsMain, SidebarItemsResources, SidebarItemsUser } from './sidebaritems'
+import { logout } from '../utils'
 import '../css/sidebar.css'
 
 
 function Navbar() {
-
 
         return(
 
@@ -26,10 +26,10 @@ function Navbar() {
                     ))
                 }
             <br />
-            <div className="sidebarTitle">Eimag</div>
+            <div className="sidebarTitle">Resources</div>
             <br />
                 {
-                    SidebarItemsEimag.map(item=> (
+                    SidebarItemsResources.map(item=> (
                      
                      <Link to={item.route}> 
 
@@ -42,15 +42,16 @@ function Navbar() {
                     ))
                 }
             <br />
-            <div className="sidebarTitle">Resources</div>
+            <div className="sidebarTitle">User</div>
             <br />
                 {
-                    SidebarItemsResources.map(item=> (
+ 
+                    SidebarItemsUser.map(item=> (
                      
                      <Link to={item.route}> 
 
                         <div key={item.name}>
-                                <div className="sidebarItem" onClick={() => window.location.href = `${item.link}`}>{[item.icon, item.name]}</div>
+                                <div className="sidebarItem" onClick={() => logout()}>{[item.icon, item.name]}</div>
                         </div>
 
                      </Link>
