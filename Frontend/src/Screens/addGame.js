@@ -10,6 +10,7 @@ class AddGame extends Component {
     super();
     this.state = {
         title: "",
+        file: null
     };
 }
 
@@ -43,12 +44,20 @@ class AddGame extends Component {
                  Image: 
                  <br />
                   <input
+                  id="image"
                   type="file"
                   name="file"
                   placerholder="Upload picture"
                   onChange={this.handleChange.bind(this)}
                   />
                  </label>
+
+                 <div className="games">
+                 <img src={this.state.file} width="190" height="auto"/>
+                 <text>{this.state.title}</text>
+                 </div>
+
+                 <br />
                  <button>
                     Add Game
                  </button>
@@ -65,7 +74,9 @@ class AddGame extends Component {
     const field = event.target.id;
     if (field === "title") {
         this.setState({ title: event.target.value });
-    } 
+    } else if (field === "image") {
+      this.setState({ file: URL.createObjectURL(event.target.files[0]) })
+    }
 }
 handleSubmit(event) {
   event.preventDefault();
