@@ -28,17 +28,17 @@
     margin: 30px;
 }
 .gamesPreview {
-    height: 220px;
+    height: 225px;
     width: 200px;
     min-width: 200px;
-    margin: 10px;
     margin: 30px;
-    background: white;
-    border: 2px solid rgb(105, 104, 104);
+    background: var(--background);
+    border: 1px solid rgb(105, 104, 104);
     border-radius: 7px;
     flex-direction: column;
-    align-items: center;
     display: flex;
+    overflow: hidden;
+    align-items: center;
 }
 
 .addGamesButton {
@@ -64,13 +64,15 @@
     border-style: dashed;
 }
 .imagePreview {
+    max-width: 200px;
     width: auto;
-    max-height: 135px;
+    max-height: 140px;
     height: auto;
 }
 .textPreview {
-    padding: 5px;
-    text-align: center;
+    padding: 10px;
+    font-weight: 700;
+    
 }
 .imageShow {
     width: auto;

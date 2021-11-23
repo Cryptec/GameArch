@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
+import ImagePlaceholder from '../assets/imageplaceholder.png'
 import '../css/overview.css'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
@@ -14,6 +14,10 @@ class AddGame extends Component {
     };
 }
 
+componentDidMount = () => {
+     this.setState({file: ImagePlaceholder})
+}
+
   render() {
 
     return (
@@ -22,8 +26,8 @@ class AddGame extends Component {
         <div id="contentpage">
         <div className="contentContainerInputForm">
         <div className="gamesPreview">
-                 <text className="textPreview">{this.state.title}</text>
                  <img src={this.state.file} className="imagePreview" alt=""/>
+                 <text className="textPreview">{this.state.title}</text>
         </div>
 
         <div className="inputForm">
@@ -71,7 +75,7 @@ class AddGame extends Component {
     )
   }
   
-  handleChange(event) {
+handleChange(event) {
     const field = event.target.id;
     if (field === "title") {
         this.setState({ title: event.target.value });
