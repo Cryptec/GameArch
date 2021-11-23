@@ -27,7 +27,7 @@ componentDidMount = () => {
         <div className="contentContainerInputForm">
         <div className="gamesPreview">
                  <img src={this.state.file} className="imagePreview" alt=""/>
-                 <text className="textPreview">{this.state.title}</text>
+                 <text className="gameTitle">{this.state.title}</text>
         </div>
 
         <div className="inputForm">

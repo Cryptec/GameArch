@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import ImagePlaceholder from '../assets/imageplaceholder.png'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
@@ -9,12 +10,13 @@ class Overview extends Component {
     this.state = {
       games: [],
       isLoading: false,
-      isError: false
+      isError: false,
+      file: false
     }
 }
 
 async componentDidMount() {
-  this.setState({ isLoading: true })
+  this.setState({ isLoading: true, file: ImagePlaceholder })
   const response = await fetch(`${API_ENDPOINT}/api/gamedata`, {credentials: 'include'})
   if (response.ok) {
     const games = await response.json()
@@ -48,7 +50,8 @@ renderGames = () => {
     return (
 
         <div key={game.id} className="gamesShow">
-          <text className="textShow">{game.title}</text>
+          <img src={this.state.file} className="imagePreview" alt=""/>
+          <text className="gameTitle">{game.title}</text>
         </div>
 
     )

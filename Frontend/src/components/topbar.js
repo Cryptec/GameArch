@@ -79,7 +79,7 @@ toggleNav = () => {
 
     render() {
 
-       const activeUser = this.state.user || 'undefined'
+       const activeUser = this.state.user || 'Guest'
 
         return (
             <div className="topbar" id="topbar">
