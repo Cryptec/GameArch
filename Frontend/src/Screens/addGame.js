@@ -98,7 +98,7 @@ handleSubmit(event) {
   }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-          this.setState({ title: "", file: "" })
+          this.setState({ title: "", file: ImagePlaceholder })
           console.log("Successfully added");
       } 
   });
