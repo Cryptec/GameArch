@@ -1,5 +1,5 @@
 .overviewContainer {
-    background-color: white;
+    background-color: var(--container-background);
     border: var(--border);
     padding: 10px;
     border-radius: 6px;
@@ -9,8 +9,9 @@
     flex-wrap : wrap
 }
 .contentContainerInputForm {
-    background-color: white;
+    background-color: var(--container-background);
     border: var(--border);
+    color: var( --text-primary);
     min-width: 360px;
     border-radius: 6px;
     display: flex;
@@ -45,10 +46,10 @@
     height: 225px;
     width: 200px;
     margin: 10px;
-    background: white;
+    background: var(--container-background);
     border: var(--border);
     border-style: dashed;
-    color: rgb(105, 104, 104);
+    color: var( --text-primary);
     font-size: large;
     border-radius: 7px;
     flex-direction: column;
@@ -59,9 +60,8 @@
     text-decoration: none;
 }
 .addGamesButton:hover {
-    border: 1px solid black;
-    color: black;
-    border-style: dashed;
+    border: 1px dashed black;
+    color: var(--text-hover);
 }
 .imagePreview {
     max-width: 200px;
@@ -72,6 +72,7 @@
 .gameTitle {
     padding: 10px;
     font-weight: 700;
+    color: var( --text-primary);
 }
 .gamesShow {
     height: 225px;

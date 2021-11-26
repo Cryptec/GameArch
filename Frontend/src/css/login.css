@@ -18,7 +18,7 @@
 .NavbarBrand {
     font-size: 18px;
     font-weight: bold;
-    color: var(--text-primary);;
+    color: rgb(87, 87, 87);
     text-decoration: none;
     list-style: none;
     display:inline;
@@ -28,7 +28,7 @@
 
 .navButtons {
     border: none;
-    color: var(--text-primary);
+    color: rgb(87, 87, 87);
     text-decoration: none; 
     padding: 17px 10px 15px 10px;
     display:inline;

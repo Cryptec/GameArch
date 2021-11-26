@@ -3,17 +3,9 @@
     line-height: 30px;
     overflow-x: hidden;
     margin-left: var(--sidebar-width);
-    border-bottom: 1px solid rgb(207, 207, 207);
+    border-bottom: 1px solid var(--topbar-bottom-border);
 }
-.logoutbutton {
-    float: right;
-    margin-right: 25px;
-    cursor: pointer;
-    color: var(--text-primary); 
-}
-.logoutbutton:hover {
-    color: black;
-}
+
 .authuser {
     float: right;
     margin-right: 25px;
@@ -21,7 +13,7 @@
     color: var(--text-primary); 
 }
 .authuser:hover {
-    color: black;
+    color: var(--text-hover)
 }
 
 .sidebarbutton {
@@ -33,7 +25,7 @@
     color: var(--text-primary); ; 
 }
 .sidebarbutton:hover {
-    color: black;
+    color: var(--text-hover);
 }
 
 .topNavigation {
@@ -48,5 +40,5 @@
     color: var(--text-primary); ;
 }
 .topNavigationItem:hover {
-    color: black;
+    color: var(--text-hover)
 }
