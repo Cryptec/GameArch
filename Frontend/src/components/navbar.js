@@ -8,7 +8,7 @@ class Navbar extends Component {
         return(
             <div className="NavBar">
               
-              <Link to="/" className="NavbarBrand" style={{marginLeft: "25px"}}>Workspace</Link>
+              <Link to="/" className="NavbarBrand" style={{marginLeft: "25px"}}>Game<b>Arch</b></Link>
               <Link to='/signup' className="navButtons" style={{marginRight: "25px"}}>Signup</Link>
               <Link to='/login' className="navButtons">Login</Link>
               

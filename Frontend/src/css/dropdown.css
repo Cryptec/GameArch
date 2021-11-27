@@ -24,6 +24,11 @@
   cursor: pointer;
   background-color: white;
 }
+.link-list-item {
+  cursor: pointer;
+  text-decoration: none;
+  color: black; 
+}
 .list-item:hover,
 .list-item:active {
   background-color: #f3f3f3;
