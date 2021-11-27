@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Logo from "../assets/NK.svg"
+import Logo from "../assets/GameArch.svg"
 import Loginform from "../components/loginform"
 import Navbar from "../components/navbar"
 
