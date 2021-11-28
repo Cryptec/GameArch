@@ -47,8 +47,7 @@
     width: 200px;
     margin: 10px;
     background: var(--container-background);
-    border: var(--border);
-    border-style: dashed;
+    border: 1px dashed var(--text-primary);
     color: var( --text-primary);
     font-size: large;
     border-radius: 7px;
@@ -60,7 +59,7 @@
     text-decoration: none;
 }
 .addGamesButton:hover {
-    border: 1px dashed black;
+    border: 1px dashed var(--text-hover);
     color: var(--text-hover);
 }
 .imagePreview {

@@ -2,7 +2,7 @@
 #tblData {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid rgb(207, 207, 207);
+    border: var(--table-border);
     color: var(--text-primary); 
   }
 #tblData tr {
@@ -10,11 +10,11 @@
 }
   
   #tblData td, #tblData th {
-    border-bottom: 1px solid rgb(207, 207, 207);
+    border-bottom: var(--table-border);
     padding: 8px;
   }
   
-  #tblData tr:nth-child(even){background-color: var(--content-background-light) }
+  #tblData tr:nth-child(even){background-color: var(--table-background-secondary) }
   
   #tblData tr:hover {background-color: var(--content-background);}
   
@@ -27,7 +27,7 @@
  
   }
   .userstable {
-    background-color: white;
+    background-color: var(--table-background);
     padding: 10px;
     border-radius: 6px;
     border: var(--border);
@@ -37,5 +37,5 @@
     width: 80px;
   }
   .sendMail:hover {
-    color: black;
+    color: var(--text-hover);
   }
