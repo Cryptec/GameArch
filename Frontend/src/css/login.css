@@ -1,6 +1,5 @@
 .container {  
-    margin-right: auto;
-    margin-left: auto;
+    justify-content: center;
 }
 .NavBar {
     margin-top: 15px;
@@ -39,11 +38,15 @@
 .navButtons:active {
     background-color: #e7e7e7;
 }
+.slogan {
+    padding-top: 0px;
+    padding-bottom: 40px;
+    font-size: 2em;
+}
 
 
 .loginform {
-    display: block;
-    overflow: visible!important;
+    overflow: visible !important;
     margin-right: auto;
     margin-left: auto;
     max-width: 350px;
@@ -62,6 +65,7 @@
 }
 
 .form-group-login {
+    align-items: center;
     border: 1px solid #cfcece;
     padding: 10px 16px;
     margin-bottom: 15px;
@@ -120,8 +124,8 @@
 @media all and (min-width: 480px) {
   
     .logo {
-      height: 250px;
-      width: 250px;
+      height: 200px;
+      width: 200px;
       padding-top: 60px;
       padding-bottom: 25px;
       display: block;

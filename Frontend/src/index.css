@@ -1,10 +1,12 @@
 :root {
+   --text-hover: black;
+   --text-primary: #535252;
    --secondary: #3c4b64; 
-   --background: #f1f3f7;
-   --topbar-background : #fcfafa;
    --content-background: #dddfe2;
+   --hilight: #048984;
+   --topbar-background : #fcfafa;
    --content-background-light: #f8f5f5;
-   --text-primary: rgb(87, 87, 87);
+   --background: #f1f3f7;
    --container-background: white;
 
    --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -14,12 +16,11 @@
    --border: 1px solid rgb(105, 104, 104, 0.5);
    --topbar-bottom-border: rgb(207, 207, 207);
 
-   --text-hover: black;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --secondary: #090913; 
-    --background: #07142c;
+    --background: #071126;
     --topbar-background : #090913;
     --content-background: #071126;
     --content-background-light: #f8f5f5;

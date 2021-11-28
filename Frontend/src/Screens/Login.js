@@ -1,9 +1,10 @@
 import React, { Component } from "react"
-import Logo from "../assets/GameArch.svg"
+import Logo from "../assets/GameArchLogo.svg"
 import Loginform from "../components/loginform"
 import Navbar from "../components/navbar"
 
 import "../css/login.css"
+import Slogan from "../utils/slogan"
 
 class Login extends Component {
   render() {
@@ -12,6 +13,7 @@ class Login extends Component {
         
           <Navbar />
           <img src={Logo} alt='logo' className='logo'></img>
+          <Slogan />
           <Loginform />
   
       </div>

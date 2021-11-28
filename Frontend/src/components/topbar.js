@@ -100,9 +100,11 @@ toggleNav = () => {
                 {this.state.open && (
                     <div class="dropdown">
                         <ul className="list">
+                            <Link to='/settings' className="link-list-item">
                             <li className="list-item">
-                               <Link to='/settings' className="link-list-item">Settings</Link>
+                               Settings
                             </li>
+                            </Link>
                             <li className="list-item">
                                     {this.state.isLogin ? (
                                         <div onClick={() => this.handleLogout()}>Logout</div>
