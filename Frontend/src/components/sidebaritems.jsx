@@ -1,4 +1,4 @@
-import { AiOutlineDashboard, BsCollection, MediaIcon, LogoutIcon, GrAdd } from "../assets/icons";
+import { AiOutlineDashboard, BsCollection, MediaIcon, LogoutIcon, GrAdd, IoSettingsOutline } from "../assets/icons";
 
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_LINK
 
@@ -30,6 +30,14 @@ export const SidebarItemsResources = [
 ]
 
 export const SidebarItemsUser = [
+    {
+        name: "Settings",
+        route: '/settings',
+        icon: <IoSettingsOutline />
+    },
+]
+
+export const SidebarItemsLogout = [
     {
         name: "Logout",
         route: '/login',

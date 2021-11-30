@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { SidebarItemsMain, SidebarItemsResources, SidebarItemsUser } from './sidebaritems'
+import { SidebarItemsLogout, SidebarItemsMain, SidebarItemsResources, SidebarItemsUser } from './sidebaritems'
 import { logout } from '../utils'
 import '../css/sidebar.css'
 
@@ -51,11 +51,25 @@ function Navbar() {
                      <Link to={item.route}> 
 
                         <div key={item.name}>
-                                <div className="sidebarItem" onClick={() => logout()}>{[item.icon, item.name]}</div>
+                                <div className="sidebarItem">{[item.icon, item.name]}</div>
                         </div>
 
                      </Link>
                      
+                    ))
+                }
+                {
+
+                    SidebarItemsLogout.map(item => (
+
+                        <Link to={item.route}>
+
+                            <div key={item.name}>
+                                <div className="sidebarItem" onClick={() => logout()}>{[item.icon, item.name]}</div>
+                            </div>
+
+                        </Link>
+
                     ))
                 }
             </div>

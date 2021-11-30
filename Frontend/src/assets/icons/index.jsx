@@ -54,10 +54,10 @@ export const IoSettingsOutline = ({ color, size, title, className }) => {
             stroke="currentColor"
             fill="currentColor"
             strokeWidth="0"
-            viewBox="0 0 24 24"
+            viewBox="0 -0.5 23 23"
             xmlns="http://www.w3.org/2000/svg"
-            height={size ? size : "30px"}
-            width={size ? size : "30px"}
+            height={size ? size : "16px"}
+            width={size ? size : "16px"}
             style={{ color }}
             className={className ? className : 'ListIcon'}
         >
