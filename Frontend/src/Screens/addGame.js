@@ -13,12 +13,31 @@ class AddGame extends Component {
         platform: "", 
         price: "",
         ownage: "",
-        file: null
+        ownageTrue: "",
+        ownageFalse: "",
+        file: null,
+        isActive: false,
+        isActiveSuccess: false
     };
 }
 
 componentDidMount = () => {
-     this.setState({file: ImagePlaceholder})
+     this.setState({file: ImagePlaceholder, 
+                    ownage: "false", 
+                    ownageFalse: "I don´t own this Game"})
+     this.handleShow()
+}
+handleShow = () =>{
+  this.setState({
+      isActive: true,
+      isActiveSuccess: false
+  })
+}
+handleShowSuccess = () =>{
+  this.setState({
+      isActiveSuccess: true,
+      isActive: false,
+  })
 }
 
   render() {
@@ -31,7 +50,7 @@ componentDidMount = () => {
         <div className="gamesPreview">
                  <img src={this.state.file} className="imagePreview" alt=""/>
                  <text className="gameTitle">{this.state.title}</text>
-                 <text className="gameTitle">{this.state.price}</text>
+                 <text className="gamePrice">{this.state.price}</text>
         </div>
 
         <div className="inputForm">
@@ -84,13 +103,16 @@ componentDidMount = () => {
                  Own: 
                  <br />
                   <input
-                    className="form-group-login"
                     onChange={this.handleChange.bind(this)}
                     id="ownage"
                     value={this.state.ownage}
                     type='checkbox'
                   />
                  </label>
+
+                 {this.state.isActive ? <p className="errorTextLogin">{this.state.ownageFalse}</p> : null}
+                 {this.state.isActiveSuccess ? <p className="successTextLogin">{this.state.ownageTrue}</p> : null}
+
                  <br />
                  <label className="label">
                  Image: 
@@ -132,9 +154,11 @@ handleChange(event) {
     } else if (field === "image") {
       this.setState({ file: URL.createObjectURL(event.target.files[0]) })
     } else if (checkBox.checked === true){
-      this.setState({ ownage: "true" });
+      this.setState({ ownage: "true", ownageTrue: "I own this Game" });
+      this.handleShowSuccess()
     } else {
-      this.setState({ ownage: "false" });
+      this.setState({ ownage: "false", ownageFalse: "I don´t own this Game" });
+      this.handleShow()
     }
 }
 handleSubmit(event) {

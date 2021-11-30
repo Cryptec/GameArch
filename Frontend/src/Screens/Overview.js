@@ -50,8 +50,11 @@ renderGames = () => {
     return (
 
         <div key={game.id} className="gamesShow">
+
           <img src={this.state.file} className="imagePreview" alt=""/>
-          <text className="gameTitle">{game.title}</text>
+          <div className="gameTitle">{game.title}</div>
+          <div className="gamePrice">{game.price}</div>
+          
         </div>
 
     )
