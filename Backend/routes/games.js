@@ -7,10 +7,13 @@ require('dotenv').config()
 
 router.post("/newgame", checkAuthentication, async (req, res, next) => {
     var data = {
-        title: req.body.title
+        title: req.body.title,
+        price: req.body.price,
+        platform: req.body.platform,
+        ownage: req.body.ownage,
     }
-    var sql ='INSERT INTO Games (title) VALUES (?)'
-    var params =[data.title]
+    var sql ='INSERT INTO Games (title, price, platform, ownage) VALUES (?, ?, ?, ?)'
+    var params =[data.title, data.price, data.platform, data.ownage]
     db.run(sql, params, (err, rows) => {
       if (err) {
         res.status(400).json({ "error": err.message });

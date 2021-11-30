@@ -1,0 +1,11 @@
+.form-group-addgame {
+    align-items: center;
+    border: 1px solid #cfcece;
+    padding: 10px 16px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 318px;
+
+}

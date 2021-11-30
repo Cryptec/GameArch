@@ -10,6 +10,9 @@ class AddGame extends Component {
     super();
     this.state = {
         title: "",
+        platform: "", 
+        price: "",
+        ownage: "",
         file: null
     };
 }
@@ -28,6 +31,7 @@ componentDidMount = () => {
         <div className="gamesPreview">
                  <img src={this.state.file} className="imagePreview" alt=""/>
                  <text className="gameTitle">{this.state.title}</text>
+                 <text className="gameTitle">{this.state.price}</text>
         </div>
 
         <div className="inputForm">
@@ -45,6 +49,46 @@ componentDidMount = () => {
                     type='text'
                     required
 
+                  />
+                 </label>
+                 <br />
+                 <label className="label">
+                 Platform: 
+                 <br />
+                  <input
+                    className="form-group-login"
+                    onChange={this.handleChange.bind(this)}
+                    id="platform"
+                    value={this.state.platform}
+                    type='text'
+                    required
+
+                  />
+                 </label>
+                 <br />
+                 <label className="label">
+                 Price: 
+                 <br />
+                  <input
+                    className="form-group-login"
+                    onChange={this.handleChange.bind(this)}
+                    id="price"
+                    value={this.state.price}
+                    type='text'
+                    required
+
+                  />
+                 </label>
+                 <br />
+                 <label className="label">
+                 Own: 
+                 <br />
+                  <input
+                    className="form-group-login"
+                    onChange={this.handleChange.bind(this)}
+                    id="ownage"
+                    value={this.state.ownage}
+                    type='checkbox'
                   />
                  </label>
                  <br />
@@ -77,10 +121,20 @@ componentDidMount = () => {
   
 handleChange(event) {
     const field = event.target.id;
+    var checkBox = document.getElementById("ownage");
+
     if (field === "title") {
         this.setState({ title: event.target.value });
+    } else if (field === "price") {
+      this.setState({ price: event.target.value });
+    } else if (field === "platform") {
+      this.setState({ platform: event.target.value });
     } else if (field === "image") {
       this.setState({ file: URL.createObjectURL(event.target.files[0]) })
+    } else if (checkBox.checked === true){
+      this.setState({ ownage: "true" });
+    } else {
+      this.setState({ ownage: "false" });
     }
 }
 handleSubmit(event) {
@@ -93,12 +147,16 @@ handleSubmit(event) {
       credentials: 'include',
       url: `${API_ENDPOINT}/api/newgame`,
       headers: { 'Content-Type': 'application/json' },
-      data: { title: this.state.title, file: this.state.file}
+      data: { title: this.state.title,
+              price: this.state.price,
+              platform: this.state.platform,
+              ownage: this.state.ownage, 
+              file: this.state.file}
       
   }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-          this.setState({ title: "", file: ImagePlaceholder })
+          this.setState({ title: "", file: ImagePlaceholder, price: "", platform: "", ownage: "" })
           console.log("Successfully added");
       } 
   });

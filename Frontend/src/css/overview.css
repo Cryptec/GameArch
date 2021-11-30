@@ -12,7 +12,7 @@
     background-color: var(--container-background);
     border: var(--border);
     color: var( --text-primary);
-    min-width: 360px;
+    min-width: 320px;
     border-radius: 6px;
     display: flex;
     box-sizing: border-box;
