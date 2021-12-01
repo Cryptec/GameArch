@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
+import Rendercurrency from '../utils/renderCurrency'
 import '../css/overview.css'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
@@ -43,14 +44,15 @@ handleShowSuccess = () =>{
   render() {
 
     return (
+
       <div>
      
         <div id="contentpage">
         <div className="contentContainerInputForm">
         <div className="gamesPreview">
                  <img src={this.state.file} className="imagePreview" alt=""/>
-                 <text className="gameTitle">{this.state.title}</text>
-                 <text className="gamePrice">{this.state.price}</text>
+                 <div className="gameTitle">{this.state.title}</div>
+                 <div className="gamePrice">{this.state.price}&nbsp;<Rendercurrency /></div>
         </div>
 
         <div className="inputForm">

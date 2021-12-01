@@ -40,6 +40,21 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     console.log("First start, Create Games Table!")
                 }
             })
+        
+        db.run(`CREATE TABLE Settings (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            currency text UNIQUE,
+            CONSTRAINT currency_unique UNIQUE (currency)
+            )`,
+            (err) => {
+                if (err) {
+                    // Table already created
+                } else {
+                    var initialSettings = 'INSERT INTO Settings (currency) VALUES (?)'
+                    db.run(initialSettings, "EUR")
+                    console.log("First start, Create Settings Table!")
+                }
+            })
     }
 });
 

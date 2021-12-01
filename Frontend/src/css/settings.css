@@ -1,0 +1,12 @@
+.sectionDescription {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 80px;
+    margin-left: -100px;
+}
+
+.currencyInput {
+    color: var(--text-primary);
+    margin-top: 120px;
+    margin-left: -50px;
+}

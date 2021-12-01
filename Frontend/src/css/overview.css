@@ -70,7 +70,9 @@
     border-radius: 7px;
     color: var( --text-primary);
     margin: 6px 8px;
-    background-color: var(--hilight)
+    background-color: var(--hilight);
+    flex-direction: row;
+    display: flex;
 }
 .gamesPreview {
     height: 225px;

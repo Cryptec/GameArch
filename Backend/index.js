@@ -9,6 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const authRoute = require('./routes/auth');
 const analyticRoute = require('./routes/analytic');
 const gameRoute = require('./routes/games')
+const settingsRoute = require('./routes/settings')
 const checkAuthentication = require("./auth/is_authenticated")
 const db = require('./Database');
 const check_first_start = require("./database/check_first_start")
@@ -91,6 +92,7 @@ function setupExpress() {
   app.use('/api', authRoute);
   app.use('/api',checkAuthentication, analyticRoute);
   app.use('/api',checkAuthentication, gameRoute);
+  app.use('/api',checkAuthentication, settingsRoute);
 
 
   var HTTP_PORT = 5000
