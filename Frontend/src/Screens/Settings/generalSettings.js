@@ -14,10 +14,28 @@ class GeneralSettings extends Component {
        Currency: "", 
        isLoading: true, 
        isError: false,
-       fetchcurrency: []
+       fetchcurrency: [],
+       errorMessage: '',
+       successMessage: '',
+       isActive: false,
+       isActiveSuccess: false
     };
 }
  
+
+handleShow = () =>{
+  this.setState({
+      isActive: true,
+      isActiveSuccess: false
+  })
+}
+handleShowSuccess = () =>{
+  this.setState({
+      isActiveSuccess: true,
+      isActive: false,
+  })
+}
+
 componentDidMount = async () => {
   const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, {credentials: 'include'})
   if (response.ok) {
@@ -37,9 +55,9 @@ render() {
            
            <div className="sectionDescription">General:</div>
 
-           <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="currencyInput">
-
-                  <label className='label'>
+           <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="currencyInput" >
+               <div style={{display: "flex", flexDirection: "row"}}> 
+                  <label className='label' style={{display: "flex", flexDirection: "row"}}>
                     Currency:
                     <select
                       list="currencylist"
@@ -55,10 +73,13 @@ render() {
                       <option>USD</option>
                       <option>BTC</option>
                     </select>
+                 
                   </label>
 
-                 <br />
-                 <br />
+                  {this.state.isActive ? <p style={{color: "red"}}>{this.state.errorMessage}</p> : null}
+                  {this.state.isActiveSuccess ? <p style={{color: "green"}}>{this.state.successMessage}</p> : null}
+              </div>
+                 <br /><br />
                  <button className="addButton">
                     Save
                  </button>
@@ -101,7 +122,15 @@ axios({
     console.log(response)
     if (response.data.success) {
         console.log("Successfully changed");
-    } 
+        this.setState({
+          successMessage: 'successfully changed Currency!',
+          isActive: false,
+        })
+        this.handleShowSuccess()
+  } else if (response.data.error) {
+    this.setState({errorMessage: 'Failed updating Currency',})
+    this.handleShow()
+  }
 });
 }}
 

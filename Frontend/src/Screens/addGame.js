@@ -17,8 +17,7 @@ class AddGame extends Component {
         ownageTrue: "",
         ownageFalse: "",
         file: null,
-        isActive: false,
-        isActiveSuccess: false
+        isActive: false
     };
 }
 
@@ -30,14 +29,12 @@ componentDidMount = () => {
 }
 handleShow = () =>{
   this.setState({
-      isActive: true,
-      isActiveSuccess: false
+      isActive: true
   })
 }
 handleShowSuccess = () =>{
   this.setState({
-      isActiveSuccess: true,
-      isActive: false,
+      isActive: false
   })
 }
 
@@ -112,8 +109,8 @@ handleShowSuccess = () =>{
                   />
                  </label>
 
-                 {this.state.isActive ? <p className="errorTextLogin">{this.state.ownageFalse}</p> : null}
-                 {this.state.isActiveSuccess ? <p className="successTextLogin">{this.state.ownageTrue}</p> : null}
+                 {this.state.isActive ? <div className="errorTextLogin">{this.state.ownageFalse}</div> : <div className="successTextLogin">{this.state.ownageTrue}</div>}
+
 
                  <br />
                  <label className="label">

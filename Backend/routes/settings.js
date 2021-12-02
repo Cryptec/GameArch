@@ -33,7 +33,7 @@ router.post('/setcurrency', function(req,res){
     db.run('UPDATE Settings SET currency = ? WHERE id = ?', params, function(err){
       if(err){
         res.send("Error encountered while updating");
-        return res.status(400).json({ "error": err.message });
+        return res.status(400).json({ error: true });
       }
       return res.send({success: true});
     });
