@@ -4,6 +4,25 @@ const checkAuthentication = require("../auth/is_authenticated")
 require('dotenv').config()
 
 
+router.post('/updatepassword', function(req,res){
+  var data = {
+    password: req.body.password, 
+    name: req.body.name
+}
+  var params = [data.password, data.name]
+  db.serialize(()=>{
+    db.run('UPDATE Users SET password = ? WHERE name = ?', params, function(err){
+      if(err){
+        res.send("Error encountered while updating");
+        return res.status(400).json({ "error": err.message });
+      }
+      res.json({
+        "answer":"success"
+    })
+    });
+  });
+});
+
 router.post('/setcurrency', function(req,res){
   var data = {
     currency: req.body.currency,

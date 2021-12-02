@@ -8,7 +8,8 @@ class Rendercurrency extends Component {
     this.state = {
         isLoading: true, 
         isError: false,
-        currency: []
+        currency: [],
+        fetchcurrency: ""
     }
 }
 
@@ -20,21 +21,34 @@ componentDidMount = async () => {
     } else {
       this.setState({ isError: true, isLoading: false })
     }
+    this.renderCurrency()
 }
 
   render() {
 
     return (
         <div>
-           {this.renderCurrency()}
+           {this.state.fetchcurrency}
         </div>
     )
 }
 
 renderCurrency = () => {
     return this.state.currency.map(currencys => {
+      if (currencys.currency === 'EUR') {
+        this.setState({
+          fetchcurrency: '€'
+        })
+      } else if (currencys.currency === 'USD') {
+        this.setState({
+          fetchcurrency: '$'
+          })
+      } else if (currencys.currency === 'BTC') {
+        this.setState({
+          fetchcurrency: '₿'
+          })
+      }
 
-      return ( currencys.currency )
     })
   }
 }
