@@ -48,6 +48,7 @@ renderCurrency = () => {
           fetchcurrency: '₿'
           })
       }
+      return (currencys.currency)
 
     })
   }

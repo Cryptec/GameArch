@@ -17,12 +17,13 @@ class AddGame extends Component {
         ownageTrue: "",
         ownageFalse: "",
         file: null,
+        preview: null,
         isActive: false
     };
 }
 
 componentDidMount = () => {
-     this.setState({file: ImagePlaceholder, 
+     this.setState({preview: ImagePlaceholder, 
                     ownage: "false", 
                     ownageFalse: "I don´t own this Game"})
      this.handleShow()
@@ -47,14 +48,14 @@ handleShowSuccess = () =>{
         <div id="contentpage">
         <div className="contentContainerInputForm">
         <div className="gamesPreview">
-                 <img src={this.state.file} className="imagePreview" alt=""/>
+                 <img src={this.state.preview} className="imagePreview" alt=""/>
                  <div className="gameTitle">{this.state.title}</div>
                  <div className="gamePrice">{this.state.price}&nbsp;<Rendercurrency /></div>
         </div>
 
         <div className="inputForm">
 
-           <form onSubmit={this.handleSubmit.bind(this)} method="POST">
+              <form onSubmit={this.handleSubmit.bind(this)} method="POST" encType='multipart/form-data'>
 
                  <label className="label">
                  Title: 
@@ -151,7 +152,7 @@ handleChange(event) {
     } else if (field === "platform") {
       this.setState({ platform: event.target.value });
     } else if (field === "image") {
-      this.setState({ file: URL.createObjectURL(event.target.files[0]) })
+      this.setState({ preview: URL.createObjectURL(event.target.files[0]), file: event.target.files[0] })
     } else if (checkBox.checked === true){
       this.setState({ ownage: "true", ownageTrue: "I own this Game" });
       this.handleShowSuccess()
@@ -162,24 +163,25 @@ handleChange(event) {
 }
 handleSubmit(event) {
   event.preventDefault();
-  this.setState({ status: "Submit" });
+  let data = new FormData();
+  data.append('title', this.state.title);
+  data.append('price', this.state.price);
+  data.append('platform', this.state.platform);
+  data.append('ownage', this.state.ownage);
+  data.append('file', this.state.file);
 
   axios({
       method: "POST",
       withCredentials: true,
       credentials: 'include',
       url: `${API_ENDPOINT}/api/newgame`,
-      headers: { 'Content-Type': 'application/json' },
-      data: { title: this.state.title,
-              price: this.state.price,
-              platform: this.state.platform,
-              ownage: this.state.ownage, 
-              file: this.state.file}
+      headers: { 'Content-Type': 'multipart/form-data' },
+      data: data
       
   }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-          this.setState({ title: "", file: ImagePlaceholder, price: "", platform: "", ownage: "" })
+          this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "", ownage: "" })
           console.log("Successfully added");
       } 
   });

@@ -1,16 +1,28 @@
 const axios = require('axios')
 var db = require('../Database')
 const router = require('express').Router()
+const multer = require('multer')
 const checkAuthentication = require("../auth/is_authenticated")
 require('dotenv').config()
 
+const upload = multer({
+  dest: './uploads/',
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
+      cb(new Error('Please upload an image.'))
+    }
+    cb(undefined, true)
+  }
+}).single("file");
 
-router.post("/newgame", checkAuthentication, async (req, res, next) => {
+router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
+  console.log("Request ---", req.body);
+  console.log("Request file ---", req.file);
     var data = {
         title: req.body.title,
         price: req.body.price,
         platform: req.body.platform,
-        ownage: req.body.ownage,
+        ownage: req.body.ownage
     }
     var sql ='INSERT INTO Games (title, price, platform, ownage) VALUES (?, ?, ?, ?)'
     var params =[data.title, data.price, data.platform, data.ownage]

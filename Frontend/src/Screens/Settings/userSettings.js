@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { userName } from '../../utils'
-import Rendercurrency from '../../utils/renderCurrency'
 import '../../css/settings.css'
 
 
