@@ -12,6 +12,8 @@ class Overview extends Component {
       games: [],
       isLoading: false,
       isError: false,
+      ownagePreviewOk: <>&#10004;</>,
+      ownagePreviewFalse: <>&#x2715;</>,
       file: false
     }
 }
@@ -45,21 +47,25 @@ async componentDidMount() {
     )
 }
 
+
 renderGames = () => {
+
   return this.state.games.map(game => {
 
       const imageName = game.filename
       const url = `${API_ENDPOINT}/uploads/${imageName}`
-
-
+     
     return (
 
         <div key={game.id} className="gamesShow">
 
-          <img src={`${url}`} alt="" />
+        <img src={`${url}`} alt="" className="imagePreview" />
           <div className="gameTitle">{game.title}</div>
+        <div className="bottomSection">
           <div className="gamePrice">{game.price}&nbsp;<Rendercurrency /></div>
-          
+            {game.ownage === "false" ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
+                   <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
+         </div>
         </div>
 
     )

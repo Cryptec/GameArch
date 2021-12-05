@@ -16,6 +16,8 @@ class AddGame extends Component {
         ownage: "",
         ownageTrue: "",
         ownageFalse: "",
+        ownagePreviewOk: "",
+        ownagePreviewFalse: "",
         file: null,
         preview: null,
         isActive: false
@@ -25,7 +27,8 @@ class AddGame extends Component {
 componentDidMount = () => {
      this.setState({preview: ImagePlaceholder, 
                     ownage: "false", 
-                    ownageFalse: "I don´t own this Game"})
+                    ownageFalse: "I don´t own this Game",
+                    ownagePreviewFalse: <>&#x2715;</> })
      this.handleShow()
 }
 handleShow = () =>{
@@ -47,10 +50,15 @@ handleShowSuccess = () =>{
      
         <div id="contentpage">
         <div className="contentContainerInputForm">
+
         <div className="gamesPreview">
                  <img src={this.state.preview} className="imagePreview" alt=""/>
                  <div className="gameTitle">{this.state.title}</div>
+                 <div className="bottomSection">
                  <div className="gamePrice">{this.state.price}&nbsp;<Rendercurrency /></div>
+                {this.state.isActive ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
+                                       <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
+                </div>
         </div>
 
         <div className="inputForm">
@@ -154,10 +162,10 @@ handleChange(event) {
     } else if (field === "image") {
       this.setState({ preview: URL.createObjectURL(event.target.files[0]), file: event.target.files[0] })
     } else if (checkBox.checked === true){
-      this.setState({ ownage: "true", ownageTrue: "I own this Game" });
+      this.setState({ ownage: "true", ownageTrue: "I own this Game", ownagePreviewOk: <>&#10004;</> });
       this.handleShowSuccess()
     } else {
-      this.setState({ ownage: "false", ownageFalse: "I don´t own this Game" });
+      this.setState({ ownage: "false", ownageFalse: "I don´t own this Game", ownagePreviewFalse: <>&#x2715;</> });
       this.handleShow()
     }
 }
