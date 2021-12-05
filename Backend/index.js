@@ -94,6 +94,9 @@ function setupExpress() {
   app.use('/api',checkAuthentication, gameRoute);
   app.use('/api',checkAuthentication, settingsRoute);
 
+  app.use(express.static('public'));
+  app.use('/uploads', express.static('uploads'));
+
 
   var HTTP_PORT = 5000
   // Start server

@@ -48,11 +48,15 @@ async componentDidMount() {
 renderGames = () => {
   return this.state.games.map(game => {
 
+      const imageName = game.filename
+      const url = `${API_ENDPOINT}/uploads/${imageName}`
+
+
     return (
 
         <div key={game.id} className="gamesShow">
 
-          <img src={this.state.file} className="imagePreview" alt=""/>
+          <img src={`${url}`} alt="" />
           <div className="gameTitle">{game.title}</div>
           <div className="gamePrice">{game.price}&nbsp;<Rendercurrency /></div>
           

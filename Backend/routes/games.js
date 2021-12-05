@@ -6,7 +6,7 @@ const checkAuthentication = require("../auth/is_authenticated")
 require('dotenv').config()
 
 const upload = multer({
-  dest: './uploads/',
+  dest: './public/uploads/',
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
       cb(new Error('Please upload an image.'))
@@ -18,14 +18,16 @@ const upload = multer({
 router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
   console.log("Request ---", req.body);
   console.log("Request file ---", req.file);
+  console.log("filename is:", req.file.filename);
     var data = {
         title: req.body.title,
         price: req.body.price,
         platform: req.body.platform,
-        ownage: req.body.ownage
+        ownage: req.body.ownage,
+        filename: req.file.filename
     }
-    var sql ='INSERT INTO Games (title, price, platform, ownage) VALUES (?, ?, ?, ?)'
-    var params =[data.title, data.price, data.platform, data.ownage]
+    var sql ='INSERT INTO Games (title, price, platform, ownage, filename) VALUES (?, ?, ?, ?, ?)'
+    var params =[data.title, data.price, data.platform, data.ownage, data.filename]
     db.run(sql, params, (err, rows) => {
       if (err) {
         res.status(400).json({ "error": err.message });
