@@ -2,12 +2,16 @@ const router = require('express').Router()
 const Joi = require('@hapi/joi')
 var db = require('../Database')
 const register_user = require("../database/register_user")
-const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const nodemailer = require("nodemailer")
 const passport = require('passport')
 const checkAuthentication = require("../auth/is_authenticated")
 
 require('dotenv').config()
+
+//JWT
+const JWT_SECRET = process.env.JWT_SECRET
+const ORIGIN = process.env.CORS_ORIGIN
 
 // Email
 const mailhost = process.env.MAIL_HOST
@@ -63,11 +67,19 @@ router.post('/forgot', async (req, res) => {
     if (row) {
       res.send({success: true});
       console.log("Exist")
+
+      const linksecret = JWT_SECRET + row.password
+      const payload = {
+                email: data.email,
+                id: row.id
+                }
+      const token = jwt.sign(payload, linksecret, {expiresIn: '15m'})
+      const link = `${ORIGIN}/reset-password/${row.id}/${token}`
       const mail = {
         from: mailemail,
         to: data.email,
         subject: "Reset Password",
-        html: `<p>Some forgot Text</p>`,
+        html: `<p>The link is: ${link}</p>`,
       };
       contactEmail.sendMail(mail, (error) => {
         if (error) {
@@ -76,6 +88,7 @@ router.post('/forgot', async (req, res) => {
           res.json({ status: "sent" });
         }
       });
+      console.log(link)
       return;
     } else if (!row)
     return res.json({"answer":"UserError"})
