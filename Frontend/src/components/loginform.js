@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios"
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import login from '../utils'
 
 import '../css/login.css'
@@ -60,6 +60,10 @@ handleShow = () =>{
 
                   />
                  </label>
+                 
+                 <div className="forgotButton">
+                 <Link to='/forgot' style={{textDecoration: "none", color: "black"}}>forgot?</Link>
+                 </div>
                  <br />
                  <button className="LoginButton">
                     Login
