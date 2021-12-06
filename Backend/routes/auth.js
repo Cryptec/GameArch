@@ -9,6 +9,29 @@ const checkAuthentication = require("../auth/is_authenticated")
 
 require('dotenv').config()
 
+// Email
+const mailhost = process.env.MAIL_HOST
+const mailport = process.env.MAIL_PORT
+const mailemail = process.env.MAIL_EMAIL
+const mailpass = process.env.MAIL_PASSWORD
+
+const contactEmail = nodemailer.createTransport({
+  host: mailhost,
+  port: mailport,
+  auth: {
+    user: mailemail,
+    pass: mailpass,
+  },
+});
+
+contactEmail.verify((error) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Ready to Send");
+  }
+});
+
 // Routes
 router.post('/register', async (req, res) => {
 
@@ -29,6 +52,36 @@ router.post('/register', async (req, res) => {
   res.json({success: result, "answer": "successfully_registered"})
   }
 })
+
+router.post('/forgot', async (req, res) => {
+  var data = {
+    email: req.body.email
+}
+  var params = [data.email]
+  var sql = "SELECT * FROM Users WHERE email =? LIMIT 1"
+  db.get(sql, params, (err, row) => {
+    if (row) {
+      res.send({success: true});
+      console.log("Exist")
+      const mail = {
+        from: mailemail,
+        to: data.email,
+        subject: "Reset Password",
+        html: `<p>Some forgot Text</p>`,
+      };
+      contactEmail.sendMail(mail, (error) => {
+        if (error) {
+          res.json({ status: "failed" });
+        } else {
+          res.json({ status: "sent" });
+        }
+      });
+      return;
+    } else if (!row)
+    return res.json({"answer":"UserError"})
+    console.log("Dont exist")
+  });
+});
 
 /**
  * Get all employees
