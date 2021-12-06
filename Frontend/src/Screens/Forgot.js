@@ -41,9 +41,10 @@ handleShowSuccess = () =>{
     return (
       <div className='container'>
       <Navbar />
-        <div className='Login'>
-  
-        <div className="loginform">
+        <div className="loginform" style={{marginTop: "150px"}}>
+        <h3>Forgot your password?</h3>
+        <br />
+        
               <form onSubmit={this.handleSubmit.bind(this)} method="POST">
                  <label className="label">
                  Email 
@@ -68,7 +69,6 @@ handleShowSuccess = () =>{
                  {this.state.isActiveSuccess ? <p className="successTextLogin">{successMessage}</p> : null}
 
               </form>
-        </div>
         </div>
       </div>
     )
