@@ -74,7 +74,7 @@ router.post('/forgot', async (req, res) => {
                 id: row.id
                 }
       const token = jwt.sign(payload, linksecret, {expiresIn: '15m'})
-      const link = `${ORIGIN}/reset-password/${row.id}/${token}`
+      const link = `http://localhost:5000/api/reset-password/${row.id}/${token}`
       const mail = {
         from: mailemail,
         to: data.email,
@@ -95,6 +95,11 @@ router.post('/forgot', async (req, res) => {
     console.log("Dont exist")
   });
 });
+
+router.get("/reset-password/:id/:token", (req, res, next) => {
+  const { id, token } = req.params
+  res.send(req.params)
+})
 
 /**
  * Get all employees
