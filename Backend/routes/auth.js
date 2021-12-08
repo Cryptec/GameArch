@@ -110,10 +110,37 @@ router.get("/reset-password/:id/:token", (req, res, next) => {
         return;
       } 
 
-      res.send(req.params)
-      return
+      const linksecret = JWT_SECRET + row.password
+      try {
+        const payload = jwt.verify(data.token, linksecret)
+        res.send(req.params)
+        //res.render('/Frontend/src/Screens/ResetPassword.js', {email: row.email})
+      } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+      }
       
     });
+});
+
+
+router.post("/reset-password/:id/:token", (req, res, next) => {
+  var data = {
+    id: req.params.id,
+    token: req.params.token
+  }
+  var sql = "select * from Users where id = ? LIMIT 1"
+  var params = [data.id]
+  db.get(sql, params, (err, row) => {
+
+    if (!row) {
+      res.send('ID not found...')
+      return;
+    }
+
+    const linksecret = JWT_SECRET + row.password
+
+  });
 });
 
 /**

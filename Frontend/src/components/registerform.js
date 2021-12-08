@@ -172,9 +172,9 @@ handleShowSuccess = () =>{
     }
   }
   handleConfirmPassword = (event) => {
-    if (event.target.value !== this.state.regpassword) {
+    if (event.target.value !== this.state.password) {
       console.log('error')
-      this.setState({ regconfirm_password: event.target.value })
+      this.setState({ confirm_password: event.target.value })
     }
   }
 }
