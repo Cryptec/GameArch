@@ -49,7 +49,8 @@ render() {
           <div className="overviewContainer">
            
            <div className="sectionDescription">User:</div>
-           <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="currencyInput">
+           
+           <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="passwordInput">
 
            <label className='label'>
             new password:

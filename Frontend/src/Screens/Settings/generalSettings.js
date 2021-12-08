@@ -52,11 +52,11 @@ render() {
     
           <div className="overviewContainer">
            
-           <div className="sectionDescription">General:</div>
+          <div className="sectionDescription">General:</div>
 
            <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="currencyInput" >
-               <div style={{display: "flex", flexDirection: "row"}}> 
-                  <label className='label' style={{display: "flex", flexDirection: "row"}}>
+           
+                  <label className='label' >
                     Currency:
                     <select
                       list="currencylist"
@@ -77,7 +77,7 @@ render() {
 
                   {this.state.isActive ? <p style={{color: "red"}}>{this.state.errorMessage}</p> : null}
                   {this.state.isActiveSuccess ? <p style={{color: "green"}}>{this.state.successMessage}</p> : null}
-              </div>
+
                  <br /><br />
                  <button className="addButton">
                     Save

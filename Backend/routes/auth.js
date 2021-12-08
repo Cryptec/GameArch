@@ -97,12 +97,27 @@ router.post('/forgot', async (req, res) => {
 });
 
 router.get("/reset-password/:id/:token", (req, res, next) => {
-  const { id, token } = req.params
-  res.send(req.params)
-})
+  var data = {
+    id: req.params.id,
+    token: req.params.token
+  }
+  var sql = "select * from Users where id = ? LIMIT 1"
+  var params = [data.id]
+  db.get(sql, params, (err, row) => {
+
+      if (!row) {
+        res.send('ID not found...')
+        return;
+      } 
+
+      res.send(req.params)
+      return
+      
+    });
+});
 
 /**
- * Get all employees
+ * Get all users
  */
 router.get("/users", checkAuthentication, (req, res, next) => {
     var sql = "select * from Users"
@@ -113,11 +128,12 @@ router.get("/users", checkAuthentication, (req, res, next) => {
         return;
       }
       res.status(200).json(rows);
+      return
     });
   });
   
 /**
- * Get employee by id
+ * Get user by id
  */
 router.get("/user/:id",checkAuthentication, (req, res, next) => {
     var sql = "select * from Users where id = ?"

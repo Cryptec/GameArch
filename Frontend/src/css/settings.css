@@ -1,12 +1,13 @@
 .sectionDescription {
     font-weight: 600;
+    position: absolute;
     color: var(--text-primary);
 }
 
 .currencyInput {
     color: var(--text-primary);
     margin-top: 50px;
-    margin-left: -50px;
+    margin-left: 10px;
     padding-bottom: 20px;
 }
 .currencydropdown {
@@ -20,4 +21,11 @@
     border: var(--border);
     padding: 5px;
     margin-left: 5px;
+}
+
+.passwordInput {
+    color: var(--text-primary);
+    margin-top: 50px;
+    margin-left: 10px;
+    padding-bottom: 20px;
 }

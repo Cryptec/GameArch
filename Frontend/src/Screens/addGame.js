@@ -41,6 +41,20 @@ handleShowSuccess = () =>{
       isActive: false
   })
 }
+handleTitlePreview = () => {
+  if (this.state.title === "") {
+    return("Game Title")
+  } else if (this.state.title) {
+    return this.state.title
+  }
+}
+handlePricePreview = () => {
+  if (this.state.price === "") {
+    return("0,00")
+  } else if (this.state.price) {
+    return this.state.price
+  }
+}
 
   render() {
 
@@ -53,9 +67,9 @@ handleShowSuccess = () =>{
 
         <div className="gamesPreview">
                  <img src={this.state.preview} className="imagePreview" alt=""/>
-                 <div className="gameTitle">{this.state.title}</div>
+                 <div className="gameTitle">{this.handleTitlePreview()}</div>
                  <div className="bottomSection">
-                 <div className="gamePrice">{this.state.price}&nbsp;<Rendercurrency /></div>
+                 <div className="gamePrice">{this.handlePricePreview()}&nbsp;<Rendercurrency /></div>
                 {this.state.isActive ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
                                        <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
                 </div>
