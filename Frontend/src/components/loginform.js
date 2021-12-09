@@ -62,7 +62,7 @@ handleShow = () =>{
                  </label>
                  
                  <div className="forgotButton">
-                 <Link to='/forgot' style={{textDecoration: "none", color: "black"}}>forgot?</Link>
+                 <Link to='/forgot' style={{textDecoration: "none", color: "black", fontSize: "14px"}}>forgot?</Link>
                  </div>
                  <br />
                  <button className="LoginButton">

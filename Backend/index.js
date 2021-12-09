@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
+const engine = require('express-engine-jsx');
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const authRoute = require('./routes/auth');
@@ -86,6 +86,9 @@ function setupExpress() {
 
   app.use(passport.initialize());
   app.use(passport.session());  
+  app.set('views', 'views');
+  app.set('view engine', 'jsx')
+  app.engine('jsx', engine)
   setupPassport()
 
   // Route Middlewares

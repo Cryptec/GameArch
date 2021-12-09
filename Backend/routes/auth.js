@@ -73,7 +73,7 @@ router.post('/forgot', async (req, res) => {
                 email: data.email,
                 id: row.id
                 }
-      const token = jwt.sign(payload, linksecret, {expiresIn: '15m'})
+      const token = jwt.sign(payload, linksecret, {expiresIn: '30m'})
       const link = `http://localhost:5000/api/reset-password/${row.id}/${token}`
       const mail = {
         from: mailemail,
@@ -113,8 +113,8 @@ router.get("/reset-password/:id/:token", (req, res, next) => {
       const linksecret = JWT_SECRET + row.password
       try {
         const payload = jwt.verify(data.token, linksecret)
-        res.send(req.params)
-        //res.render('/Frontend/src/Screens/ResetPassword.js', {email: row.email})
+        //res.send(req.params)
+        res.render('test', {email: row.email})
       } catch (error) {
         console.log(error.message)
         res.send(error.message)
