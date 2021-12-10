@@ -87,7 +87,7 @@ function setupExpress() {
   app.use(passport.initialize());
   app.use(passport.session());  
   app.set('views', 'views');
-  app.set('view engine', 'jsx')
+  app.set('view engine', 'ejs')
   app.engine('jsx', engine)
   setupPassport()
 

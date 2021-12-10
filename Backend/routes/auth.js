@@ -137,8 +137,21 @@ router.post("/reset-password/:id/:token", (req, res, next) => {
       res.send('ID not found...')
       return;
     }
-
     const linksecret = JWT_SECRET + row.password
+    var data = {
+      password: req.body.password,
+      confirm_password: req.body.confirm_password
+    }
+
+    try {
+      const payload = jwt.verify(data.token, linksecret)
+      //res.send(req.params)
+      res.render('test', { email: row.email })
+
+    } catch (error) {
+      console.log(error.message)
+      res.send(error.message)
+    }
 
   });
 });

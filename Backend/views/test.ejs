@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reset Password</title>
+  </head>
+  <body>
+                    
+                      <form action="" method="post">
+                            <h3>Enter a new password for <%= email%></h3>
+                            <br />
+
+                        <label className='label'>
+                          Password
+                          <br />
+                          <input  id='password' type='password' name="password" required />
+                        </label>
+                        <br />
+                        <label className='label'>
+                          Confirm Password
+                          <br />
+                          <input id='confirm_password' type='password' name="confirm_password" required />
+                        </label>
+                        <br />
+                        <br />
+                        <input type="submit" value="submit"/>
+                    
+                      </form>
+  </body>
+</html>
+
+<style>
+body {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
