@@ -1,24 +1,30 @@
 var db = require('../Database')
 const router = require('express').Router()
+const Joi = require('@hapi/joi')
+const argon2 = require("argon2")
 const checkAuthentication = require("../auth/is_authenticated")
 require('dotenv').config()
 
 
-router.post('/updatepassword', function(req,res){
+
+
+
+router.post('/updatepassword', async function (req, res) {
+  var pass = req.body.password
+  const SALT = process.env.SALT
+  var hashedPassword = await argon2.hash(pass + SALT);
   var data = {
-    password: req.body.password, 
+    password: hashedPassword,
     name: req.body.name
-}
+  }
   var params = [data.password, data.name]
-  db.serialize(()=>{
-    db.run('UPDATE Users SET password = ? WHERE name = ?', params, function(err){
-      if(err){
+  db.serialize(() => {
+    db.run('UPDATE Users SET password = ? WHERE name = ?', params, function (err) {
+      if (err) {
         res.send("Error encountered while updating");
-        return res.status(400).json({ "error": err.message });
+        return res.status(400).json({ error: true });
       }
-      res.json({
-        "answer":"success"
-    })
+      return res.json({ "answer": "Success" })
     });
   });
 });

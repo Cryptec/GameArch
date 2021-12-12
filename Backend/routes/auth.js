@@ -4,6 +4,7 @@ var db = require('../Database')
 const register_user = require("../database/register_user")
 const jwt = require('jsonwebtoken')
 const nodemailer = require("nodemailer")
+const argon2 = require("argon2")
 const passport = require('passport')
 const checkAuthentication = require("../auth/is_authenticated")
 
@@ -124,29 +125,40 @@ router.get("/reset-password/:id/:token", (req, res, next) => {
 });
 
 
-router.post("/reset-password/:id/:token", (req, res, next) => {
+router.post("/reset-password/:id/:token", async (req, res, next) => {
   var data = {
     id: req.params.id,
-    token: req.params.token
+    token: req.params.token,
+    password: req.body.password,
+    confirm_password: req.body.confirm_password
   }
   var sql = "select * from Users where id = ? LIMIT 1"
   var params = [data.id]
-  db.get(sql, params, (err, row) => {
+  db.get(sql, params, async (err, row) => {
 
     if (!row) {
       res.send('ID not found...')
       return;
     }
     const linksecret = JWT_SECRET + row.password
-    var data = {
-      password: req.body.password,
-      confirm_password: req.body.confirm_password
-    }
 
     try {
-      const payload = jwt.verify(data.token, linksecret)
-      //res.send(req.params)
-      res.render('test', { email: row.email })
+      const token = data.token
+      const payload = jwt.verify(token, linksecret)
+      var pass = data.password
+      const SALT = process.env.SALT
+      var hashedPassword = await argon2.hash(pass + SALT);
+
+      var postparams = [hashedPassword, data.id]
+      db.serialize(() => {
+        db.run('UPDATE Users SET password = ? WHERE id = ?', postparams, function (err) {
+          if (err) {
+            res.send("Error encountered while updating");
+            return res.status(400).json({ error: true });
+          }
+          return res.json({ "answer": "Success" })
+        });
+      });
 
     } catch (error) {
       console.log(error.message)
