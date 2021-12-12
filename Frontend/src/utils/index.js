@@ -12,6 +12,7 @@ export const userName = () => {
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem("userName");
+    console.log("logget out")
 }
 
 export const isLogin = () => {

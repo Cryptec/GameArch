@@ -80,7 +80,13 @@ router.post('/forgot', async (req, res) => {
         from: mailemail,
         to: data.email,
         subject: "Reset Password",
-        html: `<p>The link is: ${link}</p>`,
+        html: `<p>
+                  <p>Hi there,</p>
+                  <p>Somebody tried to reset your password. If it was you, please follow the link below to do so.</p>
+                  <p><b>PLEASE</b> verify that the link points to your gameArch installation!</p>
+                  <p>${link}</p>
+                  <p>your Mailrobot</p>
+              </p>`
       };
       contactEmail.sendMail(mail, (error) => {
         if (error) {
