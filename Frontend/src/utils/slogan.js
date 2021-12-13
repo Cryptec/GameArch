@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-
+import './slider.css'
 export default class Slogan extends Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-            slogans: ['memories', 'games', 'values']
-        }
-    }
 
     render() {
-          var i = 0
 
         return(
-          <div className='slogan' style={{display: 'flex', justifyContent: 'center'}}>
-            Archive&nbsp;<b>{this.state.slogans[i]}</b>
+          <div className="centerSlogan">
+          <div className='slogan' id="slideset2" >
+            Archive&nbsp;<b>memories</b>
+                         <b>games</b>
+                         <b>values</b>
+          </div>
           </div>
 
         )
