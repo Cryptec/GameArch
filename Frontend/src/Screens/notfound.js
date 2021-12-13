@@ -2,9 +2,15 @@ import React from 'react';
 
 const NotFound = props => {
     return (
-        <div>
-            <p>You took a wrong turn, mate.</p>
+
+      <div id="contentpage">
+        <div className="overviewContainer">
+
+         <h3 style={{color: 'var(--text-primary)'}}>You took a wrong turn, mate.</h3>
+         
         </div>
+      </div>
+
     );
 };
 

@@ -11,6 +11,7 @@ import NotFound from "./Screens/notfound";
 import Overview from "./Screens/Overview";
 import AddGame from "./Screens/addGame";
 import Settings from "./Screens/settings";
+import Detailview from "./Screens/Detailview";
 
 function Routes() {
     return (
@@ -23,6 +24,7 @@ function Routes() {
           <PrivateRoute restricted={false} component={Overview} path="/overview" exact />
           <PrivateRoute restricted={false} component={AddGame} path="/addgame" exact />
           <PrivateRoute restricted={false} component={Settings} path="/settings" exact />
+          <PrivateRoute restricted={false} component={Detailview} path="/gamedetail" exact />
 
           <PublicRoute restricted={false} component={NotFound}/>
  

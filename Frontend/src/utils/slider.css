@@ -1,0 +1,25 @@
+
+.centerSlogan {
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 270px;
+}
+#slideset2 { position: relative;
+             overflow: hidden}
+
+    #slideset2 > * {position: absolute; top: 100%;
+        animation: 12s autoplay2 infinite ease-in-out}
+
+        @keyframes autoplay2 {
+            0% {top: 100%}
+            4% {top: 0%}
+            33.33% {top: 0%}
+            37.33% {top: -100%}
+            100% {top: -100%}
+          }
+
+#slideset2 > *:nth-child(1) {animation-delay: 0s}
+#slideset2 > *:nth-child(2) {animation-delay: 4s}
+#slideset2 > *:nth-child(3) {animation-delay: 8s}
