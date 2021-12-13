@@ -145,8 +145,8 @@
     width: 88vw;
     }
     .logo {
-      height: 150px;
-      width: 150px;
+      height: 100px;
+      width: 100px;
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -158,8 +158,8 @@
   @media all and (max-height: 768px) {
 
     .logo {
-      height: 150px;
-      width: 150px;
+      height: 100px;
+      width: 100px;
       display: block;
       margin-left: auto;
       margin-right: auto;

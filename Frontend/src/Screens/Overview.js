@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import RenderDetailView from '../utils/renderDetailView'
+import RenderListView from '../utils/renderListView'
+import { GridIcon, ListIcon } from '../assets/icons/index.jsx'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
@@ -20,10 +22,12 @@ class Overview extends Component {
         <div id="contentpage">
 
         <div className="overviewContainer" style={{marginBottom: "5px"}}>
-          toggleList
+          <div className="girdViewButton"><GridIcon/></div>
+          <div className="listViewButton"><ListIcon/></div>
         </div>
 
         <RenderDetailView />
+        <RenderListView />
         </div>
       </div>
     )

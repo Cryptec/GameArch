@@ -63,7 +63,7 @@ renderGames = () => {
         <div className="bottomSection">
           <div className="gamePrice">{game.price}&nbsp;<Rendercurrency /></div>
             {game.ownage === "false" ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
-                   <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
+          <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
          </div>
         </div>
 
