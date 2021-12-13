@@ -80,8 +80,9 @@ render() {
           <br />
           <button className='addButton'>Update</button>
 
-          {this.state.isActive ? <p className="errorTextLogin">{errorMessage}</p> : null}
-          {this.state.isActiveSuccess ? <p className="successTextLogin">{successMessage}</p> : null}
+            {this.state.isActive ? <p style={{ color: "red" }}>{this.state.errorMessage}</p> : null}
+            {this.state.isActiveSuccess ? <p style={{ color: "green" }}>{this.state.successMessage}</p> : null}
+            
         </form>
 
           </div>
@@ -115,9 +116,12 @@ render() {
       if (response.data.answer === 'Success') {
         this.setState({
           password: '',
-          confirm_password: ''
+          confirm_password: '',
+          isActive: false,
+          successMessage: 'Password successfully changed!',
         })
         console.log('Form sent')
+        this.handleShowSuccess()
       } else if (response.data.answer === 'password_too_short') {
         console.log('Password length must be at least 4 characters long')
         this.setState({
