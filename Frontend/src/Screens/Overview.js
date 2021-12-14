@@ -11,10 +11,7 @@ class Overview extends Component {
     super(props)
     this.state = {
       settings: [],
-      isActiveList: false,
-      isActiveGrid: true,
-      view: ""
-      
+      view: ""     
     }
 }
 
@@ -24,12 +21,7 @@ async componentDidMount() {
     const settings = await response.json()
     this.setState({ settings })
     this.state.settings.map(setting => {
-      this.setState({view: setting.listview})
-      if (this.state.view === false) {
-        return this.setState({ isActiveList: false, isActiveGrid: true })
-      } else if (this.state.view === true) {
-         return this.setState({ isActiveList: true, isActiveGrid: false })
-      }
+      return this.setState({view: setting.listview})
     })
   } else {
     console.log("error")
@@ -44,7 +36,7 @@ handleShowList = () =>{
     url: `${API_ENDPOINT}/api/setview`,
     headers: { 'Content-Type': 'application/json' },
     data: { view: "true", id: 1 }
-});
+    });
 }
 handleShowGrid = () =>{
   axios({
@@ -54,7 +46,7 @@ handleShowGrid = () =>{
     url: `${API_ENDPOINT}/api/setview`,
     headers: { 'Content-Type': 'application/json' },
     data: { view: "false", id: 1 }
-});
+    });
 }
 
 handleDisplayType = () => {
@@ -62,7 +54,7 @@ handleDisplayType = () => {
     if (setting.listview === 'true') {
       return <RenderListView />
     } else if (setting.listview === 'false') {
-        return <RenderDetailView />
+      return <RenderDetailView />
     } 
     return (setting.listview)
 
