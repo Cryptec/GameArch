@@ -155,7 +155,17 @@
 }
 .girdViewButton {
     color: var( --text-primary);
+    cursor: pointer;
+    display: flex;
+    margin-left: auto;
 }
 .listViewButton {
     color: var( --text-primary);
+    cursor: pointer;
+}
+.listViewButton:hover {
+    color: var(--text-hover);
+}
+.girdViewButton:hover {
+    color: var(--text-hover);    
 }
