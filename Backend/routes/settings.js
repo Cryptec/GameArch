@@ -46,6 +46,23 @@ router.post('/setcurrency', function(req,res){
   });
 });
 
+router.post('/setview', function(req,res){
+  var data = {
+    view: req.body.view,
+    id: req.body.id
+}
+  var params = [data.view, data.id]
+  db.serialize(()=>{
+    db.run('UPDATE Settings SET listview = ? WHERE id = ?', params, function(err){
+      if(err){
+        res.send("Error encountered while updating");
+        return res.status(400).json({ error: true });
+      }
+      return res.send({success: true});
+    });
+  });
+});
+
 router.get("/settingsdata", checkAuthentication, (req, res, next) => {
     var sql = "select * from Settings"
     var params = []

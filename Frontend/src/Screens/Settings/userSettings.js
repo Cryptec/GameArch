@@ -40,9 +40,6 @@ handleShowSuccess = () =>{
 
 render() {
 
-    let errorMessage = this.state.errorMessage
-    let successMessage = this.state.successMessage
-
     return (
       <div>
     

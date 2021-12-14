@@ -34,11 +34,11 @@ render() {
         const { games, isLoading, isError } = this.state
 
     if (isLoading) {
-      return <div>Loading...</div>
+      return <div className="overviewContainer">Loading...</div>
     }
 
     if (isError) {
-      return <div>Error</div>
+      return <div className="overviewContainer">Error</div>
     }
 
     return games.length > 0
@@ -59,7 +59,7 @@ render() {
         </div>
    
       ) : (
-        <div>
+        <div className="overviewContainer">
           No games.
       </div>
       )
