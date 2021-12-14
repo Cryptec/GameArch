@@ -10,10 +10,27 @@ class Overview extends Component {
     super(props)
     this.state = {
       games: [],
+      isActiveList: false,
+      isActiveGrid: true,
       
     }
 }
 
+handleShowList = () =>{
+  this.setState({ isActiveList: true, isActiveGrid: false })
+}
+
+handleShowGrid = () =>{
+  this.setState({ isActiveList: false, isActiveGrid: true })
+}
+
+handleDisplayType = () => {
+  if (this.state.isActiveList === true) {
+    return <RenderListView />
+  } else if (this.state.isActiveGrid === true) {
+    return <RenderDetailView />
+  }
+}
   render() {
 
     return (
@@ -22,12 +39,11 @@ class Overview extends Component {
         <div id="contentpage">
 
         <div className="overviewContainer" style={{marginBottom: "5px"}}>
-          <div className="girdViewButton"><GridIcon/></div>
-          <div className="listViewButton"><ListIcon/></div>
+          <div className="girdViewButton" onClick={this.handleShowGrid}><GridIcon/></div>
+          <div className="listViewButton" onClick={this.handleShowList}><ListIcon/></div>
         </div>
 
-        <RenderDetailView />
-        <RenderListView />
+        {this.handleDisplayType()}
         </div>
       </div>
     )
