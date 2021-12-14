@@ -203,7 +203,7 @@ handleSubmit(event) {
   }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-          this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "", ownage: "" })
+          this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "" })
           console.log("Successfully added");
       } 
   });

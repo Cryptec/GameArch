@@ -11,7 +11,8 @@ class Overview extends Component {
     super(props)
     this.state = {
       settings: [],
-      view: ""     
+      view: "",
+      count: 0     
     }
 }
 
@@ -28,7 +29,7 @@ async componentDidMount() {
   }
 }
 
-handleShowList = () =>{
+handleSetList = () =>{
   axios({
     method: "POST",
     withCredentials: true,
@@ -37,8 +38,9 @@ handleShowList = () =>{
     headers: { 'Content-Type': 'application/json' },
     data: { view: "true", id: 1 }
     });
+  this.setState({ count: this.state.count + 1 })
 }
-handleShowGrid = () =>{
+handleSetGrid = () =>{
   axios({
     method: "POST",
     withCredentials: true,
@@ -47,12 +49,14 @@ handleShowGrid = () =>{
     headers: { 'Content-Type': 'application/json' },
     data: { view: "false", id: 1 }
     });
+  this.setState({ count: this.state.count + 1 })
 }
 
 handleDisplayType = () => {
   return this.state.settings.map(setting => {
     if (setting.listview === 'true') {
       return <RenderListView />
+
     } else if (setting.listview === 'false') {
       return <RenderDetailView />
     } 
@@ -64,18 +68,15 @@ handleDisplayType = () => {
   render() {
 
     return (
-      <div>
     
         <div id="contentpage">
-
-        <div className="overviewContainer" style={{marginBottom: "5px"}}>
-          <div className="girdViewButton" onClick={this.handleShowGrid}><GridIcon/></div>
-          <div className="listViewButton" onClick={this.handleShowList}><ListIcon/></div>
-        </div>
+          <div className="overviewContainer" style={{ marginBottom: "5px" }}>
+            <div className="girdViewButton" onClick={this.handleSetGrid}><GridIcon/></div>
+            <div className="listViewButton" onClick={this.handleSetList}><ListIcon/></div>
+          </div>
 
         {this.handleDisplayType()}
         </div>
-      </div>
     )
 }
 
