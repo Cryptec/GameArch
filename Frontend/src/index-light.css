@@ -19,30 +19,6 @@
    --table-border: 1px solid rgb(207, 207, 207);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text-hover: white;
-    --text-primary: #B9BCC3;
-    --secondary: #090913; 
-    --content-background: #090913;
-    --hilight: #048984;
-    --topbar-background : #090913;
-    --table-background-secondary: #071126;
-    --background: #071126;
-    --container-background: #060e20;
-    --table-background: #060e20;
- 
-    --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    --transition: all ease-in-out 300ms;
-    --sidebar-width: 240px;
-    --display-true: flex;
-    --border: 1px solid #071126;
-    --topbar-bottom-border: #090913;
-    --table-border: none;
-  }
-}
-
-
 body {
   margin: 0;
   padding: 0;
