@@ -51,7 +51,7 @@
 }
 .addGamesButtonList{
     height: 80px;
-    width: 100%;
+    padding: 10px;
     margin: 10px;
     background: var(--container-background);
     border: 1px dashed var(--text-primary);

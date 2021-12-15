@@ -31,43 +31,38 @@ async componentDidMount() {
 
 render() {
         
-        const { games, isLoading, isError } = this.state
-
-    if (isLoading) {
-      return <div className="overviewContainer">Loading...</div>
-    }
-
-    if (isError) {
-      return <div className="overviewContainer">Error</div>
-    }
-
-    return games.length > 0
-      ? (
+  return (
       
         <div className="userstable">
         <table id="tblData"> 
           <tbody>
             {this.renderTableRows()}
-            <tr>
+          </tbody>
+        </table>
+        <div>
             <Link to='/addgame' className="addGamesButtonList">
                 <div>add games</div>
                 <div style={{ fontSize: 50 }}>+</div>
             </Link>
-            </tr>
-          </tbody>
-        </table>
         </div>
-   
-      ) : (
-        <div className="overviewContainer">
-          No games.
-      </div>
-      )
-  }
+        </div>
+  )}
 
 
 renderTableRows = () => {
-    return this.state.games.map(game => {
+  const { games, isLoading, isError } = this.state
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (isError) {
+    return <div>Error</div>
+  }
+  
+  return games.length > 0
+  ? (
+     this.state.games.map(game => {
 
         const imageName = game.filename
         const url = `${API_ENDPOINT}/uploads/${imageName}`
@@ -81,6 +76,11 @@ renderTableRows = () => {
         </tr>
       )
     })
+    ) : (
+        <div>
+          No games.
+      </div>
+      )
   }
 
 

@@ -28,6 +28,7 @@ async FetchView() {
     this.state.settings.map(setting => {
     this.setState({isActiveList: setting.listview})
     this.handleDisplayType()
+    return(true)
     })
   } else {
     console.log("error")
