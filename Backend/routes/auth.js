@@ -19,6 +19,7 @@ const mailhost = process.env.MAIL_HOST
 const mailport = process.env.MAIL_PORT
 const mailemail = process.env.MAIL_EMAIL
 const mailpass = process.env.MAIL_PASSWORD
+const BACKEND_URL = process.env.BACKEND_URL
 
 const contactEmail = nodemailer.createTransport({
   host: mailhost,
@@ -75,7 +76,7 @@ router.post('/forgot', async (req, res) => {
                 id: row.id
                 }
       const token = jwt.sign(payload, linksecret, {expiresIn: '30m'})
-      const link = `http://localhost:5000/api/reset-password/${row.id}/${token}`
+      const link = `${BACKEND_URL}/api/reset-password/${row.id}/${token}`
       const mail = {
         from: mailemail,
         to: data.email,
