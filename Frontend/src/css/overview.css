@@ -69,6 +69,12 @@
     border: 1px dashed var(--text-hover);
     color: var(--text-hover);
 }
+.imageWrapper {
+    width: 200px;
+    height: 140px;
+    justify-content: center;
+    display: flex;
+}
 .imagePreview {
     max-width: 200px;
     width: auto;

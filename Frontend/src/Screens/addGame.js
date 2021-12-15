@@ -66,7 +66,9 @@ handlePricePreview = () => {
         <div className="contentContainerInputForm">
 
         <div className="gamesPreview">
+              <div className="imageWrapper">
                  <img src={this.state.preview} className="imagePreview" alt=""/>
+              </div>
                  <div className="gameTitle">{this.handleTitlePreview()}</div>
                  <div className="bottomSection">
                  <div className="gamePrice">{this.handlePricePreview()}&nbsp;<Rendercurrency /></div>

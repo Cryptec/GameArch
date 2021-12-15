@@ -58,7 +58,9 @@ renderGames = () => {
 
         <div key={game.id} className="gamesShow">
 
+        <div className="imageWrapper">
         <img src={`${url}`} alt="" className="imagePreview" />
+        </div>
           <div className="gameTitle">{game.title}</div>
         <div className="bottomSection">
           <div className="gamePrice">{game.price}&nbsp;<Rendercurrency /></div>
