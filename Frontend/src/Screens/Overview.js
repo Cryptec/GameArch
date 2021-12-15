@@ -12,17 +12,22 @@ class Overview extends Component {
     this.state = {
       settings: [],
       view: "",
-      count: 0     
+      isActiveList: "false"   
     }
 }
 
 async componentDidMount() {
+  this.FetchView()
+}
+
+async FetchView() {
   const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, {credentials: 'include'})
   if (response.ok) {
     const settings = await response.json()
     this.setState({ settings })
     this.state.settings.map(setting => {
-      return this.setState({view: setting.listview})
+    this.setState({isActiveList: setting.listview})
+    this.handleDisplayType()
     })
   } else {
     console.log("error")
@@ -38,7 +43,7 @@ handleSetList = () =>{
     headers: { 'Content-Type': 'application/json' },
     data: { view: "true", id: 1 }
     });
-  this.setState({ count: this.state.count + 1 })
+  this.setState({ isActiveList: "true" })
 }
 handleSetGrid = () =>{
   axios({
@@ -49,20 +54,15 @@ handleSetGrid = () =>{
     headers: { 'Content-Type': 'application/json' },
     data: { view: "false", id: 1 }
     });
-  this.setState({ count: this.state.count + 1 })
+  this.setState({ isActiveList: "false" })
 }
 
 handleDisplayType = () => {
-  return this.state.settings.map(setting => {
-    if (setting.listview === 'true') {
-      return <RenderListView />
-
-    } else if (setting.listview === 'false') {
-      return <RenderDetailView />
-    } 
-    return (setting.listview)
-
-  })
+  if (this.state.isActiveList === "true") {
+    return <RenderListView />
+  } else if (this.state.isActiveList === "false") {
+    return <RenderDetailView />
+  }
 }
 
   render() {
