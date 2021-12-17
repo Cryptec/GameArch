@@ -1,48 +1,3 @@
-:root {
-   --text-hover: black;
-   --text-primary: #535252;
-   --secondary: #3c4b64; 
-   --content-background: #dddfe2;
-   --hilight: #11c4be;
-   --topbar-background : #fcfafa;
-   --table-background-secondary: #f8f5f5;
-   --background: #f1f3f7;
-   --container-background: white;
-   --table-background: white;
-
-   --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   --transition: all ease-in-out 300ms;
-   --sidebar-width: 240px;
-   --display-true: flex;
-   --border: 1px solid rgb(105, 104, 104, 0.5);
-   --topbar-bottom-border: rgb(207, 207, 207);
-   --table-border: 1px solid rgb(207, 207, 207);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text-hover: white;
-    --text-primary: #B9BCC3;
-    --secondary: #090913; 
-    --content-background: #090913;
-    --hilight: #048984;
-    --topbar-background : #090913;
-    --table-background-secondary: #071126;
-    --background: #071126;
-    --container-background: #060e20;
-    --table-background: #060e20;
- 
-    --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    --transition: all ease-in-out 300ms;
-    --sidebar-width: 240px;
-    --display-true: flex;
-    --border: 1px solid #071126;
-    --topbar-bottom-border: #090913;
-    --table-border: none;
-  }
-}
-
-
 body {
   margin: 0;
   padding: 0;
@@ -76,4 +31,126 @@ input[type=file] {
 }
 .ListIcon {
   padding-right: 5px;
+}
+
+:root {
+   --text-hover-light: black;
+   --text-primary-light: #535252;
+   --secondary-light: #3c4b64; 
+   --content-background-light: #dddfe2;
+   --hilight-light: #11c4be;
+   --topbar-background-light : #fcfafa;
+   --table-background-secondary-light: #f8f5f5;
+   --background-light: #f1f3f7;
+   --container-background-light: white;
+   --table-background-light: white;
+   --box-shadow-light: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   --transition-light: all ease-in-out 300ms;
+   --sidebar-width-light: 240px;
+   --display-true-light: flex;
+   --border-light: 1px solid rgb(105, 104, 104, 0.5);
+   --topbar-bottom-border-light: rgb(207, 207, 207);
+   --table-border-light: 1px solid rgb(207, 207, 207);
+
+   --text-hover-dark: white;
+   --text-primary-dark: #B9BCC3;
+   --secondary-dark: #090913; 
+   --content-background-dark: #090913;
+   --hilight-dark: #048984;
+   --topbar-background-dark: #090913;
+   --table-background-secondary-dark: #071126;
+   --background-dark: #071126;
+   --container-background-dark: #060e20;
+   --table-background-dark: #060e20;
+   --box-shadow-dark: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   --transition-dark: all ease-in-out 300ms;
+   --sidebar-width-dark: 240px;
+   --display-true-dark: flex;
+   --border-dark: 1px solid #071126;
+   --topbar-bottom-border-dark: #090913;
+   --table-border-dark: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-hover: var(--text-hover-dark);
+    --text-primary: var(--text-primary-dark);
+    --secondary: var(--secondary-dark); 
+    --content-background: var(--content-background-dark);
+    --hilight: var(--hilight-dark);
+    --topbar-background: var(--topbar-background-dark);
+    --table-background-secondary: var(--table-background-secondary-dark);
+    --background: var(--background-dark);
+    --container-background: var(--container-background-dark);
+    --table-background: var(--table-background-dark);
+    --box-shadow: var(--box-shadow-dark);
+    --transition: var(--transition-dark);
+    --sidebar-width: var(--sidebar-width-dark);
+    --display-true: var(--display-true-dark);
+    --border: var(--border-dark);
+    --topbar-bottom-border: var(--topbar-bottom-border-dark);
+    --table-border: var(--table-boder-dark);
+  }
+}
+
+@media(prefers-color-scheme: light){
+  :root {
+    --text-hover: var(--text-hover-light);
+    --text-primary: var(--text-primary-light);
+    --secondary: var(--secondary-light); 
+    --content-background: var(--content-background-light);
+    --hilight: var(--hilight-light);
+    --topbar-background : var(--topbar-background-light);
+    --table-background-secondary: var(--table-background-secondary-light);
+    --background: var(--background-light);
+    --container-background: var(--container-background-light);
+    --table-background: var(--table-background-light);
+    --box-shadow: var(--box-shadow-light);
+    --transition: var(--transition-light);
+    --sidebar-width: var(--sidebar-width-light);
+    --display-true: var(--display-true-light);
+    --border: var(--border-light);
+    --topbar-bottom-border: var(--topbar-bottom-boder-light);
+    --table-border: var(--table-border-light);
+  }
+}
+
+[color-scheme="dark"]{
+  --text-hover: var(--text-hover-dark);
+  --text-primary: var(--text-primary-dark);
+  --secondary: var(--secondary-dark); 
+  --content-background: var(--content-background-dark);
+  --hilight: var(--hilight-dark);
+  --topbar-background: var(--topbar-background-dark);
+  --table-background-secondary: var(--table-background-secondary-dark);
+  --background: var(--background-dark);
+  --container-background: var(--container-background-dark);
+  --table-background: var(--table-background-dark);
+  --box-shadow: var(--box-shadow-dark);
+  --transition: var(--transition-dark);
+  --sidebar-width: var(--sidebar-width-dark);
+  --display-true: var(--display-true-dark);
+  --border: var(--border-dark);
+  --topbar-bottom-border: var(--topbar-bottom-border-dark);
+  --table-border: var(--table-boder-dark);
+}
+
+[color-scheme="light"] {
+  --text-hover: var(--text-hover-light);
+  --text-primary: var(--text-primary-light);
+  --secondary: var(--secondary-light); 
+  --content-background: var(--content-background-light);
+  --hilight: var(--hilight-light);
+  --topbar-background : var(--topbar-background-light);
+  --table-background-secondary: var(--table-background-secondary-light);
+  --background: var(--background-light);
+  --container-background: var(--container-background-light);
+  --table-background: var(--table-background-light);
+  --box-shadow: var(--box-shadow-light);
+  --transition: var(--transition-light);
+  --sidebar-width: var(--sidebar-width-light);
+  --display-true: var(--display-true-light);
+  --border: var(--border-light);
+  --topbar-bottom-border: var(--topbar-bottom-boder-light);
+  --table-border: var(--table-border-light);
 }
