@@ -63,6 +63,23 @@ router.post('/setview', function(req,res){
   });
 });
 
+router.post('/settheme', function (req, res) {
+  var data = {
+    theme: req.body.theme,
+    id: req.body.id
+  }
+  var params = [data.theme, data.id]
+  db.serialize(() => {
+    db.run('UPDATE Settings SET theme = ? WHERE id = ?', params, function (err) {
+      if (err) {
+        res.send("Error encountered while updating");
+        return res.status(400).json({ error: true });
+      }
+      return res.send({ success: true });
+    });
+  });
+});
+
 router.get("/settingsdata", checkAuthentication, (req, res, next) => {
     var sql = "select * from Settings"
     var params = []
