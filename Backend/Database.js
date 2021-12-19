@@ -53,7 +53,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 if (err) {
                     // Table already created
                 } else {
-                    var initialSettings = 'INSERT INTO Settings (currency, listview) VALUES (?, ?, ?)'
+                    var initialSettings = 'INSERT INTO Settings (currency, listview, theme) VALUES (?, ?, ?)'
                     db.run(initialSettings, "EUR", "false", "light")
                     console.log("First start, Create Settings Table!")
                 }
