@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import '../../css/settings.css'
-import Themes from '../../utils/Themes';
 
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
@@ -30,7 +29,7 @@ componentDidMount = async () => {
     const fetchcurrency = await response.json()
     this.setState({ fetchcurrency })
     this.state.fetchcurrency.map(actualtheme => {
-    this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, isLoading: false })
+    return this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, isLoading: false })
     })
   } else {
     this.setState({ isError: true, isLoading: false })
@@ -148,14 +147,14 @@ axios({
     if (response.data.success) {
         console.log("Successfully changed");
         this.setState({
-          successMessage: 'successfully changed Currency!',
+          successMessage: 'successfully updated settings!',
           isActive: false,
         })
         const root = document.querySelector(':root');
         root.setAttribute('color-scheme', `${this.state.theme}`);
         this.handleShowSuccess()
   } else if (response.data.error) {
-    this.setState({errorMessage: 'Failed updating Currency',})
+    this.setState({errorMessage: 'Failed updating settings',})
     this.handleShow()
   }
 });

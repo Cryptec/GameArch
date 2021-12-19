@@ -6,7 +6,6 @@ import { openNav, closeNav } from './handler'
 import '../css/topbar.css'
 import '../css/sidebar.css'
 import '../css/dropdown.css'
-import Themes from '../utils/Themes'
 
 
 class Topbar extends Component {
@@ -81,7 +80,6 @@ toggleNav = () => {
     render() {
 
        const activeUser = this.state.user || 'Guest'
-       const themeButton = <Themes />
 
         return (
             <div className="topbar" id="topbar">
