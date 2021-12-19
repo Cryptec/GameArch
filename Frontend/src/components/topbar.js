@@ -90,14 +90,9 @@ toggleNav = () => {
                 </div>
                 
                 <div className="topNavigation">
-                   <li>
+                  <li>
                     <Link to='/members' className="topNavigationItem">Users</Link>
                   </li>
-                </div>
-                <div className="topNavigation">
-                    <li>
-                        {themeButton}
-                    </li>
                 </div>
                 
                 <div className="wrapper" ref={this.container} onClick={this.handleDropdownClick}>

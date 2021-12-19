@@ -4,6 +4,9 @@
     overflow-x: hidden;
     margin-left: var(--sidebar-width);
     border-bottom: 1px solid var(--topbar-bottom-border);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .authuser {
@@ -32,7 +35,7 @@
     list-style: none;
     text-decoration: none;
     margin-left: 80px;
-    position: absolute;
+ 
 }
 .topNavigationItem {
     padding-right: 20px;

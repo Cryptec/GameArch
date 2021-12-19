@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import '../../css/settings.css'
+import Themes from '../../utils/Themes';
 
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
@@ -17,10 +18,24 @@ class GeneralSettings extends Component {
        errorMessage: '',
        successMessage: '',
        isActive: false,
-       isActiveSuccess: false
+       isActiveSuccess: false,
+       themes: [],
+       theme: ''
     };
 }
  
+componentDidMount = async () => {
+  const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, {credentials: 'include'})
+  if (response.ok) {
+    const fetchcurrency = await response.json()
+    this.setState({ fetchcurrency })
+    this.state.fetchcurrency.map(actualtheme => {
+    this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, isLoading: false })
+    })
+  } else {
+    this.setState({ isError: true, isLoading: false })
+  }
+}
 
 handleShow = () =>{
   this.setState({
@@ -35,15 +50,6 @@ handleShowSuccess = () =>{
   })
 }
 
-componentDidMount = async () => {
-  const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, {credentials: 'include'})
-  if (response.ok) {
-    const fetchcurrency = await response.json()
-    this.setState({ fetchcurrency, isLoading: false })
-  } else {
-    this.setState({ isError: true, isLoading: false })
-  }
-}
 
 render() {
 
@@ -53,7 +59,6 @@ render() {
           <div className="overviewContainer">
            
           <div className="sectionDescription">General:</div>
-
            <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="currencyInput" >
            
                   <label className='label' >
@@ -74,11 +79,31 @@ render() {
                     </select>
                  
                   </label>
+                  <br></br>
+                  <br />
+                  <label className='label' >
+                    Theme:
+                    <select
+                      list="themelist"
+                      name="theme"
+                      id="Theme"
+                      className="currencydropdown"
+                      value={this.state.theme}
+                      onChange={this.handleChange.bind(this)}
+                      required
+                    > 
+                      <option>--Choose--</option>
+                      <option>dark</option>
+                      <option>light</option>
+                      <option>system</option>
+                    </select>
+                  </label>                  
 
                   {this.state.isActive ? <p style={{color: "red"}}>{this.state.errorMessage}</p> : null}
                   {this.state.isActiveSuccess ? <p style={{color: "green"}}>{this.state.successMessage}</p> : null}
 
                  <br /><br />
+
                  <button className="addButton">
                     Save
                  </button>
@@ -103,11 +128,12 @@ handleChange(event) {
 
   if (field === "Currency") {
       this.setState({ Currency: event.target.value }); 
-  } 
+  } else if (field === "Theme") {
+      this.setState({ theme: event.target.value });
+  }
 }
 handleSubmit(event) {
 event.preventDefault();
-this.setState({ status: "Submit" });
 
 axios({
     method: "POST",
@@ -115,7 +141,7 @@ axios({
     credentials: 'include',
     url: `${API_ENDPOINT}/api/setcurrency`,
     headers: { 'Content-Type': 'application/json' },
-    data: { currency: this.state.Currency, id: 1 }
+    data: { currency: this.state.Currency, id: 1, theme: this.state.theme }
     
 }).then((response, props) => {
     console.log(response)
@@ -125,6 +151,8 @@ axios({
           successMessage: 'successfully changed Currency!',
           isActive: false,
         })
+        const root = document.querySelector(':root');
+        root.setAttribute('color-scheme', `${this.state.theme}`);
         this.handleShowSuccess()
   } else if (response.data.error) {
     this.setState({errorMessage: 'Failed updating Currency',})
