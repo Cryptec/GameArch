@@ -24,10 +24,12 @@ router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
         price: req.body.price,
         platform: req.body.platform,
         ownage: req.body.ownage,
+        region: req.body.region,
+        description: req.body.description,
         filename: req.file.filename
     }
-    var sql ='INSERT INTO Games (title, price, platform, ownage, filename) VALUES (?, ?, ?, ?, ?)'
-    var params =[data.title, data.price, data.platform, data.ownage, data.filename]
+    var sql ='INSERT INTO Games (title, price, platform, ownage, filename, region, description) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    var params =[data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description]
     db.run(sql, params, (err, rows) => {
       if (err) {
         res.status(400).json({ "error": err.message });

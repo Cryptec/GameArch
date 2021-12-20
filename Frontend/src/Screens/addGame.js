@@ -3,6 +3,7 @@ import axios from 'axios'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 import Rendercurrency from '../utils/renderCurrency'
 import '../css/overview.css'
+import '../css/addnew.css'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
@@ -14,6 +15,8 @@ class AddGame extends Component {
         platform: "", 
         price: "",
         ownage: "",
+        region: "",
+        description: "",
         ownageTrue: "",
         ownageFalse: "",
         ownagePreviewOk: "",
@@ -60,32 +63,58 @@ handlePricePreview = () => {
 
     return (
 
-      <div>
      
         <div id="contentpage">
-        <div className="contentContainerInputForm">
+           <div className="contentContainerInputForm">
+            <form onSubmit={this.handleSubmit.bind(this)} method="POST" encType='multipart/form-data'>
+             <div>
+                 <div className="gamesPreview">
+                     <div className="imageWrapper">
+                      <img src={this.state.preview} className="imagePreview" alt=""/>
+                     </div>
+                      <div className="gameTitle">{this.handleTitlePreview()}</div>
+                     <div className="bottomSection">
+                      <div className="gamePrice">{this.handlePricePreview()}&nbsp;<Rendercurrency /></div>
+                       {this.state.isActive ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
+                      <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
+                 </div>
+             </div>
+              <label className="label">
+                Region:
+                 <br />
+                <input
+                  className="form-group-addgame"
+                  onChange={this.handleChange.bind(this)}
+                  id="region"
+                  value={this.state.region}
+                  type='text'
+                  required
 
-        <div className="gamesPreview">
-              <div className="imageWrapper">
-                 <img src={this.state.preview} className="imagePreview" alt=""/>
-              </div>
-                 <div className="gameTitle">{this.handleTitlePreview()}</div>
-                 <div className="bottomSection">
-                 <div className="gamePrice">{this.handlePricePreview()}&nbsp;<Rendercurrency /></div>
-                {this.state.isActive ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
-                                       <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
-                </div>
+                />
+              </label>
+              <br />
+              <label className="label">
+                Description:
+                 <br />
+                <input
+                  className="form-group-addgame"
+                  onChange={this.handleChange.bind(this)}
+                  id="description"
+                  value={this.state.description}
+                  type='text'
+                  required
+
+                />
+              </label>
         </div>
 
         <div className="inputForm">
-
-              <form onSubmit={this.handleSubmit.bind(this)} method="POST" encType='multipart/form-data'>
 
                  <label className="label">
                  Title: 
                  <br />
                   <input
-                    className="form-group-login"
+                    className="form-group-addgame"
                     onChange={this.handleChange.bind(this)}
                     id="title"
                     value={this.state.title}
@@ -99,7 +128,7 @@ handlePricePreview = () => {
                  Platform: 
                  <br />
                   <input
-                    className="form-group-login"
+                    className="form-group-addgame"
                     onChange={this.handleChange.bind(this)}
                     id="platform"
                     value={this.state.platform}
@@ -113,7 +142,7 @@ handlePricePreview = () => {
                  Price: 
                  <br />
                   <input
-                    className="form-group-login"
+                    className="form-group-addgame"
                     onChange={this.handleChange.bind(this)}
                     id="price"
                     value={this.state.price}
@@ -134,7 +163,7 @@ handlePricePreview = () => {
                   />
                  </label>
 
-                 {this.state.isActive ? <div className="errorTextLogin">{this.state.ownageFalse}</div> : <div className="successTextLogin">{this.state.ownageTrue}</div>}
+                 {this.state.isActive ? <div className="errorTextAddGame">{this.state.ownageFalse}</div> : <div className="successTextAddGame">{this.state.ownageTrue}</div>}
 
 
                  <br />
@@ -156,12 +185,10 @@ handlePricePreview = () => {
                     Add Game
                  </button>
 
-            </form>
             </div>
-
+          </form>
         </div>
         </div>
-      </div>
     )
   }
   
@@ -173,6 +200,10 @@ handleChange(event) {
         this.setState({ title: event.target.value });
     } else if (field === "price") {
       this.setState({ price: event.target.value });
+    } else if (field === "region") {
+      this.setState({ region: event.target.value });
+    } else if (field === "description") {
+      this.setState({ description: event.target.value });
     } else if (field === "platform") {
       this.setState({ platform: event.target.value });
     } else if (field === "image") {
@@ -192,6 +223,8 @@ handleSubmit(event) {
   data.append('price', this.state.price);
   data.append('platform', this.state.platform);
   data.append('ownage', this.state.ownage);
+  data.append('region', this.state.region);
+  data.append('description', this.state.description);
   data.append('file', this.state.file);
 
   axios({
@@ -205,7 +238,7 @@ handleSubmit(event) {
   }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-          this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "" })
+          this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "", description: "" })
           console.log("Successfully added");
       } 
   });

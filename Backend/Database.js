@@ -32,6 +32,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             platform text,
             price text,
             ownage text,
+            region text,
+            description text,
             filename text
             )`,
             (err) => {
