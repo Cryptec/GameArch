@@ -55,12 +55,14 @@ renderGames = () => {
       const url = `${API_ENDPOINT}/uploads/${imageName}`
      
     return (
+         
+       <div key={game.id} className="gamesShow">
 
-        <div key={game.id} className="gamesShow">
-
+        <Link to="/gamedetail?name=Super Mario 64">
         <div className="imageWrapper">
         <img src={`${url}`} alt="" className="imagePreview" />
         </div>
+        </Link>
           <div className="gameTitle">{game.title}</div>
         <div className="bottomSection">
           <div className="gamePrice">{game.price}&nbsp;<Rendercurrency /></div>
@@ -68,7 +70,7 @@ renderGames = () => {
           <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
          </div>
         </div>
-
+      
     )
   })
 }

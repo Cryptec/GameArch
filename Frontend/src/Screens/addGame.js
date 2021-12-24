@@ -65,9 +65,11 @@ handlePricePreview = () => {
 
      
         <div id="contentpage">
-           <div className="contentContainerInputForm">
+           
             <form onSubmit={this.handleSubmit.bind(this)} method="POST" encType='multipart/form-data'>
-             <div>
+
+          <div className="contentContainerInputForm">
+            <div className="inputForm">
                  <div className="gamesPreview">
                      <div className="imageWrapper">
                       <img src={this.state.preview} className="imagePreview" alt=""/>
@@ -79,35 +81,43 @@ handlePricePreview = () => {
                       <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
                  </div>
              </div>
-              <label className="label">
+              <label className='label' >
                 Region:
-                 <br />
-                <input
-                  className="form-group-addgame"
-                  onChange={this.handleChange.bind(this)}
+                <br />
+                    <select
+                  list="regionlist"
+                  name="region"
                   id="region"
+                  className="currencydropdown"
                   value={this.state.region}
-                  type='text'
+                  onChange={this.handleChange.bind(this)}
                   required
-
-                />
+                >
+                  <option>PAL</option>
+                  <option>NTSC</option>
+                  <option>NTSC-J</option>
+                  <option>NTSC-C</option>
+                </select>
               </label>
+              <br />
               <br />
               <label className="label">
                 Description:
                  <br />
-                <input
+                <textarea
                   className="form-group-addgame"
                   onChange={this.handleChange.bind(this)}
                   id="description"
                   value={this.state.description}
                   type='text'
+                  rows='4'
                   required
 
                 />
               </label>
         </div>
 
+        
         <div className="inputForm">
 
                  <label className="label">
@@ -186,8 +196,9 @@ handlePricePreview = () => {
                  </button>
 
             </div>
+          </div>
           </form>
-        </div>
+        
         </div>
     )
   }

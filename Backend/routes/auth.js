@@ -164,7 +164,7 @@ router.post("/reset-password/:id/:token", async (req, res, next) => {
             res.send("Error encountered while updating");
             return res.status(400).json({ error: true });
           }
-          res.status(301).redirect(`${FRONTEND_URL}`)
+          res.status(301).redirect(`${FRONTEND_URL}/redirect`)
         });
       });
 
