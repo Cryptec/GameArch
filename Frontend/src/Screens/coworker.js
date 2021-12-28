@@ -44,9 +44,9 @@ render() {
         <table id="tblData">
           
            
-              <th style={{ borderTopLeftRadius: "4px" }}>Name</th>
+              <th style={{ borderTopLeftRadius: "4px" }}>name</th>
               <th>email</th>
-              <th style={{ borderTopRightRadius: "4px" }}></th>
+              <th style={{ borderTopRightRadius: "4px" }}>delete </th>
             
        
           <tbody>
@@ -76,7 +76,7 @@ renderTableRows = () => {
         <tr key={user.id}>
           <td>{user.name}</td>
           <td>{user.email}</td>
-          <td className="sendMail" onClick={() => window.location.href = `mailto:${user.email}`}>&#9993; Contact </td>
+          <td className="userDeleteButton" onClick={() => this.deleteTableRow(user.id)}> &#10005; </td>
         </tr>
       )
     })
@@ -85,8 +85,8 @@ renderTableRows = () => {
 
 deleteTableRow = async (id) => {
     
-  await fetch(`${API_ENDPOINT}/api/employee/${id}`, {method: 'DELETE'})
-  const response = await fetch(`${API_ENDPOINT}/api/employees`)
+  await fetch(`${API_ENDPOINT}/api/user/${id}`, { credentials: 'include', method: 'DELETE'})
+  const response = await fetch(`${API_ENDPOINT}/api/users`, { credentials: 'include'})
   if (response.ok) {
     const users = await response.json()
     this.setState({ users, isLoading: false })
