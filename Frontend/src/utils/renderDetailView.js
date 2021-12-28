@@ -58,7 +58,7 @@ renderGames = () => {
          
        <div key={game.id} className="gamesShow">
 
-        <Link to="/gamedetail?name=Super Mario 64">
+        <Link to={{ pathname: `/gamedetail` , name: 'NZone'}} >
         <div className="imageWrapper">
         <img src={`${url}`} alt="" className="imagePreview" />
         </div>

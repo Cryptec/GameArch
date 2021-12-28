@@ -32,10 +32,11 @@
     border-radius: 6px;
     border: var(--border);
   }
-  .sendMail {
+  .userDeleteButton {
     cursor: pointer; 
-    width: 80px;
+    width: 70px;
+    color: brown;
   }
-  .sendMail:hover {
-    color: var(--text-hover);
+  .userDeleteButton:hover {
+    color: red;
   }

@@ -228,7 +228,7 @@ router.post('/login', function(req, res, next) {
 /**
  * delete employee by id
  */
-router.delete("/api/user/:id", checkAuthentication, (req, res, next) => {
+router.delete("/user/:id", checkAuthentication, (req, res, next) => {
   db.run(
       'DELETE FROM Users WHERE id = ?',
       req.params.id,
