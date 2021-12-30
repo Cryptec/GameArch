@@ -12,6 +12,7 @@ import Overview from "./Screens/Overview";
 import AddGame from "./Screens/addGame";
 import Settings from "./Screens/settings";
 import Detailview from "./Screens/Detailview";
+import EditGame from "./Screens/editGame";
 
 function Routes() {
     return (
@@ -23,6 +24,7 @@ function Routes() {
           <PrivateRoute restricted={false} component={Coworker} path="/members" exact />
           <PrivateRoute restricted={false} component={Overview} path="/overview" exact />
           <PrivateRoute restricted={false} component={AddGame} path="/addgame" exact />
+          <PrivateRoute restricted={false} component={EditGame} path="/editgame" exact />
           <PrivateRoute restricted={false} component={Settings} path="/settings" exact />
           <PrivateRoute restricted={false} component={Detailview} path="/gamedetail" exact />
 
