@@ -1,0 +1,36 @@
+.pageContainer {
+    background-color: var(--container-background);
+    border: var(--border);
+    padding: 10px;
+    border-radius: 6px;
+}
+.HeaderContainer {
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap : wrap;
+}
+.descriptionContainer {
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap : wrap;
+}
+.BodyContainer {
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap : wrap 
+}
+.imageWrapperDetail {
+    width: 250px;
+    height: 190px;
+}
+.imagePreviewDetail {
+    max-width: 250px;
+    width: auto;
+    max-height: 190px;
+    height: auto;
+    align-self: center;
+    border-radius: 5px;
+}

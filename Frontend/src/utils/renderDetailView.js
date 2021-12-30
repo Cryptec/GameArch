@@ -53,19 +53,33 @@ renderGames = () => {
 
       const imageName = game.filename
       const url = `${API_ENDPOINT}/uploads/${imageName}`
+      
+      const id = game.id
+      const title = game.title
+      const price = game.price
+      const description = game.description
+      const filename = game.filename
+      const platform = game.platform
      
     return (
          
        <div key={game.id} className="gamesShow">
 
-        <Link to={{ pathname: `/gamedetail` , name: 'NZone'}} >
+        <Link to={{ pathname: `/gamedetail`, 
+                    state: { titlename: title }, 
+                    description: description,
+                    price: price, 
+                    id: id,
+                    filename: filename,
+                    platform: platform
+                 }} >
         <div className="imageWrapper">
         <img src={`${url}`} alt="" className="imagePreview" />
         </div>
         </Link>
-          <div className="gameTitle">{game.title}</div>
+          <div className="gameTitle">{title}</div>
         <div className="bottomSection">
-          <div className="gamePrice">{game.price}&nbsp;<Rendercurrency /></div>
+          <div className="gamePrice">{price}&nbsp;<Rendercurrency /></div>
             {game.ownage === "false" ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
           <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
          </div>
