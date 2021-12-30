@@ -40,7 +40,7 @@ function Detailview(props) {
               </div>
               <div style={{flexDirection: "column"}}>
               <h2 style={{ color: 'var(--text-primary)', marginLeft: '45px' }}>{location.state.titlename}</h2>
-              <h4 style={{ color: 'var(--text-primary)', marginLeft: '45px', marginTop: '-15px' }}>{location.platform}</h4>
+              <h4 style={{ color: 'var(--text-primary)', marginLeft: '45px', marginTop: '-12px' }}>{location.platform}</h4>
               </div>
             </div>
             <br /><br />

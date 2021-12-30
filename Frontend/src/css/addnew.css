@@ -1,6 +1,8 @@
 .form-group-addgame {
     align-items: center;
-    border: 1px solid #cfcece;
+    color: var(--text-primary);
+    border: 1px solid var(--background);
+    background-color: var(--background);
     padding: 10px 16px;
     margin-bottom: 15px;
     font-size: 18px;
