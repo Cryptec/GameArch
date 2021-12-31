@@ -64,15 +64,36 @@ renderTableRows = () => {
   ? (
      this.state.games.map(game => {
 
-        const imageName = game.filename
-        const url = `${API_ENDPOINT}/uploads/${imageName}`
+       const imageName = game.filename
+       const id = game.id
+       const title = game.title
+       const price = game.price
+       const description = game.description
+       const region = game.region
+       const filename = game.filename
+       const platform = game.platform
+       const url = `${API_ENDPOINT}/uploads/${imageName}`
 
       return (
         <tr key={game.id}>
-          <td><img src={`${url}`} alt="" className="imagePreview" /></td>
-          <td>{game.title}</td>
-          <td>{game.price}</td>
+          <Link to={{
+            pathname: `/gamedetail`,
+            state: { titlename: title },
+            description: description,
+            price: price,
+            id: id,
+            filename: filename,
+            platform: platform,
+            region: region
+          }} >
+          <td><img src={`${url}`} alt="" style={styles.imagePreviewList} /></td>
+          </Link>
+          <td><div style={styles.title}>{game.title}</div>
+               <br />
+               <div style={styles.platform}>{game.platform}</div>
+          </td>
           <td>{game.ownage}</td>
+          <td><div style={styles.price}>{game.price}&nbsp;<Rendercurrency /></div></td>
         </tr>
       )
     })
@@ -85,29 +106,36 @@ renderTableRows = () => {
 
 
 
-    renderGames = () => {
 
-        return this.state.games.map(game => {
+}
 
-            const imageName = game.filename
-            const url = `${API_ENDPOINT}/uploads/${imageName}`
+const styles = {};
 
-            return (
-
-                <div key={game.id} className="gamesShow">
-
-                    <img src={`${url}`} alt="" className="imagePreview" />
-                    <div className="gameTitle">{game.title}</div>
-                    <div className="bottomSection">
-                        <div className="gamePrice">{game.price}&nbsp;<Rendercurrency /></div>
-                        {game.ownage === "false" ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
-                            <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
-                    </div>
-                </div>
-
-            )
-        })
-    }
+styles.imagePreviewList = {
+  maxWidth: '180px',
+  width: 'auto',
+  maxHeight: '120px',
+  height: 'auto',
+  alignSelf: 'center',
+  marginTop: '12px',
+  borderRadius: '5px'
+}
+styles.title = {
+  fontWeight: '600'
+}
+styles.platform = {
+  marginTop: '-50px'
+}
+styles.price = {
+  padding: '7px',
+  fontWeight: 600,
+  width: 'fit-content',
+  borderRadius: '7px',
+  color: 'var(--text-primary)',
+  backgroundColor: 'var(--hilight)',
+  justifyContent: 'center',
+  flexDirection: 'row',
+  display: 'flex'
 }
 
 export default RenderListView

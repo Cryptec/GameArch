@@ -52,14 +52,14 @@ renderGames = () => {
   return this.state.games.map(game => {
 
       const imageName = game.filename
-      const url = `${API_ENDPOINT}/uploads/${imageName}`
-      
       const id = game.id
       const title = game.title
       const price = game.price
       const description = game.description
+      const region = game.region
       const filename = game.filename
       const platform = game.platform
+      const url = `${API_ENDPOINT}/uploads/${imageName}`
      
     return (
          
@@ -71,7 +71,8 @@ renderGames = () => {
                     price: price, 
                     id: id,
                     filename: filename,
-                    platform: platform
+                    platform: platform,
+                    region: region
                  }} >
         <div className="imageWrapper">
         <img src={`${url}`} alt="" className="imagePreview" />

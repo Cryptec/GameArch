@@ -39,7 +39,7 @@ function Detailview(props) {
                 <img src={`${url}`} alt="" className="imagePreviewDetail" />
               </div>
               <div style={{flexDirection: "column"}}>
-              <h2 style={{ color: 'var(--text-primary)', marginLeft: '45px' }}>{location.state.titlename}</h2>
+              <h1 style={{ color: 'var(--text-primary)', marginLeft: '45px' }}>{location.state.titlename}</h1>
               <h4 style={{ color: 'var(--text-primary)', marginLeft: '45px', marginTop: '-12px' }}>{location.platform}</h4>
               </div>
             </div>
@@ -49,6 +49,7 @@ function Detailview(props) {
               </div>
             <br />
             <div className="BodyContainer" style={{ color: 'var(--text-primary)', flexDirection: 'column' }}>
+              <div>{location.region}</div>
               <div className="gamePriceDetail">{location.price}&nbsp;{currency}</div>
             </div>
 

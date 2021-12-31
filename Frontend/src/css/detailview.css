@@ -23,13 +23,13 @@
     flex-wrap : wrap 
 }
 .imageWrapperDetail {
-    width: 250px;
-    height: 190px;
+    width: 260px;
+    height: 200px;
 }
 .imagePreviewDetail {
-    max-width: 250px;
+    max-width: 260px;
     width: auto;
-    max-height: 190px;
+    max-height: 200px;
     height: auto;
     align-self: center;
     border-radius: 7px;

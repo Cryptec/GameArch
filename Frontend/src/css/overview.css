@@ -82,6 +82,13 @@
     height: auto;
     align-self: center;
 }
+.imagePreviewList {
+    max-width: 200px;
+    width: auto;
+    max-height: 140px;
+    height: auto;
+    align-self: center;
+}
 .gameTitle {
     padding: 15px 10px 10px 10px;
     font-weight: 700;
