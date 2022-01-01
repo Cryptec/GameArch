@@ -58,7 +58,13 @@ function Detailview(props) {
           <div className="overviewContainer" style={{ marginTop: "5px" }}>
             <Link className="GameEditButton" to={{
               pathname: `/editgame`,
-              description: location.description
+              description: location.description,
+              title: location.state.titlename,
+              platform: location.platform,
+              price: location.price,
+              region: location.region,
+              ownage: location.ownage,
+              id: location.id,
             }} >
             <div type="button">Edit</div>
             </Link>

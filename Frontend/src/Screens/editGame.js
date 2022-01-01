@@ -11,12 +11,13 @@ class EditGame extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
-            platform: "",
-            price: "",
+            title: this.props.location.title,
+            platform: this.props.location.platform,
+            price: this.props.location.price,
+            description: this.props.location.description,
+            id: this.props.location.id,
             ownage: "",
-            region: "",
-            description: "",
+            region: this.props.location.region,
             ownageTrue: "",
             ownageFalse: "",
             ownagePreviewOk: "",
@@ -195,7 +196,7 @@ class EditGame extends Component {
                             <br />
                             <br />
                             <button className="addButton">
-                                Add Game
+                                Update Game
                  </button>
 
                         </div>
@@ -233,6 +234,7 @@ class EditGame extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let data = new FormData();
+        data.append('id', this.state.id);
         data.append('title', this.state.title);
         data.append('price', this.state.price);
         data.append('platform', this.state.platform);
@@ -245,15 +247,15 @@ class EditGame extends Component {
             method: "POST",
             withCredentials: true,
             credentials: 'include',
-            url: `${API_ENDPOINT}/api/newgame`,
+            url: `${API_ENDPOINT}/api/editgame`,
             headers: { 'Content-Type': 'multipart/form-data' },
             data: data
 
         }).then((response, props) => {
             console.log(response)
             if (response.data.success) {
-                this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "", description: "" })
                 console.log("Successfully added");
+                window.location.replace("/overview");
             }
         });
     }

@@ -30,6 +30,7 @@ class AddGame extends Component {
 componentDidMount = () => {
      this.setState({preview: ImagePlaceholder, 
                     ownage: "false", 
+                    region: "PAL",
                     ownageFalse: "I don´t own this Game",
                     ownagePreviewFalse: <>&#x2715;</> })
      this.handleShow()

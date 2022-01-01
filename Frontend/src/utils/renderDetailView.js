@@ -57,6 +57,7 @@ renderGames = () => {
       const price = game.price
       const description = game.description
       const region = game.region
+      const ownage = game.ownage
       const filename = game.filename
       const platform = game.platform
       const url = `${API_ENDPOINT}/uploads/${imageName}`
@@ -72,7 +73,8 @@ renderGames = () => {
                     id: id,
                     filename: filename,
                     platform: platform,
-                    region: region
+                    region: region,
+                    ownage: ownage
                  }} >
         <div className="imageWrapper">
         <img src={`${url}`} alt="" className="imagePreview" />
