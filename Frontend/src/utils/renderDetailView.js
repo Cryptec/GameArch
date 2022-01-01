@@ -65,7 +65,7 @@ renderGames = () => {
          
        <div key={game.id} className="gamesShow">
 
-        <Link to={{ pathname: `/gamedetail`, 
+        <Link to={{ pathname: `/gamedetail/${title}`, 
                     state: { titlename: title }, 
                     description: description,
                     price: price, 

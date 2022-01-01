@@ -77,7 +77,7 @@ renderTableRows = () => {
       return (
         <tr key={game.id}>
           <Link to={{
-            pathname: `/gamedetail`,
+            pathname: `/gamedetail/${title}`,
             state: { titlename: title },
             description: description,
             price: price,

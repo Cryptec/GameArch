@@ -26,7 +26,7 @@ function Routes() {
           <PrivateRoute restricted={false} component={AddGame} path="/addgame" exact />
           <PrivateRoute restricted={false} component={EditGame} path="/editgame" exact />
           <PrivateRoute restricted={false} component={Settings} path="/settings" exact />
-          <PrivateRoute restricted={false} component={Detailview} path="/gamedetail" exact />
+          <PrivateRoute restricted={false} component={Detailview} path="/gamedetail/:objecttitle" exact />
 
           <PublicRoute restricted={false} component={NotFound}/>
  
