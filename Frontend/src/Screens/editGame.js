@@ -30,11 +30,6 @@ class EditGame extends Component {
 
 
     componentDidMount = () => {
-        this.setState({
-            ownage: "false",
-            ownageFalse: "I don´t own this Game",
-            ownagePreviewFalse: <>&#x2715;</>
-        })
         this.handleImagePreview()
         this.handleOwnagePreview()
     }
@@ -65,9 +60,10 @@ class EditGame extends Component {
     handleOwnagePreview = () => {
         if (this.props.location.ownage === "true") {
             document.getElementById("ownage").checked = true;
-            this.setState({ ownageTrue: "I own this Game", ownagePreviewOk: <>&#10004;</> });
+            this.setState({ ownage: "true", ownageTrue: "I own this Game", ownagePreviewOk: <>&#10004;</> });
             this.handleShowSuccess()
         } else if (this.props.location.ownage === "false") {
+            this.setState({ ownage: "false", ownageFalse: "I don´t own this Game", ownagePreviewFalse: <>&#x2715;</> });
             this.handleShow()
         }
     }
@@ -208,16 +204,13 @@ class EditGame extends Component {
                                     id="image"
                                     type="file"
                                     name="file"
-                                    placerholder="Upload picture"
                                     onChange={this.handleChange.bind(this)}
                                 />
                             </label>
 
                             <br />
                             <br />
-                            <button className="addButton">
-                                Update Game
-                 </button>
+                            <button className="addButton">Update Game</button>
 
                         </div>
                     </div>

@@ -41,6 +41,7 @@ router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
 
 router.post("/editgame", checkAuthentication, upload, async (req, res, next) => {
   console.log("Request ---", req.body);
+  if (req.file !== undefined) {
   console.log("Request file ---", req.file);
   console.log("filename is:", req.file.filename);
   var data = {
@@ -55,6 +56,19 @@ router.post("/editgame", checkAuthentication, upload, async (req, res, next) => 
   }
   var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description, data.id]
   var sql = 'UPDATE Games SET title = ?, price = ?, platform = ?, ownage = ?, filename = ?, region = ?, description = ? WHERE id = ?'
+} else if (req.file === undefined) {
+  var data = {
+    title: req.body.title,
+    price: req.body.price,
+    platform: req.body.platform,
+    ownage: req.body.ownage,
+    region: req.body.region,
+    description: req.body.description,
+    id: req.body.id
+  }
+  var params = [data.title, data.price, data.platform, data.ownage, data.region, data.description, data.id]
+  var sql = 'UPDATE Games SET title = ?, price = ?, platform = ?, ownage = ?, region = ?, description = ? WHERE id = ?'
+}
   db.run(sql, params, (err, rows) => {
     if (err) {
       res.status(400).json({ "error": err.message });
