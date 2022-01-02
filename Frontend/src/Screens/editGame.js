@@ -5,7 +5,7 @@ import Rendercurrency from '../utils/renderCurrency'
 import '../css/overview.css'
 import '../css/addnew.css'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class EditGame extends Component {
     constructor(props) {
@@ -31,12 +31,12 @@ class EditGame extends Component {
 
     componentDidMount = () => {
         this.setState({
-            preview: ImagePlaceholder,
             ownage: "false",
             ownageFalse: "I don´t own this Game",
             ownagePreviewFalse: <>&#x2715;</>
         })
-        this.handleShow()
+        this.handleImagePreview()
+        this.handleOwnagePreview()
     }
     handleShow = () => {
         this.setState({
@@ -62,6 +62,24 @@ class EditGame extends Component {
             return this.state.price
         }
     }
+    handleOwnagePreview = () => {
+        if (this.props.location.ownage === "true") {
+            document.getElementById("ownage").checked = true;
+            this.setState({ ownageTrue: "I own this Game", ownagePreviewOk: <>&#10004;</> });
+            this.handleShowSuccess()
+        } else if (this.props.location.ownage === "false") {
+            this.handleShow()
+        }
+    }
+
+    handleImagePreview = () => {
+        if (this.props.location.filename === null) {
+            this.setState({ preview: ImagePlaceholder })
+        } else if (this.props.location.filename !== null) {
+            const imageurl = `${API_ENDPOINT}/uploads/${this.props.location.filename}`
+            return this.setState({ preview: imageurl })
+        }
+    }
 
     render() {
 
@@ -76,7 +94,9 @@ class EditGame extends Component {
                         <div className="inputForm">
                             <div className="gamesPreview">
                                 <div className="imageWrapper">
+                                    
                                     <img src={this.state.preview} className="imagePreview" alt="" />
+
                                 </div>
                                 <div className="gameTitle">{this.handleTitlePreview()}</div>
                                 <div className="bottomSection">
@@ -168,7 +188,7 @@ class EditGame extends Component {
                             <br />
                             <label className="label">
                                 Own:
-                 <br />
+                                <br />
                                 <input
                                     onChange={this.handleChange.bind(this)}
                                     id="ownage"
@@ -183,7 +203,7 @@ class EditGame extends Component {
                             <br />
                             <label className="label">
                                 Image:
-                 <br />
+                                <br />
                                 <input
                                     id="image"
                                     type="file"
@@ -226,7 +246,7 @@ class EditGame extends Component {
         } else if (checkBox.checked === true) {
             this.setState({ ownage: "true", ownageTrue: "I own this Game", ownagePreviewOk: <>&#10004;</> });
             this.handleShowSuccess()
-        } else {
+        }  else {
             this.setState({ ownage: "false", ownageFalse: "I don´t own this Game", ownagePreviewFalse: <>&#x2715;</> });
             this.handleShow()
         }

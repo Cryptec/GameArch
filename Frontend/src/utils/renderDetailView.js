@@ -58,7 +58,6 @@ renderGames = () => {
       const description = game.description
       const region = game.region
       const ownage = game.ownage
-      const filename = game.filename
       const platform = game.platform
       const url = `${API_ENDPOINT}/uploads/${imageName}`
      
@@ -71,7 +70,7 @@ renderGames = () => {
                     description: description,
                     price: price, 
                     id: id,
-                    filename: filename,
+                    filename: imageName,
                     platform: platform,
                     region: region,
                     ownage: ownage

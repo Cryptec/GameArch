@@ -185,7 +185,6 @@ handlePricePreview = () => {
                   id="image"
                   type="file"
                   name="file"
-                  placerholder="Upload picture"
                   onChange={this.handleChange.bind(this)}
                   />
                  </label>

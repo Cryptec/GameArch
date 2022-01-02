@@ -70,6 +70,7 @@ renderTableRows = () => {
        const price = game.price
        const description = game.description
        const region = game.region
+       const ownage = game.ownage
        const filename = game.filename
        const platform = game.platform
        const url = `${API_ENDPOINT}/uploads/${imageName}`
@@ -82,6 +83,7 @@ renderTableRows = () => {
             description: description,
             price: price,
             id: id,
+            ownage: ownage,
             filename: filename,
             platform: platform,
             region: region
