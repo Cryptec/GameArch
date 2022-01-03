@@ -8,7 +8,7 @@ require('dotenv').config()
 const upload = multer({
   dest: './public/uploads/',
   fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
+    if (!file.originalname.match(/\.(png|jpg|jpeg|PNG)$/)) {
       cb(new Error('Please upload an image.'))
     }
     cb(undefined, true)
@@ -17,19 +17,35 @@ const upload = multer({
 
 router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
   console.log("Request ---", req.body);
-  console.log("Request file ---", req.file);
-  console.log("filename is:", req.file.filename);
+  if (req.file !== undefined) {
+    console.log("Request file ---", req.file);
+    console.log("filename is:", req.file.filename);
     var data = {
-        title: req.body.title,
-        price: req.body.price,
-        platform: req.body.platform,
-        ownage: req.body.ownage,
-        region: req.body.region,
-        description: req.body.description,
-        filename: req.file.filename
+      title: req.body.title,
+      price: req.body.price,
+      platform: req.body.platform,
+      ownage: req.body.ownage,
+      region: req.body.region,
+      description: req.body.description,
+      id: req.body.id,
+      filename: req.file.filename
     }
-    var sql ='INSERT INTO Games (title, price, platform, ownage, filename, region, description) VALUES (?, ?, ?, ?, ?, ?, ?)'
-    var params =[data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description]
+    var sql = 'INSERT INTO Games (title, price, platform, ownage, filename, region, description) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description]
+  } else if (req.file === undefined) {
+    var data = {
+      title: req.body.title,
+      price: req.body.price,
+      platform: req.body.platform,
+      ownage: req.body.ownage,
+      region: req.body.region,
+      description: req.body.description,
+      id: req.body.id,
+      filename: "null"
+    }
+    var sql = 'INSERT INTO Games (title, price, platform, ownage, filename, region, description) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description]
+  }
     db.run(sql, params, (err, rows) => {
       if (err) {
         res.status(400).json({ "error": err.message });

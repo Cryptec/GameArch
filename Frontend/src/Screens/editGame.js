@@ -69,9 +69,9 @@ class EditGame extends Component {
     }
 
     handleImagePreview = () => {
-        if (this.props.location.filename === null) {
+        if (this.props.location.filename === "null") {
             this.setState({ preview: ImagePlaceholder })
-        } else if (this.props.location.filename !== null) {
+        } else if (this.props.location.filename !== "null") {
             const imageurl = `${API_ENDPOINT}/uploads/${this.props.location.filename}`
             return this.setState({ preview: imageurl })
         }

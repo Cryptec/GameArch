@@ -21,7 +21,7 @@ class AddGame extends Component {
         ownageFalse: "",
         ownagePreviewOk: "",
         ownagePreviewFalse: "",
-        file: null,
+        file: "null",
         preview: null,
         isActive: false
     };

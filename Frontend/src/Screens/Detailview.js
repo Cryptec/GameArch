@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/detailview.css'
 import { useLocation, Link } from "react-router-dom"
 import Rendercurrency from '../utils/renderCurrency'
+import ImagePlaceholder from '../assets/imageplaceholder.png'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
@@ -16,6 +17,7 @@ let deleteTableRow = async (id) => {
     return console.error();
   }
 }
+
 
 function Detailview(props) {
 
@@ -36,7 +38,10 @@ function Detailview(props) {
 
            <div className="HeaderContainer">
               <div className="imageWrapperDetail">
-                <img src={`${url}`} alt="" className="imagePreviewDetail" />
+
+                {location.filename !== "null" ? <img src={`${url}`} alt="" className="imagePreviewDetail" />
+                  : <img src={`${ImagePlaceholder}`} alt="" className="imagePreviewDetail" />}
+                  
               </div>
               <div style={{flexDirection: "column"}}>
               <h1 style={{ color: 'var(--text-primary)', marginLeft: '45px' }}>{location.state.titlename}</h1>

@@ -76,7 +76,10 @@ renderGames = () => {
                     ownage: ownage
                  }} >
         <div className="imageWrapper">
-        <img src={`${url}`} alt="" className="imagePreview" />
+        
+            {imageName !== "null" ? <img src={`${url}`} alt="" className="imagePreview" />
+              : <img src={`${ImagePlaceholder}`} alt="" className="imagePreview" />}
+
         </div>
         </Link>
           <div className="gameTitle">{title}</div>

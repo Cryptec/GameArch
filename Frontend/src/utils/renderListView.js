@@ -88,7 +88,11 @@ renderTableRows = () => {
             platform: platform,
             region: region
           }} >
-          <td><img src={`${url}`} alt="" style={styles.imagePreviewList} /></td>
+          <td>
+            {imageName !== "null" ? <img src={`${url}`} alt="" style={styles.imagePreviewList} />
+              : <img src={`${ImagePlaceholder}`} alt="" style={styles.imagePreviewList} />}
+          </td>
+
           </Link>
           <td><div style={styles.title}>{game.title}</div>
                <br />
