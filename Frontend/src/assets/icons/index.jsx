@@ -266,3 +266,24 @@ export const ListIcon = ({ color, size, title, className }) => {
     );
 };
 
+export const WishListIcon = ({ color, size, title, className }) => {
+    return (
+        <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 26 26"
+            xmlns="http://www.w3.org/2000/svg"
+            height={size ? size : "19px"}
+            width={size ? size : "19px"}
+            style={{ color }}
+            className={className ? className : 'ListIcon'}
+        >
+            { title ? <title>{title}</title> : null}
+            <path
+                stroke="currentColor"
+                strokeWidth="0"
+                d="M20 22H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1zm-1-2V4H5v16h14zM8 7h8v2H8V7zm0 4h8v2H8v-2zm0 4h5v2H8v-2z"></path>
+        </svg>
+    );
+};

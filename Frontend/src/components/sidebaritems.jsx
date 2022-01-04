@@ -1,4 +1,4 @@
-import { AiOutlineDashboard, BsCollection, MediaIcon, LogoutIcon, GrAdd, IoSettingsOutline } from "../assets/icons";
+import { AiOutlineDashboard, BsCollection, MediaIcon, LogoutIcon, GrAdd, IoSettingsOutline, WishListIcon } from "../assets/icons";
 
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_LINK
 
@@ -10,7 +10,7 @@ export const SidebarItemsMain = [
         icon: <AiOutlineDashboard />
     },
     {
-        name: "Übersicht",
+        name: "Collection",
         route: '/overview',
         icon: <BsCollection />
     },
@@ -23,9 +23,9 @@ export const SidebarItemsResources = [
         icon: <GrAdd />
     },
     {
-        name: "Media",
-        link: `${GITHUB_LINK}`,
-        icon: <MediaIcon />
+        name: "Wishlist",
+        link: '/wishlist',
+        icon: <WishListIcon />
     },
 ]
 

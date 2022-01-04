@@ -13,6 +13,7 @@ import AddGame from "./Screens/addGame";
 import Settings from "./Screens/settings";
 import Detailview from "./Screens/Detailview";
 import EditGame from "./Screens/editGame";
+import Wishlist from "./Screens/Wishlist";
 
 function Routes() {
     return (
@@ -23,6 +24,7 @@ function Routes() {
           <PrivateRoute restricted={false} component={Entry} path="/" exact />
           <PrivateRoute restricted={false} component={Coworker} path="/members" exact />
           <PrivateRoute restricted={false} component={Overview} path="/overview" exact />
+          <PrivateRoute restricted={false} component={Wishlist} path="/wishlist" exact />
           <PrivateRoute restricted={false} component={AddGame} path="/addgame" exact />
           <PrivateRoute restricted={false} component={EditGame} path="/editgame/:objecttitle/:objectid" exact />
           <PrivateRoute restricted={false} component={Settings} path="/settings" exact />
