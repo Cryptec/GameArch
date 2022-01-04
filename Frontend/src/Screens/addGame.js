@@ -59,6 +59,10 @@ handlePricePreview = () => {
     return this.state.price
   }
 }
+removeImage = () => {
+  document.getElementById("image").value = null;
+  this.setState({ preview: ImagePlaceholder, file: "null" })
+}
 
   render() {
 
@@ -72,7 +76,10 @@ handlePricePreview = () => {
           <div className="contentContainerInputForm">
             <div className="inputForm">
                  <div className="gamesPreview">
-                     <div className="imageWrapper">
+
+                  <div type="button" className="imgDelButton" onClick={() => this.removeImage()}>&#x2715;</div>
+
+                     <div className="imageWrapper" style={{marginTop: '-25px'}}>
                       <img src={this.state.preview} className="imagePreview" alt=""/>
                      </div>
                       <div className="gameTitle">{this.handleTitlePreview()}</div>
@@ -82,6 +89,7 @@ handlePricePreview = () => {
                       <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
                  </div>
              </div>
+              <br />
               <label className='label' >
                 Region:
                 <br />
@@ -198,7 +206,6 @@ handlePricePreview = () => {
             </div>
           </div>
           </form>
-        
         </div>
     )
   }

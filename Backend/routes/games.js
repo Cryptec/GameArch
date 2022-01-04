@@ -90,6 +90,7 @@ router.post("/editgame", checkAuthentication, upload, async (req, res, next) => 
       res.status(400).json({ "error": err.message });
       return;
     }
+    console.log("Successfully edited data");
     return res.send({ success: true });
   });
 });
@@ -133,5 +134,23 @@ router.delete("/game/:id", checkAuthentication, (req, res, next) => {
       res.status(200).json({ "message": "deleted", changes: this.changes })
     });
 })
+
+router.post('/removeimage', function (req, res) {
+  var data = {
+    filename: req.body.filename,
+    id: req.body.id
+  }
+  var params = [data.filename, data.id]
+  db.serialize(() => {
+    db.run('UPDATE Games SET filename = ? WHERE id = ?', params, function (err) {
+      if (err) {
+        res.send("Error encountered while updating");
+        return res.status(400).json({ error: true });
+      }
+      console.log("Successfully removed image");
+      return res.send({ success: true });
+    });
+  });
+});
 
   module.exports = router;

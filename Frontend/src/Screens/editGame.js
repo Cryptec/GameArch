@@ -24,7 +24,8 @@ class EditGame extends Component {
             ownagePreviewFalse: "",
             file: null,
             preview: null,
-            isActive: false
+            isActive: false,
+            fileremoved: "false"
         };
     }
 
@@ -77,6 +78,11 @@ class EditGame extends Component {
         }
     }
 
+    removeImage = () => {
+        document.getElementById("image").value = null;
+        this.setState({ preview: ImagePlaceholder, fileremoved: "true" })
+    }
+
     render() {
 
         return (
@@ -89,7 +95,10 @@ class EditGame extends Component {
                     <div className="contentContainerInputForm">
                         <div className="inputForm">
                             <div className="gamesPreview">
-                                <div className="imageWrapper">
+
+                                <div type="button" className="imgDelButton" onClick={() => this.removeImage()}>&#x2715;</div>
+                              
+                                <div className="imageWrapper" style={{ marginTop: '-25px' }}>
                                     
                                     <img src={this.state.preview} className="imagePreview" alt="" />
 
@@ -256,6 +265,27 @@ class EditGame extends Component {
         data.append('description', this.state.description);
         data.append('file', this.state.file);
 
+        if (this.state.fileremoved === "true") {
+            axios({
+                method: "POST",
+                withCredentials: true,
+                credentials: 'include',
+                url: `${API_ENDPOINT}/api/removeimage`,
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    id: this.state.id,
+                    filename: "null"
+
+                }
+
+            }).then((response, props) => {
+                console.log(response)
+                if (response.data.success) {
+                    console.log("Successfully removed image");
+                }
+            });
+        }
+        
         axios({
             method: "POST",
             withCredentials: true,
@@ -267,7 +297,7 @@ class EditGame extends Component {
         }).then((response, props) => {
             console.log(response)
             if (response.data.success) {
-                console.log("Successfully added");
+                console.log("Successfully edited data");
                 window.location.replace("/overview");
             }
         });

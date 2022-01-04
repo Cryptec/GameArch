@@ -31,3 +31,18 @@
     border-radius: 6px;
     width: 300px;
 }
+.imgDelButton {
+    color: white;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 190px;
+    padding: 2px 5px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgDelButton:hover {
+   background-color: rgba(0, 0, 0, 0.8);
+   color: white;
+}
