@@ -28,10 +28,11 @@ router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
       region: req.body.region,
       description: req.body.description,
       id: req.body.id,
+      iswishlist: req.body.iswishlist,
       filename: req.file.filename
     }
-    var sql = 'INSERT INTO Games (title, price, platform, ownage, filename, region, description) VALUES (?, ?, ?, ?, ?, ?, ?)'
-    var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description]
+    var sql = 'INSERT INTO Games (title, price, platform, ownage, filename, region, description, iswishlist) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+    var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description, data.iswishlist]
   } else if (req.file === undefined) {
     var data = {
       title: req.body.title,
@@ -41,10 +42,11 @@ router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
       region: req.body.region,
       description: req.body.description,
       id: req.body.id,
+      iswishlist: req.body.iswishlist,
       filename: "null"
     }
-    var sql = 'INSERT INTO Games (title, price, platform, ownage, filename, region, description) VALUES (?, ?, ?, ?, ?, ?, ?)'
-    var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description]
+    var sql = 'INSERT INTO Games (title, price, platform, ownage, filename, region, description, iswishlist) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+    var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description, data.iswishlist]
   }
     db.run(sql, params, (err, rows) => {
       if (err) {

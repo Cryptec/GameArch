@@ -244,6 +244,7 @@ handleSubmit(event) {
   data.append('region', this.state.region);
   data.append('description', this.state.description);
   data.append('file', this.state.file);
+  data.append('iswishlist', "false")
 
   axios({
       method: "POST",
