@@ -117,10 +117,7 @@ router.get("/game/:id",checkAuthentication, (req, res, next) => {
           res.status(400).json({"error":err.message});
           return;
         }
-        res.json({
-            "answer":"success",
-            "data":row
-        })
+        res.status(200).json(row);
       });
   });
 
@@ -154,5 +151,37 @@ router.post('/removeimage', function (req, res) {
     });
   });
 });
+
+router.post("/setwishlist/:id", checkAuthentication, (req, res, next) => {
+  var data = {
+    iswishlist: req.body.iswishlist,
+    id: req.body.id
+  }
+  var params = [data.iswishlist, data.id]
+  db.run(
+    'UPDATE Games SET iswishlist = ? WHERE id = ?',
+    params,
+    function (err, row, result) {
+      if (err) {
+        res.status(400).json({ "error": res.message })
+        return;
+      }
+      console.log("Successfully set wishlist state");
+      return res.send({ success: true, "answer": "success", row });
+    });
+})
+
+router.get("/wishlist", checkAuthentication, (req, res, next) => {
+  var sql = "select * from Games WHERE iswishlist = 'true'"
+  var params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(rows);
+  });
+});
+
 
   module.exports = router;

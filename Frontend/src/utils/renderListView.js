@@ -71,22 +71,25 @@ renderTableRows = () => {
        const description = game.description
        const region = game.region
        const ownage = game.ownage
-       const filename = game.filename
        const platform = game.platform
+       const wishlist = game.iswishlist
        const url = `${API_ENDPOINT}/uploads/${imageName}`
 
       return (
         <tr key={game.id}>
           <Link to={{
             pathname: `/gamedetail/${title}`,
-            state: { titlename: title },
-            description: description,
-            price: price,
-            id: id,
-            ownage: ownage,
-            filename: filename,
-            platform: platform,
-            region: region
+            state: {
+              titlename: title,
+              description: description,
+              price: price,
+              id: id,
+              filename: imageName,
+              platform: platform,
+              region: region,
+              ownage: ownage,
+              wishlist: wishlist
+            }
           }} >
           <td>
             {imageName !== "null" ? <img src={`${url}`} alt="" style={styles.imagePreviewList} />

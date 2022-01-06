@@ -59,6 +59,7 @@ renderGames = () => {
       const region = game.region
       const ownage = game.ownage
       const platform = game.platform
+      const wishlist = game.iswishlist
       const url = `${API_ENDPOINT}/uploads/${imageName}`
      
     return (
@@ -66,15 +67,16 @@ renderGames = () => {
        <div key={game.id} className="gamesShow">
 
         <Link to={{ pathname: `/gamedetail/${title}`, 
-                    state: { titlename: title }, 
-                    description: description,
-                    price: price, 
-                    id: id,
-                    filename: imageName,
-                    platform: platform,
-                    region: region,
-                    ownage: ownage
-                 }} >
+                    state: { titlename: title,
+                             description: description,
+                             price: price,
+                             id: id,
+                             filename: imageName,
+                             platform: platform,
+                             region: region,
+                             ownage: ownage,
+                             wishlist: wishlist }
+                  }} >
         <div className="imageWrapper">
         
             {imageName !== "null" ? <img src={`${url}`} alt="" className="imagePreview" />
