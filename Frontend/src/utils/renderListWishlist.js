@@ -39,12 +39,6 @@ class RenderListWishlist extends Component {
                         {this.renderTableRows()}
                     </tbody>
                 </table>
-                <div>
-                    <Link to='/addgame' className="addGamesButtonList">
-                        <div>add games</div>
-                        <div style={{ fontSize: 50 }}>+</div>
-                    </Link>
-                </div>
             </div>
         )
     }
@@ -108,7 +102,7 @@ class RenderListWishlist extends Component {
                     )
                 })
             ) : (
-                <div>
+                <div style={{ color: 'var(--text-primary)' }}>
                     No games.
                 </div>
             )

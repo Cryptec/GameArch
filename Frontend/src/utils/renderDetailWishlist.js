@@ -36,10 +36,6 @@ class RenderDetailWishlist extends Component {
 
                 <div className="overviewContainer">
                     {this.renderGames()}
-                    <Link to='/addgame' className="addGamesButton">
-                        <div>add games</div>
-                        <div style={{ fontSize: 50 }}>+</div>
-                    </Link>
                 </div>
 
             </div>
@@ -48,8 +44,18 @@ class RenderDetailWishlist extends Component {
 
 
     renderGames = () => {
+        const { games, isLoading, isError } = this.state
 
-        return this.state.games.map(game => {
+        if (isLoading) {
+            return <div>Loading...</div>
+        }
+
+        if (isError) {
+            return <div>Error</div>
+        }
+
+        return games.length > 0
+            ? (this.state.games.map(game => {
 
             const imageName = game.filename
             const id = game.id
@@ -97,6 +103,11 @@ class RenderDetailWishlist extends Component {
 
             )
         })
+            ) : (
+                <div style={{color: 'var(--text-primary)'}}>
+                    No games.
+                </div>
+            )
     }
 }
 
