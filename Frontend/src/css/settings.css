@@ -13,12 +13,16 @@
 .currencydropdown {
     border-radius: 5px;
     border: var(--border);
+    background-color: var(--background);
+    color: var(--text-primary);
     padding: 5px;
     margin-left: 5px;
 }
 .userSettingsInput {
     border-radius: 5px;
     border: var(--border);
+    background-color: var(--background);
+    color: var(--text-primary);
     padding: 5px;
     margin-left: 5px;
 }

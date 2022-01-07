@@ -48,7 +48,8 @@ render() {
            <div className="sectionDescription">User:</div>
            
            <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="passwordInput">
-
+           <div>set a new password for {this.state.name}:</div>
+           <br />
            <label className='label'>
             new password:
             <input
