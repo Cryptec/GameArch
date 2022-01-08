@@ -22,8 +22,11 @@ render() {
           <GeneralSettings />
           <br />
           <UserSettings />
-
-        </div>
+          <br />
+          <div className="overviewContainer" style={{ color: 'var(--text-primary)' }}>
+            version: 0.6.0
+         </div>
+      </div>
       </div>
     )
   }

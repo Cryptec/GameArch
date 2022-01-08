@@ -133,7 +133,7 @@ SetWishlistFalse = async (id) => {
                     <input type="radio" id="1-star" name="rating" value="1" />
                     <label htmlFor="1-star" className="star-detail">&#9733;</label>
                     (
-                      <div style={{ color: 'var(--text-primary)', fontSize: '125%', fontWeight: '600' }}>{this.props.location.state.titlename}&nbsp;&nbsp;</div>
+                      <div className='gametitledetail'>{this.props.location.state.titlename}&nbsp;&nbsp;</div>
                     </div>
                   </div>
 
