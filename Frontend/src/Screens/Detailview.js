@@ -19,6 +19,7 @@ class Detailview extends Component {
 
 async componentDidMount() {
    this.fetchWishlist()
+   this.handleStarsPreview()
 }
 
 deleteTableRow = async (id) => {
@@ -62,6 +63,25 @@ SetWishlistTrue = async (id) => {
   this.setState({ wishstate: "true" })
 }
 
+  handleStarsPreview = () => {
+    if (this.props.location.state.stars === "1") {
+      document.getElementById("1-star").checked = true;
+      this.setState({ stars: "1" })
+    } else if (this.props.location.state.stars === "2") {
+      document.getElementById("2-stars").checked = true;
+      this.setState({ stars: "2" })
+    } else if (this.props.location.state.stars === "3") {
+      document.getElementById("3-stars").checked = true;
+      this.setState({ stars: "3" })
+    } else if (this.props.location.state.stars === "4") {
+      document.getElementById("4-stars").checked = true;
+      this.setState({ stars: "4" })
+    } else if (this.props.location.state.stars === "5") {
+      document.getElementById("5-stars").checked = true;
+      this.setState({ stars: "5" })
+    }
+  }
+
 SetWishlistFalse = async (id) => {
   await axios({
     method: "POST",
@@ -98,8 +118,26 @@ SetWishlistFalse = async (id) => {
 
                 </div>
                 <div style={{ flexDirection: "column" }}>
-                  <h1 style={{ color: 'var(--text-primary)', marginLeft: '45px' }}>{this.props.location.state.titlename}</h1>
-                  <h4 style={{ color: 'var(--text-primary)', marginLeft: '45px', marginTop: '-12px' }}>{this.props.location.state.platform}</h4>
+
+                  <div style={{ marginLeft: '35px'  }}>
+                    <div className="star-rating-detail">
+                    )
+                    <input type="radio" id="5-stars" name="rating" value="5" />
+                    <label htmlFor="5-stars" className="star-detail">&#9733;</label>
+                    <input type="radio" id="4-stars" name="rating" value="4" />
+                    <label htmlFor="4-stars" className="star-detail">&#9733;</label>
+                    <input type="radio" id="3-stars" name="rating" value="3" />
+                    <label htmlFor="3-stars" className="star-detail">&#9733;</label>
+                    <input type="radio" id="2-stars" name="rating" value="2" />
+                    <label htmlFor="2-stars" className="star-detail">&#9733;</label>
+                    <input type="radio" id="1-star" name="rating" value="1" />
+                    <label htmlFor="1-star" className="star-detail">&#9733;</label>
+                    (
+                      <div style={{ color: 'var(--text-primary)', fontSize: '125%', fontWeight: '600' }}>{this.props.location.state.titlename}&nbsp;&nbsp;</div>
+                    </div>
+                  </div>
+
+                   <h4 style={{ color: 'var(--text-primary)', marginLeft: '40px', marginTop: '4px' }}>{this.props.location.state.platform}</h4>
                 </div>
               </div>
               <br /><br />
@@ -131,7 +169,8 @@ SetWishlistFalse = async (id) => {
                 region: this.props.location.state.region,
                 ownage: this.props.location.state.ownage,
                 id: this.props.location.state.id,
-                wishlist: this.props.location.state.wishlist
+                wishlist: this.props.location.state.wishlist,
+                stars: this.props.location.state.stars
               }} >
                 <div type="button">Edit</div>
               </Link>

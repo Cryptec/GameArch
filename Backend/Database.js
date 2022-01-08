@@ -35,7 +35,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             region text,
             description text,
             filename text,
-            iswishlist text
+            iswishlist text, 
+            stars text
             )`,
             (err) => {
                 if (err) {

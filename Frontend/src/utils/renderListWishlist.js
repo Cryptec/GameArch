@@ -68,6 +68,7 @@ class RenderListWishlist extends Component {
                     const ownage = game.ownage
                     const platform = game.platform
                     const wishlist = game.iswishlist
+                    const stars = game.stars
                     const url = `${API_ENDPOINT}/uploads/${imageName}`
 
                     return (
@@ -83,7 +84,8 @@ class RenderListWishlist extends Component {
                                     platform: platform,
                                     region: region,
                                     ownage: ownage,
-                                    wishlist: wishlist
+                                    wishlist: wishlist,
+                                    stars: stars
                                 }
                             }} >
                                 <td>

@@ -21,6 +21,7 @@ class AddGame extends Component {
         ownageFalse: "",
         ownagePreviewOk: "",
         ownagePreviewFalse: "",
+        stars: "",
         file: "null",
         preview: null,
         isActive: false
@@ -31,9 +32,11 @@ componentDidMount = () => {
      this.setState({preview: ImagePlaceholder, 
                     ownage: "false", 
                     region: "PAL",
+                    stars: "3",
                     ownageFalse: "I don´t own this Game",
                     ownagePreviewFalse: <>&#x2715;</> })
      this.handleShow()
+    document.getElementById("3-stars").checked = true;
 }
 handleShow = () =>{
   this.setState({
@@ -83,11 +86,13 @@ removeImage = () => {
                       <img src={this.state.preview} className="imagePreview" alt=""/>
                      </div>
                       <div className="gameTitle">{this.handleTitlePreview()}</div>
+
                      <div className="bottomSection">
                       <div className="gamePrice">{this.handlePricePreview()}&nbsp;<Rendercurrency /></div>
                        {this.state.isActive ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
                       <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
                  </div>
+                 
              </div>
               <br />
               <label className='label' >
@@ -171,6 +176,23 @@ removeImage = () => {
                   />
                  </label>
                  <br />
+              <label className="label">
+                Rating:
+                 <br />
+              <div className="star-rating" onChange={this.handleChange.bind(this)}>
+                <input type="radio" id="5-stars" name="rating" value="5" />
+                <label htmlFor ="5-stars" className="star">&#9733;</label>
+                <input type="radio" id="4-stars" name="rating" value="4" />
+                <label htmlFor ="4-stars" className="star">&#9733;</label>
+                <input type="radio" id="3-stars" name="rating" value="3" />
+                <label htmlFor ="3-stars" className="star">&#9733;</label>
+                <input type="radio" id="2-stars" name="rating" value="2" />
+                <label htmlFor ="2-stars" className="star">&#9733;</label>
+                <input type="radio" id="1-star" name="rating" value="1" />
+                <label htmlFor ="1-star" className="star">&#9733;</label>
+              </div>
+              </label>
+              <br />
                  <label className="label">
                  Own: 
                  <br />
@@ -222,6 +244,16 @@ handleChange(event) {
       this.setState({ region: event.target.value });
     } else if (field === "description") {
       this.setState({ description: event.target.value });
+    } else if (field === "1-star") {
+      this.setState({ stars: event.target.value });
+    } else if (field === "2-stars") {
+      this.setState({ stars: event.target.value });
+    } else if (field === "3-stars") {
+      this.setState({ stars: event.target.value });
+    } else if (field === "4-stars") {
+      this.setState({ stars: event.target.value });
+    } else if (field === "5-stars") {
+      this.setState({ stars: event.target.value });
     } else if (field === "platform") {
       this.setState({ platform: event.target.value });
     } else if (field === "image") {
@@ -244,7 +276,9 @@ handleSubmit(event) {
   data.append('region', this.state.region);
   data.append('description', this.state.description);
   data.append('file', this.state.file);
-  data.append('iswishlist', "false")
+  data.append('stars', this.state.stars);
+  data.append('iswishlist', "false");
+  
 
   axios({
       method: "POST",

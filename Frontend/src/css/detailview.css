@@ -90,3 +90,26 @@
     background-color: var(--container-background);
     border: 1px solid var(--text-primary);
 }
+
+/* StarRating */
+
+.star-rating-detail {
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  
+}
+
+.star-rating-detail input {
+  display:none;
+}
+
+.star-rating-detail label {
+  color: var(--background);
+}
+
+.star-rating-detail :checked ~ label {
+  color:#f90;
+}

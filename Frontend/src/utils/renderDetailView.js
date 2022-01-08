@@ -60,6 +60,7 @@ renderGames = () => {
       const ownage = game.ownage
       const platform = game.platform
       const wishlist = game.iswishlist
+      const stars = game.stars
       const url = `${API_ENDPOINT}/uploads/${imageName}`
      
     return (
@@ -75,7 +76,8 @@ renderGames = () => {
                              platform: platform,
                              region: region,
                              ownage: ownage,
-                             wishlist: wishlist }
+                             wishlist: wishlist,
+                             stars: stars }
                   }} >
         <div className="imageWrapper">
         

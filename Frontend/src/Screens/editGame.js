@@ -22,6 +22,7 @@ class EditGame extends Component {
             ownageFalse: "",
             ownagePreviewOk: "",
             ownagePreviewFalse: "",
+            stars: "",
             file: null,
             preview: null,
             isActive: false,
@@ -33,6 +34,7 @@ class EditGame extends Component {
     componentDidMount = () => {
         this.handleImagePreview()
         this.handleOwnagePreview()
+        this.handleStarsPreview()
     }
     handleShow = () => {
         this.setState({
@@ -66,6 +68,25 @@ class EditGame extends Component {
         } else if (this.props.location.ownage === "false") {
             this.setState({ ownage: "false", ownageFalse: "I don´t own this Game", ownagePreviewFalse: <>&#x2715;</> });
             this.handleShow()
+        }
+    }
+
+    handleStarsPreview = () => {
+        if (this.props.location.stars === "1") {
+            document.getElementById("1-star").checked = true;
+            this.setState({ stars: "1"})
+        } else if (this.props.location.stars === "2") {
+            document.getElementById("2-stars").checked = true;
+            this.setState({ stars: "2" })
+        } else if (this.props.location.stars === "3") {
+            document.getElementById("3-stars").checked = true;
+            this.setState({ stars: "3" })
+        } else if (this.props.location.stars === "4") {
+            document.getElementById("4-stars").checked = true;
+            this.setState({ stars: "4" })
+        } else if (this.props.location.stars === "5") {
+            document.getElementById("5-stars").checked = true;
+            this.setState({ stars: "5" })
         }
     }
 
@@ -192,6 +213,23 @@ class EditGame extends Component {
                             </label>
                             <br />
                             <label className="label">
+                                Rating:
+                             <br />
+                                <div className="star-rating" onChange={this.handleChange.bind(this)}>
+                                    <input type="radio" id="5-stars" name="rating" value="5" />
+                                    <label htmlFor="5-stars" className="star">&#9733;</label>
+                                    <input type="radio" id="4-stars" name="rating" value="4" />
+                                    <label htmlFor="4-stars" className="star">&#9733;</label>
+                                    <input type="radio" id="3-stars" name="rating" value="3" />
+                                    <label htmlFor="3-stars" className="star">&#9733;</label>
+                                    <input type="radio" id="2-stars" name="rating" value="2" />
+                                    <label htmlFor="2-stars" className="star">&#9733;</label>
+                                    <input type="radio" id="1-star" name="rating" value="1" />
+                                    <label htmlFor="1-star" className="star">&#9733;</label>
+                                </div>
+                            </label>
+                            <br />
+                            <label className="label">
                                 Own:
                                 <br />
                                 <input
@@ -241,6 +279,16 @@ class EditGame extends Component {
             this.setState({ region: event.target.value });
         } else if (field === "description") {
             this.setState({ description: event.target.value });
+        } else if (field === "1-star") {
+            this.setState({ stars: event.target.value });
+        } else if (field === "2-stars") {
+            this.setState({ stars: event.target.value });
+        } else if (field === "3-stars") {
+            this.setState({ stars: event.target.value });
+        } else if (field === "4-stars") {
+            this.setState({ stars: event.target.value });
+        } else if (field === "5-stars") {
+            this.setState({ stars: event.target.value });
         } else if (field === "platform") {
             this.setState({ platform: event.target.value });
         } else if (field === "image") {
@@ -263,6 +311,7 @@ class EditGame extends Component {
         data.append('ownage', this.state.ownage);
         data.append('region', this.state.region);
         data.append('description', this.state.description);
+        data.append('stars', this.state.stars);
         data.append('file', this.state.file);
 
         if (this.state.fileremoved === "true") {
