@@ -9,17 +9,35 @@ require('dotenv').config()
 
 
 
-router.post('/updatepassword', async function (req, res) {
+router.post('/updateuserdata', checkAuthentication, async function (req, res) {
   var pass = req.body.password
   const SALT = process.env.SALT
   var hashedPassword = await argon2.hash(pass + SALT);
+  console.log("Request ---", req.body);
+  if (req.body.password !== '') { 
   var data = {
     password: hashedPassword,
+    email: req.body.email,
     name: req.body.name
   }
-  var params = [data.password, data.name]
+  var params = [data.password, data.email, data.name]
+    db.serialize(() => {
+      db.run('UPDATE Users SET password = ?, email = ? WHERE name = ?', params, function (err) {
+        if (err) {
+          res.send("Error encountered while updating");
+          return res.status(400).json({ error: true });
+        }
+        return res.json({ "answer": "Success" })
+      });
+    });
+  } else {
+    var data = {
+      email: req.body.email,
+      name: req.body.name
+    }
+    var params = [data.email, data.name]
   db.serialize(() => {
-    db.run('UPDATE Users SET password = ? WHERE name = ?', params, function (err) {
+    db.run('UPDATE Users SET email = ? WHERE name = ?', params, function (err, next) {
       if (err) {
         res.send("Error encountered while updating");
         return res.status(400).json({ error: true });
@@ -27,6 +45,7 @@ router.post('/updatepassword', async function (req, res) {
       return res.json({ "answer": "Success" })
     });
   });
+}
 });
 
 router.post('/setcurrency', function(req,res){

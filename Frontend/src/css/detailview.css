@@ -9,12 +9,14 @@
     display: flex;
     box-sizing: border-box;
     flex-wrap : wrap;
+    padding: 20px 20px 0px 20px;
 }
 .descriptionContainer {
     flex-direction: row;
     display: flex;
     box-sizing: border-box;
     flex-wrap : wrap;
+    padding: 20px;
 }
 .BodyContainer {
     flex-direction: row;
@@ -23,8 +25,12 @@
     flex-wrap : wrap 
 }
 .imageWrapperDetail {
-    width: 260px;
-    height: 200px;
+    max-width: 260px;
+    width: auto;
+    max-height: 200px;
+    height: auto;
+    align-self: center;
+    border-radius: 7px;
 }
 .imagePreviewDetail {
     max-width: 260px;

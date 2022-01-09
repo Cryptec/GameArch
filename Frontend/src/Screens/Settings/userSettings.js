@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { userName } from '../../utils'
+import { userName, email } from '../../utils'
 import '../../css/settings.css'
 
 
@@ -16,13 +16,14 @@ class UserSettings extends Component {
         errorMessage: '',
         successMessage: '',
         name: '',
+        email: '',
         isActive: false,
         isActiveSuccess: false
     };
 }
 
 async componentDidMount() {
-    await this.setState({name: userName()});
+    await this.setState({name: userName(), email: email()});
 }
 
 handleShow = () =>{
@@ -50,32 +51,45 @@ render() {
            <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="passwordInput">
            <div>set a new password for {this.state.name}:</div>
            <br />
-           <label className='label'>
-            new password:
+           <label className='userlabel'>
+              new password:
+            </label>
             <input
               className='userSettingsInput'
               onChange={this.handleChange.bind(this)}
               id='password'
               value={this.state.password}
               type='password'
-              required
             />
-          </label>
+          
           <br />
           <br />
-          <label className='label'>
-            confirm new Password:
+            <label className='userlabel'>
+              confirm password:
+            </label>
             <input
               className='userSettingsInput'
               onChange={this.handleChange.bind(this)}
               id='confirm_password'
               value={this.state.confirm_password}
               type='password'
-              required
             />
-          </label>
           <br />
           <br />
+            <div>change the email address for {this.state.name}:</div>
+          <br />
+            <label className='userlabel'>
+              change email:
+            </label>
+            <input
+              className='userSettingsInput'
+              onChange={this.handleChange.bind(this)}
+              id='change_email'
+              value={this.state.email}
+              type='text'
+            />
+            <br />
+            <br />
           <button className='addButton'>Update</button>
 
             {this.state.isActive ? <p style={{ color: "red" }}>{this.state.errorMessage}</p> : null}
@@ -91,24 +105,31 @@ render() {
 
   handleSubmit(event) {
     event.preventDefault()
-    if (this.state.password !== this.state.confirm_password) {
-      console.log("The passwords doesn't match")
-      this.setState({ 
-        errorMessage: "The passwords doesn't match"
+    if (this.state.password !== null) {
+      document.getElementById("confirm_password").required = true;
+      this.setState({
+        errorMessage: "Please confirm the password"
       })
-      this.handleShow()
-      return false // The form won't submit
-    } else this.setState({ status: 'Submitting' })
+      if (this.state.password !== this.state.confirm_password) {
+        console.log("The passwords doesn't match")
+        this.setState({
+          errorMessage: "The passwords doesn't match"
+        })
+        this.handleShow()
+        return false // The form won't submit
+      }
+    } 
 
     axios({
       method: 'POST',
       withCredentials: true,
       credentials: 'include',
-      url: `${API_ENDPOINT}/api/updatepassword`,
+      url: `${API_ENDPOINT}/api/updateuserdata`,
       headers: { 'Content-Type': 'application/json' },
       data: {
         password: this.state.password,
-        name: this.state.name
+        name: this.state.name,
+        email: this.state.email
       },
     }).then((response) => {
       if (response.data.answer === 'Success') {
@@ -145,13 +166,21 @@ render() {
         this.setState({ password: event.target.value })
       } else if (field === 'confirm_password') {
         this.setState({ confirm_password: event.target.value })
+      } else if (field === 'change_email') {
+        this.setState({ email: event.target.value })
       }
   }
   handleConfirmPassword = (event) => {
-    if (event.target.value !== this.state.regpassword) {
-      console.log('error')
-      this.setState({ regconfirm_password: event.target.value })
-    }
+    if (this.state.password !== null) {
+      document.getElementById("confirm_password").required = true;
+      this.setState({
+        errorMessage: "Please confirm the password"
+      })
+      if (event.target.value !== this.state.regpassword) {
+        console.log('error')
+        this.setState({ regconfirm_password: event.target.value })
+      }
+    } 
   }
 }
 

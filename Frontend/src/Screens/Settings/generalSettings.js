@@ -60,8 +60,9 @@ render() {
           <div className="sectionDescription">General:</div>
            <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="currencyInput" >
            
-                  <label className='label' >
-                    Currency:
+                 <label className='generallabel' >
+                  Currency:
+                 </label>
                     <select
                       list="currencylist"
                       name="currency"
@@ -77,11 +78,11 @@ render() {
                       <option>BTC</option>
                     </select>
                  
-                  </label>
                   <br></br>
                   <br />
-                  <label className='label' >
-                    Theme:
+                  <label className='generallabel' >
+                   Theme:
+                  </label>
                     <select
                       list="themelist"
                       name="theme"
@@ -95,8 +96,7 @@ render() {
                       <option>dark</option>
                       <option>light</option>
                       <option>system</option>
-                    </select>
-                  </label>                  
+                    </select>              
 
                   {this.state.isActive ? <p style={{color: "red"}}>{this.state.errorMessage}</p> : null}
                   {this.state.isActiveSuccess ? <p style={{color: "green"}}>{this.state.successMessage}</p> : null}

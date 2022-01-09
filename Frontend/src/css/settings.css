@@ -33,3 +33,13 @@
     margin-left: 10px;
     padding-bottom: 20px;
 }
+
+.userlabel {
+    display: inline-block;
+    width: 150px;
+}
+
+.generallabel {
+    display: inline-block;
+    width: 90px;    
+}

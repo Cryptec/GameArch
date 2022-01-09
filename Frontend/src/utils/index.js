@@ -9,6 +9,11 @@ export const userName = () => {
         return (user)
 }
 
+export const email = () => {
+    const email = (localStorage.getItem("emailAddress"));
+    return (email)
+}
+
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem("userName");

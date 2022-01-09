@@ -220,7 +220,7 @@ router.post('/login', function(req, res, next) {
     if (!user) { return res.json({"answer":"UserError"}) }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.send({success: true, name: user.name});
+      return res.send({success: true, name: user.name, email: user.email});
     });
   })(req, res, next);
 });

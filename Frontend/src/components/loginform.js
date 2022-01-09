@@ -107,6 +107,7 @@ handleShow = () =>{
         console.log(response)
         if (response.data.success) {
             localStorage.setItem("userName", response.data.name);
+            localStorage.setItem("emailAddress", response.data.email);
             this.setState({ email: "", password: "", status: "Logged in" })
             this.handleLogin(response)
             console.log("Login Success");
