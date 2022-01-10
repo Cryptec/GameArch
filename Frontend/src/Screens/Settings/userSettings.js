@@ -76,6 +76,7 @@ render() {
             />
           <br />
           <br />
+          <br />
             <div>change the email address for {this.state.name}:</div>
           <br />
             <label className='userlabel'>
