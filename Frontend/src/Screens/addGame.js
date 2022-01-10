@@ -291,8 +291,8 @@ handleSubmit(event) {
   }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-          this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "", description: "" })
-          console.log("Successfully added");
+          this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "", description: "", file: "" })
+          console.log("Successfully added game!");
       } 
   });
 }}
