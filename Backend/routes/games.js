@@ -76,8 +76,17 @@ router.post("/editgame", checkAuthentication, upload, async (req, res, next) => 
     description: req.body.description,
     stars: req.body.stars,
     id: req.body.id,
-    filename: req.file.filename
+    filename: req.file.filename,
+    oldfilename: req.body.oldfilename
   }
+  const removeimagepath = imagepath + data.oldfilename
+  fs.unlink(removeimagepath, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log("successfully deleted:" + data.oldfilename)
+  })
   var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description, data.stars,data.id]
   var sql = 'UPDATE Games SET title = ?, price = ?, platform = ?, ownage = ?, filename = ?, region = ?, description = ?, stars = ? WHERE id = ?'
 } else if (req.file === undefined) {

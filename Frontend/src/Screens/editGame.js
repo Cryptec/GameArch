@@ -18,6 +18,7 @@ class EditGame extends Component {
             id: this.props.location.state.id,
             ownage: "",
             region: this.props.location.state.region,
+            oldfilename: this.props.location.state.filename,
             ownageTrue: "",
             ownageFalse: "",
             ownagePreviewOk: "",
@@ -313,6 +314,7 @@ class EditGame extends Component {
         data.append('description', this.state.description);
         data.append('stars', this.state.stars);
         data.append('file', this.state.file);
+        data.append('oldfilename', this.state.oldfilename);
 
         if (this.state.fileremoved === "true") {
             axios({
