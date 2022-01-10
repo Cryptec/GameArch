@@ -11,13 +11,13 @@ class EditGame extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: this.props.location.title,
-            platform: this.props.location.platform,
-            price: this.props.location.price,
-            description: this.props.location.description,
-            id: this.props.location.id,
+            title: this.props.location.state.title,
+            platform: this.props.location.state.platform,
+            price: this.props.location.state.price,
+            description: this.props.location.state.description,
+            id: this.props.location.state.id,
             ownage: "",
-            region: this.props.location.region,
+            region: this.props.location.state.region,
             ownageTrue: "",
             ownageFalse: "",
             ownagePreviewOk: "",
@@ -61,40 +61,40 @@ class EditGame extends Component {
         }
     }
     handleOwnagePreview = () => {
-        if (this.props.location.ownage === "true") {
+        if (this.props.location.state.ownage === "true") {
             document.getElementById("ownage").checked = true;
             this.setState({ ownage: "true", ownageTrue: "I own this Game", ownagePreviewOk: <>&#10004;</> });
             this.handleShowSuccess()
-        } else if (this.props.location.ownage === "false") {
+        } else if (this.props.location.state.ownage === "false") {
             this.setState({ ownage: "false", ownageFalse: "I don´t own this Game", ownagePreviewFalse: <>&#x2715;</> });
             this.handleShow()
         }
     }
 
     handleStarsPreview = () => {
-        if (this.props.location.stars === "1") {
+        if (this.props.location.state.stars === "1") {
             document.getElementById("1-star").checked = true;
             this.setState({ stars: "1"})
-        } else if (this.props.location.stars === "2") {
+        } else if (this.props.location.state.stars === "2") {
             document.getElementById("2-stars").checked = true;
             this.setState({ stars: "2" })
-        } else if (this.props.location.stars === "3") {
+        } else if (this.props.location.state.stars === "3") {
             document.getElementById("3-stars").checked = true;
             this.setState({ stars: "3" })
-        } else if (this.props.location.stars === "4") {
+        } else if (this.props.location.state.stars === "4") {
             document.getElementById("4-stars").checked = true;
             this.setState({ stars: "4" })
-        } else if (this.props.location.stars === "5") {
+        } else if (this.props.location.state.stars === "5") {
             document.getElementById("5-stars").checked = true;
             this.setState({ stars: "5" })
         }
     }
 
     handleImagePreview = () => {
-        if (this.props.location.filename === "null") {
+        if (this.props.location.state.filename === "null") {
             this.setState({ preview: ImagePlaceholder })
-        } else if (this.props.location.filename !== "null") {
-            const imageurl = `${API_ENDPOINT}/uploads/${this.props.location.filename}`
+        } else if (this.props.location.state.filename !== "null") {
+            const imageurl = `${API_ENDPOINT}/uploads/${this.props.location.state.filename}`
             return this.setState({ preview: imageurl })
         }
     }
@@ -323,7 +323,8 @@ class EditGame extends Component {
                 headers: { 'Content-Type': 'application/json' },
                 data: {
                     id: this.state.id,
-                    filename: "null"
+                    filename: "null",
+                    oldfilename: this.props.location.state.filename
 
                 }
 

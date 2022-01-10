@@ -22,8 +22,8 @@ async componentDidMount() {
    this.handleStarsPreview()
 }
 
-deleteTableRow = async (id) => {
-  const response = await fetch(`${API_ENDPOINT}/api/game/${id}`, { credentials: 'include', method: 'DELETE' })
+deleteTableRow = async (id, imagename) => {
+  const response = await fetch(`${API_ENDPOINT}/api/game/${id}`, { credentials: 'include', method: 'DELETE', data: {filename: imagename} })
   if (response.ok) {
     await response.json()
     return window.location.replace("/overview");
@@ -101,6 +101,7 @@ SetWishlistFalse = async (id) => {
     const currency = <Rendercurrency />
     const url = `${API_ENDPOINT}/uploads/${this.props.location.state.filename}`
     const id = this.props.location.state.id
+    const imagename = this.props.location.state.imagename
 
     return (
 
@@ -161,20 +162,22 @@ SetWishlistFalse = async (id) => {
             
               <Link className="GameEditButton" to={{
                 pathname: `/editgame/${this.props.location.state.titlename}/${this.props.location.state.id}`,
-                description: this.props.location.state.description,
-                filename: this.props.location.state.filename,
-                title: this.props.location.state.titlename,
-                platform: this.props.location.state.platform,
-                price: this.props.location.state.price,
-                region: this.props.location.state.region,
-                ownage: this.props.location.state.ownage,
-                id: this.props.location.state.id,
-                wishlist: this.props.location.state.wishlist,
-                stars: this.props.location.state.stars
+                state: {
+                  description: this.props.location.state.description,
+                  filename: this.props.location.state.filename,
+                  title: this.props.location.state.titlename,
+                  platform: this.props.location.state.platform,
+                  price: this.props.location.state.price,
+                  region: this.props.location.state.region,
+                  ownage: this.props.location.state.ownage,
+                  id: this.props.location.state.id,
+                  wishlist: this.props.location.state.wishlist,
+                  stars: this.props.location.state.stars
+                }
               }} >
                 <div type="button">Edit</div>
               </Link>
-              <button onClick={() => this.deleteTableRow(id)} className="GameDeleteButton">Delete</button>
+              <button onClick={() => this.deleteTableRow(id, imagename)} className="GameDeleteButton">Delete</button>
             </div>
           </div>
         ) : (

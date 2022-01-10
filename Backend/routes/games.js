@@ -1,12 +1,15 @@
 const axios = require('axios')
 var db = require('../Database')
+const fs = require('fs')
 const router = require('express').Router()
 const multer = require('multer')
 const checkAuthentication = require("../auth/is_authenticated")
 require('dotenv').config()
 
+const imagepath = './public/uploads/'
+
 const upload = multer({
-  dest: './public/uploads/',
+  dest: imagepath,
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(png|jpg|jpeg|PNG)$/)) {
       cb(new Error('Please upload an image.'))
@@ -138,11 +141,20 @@ router.delete("/game/:id", checkAuthentication, (req, res, next) => {
     });
 })
 
-router.post('/removeimage', function (req, res) {
+router.post('/removeimage', checkAuthentication, function (req, res) {
   var data = {
     filename: req.body.filename,
+    oldfilename: req.body.oldfilename,
     id: req.body.id
   }
+  const removeimagepath = imagepath + data.oldfilename
+  fs.unlink(removeimagepath, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log("successfully deleted:" + data.oldfilename)
+  })
   var params = [data.filename, data.id]
   db.serialize(() => {
     db.run('UPDATE Games SET filename = ? WHERE id = ?', params, function (err) {
