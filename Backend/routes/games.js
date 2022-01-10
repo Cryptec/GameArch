@@ -138,6 +138,18 @@ router.get("/game/:id",checkAuthentication, (req, res, next) => {
   });
 
 router.delete("/game/:id", checkAuthentication, (req, res, next) => {
+  var data = {
+    filename: req.body.filename,
+    id: req.body.id
+  }
+  const removeimagepath = imagepath + data.filename
+  fs.unlink(removeimagepath, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log("successfully deleted:" + data.filename)
+  })
   db.run(
     'DELETE FROM Games WHERE id = ?',
     req.params.id,
@@ -146,7 +158,8 @@ router.delete("/game/:id", checkAuthentication, (req, res, next) => {
         res.status(400).json({ "error": res.message })
         return;
       }
-      res.status(200).json({ "message": "deleted", changes: this.changes })
+      console.log("successfully deleted game")
+      return res.send({ success: true });
     });
 })
 

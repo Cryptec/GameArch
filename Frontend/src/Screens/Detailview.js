@@ -13,7 +13,8 @@ class Detailview extends Component {
     super(props);
     this.state = {
       wishstate: "",
-      id: this.props.location.state.id
+      id: this.props.location.state.id,
+      filename: this.props.location.state.filename
     };
   }
 
@@ -22,14 +23,25 @@ async componentDidMount() {
    this.handleStarsPreview()
 }
 
-deleteTableRow = async (id, imagename) => {
-  const response = await fetch(`${API_ENDPOINT}/api/game/${id}`, { credentials: 'include', method: 'DELETE', data: {filename: imagename} })
-  if (response.ok) {
-    await response.json()
-    return window.location.replace("/overview");
-  } else {
-    return console.error();
-  }
+deleteTableRow = async (id) => {
+  await axios({
+    method: "DELETE",
+    withCredentials: true,
+    credentials: 'include',
+    url: `${API_ENDPOINT}/api/game/${id}`,
+    headers: { 'Content-Type': 'application/json' },
+    data: {
+        id: this.state.id,
+        filename: this.state.filename
+    }
+}).then((response, props) => {
+    console.log(response)
+    if (response.data.success) {
+      return window.location.replace("/overview");
+    } else {
+      return console.error();
+    }
+});
 }
 
 fetchWishlist = async () => {
@@ -101,7 +113,6 @@ SetWishlistFalse = async (id) => {
     const currency = <Rendercurrency />
     const url = `${API_ENDPOINT}/uploads/${this.props.location.state.filename}`
     const id = this.props.location.state.id
-    const imagename = this.props.location.state.imagename
 
     return (
 
@@ -177,7 +188,7 @@ SetWishlistFalse = async (id) => {
               }} >
                 <div type="button">Edit</div>
               </Link>
-              <button onClick={() => this.deleteTableRow(id, imagename)} className="GameDeleteButton">Delete</button>
+              <button onClick={() => this.deleteTableRow(id)} className="GameDeleteButton">Delete</button>
             </div>
           </div>
         ) : (
