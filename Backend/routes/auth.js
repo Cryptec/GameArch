@@ -241,5 +241,10 @@ router.delete("/user/:id", checkAuthentication, (req, res, next) => {
   });
 })
 
+router.post('/logout', function(req, res, next) {
+  req.logout();
+  console.log('logged out')
+  res.end()
+});
 
 module.exports = router;

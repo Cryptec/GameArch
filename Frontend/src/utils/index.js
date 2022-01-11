@@ -1,4 +1,5 @@
 const TOKEN_KEY = 'jwt';
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
 export const login = () => {
     localStorage.setItem(TOKEN_KEY, 'Login');
@@ -17,6 +18,7 @@ export const email = () => {
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem("userName");
+    fetch(`${API_ENDPOINT}/api/logout`, { credentials: 'include', method: 'POST' })
     console.log("logget out")
 }
 
