@@ -28,7 +28,19 @@ router.post('/updateuserdata', checkAuthentication, async function (req, res) {
           res.send("Error encountered while updating");
           return res.status(400).json({ error: true });
         }
-        return res.json({ "answer": "Success" })
+        passport.authenticate('local', function (err, user, info) {
+          var user = { email: data.email }
+          if (err) { return (err); }
+          if (!user) { return res.json({ "answer": "UserError" }) }
+          req.login(user, function (err) {
+            if (err) {
+              console.log(err)
+              return (err);
+            }
+            console.log("relogin")
+            return res.json({ "answer": "Success", name: data.name, email: data.email });
+          });
+        })(req, res);
       });
     });
   } else {

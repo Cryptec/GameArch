@@ -138,9 +138,10 @@ render() {
           password: '',
           confirm_password: '',
           isActive: false,
-          successMessage: 'Password successfully changed!',
+          successMessage: 'Data successfully changed!',
         })
         console.log('Form sent')
+        localStorage.setItem("emailAddress", this.state.email)
         this.handleShowSuccess()
       } else if (response.data.answer === 'password_too_short') {
         console.log('Password length must be at least 4 characters long')
