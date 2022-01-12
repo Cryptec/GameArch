@@ -49,7 +49,7 @@ function setupPassport() {
 
   passport.deserializeUser((userRes, done) => {
     db.get(`SELECT * FROM Users WHERE email = ?`,[userRes], (err, user) => {
-      console.log("Deserializing user now" + userRes)
+      console.log("Deserializing user now " + userRes)
       if (user)
         done(null, user)
       else

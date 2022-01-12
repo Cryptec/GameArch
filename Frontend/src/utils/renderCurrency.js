@@ -34,7 +34,11 @@ componentDidMount = async () => {
 }
 
 renderCurrency = () => {
-    return this.state.currency.map(currencys => {
+  const { currency } = this.state
+
+  return currency.length > 0
+            ? (this.state.currency.map(currencys => {
+
       if (currencys.currency === 'EUR') {
         this.setState({
           fetchcurrency: '€'
@@ -47,10 +51,13 @@ renderCurrency = () => {
         this.setState({
           fetchcurrency: '₿'
           })
-      }
+      } 
       return (currencys.currency)
 
     })
+            ) : (
+                console.log("error fetching currency")
+            )
   }
 }
 

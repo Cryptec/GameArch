@@ -2,6 +2,7 @@ var db = require('../Database')
 const router = require('express').Router()
 const Joi = require('@hapi/joi')
 const argon2 = require("argon2")
+const passport = require('passport')
 const checkAuthentication = require("../auth/is_authenticated")
 require('dotenv').config()
 
@@ -36,13 +37,26 @@ router.post('/updateuserdata', checkAuthentication, async function (req, res) {
       name: req.body.name
     }
     var params = [data.email, data.name]
-  db.serialize(() => {
-    db.run('UPDATE Users SET email = ? WHERE name = ?', params, function (err, next) {
+  await db.serialize( () => {
+    db.run('UPDATE Users SET email = ? WHERE name = ?', params, function ( err, next) {
       if (err) {
         res.send("Error encountered while updating");
         return res.status(400).json({ error: true });
+      } else {
+        passport.authenticate('local', function(err, user, info) {
+          var user = data.email
+          if (err) { return (err); }
+          if (!user) { return res.json({"answer":"UserError"}) }
+        req.login(user, function(err) {
+          if (err) { 
+            console.log(err)
+            return (err); 
+          }
+          console.log("relogin")
+          return res.json({"answer": "Success", name: data.name, email: data.email});
+        });
+        })(req, res);
       }
-      return res.json({ "answer": "Success" })
     });
   });
 }
