@@ -53,7 +53,7 @@ router.post('/updateuserdata', checkAuthentication, async function (req, res) {
             return (err); 
           }
           console.log("relogin")
-          return res.json({"answer": "Success", name: data.name, email: data.email});
+          return res.json({"answer": "Email_Changed", name: data.name, email: data.email});
         });
         })(req, res);
       }

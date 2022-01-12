@@ -148,13 +148,14 @@ render() {
           errorMessage: 'Password length must be at least 4 characters long.',
         })
         this.handleShow()
-      } else if (response.data.answer === 'successfully_changed') {
+      } else if (response.data.answer === 'Email_Changed') {
       this.setState({
         password: '',
         confirm_password: '',
-        successMessage: 'successfully changed!',
+        successMessage: 'email successfully changed!',
         isActive: false,
       })
+      localStorage.setItem("emailAddress", this.state.email)
       console.log('successfully changed!')
       this.handleShowSuccess()
     }
