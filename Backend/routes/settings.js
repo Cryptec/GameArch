@@ -44,7 +44,7 @@ router.post('/updateuserdata', checkAuthentication, async function (req, res) {
         return res.status(400).json({ error: true });
       } else {
         passport.authenticate('local', function(err, user, info) {
-          var user = data.email
+          var user = {email: data.email}
           if (err) { return (err); }
           if (!user) { return res.json({"answer":"UserError"}) }
         req.login(user, function(err) {
