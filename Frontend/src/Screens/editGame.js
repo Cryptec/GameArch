@@ -19,8 +19,6 @@ class EditGame extends Component {
             ownage: "",
             region: this.props.location.state.region,
             oldfilename: this.props.location.state.filename,
-            ownageTrue: "",
-            ownageFalse: "",
             ownagePreviewOk: "",
             ownagePreviewFalse: "",
             stars: "",
@@ -39,15 +37,9 @@ class EditGame extends Component {
     }
     handleShow = () => {
         document.getElementById("ownagefieldset").style.borderColor = "rgb(209, 13, 13)";
-        this.setState({
-            isActive: true
-        })
     }
     handleShowSuccess = () => {
         document.getElementById("ownagefieldset").style.borderColor = "green";
-        this.setState({
-            isActive: false
-        })
     }
     handleTitlePreview = () => {
         if (this.state.title === "") {
@@ -66,10 +58,10 @@ class EditGame extends Component {
     handleOwnagePreview = () => {
         if (this.props.location.state.ownage === "true") {
             document.getElementById("ownage").checked = true;
-            this.setState({ ownage: "true", ownageTrue: "I own this Game", ownagePreviewOk: <>&#10004;</> });
+            this.setState({ ownage: "true", ownagePreviewOk: <>&#10004;</> });
             this.handleShowSuccess()
         } else if (this.props.location.state.ownage === "false") {
-            this.setState({ ownage: "false", ownageFalse: "I don´t own this Game", ownagePreviewFalse: <>&#x2715;</> });
+            this.setState({ ownage: "false", ownagePreviewFalse: <>&#x2715;</> });
             this.handleShow()
         }
     }
@@ -130,7 +122,7 @@ class EditGame extends Component {
                                 <div className="gameTitle">{this.handleTitlePreview()}</div>
                                 <div className="bottomSection">
                                     <div className="gamePrice">{this.handlePricePreview()}&nbsp;<Rendercurrency /></div>
-                                    {this.state.isActive ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
+                                    {this.state.ownage === "false" ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
                                         <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
                                 </div>
                             </div>
@@ -298,10 +290,10 @@ class EditGame extends Component {
         } else if (field === "image") {
             this.setState({ preview: URL.createObjectURL(event.target.files[0]), file: event.target.files[0] })
         } else if (checkBox.checked === true) {
-            this.setState({ ownage: "true", ownageTrue: "I own this Game", ownagePreviewOk: <>&#10004;</> });
+            this.setState({ ownage: "true", ownagePreviewOk: <>&#10004;</> });
             this.handleShowSuccess()
         }  else {
-            this.setState({ ownage: "false", ownageFalse: "I don´t own this Game", ownagePreviewFalse: <>&#x2715;</> });
+            this.setState({ ownage: "false", ownagePreviewFalse: <>&#x2715;</> });
             this.handleShow()
         }
     }
