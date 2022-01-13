@@ -67,8 +67,8 @@ removeImage = () => {
         <div id="contentpage">
            
             <form onSubmit={this.handleSubmit.bind(this)} method="POST" encType='multipart/form-data'>
-
-          <div className="contentContainerInputForm">
+        <div className='container'>
+          <div className="contentContainerInput">
             <div className="inputForm">
                  <div className="gamesPreview">
 
@@ -119,20 +119,6 @@ removeImage = () => {
               </label>
               <br />
               <br />
-              <label className="label">
-                Description:
-                 <br />
-                <textarea
-                  className="form-group-addgame"
-                  onChange={this.handleChange.bind(this)}
-                  id="description"
-                  value={this.state.description}
-                  type='text'
-                  rows='4'
-                  required
-
-                />
-              </label>
         </div>
 
         
@@ -213,11 +199,30 @@ removeImage = () => {
 
                  <br />
                  <br />
-                 <button className="addButton">
-                    Add Game
-                 </button>
 
             </div>
+          </div>
+          <div className='bottomContainer'>
+          <label className="label">
+                Description:
+                 <br />
+                <textarea
+                  className="form-group-textarea"
+                  onChange={this.handleChange.bind(this)}
+                  id="description"
+                  value={this.state.description}
+                  type='text'
+                  rows='4'
+                  required
+
+                />
+              </label>
+              <br />
+              <br />
+           </div>
+           <button className="addGameButton">
+                    Add Game
+           </button>
           </div>
           </form>
         </div>
