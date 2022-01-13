@@ -6,8 +6,8 @@
   border-radius: 6px;
 }
 .bottomContainer {
-  padding: 20px;
-  width: 100%;
+  padding: 10px;
+  min-width: 320px;
   display: flex;
   justify-content: center;
 }
@@ -27,17 +27,19 @@
     font-size: 18px;
     line-height: 1.3333333;
     border-radius: 6px;
-    width: 100%;
 }
 .form-group-textarea {
+  display: flex;
   color: var(--text-primary);
   border: 1px solid var(--background);
   background-color: var(--background);
-  padding: 10px 16px;
-  margin-bottom: 15px;
+  padding: 5px;
   font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.3333333;
   border-radius: 6px;
+  width: 40vw;
+  
 }
 .addGameButton {
   width: 100px;
@@ -50,7 +52,6 @@
 }
 fieldset {
   border-radius: 6px;
-  width: 100%;
 }
 .errorTextAddGame {
     border: 1px solid rgb(209, 13, 13);

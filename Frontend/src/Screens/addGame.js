@@ -9,289 +9,322 @@ const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api
 
 class AddGame extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
-        title: "",
-        platform: "", 
-        price: "",
-        ownage: "",
-        region: "",
-        description: "",
-        ownagePreviewOk: "",
-        ownagePreviewFalse: "",
-        stars: "",
-        file: "null",
-        preview: null
-    };
-}
+      title: '',
+      platform: '',
+      price: '',
+      ownage: '',
+      region: '',
+      description: '',
+      ownagePreviewOk: '',
+      ownagePreviewFalse: '',
+      stars: '',
+      file: 'null',
+      preview: null,
+    }
+  }
 
-componentDidMount = () => {
-     this.setState({preview: ImagePlaceholder, 
-                    ownage: "false", 
-                    region: "PAL",
-                    stars: "3",
-                    ownagePreviewFalse: <>&#x2715;</> })
-     this.handleShow()
-    document.getElementById("3-stars").checked = true;
-}
-handleShow = () =>{
-  document.getElementById("ownagefieldset").style.borderColor = "rgb(209, 13, 13)";
-}
-handleShowSuccess = () =>{
-  document.getElementById("ownagefieldset").style.borderColor = "green";
-}
-handleTitlePreview = () => {
-  if (this.state.title === "") {
-    return("Game Title")
-  } else if (this.state.title) {
-    return this.state.title
+  componentDidMount = () => {
+    this.setState({
+      preview: ImagePlaceholder,
+      ownage: 'false',
+      region: 'PAL',
+      stars: '3',
+      ownagePreviewFalse: <>&#x2715;</>,
+    })
+    this.handleShow()
+    document.getElementById('3-stars').checked = true
   }
-}
-handlePricePreview = () => {
-  if (this.state.price === "") {
-    return("0,00")
-  } else if (this.state.price) {
-    return this.state.price
+  handleShow = () => {
+    document.getElementById('ownagefieldset').style.borderColor =
+      'rgb(209, 13, 13)'
   }
-}
-removeImage = () => {
-  document.getElementById("image").value = null;
-  this.setState({ preview: ImagePlaceholder, file: "null" })
-}
+  handleShowSuccess = () => {
+    document.getElementById('ownagefieldset').style.borderColor = 'green'
+  }
+  handleTitlePreview = () => {
+    if (this.state.title === '') {
+      return 'Game Title'
+    } else if (this.state.title) {
+      return this.state.title
+    }
+  }
+  handlePricePreview = () => {
+    if (this.state.price === '') {
+      return '0,00'
+    } else if (this.state.price) {
+      return this.state.price
+    }
+  }
+  removeImage = () => {
+    document.getElementById('image').value = null
+    this.setState({ preview: ImagePlaceholder, file: 'null' })
+  }
 
   render() {
-
     return (
+      <div id='contentpage'>
+        <form
+          onSubmit={this.handleSubmit.bind(this)}
+          method='POST'
+          encType='multipart/form-data'
+        >
+          <div className='addcontainer'>
+            <div className='contentContainerInput'>
+              <div className='inputForm'>
+                <div className='gamesPreview'>
+                  <div
+                    type='button'
+                    className='imgDelButton'
+                    onClick={() => this.removeImage()}
+                  >
+                    &#x2715;
+                  </div>
 
-     
-        <div id="contentpage">
-           
-            <form onSubmit={this.handleSubmit.bind(this)} method="POST" encType='multipart/form-data'>
-        <div className='addcontainer'>
-          <div className="contentContainerInput">
-            <div className="inputForm">
-                 <div className="gamesPreview">
+                  <div className='imageWrapper' style={{ marginTop: '-25px' }}>
+                    <img
+                      src={this.state.preview}
+                      className='imagePreview'
+                      alt=''
+                    />
+                  </div>
+                  <div className='gameTitle'>{this.handleTitlePreview()}</div>
 
-                  <div type="button" className="imgDelButton" onClick={() => this.removeImage()}>&#x2715;</div>
-
-                     <div className="imageWrapper" style={{marginTop: '-25px'}}>
-                      <img src={this.state.preview} className="imagePreview" alt=""/>
-                     </div>
-                      <div className="gameTitle">{this.handleTitlePreview()}</div>
-
-                     <div className="bottomSection">
-                      <div className="gamePrice">{this.handlePricePreview()}&nbsp;<Rendercurrency /></div>
-                       {this.state.ownage === "false" ? <div className="ownagePreviewFalse">{this.state.ownagePreviewFalse}</div> :
-                      <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
-                 </div>
-                 
-             </div>
-             <br />
-                 <label className="label">
-                 Image: 
-                 <br />
-                  <input
-                  id="image"
-                  type="file"
-                  name="file"
-                  onChange={this.handleChange.bind(this)}
-                  />
-                 </label>
-              <br />
-              <br />
-              <label className='label' >
-                Region:
+                  <div className='bottomSection'>
+                    <div className='gamePrice'>
+                      {this.handlePricePreview()}&nbsp;
+                      <Rendercurrency />
+                    </div>
+                    {this.state.ownage === 'false' ? (
+                      <div className='ownagePreviewFalse'>
+                        {this.state.ownagePreviewFalse}
+                      </div>
+                    ) : (
+                      <div className='ownagePreviewOk'>
+                        {this.state.ownagePreviewOk}
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <br />
-                    <select
-                  list="regionlist"
-                  name="region"
-                  id="region"
-                  className="currencydropdown"
-                  value={this.state.region}
-                  onChange={this.handleChange.bind(this)}
-                  required
-                >
-                  <option>PAL</option>
-                  <option>NTSC</option>
-                  <option>NTSC-J</option>
-                  <option>NTSC-C</option>
-                </select>
-              </label>
-              <br />
-              <br />
-        </div>
-
-        
-        <div className="inputForm">
-
-                 <label className="label">
-                 Title: 
-                 <br />
+                <label className='label'>
+                  Image:
+                  <br />
                   <input
-                    className="form-group-addgame"
+                    id='image'
+                    type='file'
+                    name='file'
                     onChange={this.handleChange.bind(this)}
-                    id="title"
+                  />
+                </label>
+                <br />
+                <br />
+                <label className='label'>
+                  Region:
+                  <br />
+                  <select
+                    list='regionlist'
+                    name='region'
+                    id='region'
+                    className='currencydropdown'
+                    value={this.state.region}
+                    onChange={this.handleChange.bind(this)}
+                    required
+                  >
+                    <option>PAL</option>
+                    <option>NTSC</option>
+                    <option>NTSC-J</option>
+                    <option>NTSC-C</option>
+                  </select>
+                </label>
+                <br />
+                <br />
+              </div>
+
+              <div className='inputForm'>
+                <br />
+                <br />
+                <label className='label'>
+                  Title:
+                  <br />
+                  <input
+                    className='form-group-addgame'
+                    onChange={this.handleChange.bind(this)}
+                    id='title'
                     value={this.state.title}
                     type='text'
                     required
-
                   />
-                 </label>
-                 <br />
-                 <label className="label">
-                 Platform: 
-                 <br />
+                </label>
+                <br />
+                <label className='label'>
+                  Platform:
+                  <br />
                   <input
-                    className="form-group-addgame"
+                    className='form-group-addgame'
                     onChange={this.handleChange.bind(this)}
-                    id="platform"
+                    id='platform'
                     value={this.state.platform}
                     type='text'
                     required
-
                   />
-                 </label>
-                 <br />
-                 <label className="label">
-                 Price: 
-                 <br />
+                </label>
+                <br />
+                <label className='label'>
+                  Price:
+                  <br />
                   <input
-                    className="form-group-addgame"
+                    className='form-group-addgame'
                     onChange={this.handleChange.bind(this)}
-                    id="price"
+                    id='price'
                     value={this.state.price}
                     type='text'
                     required
-
                   />
-                 </label>
-                 <br />
-              <label className="label">
-                Rating:
-                 <br />
-              <div className="star-rating" onChange={this.handleChange.bind(this)}>
-                <input type="radio" id="5-stars" name="rating" value="5" />
-                <label htmlFor ="5-stars" className="star">&#9733;</label>
-                <input type="radio" id="4-stars" name="rating" value="4" />
-                <label htmlFor ="4-stars" className="star">&#9733;</label>
-                <input type="radio" id="3-stars" name="rating" value="3" />
-                <label htmlFor ="3-stars" className="star">&#9733;</label>
-                <input type="radio" id="2-stars" name="rating" value="2" />
-                <label htmlFor ="2-stars" className="star">&#9733;</label>
-                <input type="radio" id="1-star" name="rating" value="1" />
-                <label htmlFor ="1-star" className="star">&#9733;</label>
-              </div>
-              </label>
-              <br />
-              <fieldset id='ownagefieldset'>
-                <legend>I own:</legend>
-                 <label className="label">
-                 Module
-                 <br />
-                  <input
+                </label>
+                <br />
+                <label className='label'>
+                  Rating:
+                  <br />
+                  <div
+                    className='star-rating'
                     onChange={this.handleChange.bind(this)}
-                    id="ownage"
-                    value={this.state.ownage}
-                    type='checkbox'
-                  />
-                 </label>
-                 </fieldset>
-
-                 <br />
-                 <br />
-
+                  >
+                    <input type='radio' id='5-stars' name='rating' value='5' />
+                    <label htmlFor='5-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='4-stars' name='rating' value='4' />
+                    <label htmlFor='4-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='3-stars' name='rating' value='3' />
+                    <label htmlFor='3-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='2-stars' name='rating' value='2' />
+                    <label htmlFor='2-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='1-star' name='rating' value='1' />
+                    <label htmlFor='1-star' className='star'>
+                      &#9733;
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <fieldset id='ownagefieldset'>
+                  <legend>I own:</legend>
+                  <label className='label'>
+                    Module
+                    <br />
+                    <input
+                      onChange={this.handleChange.bind(this)}
+                      id='ownage'
+                      value={this.state.ownage}
+                      type='checkbox'
+                    />
+                  </label>
+                </fieldset>
+              </div>
             </div>
-          </div>
-          <div className='bottomContainer'>
-          <label className="label">
+            <div className='bottomContainer'>
+              <label className='label'>
                 Description:
-                 <br />
+                <br />
                 <textarea
-                  className="form-group-textarea"
+                  className='form-group-textarea'
                   onChange={this.handleChange.bind(this)}
-                  id="description"
+                  id='description'
                   value={this.state.description}
                   type='text'
                   rows='4'
                   required
-
                 />
               </label>
               <br />
               <br />
-           </div>
-           <button className="addGameButton">
-                    Add Game
-           </button>
+            </div>
+            <button className='addGameButton'>Add Game</button>
           </div>
-          </form>
-        </div>
+        </form>
+      </div>
     )
   }
-  
-handleChange(event) {
-    const field = event.target.id;
-    var checkBox = document.getElementById("ownage");
 
-    if (field === "title") {
-        this.setState({ title: event.target.value });
-    } else if (field === "price") {
-      this.setState({ price: event.target.value });
-    } else if (field === "region") {
-      this.setState({ region: event.target.value });
-    } else if (field === "description") {
-      this.setState({ description: event.target.value });
-    } else if (field === "1-star") {
-      this.setState({ stars: event.target.value });
-    } else if (field === "2-stars") {
-      this.setState({ stars: event.target.value });
-    } else if (field === "3-stars") {
-      this.setState({ stars: event.target.value });
-    } else if (field === "4-stars") {
-      this.setState({ stars: event.target.value });
-    } else if (field === "5-stars") {
-      this.setState({ stars: event.target.value });
-    } else if (field === "platform") {
-      this.setState({ platform: event.target.value });
-    } else if (field === "image") {
-      this.setState({ preview: URL.createObjectURL(event.target.files[0]), file: event.target.files[0] })
-    } else if (checkBox.checked === true){
-      this.setState({ ownage: "true", ownagePreviewOk: <>&#10004;</> });
+  handleChange(event) {
+    const field = event.target.id
+    var checkBox = document.getElementById('ownage')
+
+    if (field === 'title') {
+      this.setState({ title: event.target.value })
+    } else if (field === 'price') {
+      this.setState({ price: event.target.value })
+    } else if (field === 'region') {
+      this.setState({ region: event.target.value })
+    } else if (field === 'description') {
+      this.setState({ description: event.target.value })
+    } else if (field === '1-star') {
+      this.setState({ stars: event.target.value })
+    } else if (field === '2-stars') {
+      this.setState({ stars: event.target.value })
+    } else if (field === '3-stars') {
+      this.setState({ stars: event.target.value })
+    } else if (field === '4-stars') {
+      this.setState({ stars: event.target.value })
+    } else if (field === '5-stars') {
+      this.setState({ stars: event.target.value })
+    } else if (field === 'platform') {
+      this.setState({ platform: event.target.value })
+    } else if (field === 'image') {
+      this.setState({
+        preview: URL.createObjectURL(event.target.files[0]),
+        file: event.target.files[0],
+      })
+    } else if (checkBox.checked === true) {
+      this.setState({ ownage: 'true', ownagePreviewOk: <>&#10004;</> })
       this.handleShowSuccess()
     } else {
-      this.setState({ ownage: "false", ownagePreviewFalse: <>&#x2715;</> });
+      this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
     }
-}
-handleSubmit(event) {
-  event.preventDefault();
-  let data = new FormData();
-  data.append('title', this.state.title);
-  data.append('price', this.state.price);
-  data.append('platform', this.state.platform);
-  data.append('ownage', this.state.ownage);
-  data.append('region', this.state.region);
-  data.append('description', this.state.description);
-  data.append('file', this.state.file);
-  data.append('stars', this.state.stars);
-  data.append('iswishlist', "false");
-  
+  }
+  handleSubmit(event) {
+    event.preventDefault()
+    let data = new FormData()
+    data.append('title', this.state.title)
+    data.append('price', this.state.price)
+    data.append('platform', this.state.platform)
+    data.append('ownage', this.state.ownage)
+    data.append('region', this.state.region)
+    data.append('description', this.state.description)
+    data.append('file', this.state.file)
+    data.append('stars', this.state.stars)
+    data.append('iswishlist', 'false')
 
-  axios({
-      method: "POST",
+    axios({
+      method: 'POST',
       withCredentials: true,
       credentials: 'include',
       url: `${API_ENDPOINT}/api/newgame`,
       headers: { 'Content-Type': 'multipart/form-data' },
-      data: data
-      
-  }).then((response, props) => {
+      data: data,
+    }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-          this.setState({ title: "", preview: ImagePlaceholder, price: "", platform: "", description: "", file: "" })
-          console.log("Successfully added game!");
-      } 
-  });
-}}
+        this.setState({
+          title: '',
+          preview: ImagePlaceholder,
+          price: '',
+          platform: '',
+          description: '',
+          file: '',
+        })
+        console.log('Successfully added game!')
+      }
+    })
+  }
+}
 
 export default AddGame
