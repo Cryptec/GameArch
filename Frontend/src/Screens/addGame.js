@@ -39,11 +39,13 @@ componentDidMount = () => {
     document.getElementById("3-stars").checked = true;
 }
 handleShow = () =>{
+  document.getElementById("ownagefieldset").style.borderColor = "rgb(209, 13, 13)";
   this.setState({
       isActive: true
   })
 }
 handleShowSuccess = () =>{
+  document.getElementById("ownagefieldset").style.borderColor = "green";
   this.setState({
       isActive: false
   })
@@ -94,6 +96,18 @@ removeImage = () => {
                  </div>
                  
              </div>
+             <br />
+                 <label className="label">
+                 Image: 
+                 <br />
+                  <input
+                  id="image"
+                  type="file"
+                  name="file"
+                  onChange={this.handleChange.bind(this)}
+                  />
+                 </label>
+              <br />
               <br />
               <label className='label' >
                 Region:
@@ -193,8 +207,10 @@ removeImage = () => {
               </div>
               </label>
               <br />
+              <fieldset id='ownagefieldset'>
+                <legend>I own:</legend>
                  <label className="label">
-                 Own: 
+                 Module
                  <br />
                   <input
                     onChange={this.handleChange.bind(this)}
@@ -203,21 +219,7 @@ removeImage = () => {
                     type='checkbox'
                   />
                  </label>
-
-                 {this.state.isActive ? <div className="errorTextAddGame">{this.state.ownageFalse}</div> : <div className="successTextAddGame">{this.state.ownageTrue}</div>}
-
-
-                 <br />
-                 <label className="label">
-                 Image: 
-                 <br />
-                  <input
-                  id="image"
-                  type="file"
-                  name="file"
-                  onChange={this.handleChange.bind(this)}
-                  />
-                 </label>
+                 </fieldset>
 
                  <br />
                  <br />

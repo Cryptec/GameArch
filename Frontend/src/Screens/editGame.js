@@ -38,11 +38,13 @@ class EditGame extends Component {
         this.handleStarsPreview()
     }
     handleShow = () => {
+        document.getElementById("ownagefieldset").style.borderColor = "rgb(209, 13, 13)";
         this.setState({
             isActive: true
         })
     }
     handleShowSuccess = () => {
+        document.getElementById("ownagefieldset").style.borderColor = "green";
         this.setState({
             isActive: false
         })
@@ -132,6 +134,19 @@ class EditGame extends Component {
                                         <div className="ownagePreviewOk">{this.state.ownagePreviewOk}</div>}
                                 </div>
                             </div>
+                            <br />
+                            <label className="label">
+                                Image:
+                                <br />
+                                <input
+                                    id="image"
+                                    type="file"
+                                    name="file"
+                                    onChange={this.handleChange.bind(this)}
+                                />
+                            </label>
+                            <br />
+                            <br />
                             <label className='label' >
                                 Region:
                 <br />
@@ -230,31 +245,19 @@ class EditGame extends Component {
                                 </div>
                             </label>
                             <br />
-                            <label className="label">
-                                Own:
-                                <br />
-                                <input
-                                    onChange={this.handleChange.bind(this)}
-                                    id="ownage"
-                                    value={this.state.ownage}
-                                    type='checkbox'
-                                />
-                            </label>
-
-                            {this.state.isActive ? <div className="errorTextAddGame">{this.state.ownageFalse}</div> : <div className="successTextAddGame">{this.state.ownageTrue}</div>}
-
-
-                            <br />
-                            <label className="label">
-                                Image:
-                                <br />
-                                <input
-                                    id="image"
-                                    type="file"
-                                    name="file"
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </label>
+                            <fieldset id='ownagefieldset'>
+                             <legend>I own:</legend>
+                              <label className="label">
+                               Module
+                              <br />
+                             <input
+                               onChange={this.handleChange.bind(this)}
+                               id="ownage"
+                               value={this.state.ownage}
+                               type='checkbox'
+                              />
+                             </label>
+                            </fieldset>
 
                             <br />
                             <br />

@@ -10,6 +10,9 @@
     border-radius: 6px;
     width: 300px;
 }
+fieldset {
+  border-radius: 6px;
+}
 .errorTextAddGame {
     border: 1px solid rgb(209, 13, 13);
     color: rgb(209, 13, 13);
