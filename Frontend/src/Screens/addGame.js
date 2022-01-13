@@ -67,7 +67,7 @@ removeImage = () => {
         <div id="contentpage">
            
             <form onSubmit={this.handleSubmit.bind(this)} method="POST" encType='multipart/form-data'>
-        <div className='container'>
+        <div className='addcontainer'>
           <div className="contentContainerInput">
             <div className="inputForm">
                  <div className="gamesPreview">
