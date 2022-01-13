@@ -88,6 +88,7 @@ render() {
               id='change_email'
               value={this.state.email}
               type='text'
+              required
             />
             <br />
             <br />
