@@ -269,9 +269,6 @@ class AddGame extends Component {
               <br />
               <br />
             </div>
-            {this.state.ownage}
-            {this.state.box}
-            {this.state.manual}
             <button className='addGameButton'>Add Game</button>
           </div>
         </form>
