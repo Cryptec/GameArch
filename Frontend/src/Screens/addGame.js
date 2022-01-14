@@ -269,6 +269,9 @@ class AddGame extends Component {
               <br />
               <br />
             </div>
+            {this.state.ownage}
+            {this.state.box}
+            {this.state.manual}
             <button className='addGameButton'>Add Game</button>
           </div>
         </form>
@@ -307,14 +310,20 @@ class AddGame extends Component {
         preview: URL.createObjectURL(event.target.files[0]),
         file: event.target.files[0],
       })
-    } else if (checkBoxBox.checked === true) {
+    } 
+    
+    if (checkBoxBox.checked === true) {
       this.setState({ box: 'true' })
-    } else if (checkBoxManual.checked === true) {
+    } else  { this.setState({ box: 'false' }) }  
+    
+    if (checkBoxManual.checked === true) {
       this.setState({ manual: 'true' })
-    } else if (checkBox.checked === true) {
+    } else { this.setState({ manual: 'false' }) } 
+    
+    if (checkBox.checked === true) {
       this.setState({ ownage: 'true', ownagePreviewOk: <>&#10004;</> })
       this.handleShowSuccess()
-    } else {
+    } else  {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
     }

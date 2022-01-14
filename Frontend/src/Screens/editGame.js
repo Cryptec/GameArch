@@ -66,15 +66,19 @@ class EditGame extends Component {
     } else if (this.props.location.state.ownage === 'false') {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
-    } else if (this.props.location.state.box === 'true') {
-      this.setState({ box: 'true' })
-    } else if (this.props.location.state.box === 'false') {
-      this.setState({ box: 'false' })
-    } else if (this.props.location.state.manual === 'true') {
-      this.setState({ manual: 'true' })
+    } 
+    if (this.props.location.state.manual === 'true') {
+      document.getElementById('manual').checked = true
+      this.setState({ manual: 'true'})
     } else if (this.props.location.state.manual === 'false') {
       this.setState({ manual: 'false' })
-    }
+    } 
+    if (this.props.location.state.box === 'true') {
+      document.getElementById('box').checked = true
+      this.setState({ box: 'true'})
+    } else if (this.props.location.state.box === 'false') {
+      this.setState({ box: 'false' })
+    } 
   }
 
   handleStarsPreview = () => {
@@ -351,18 +355,19 @@ class EditGame extends Component {
         preview: URL.createObjectURL(event.target.files[0]),
         file: event.target.files[0],
       })
-    } else if (checkBoxBox.checked === true) {
+    } 
+    if (checkBoxBox.checked === true) {
       this.setState({ box: 'true' })
-    } else if (checkBoxBox.checked === false) {
-      this.setState({ box: 'false' })
-    } else if (checkBoxManual.checked === true) {
-      this.setState({ box: 'true' })
-    } else if (checkBoxManual.checked === false) {
-      this.setState({ manual: 'false' })
-    } else if (checkBox.checked === true) {
+    } else  { this.setState({ box: 'false' }) }  
+    
+    if (checkBoxManual.checked === true) {
+      this.setState({ manual: 'true' })
+    } else { this.setState({ manual: 'false' }) } 
+    
+    if (checkBox.checked === true) {
       this.setState({ ownage: 'true', ownagePreviewOk: <>&#10004;</> })
       this.handleShowSuccess()
-    } else {
+    } else  {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
     }
