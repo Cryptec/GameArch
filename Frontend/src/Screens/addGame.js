@@ -15,6 +15,8 @@ class AddGame extends Component {
       platform: '',
       price: '',
       ownage: '',
+      box: '',
+      manual: '',
       region: '',
       description: '',
       ownagePreviewOk: '',
@@ -29,6 +31,8 @@ class AddGame extends Component {
     this.setState({
       preview: ImagePlaceholder,
       ownage: 'false',
+      box: 'false',
+      manual: 'false',
       region: 'PAL',
       stars: '3',
       ownagePreviewFalse: <>&#x2715;</>,
@@ -214,15 +218,34 @@ class AddGame extends Component {
                   </div>
                 </label>
                 <br />
-                <fieldset id='ownagefieldset'>
+                <fieldset id='ownagefieldset' style={{ display: "flex", 
+                                                       flexDirection: "row", 
+                                                       justifyContent: "space-between"}}>
                   <legend>I own:</legend>
-                  <label className='label'>
+                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
                     Module
-                    <br />
                     <input
                       onChange={this.handleChange.bind(this)}
                       id='ownage'
                       value={this.state.ownage}
+                      type='checkbox'
+                    />
+                  </label>
+                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
+                    Box
+                    <input
+                      onChange={this.handleChange.bind(this)}
+                      id='box'
+                      value={this.state.box}
+                      type='checkbox'
+                    />
+                  </label>
+                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
+                    Manual
+                    <input
+                      onChange={this.handleChange.bind(this)}
+                      id='manual'
+                      value={this.state.manual}
                       type='checkbox'
                     />
                   </label>
@@ -256,6 +279,8 @@ class AddGame extends Component {
   handleChange(event) {
     const field = event.target.id
     var checkBox = document.getElementById('ownage')
+    var checkBoxManual = document.getElementById('manual')
+    var checkBoxBox = document.getElementById('box')
 
     if (field === 'title') {
       this.setState({ title: event.target.value })
@@ -282,6 +307,10 @@ class AddGame extends Component {
         preview: URL.createObjectURL(event.target.files[0]),
         file: event.target.files[0],
       })
+    } else if (checkBoxBox.checked === true) {
+      this.setState({ box: 'true' })
+    } else if (checkBoxManual.checked === true) {
+      this.setState({ manual: 'true' })
     } else if (checkBox.checked === true) {
       this.setState({ ownage: 'true', ownagePreviewOk: <>&#10004;</> })
       this.handleShowSuccess()
@@ -301,6 +330,8 @@ class AddGame extends Component {
     data.append('description', this.state.description)
     data.append('file', this.state.file)
     data.append('stars', this.state.stars)
+    data.append('box', this.state.box)
+    data.append('manual', this.state.manual)
     data.append('iswishlist', 'false')
 
     axios({

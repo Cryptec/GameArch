@@ -28,6 +28,8 @@ router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
       price: req.body.price,
       platform: req.body.platform,
       ownage: req.body.ownage,
+      manual: req.body.manual,
+      box: req.body.box,
       region: req.body.region,
       description: req.body.description,
       id: req.body.id,
@@ -35,14 +37,16 @@ router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
       filename: req.file.filename,
       stars: req.body.stars
     }
-    var sql = 'INSERT INTO Games (title, price, platform, ownage, filename, region, description, iswishlist, stars) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description, data.iswishlist, data.stars]
+    var sql = 'INSERT INTO Games (title, price, platform, ownage, manual, box, filename, region, description, iswishlist, stars) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    var params = [data.title, data.price, data.platform, data.ownage, data.manual, data.box, data.filename, data.region, data.description, data.iswishlist, data.stars]
   } else if (req.file === undefined) {
     var data = {
       title: req.body.title,
       price: req.body.price,
       platform: req.body.platform,
       ownage: req.body.ownage,
+      manual: req.body.manual,
+      box: req.body.box,
       region: req.body.region,
       description: req.body.description,
       id: req.body.id,
@@ -50,8 +54,8 @@ router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
       stars: req.body.stars,
       filename: "null"
     }
-    var sql = 'INSERT INTO Games (title, price, platform, ownage, filename, region, description, stars, iswishlist) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description, data.stars, data.iswishlist]
+    var sql = 'INSERT INTO Games (title, price, platform, ownage, manual, box, filename, region, description, stars, iswishlist) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    var params = [data.title, data.price, data.platform, data.ownage, data.manual, data.box, data.filename, data.region, data.description, data.stars, data.iswishlist]
   }
     db.run(sql, params, (err, rows) => {
       if (err) {
@@ -72,6 +76,8 @@ router.post("/editgame", checkAuthentication, upload, async (req, res, next) => 
     price: req.body.price,
     platform: req.body.platform,
     ownage: req.body.ownage,
+    manual: req.body.manual,
+    box: req.body.box,
     region: req.body.region,
     description: req.body.description,
     stars: req.body.stars,
@@ -87,21 +93,23 @@ router.post("/editgame", checkAuthentication, upload, async (req, res, next) => 
     }
     console.log("successfully deleted:" + data.oldfilename)
   })
-  var params = [data.title, data.price, data.platform, data.ownage, data.filename, data.region, data.description, data.stars,data.id]
-  var sql = 'UPDATE Games SET title = ?, price = ?, platform = ?, ownage = ?, filename = ?, region = ?, description = ?, stars = ? WHERE id = ?'
+  var params = [data.title, data.price, data.platform, data.ownage, data.manual, data.box, data.filename, data.region, data.description, data.stars,data.id]
+  var sql = 'UPDATE Games SET title = ?, price = ?, platform = ?, ownage = ?, manual = ?, box = ?, filename = ?, region = ?, description = ?, stars = ? WHERE id = ?'
 } else if (req.file === undefined) {
   var data = {
     title: req.body.title,
     price: req.body.price,
     platform: req.body.platform,
     ownage: req.body.ownage,
+    manual: req.body.manual,
+    box: req.body.box,
     region: req.body.region,
     description: req.body.description,
     stars: req.body.stars,
     id: req.body.id
   }
-    var params = [data.title, data.price, data.platform, data.ownage, data.region, data.description, data.stars, data.id]
-  var sql = 'UPDATE Games SET title = ?, price = ?, platform = ?, ownage = ?, region = ?, description = ?, stars = ? WHERE id = ?'
+    var params = [data.title, data.price, data.platform, data.ownage, data.manual, data.box, data.region, data.description, data.stars, data.id]
+  var sql = 'UPDATE Games SET title = ?, price = ?, platform = ?, ownage = ?, manual = ?, box = ?, region = ?, description = ?, stars = ? WHERE id = ?'
 }
   db.run(sql, params, (err, rows) => {
     if (err) {

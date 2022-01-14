@@ -183,7 +183,9 @@ SetWishlistFalse = async (id) => {
                   ownage: this.props.location.state.ownage,
                   id: this.props.location.state.id,
                   wishlist: this.props.location.state.wishlist,
-                  stars: this.props.location.state.stars
+                  stars: this.props.location.state.stars,
+                  box: this.props.location.state.box,
+                  manual: this.props.location.state.manual
                 }
               }} >
                 <div type="button">Edit</div>

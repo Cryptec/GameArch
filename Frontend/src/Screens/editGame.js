@@ -18,6 +18,8 @@ class EditGame extends Component {
       description: this.props.location.state.description,
       id: this.props.location.state.id,
       ownage: '',
+      box: '',
+      manual: '',
       region: this.props.location.state.region,
       oldfilename: this.props.location.state.filename,
       ownagePreviewOk: '',
@@ -64,6 +66,14 @@ class EditGame extends Component {
     } else if (this.props.location.state.ownage === 'false') {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
+    } else if (this.props.location.state.box === 'true') {
+      this.setState({ box: 'true' })
+    } else if (this.props.location.state.box === 'false') {
+      this.setState({ box: 'false' })
+    } else if (this.props.location.state.manual === 'true') {
+      this.setState({ manual: 'true' })
+    } else if (this.props.location.state.manual === 'false') {
+      this.setState({ manual: 'false' })
     }
   }
 
@@ -251,19 +261,38 @@ class EditGame extends Component {
                 </div>
               </label>
               <br />
-              <fieldset id='ownagefieldset'>
-                <legend>I own:</legend>
-                <label className='label'>
-                  Module
-                  <br />
-                  <input
-                    onChange={this.handleChange.bind(this)}
-                    id='ownage'
-                    value={this.state.ownage}
-                    type='checkbox'
-                  />
-                </label>
-              </fieldset>
+              <fieldset id='ownagefieldset' style={{ display: "flex", 
+                                                       flexDirection: "row", 
+                                                       justifyContent: "space-between"}}>
+                  <legend>I own:</legend>
+                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
+                    Module
+                    <input
+                      onChange={this.handleChange.bind(this)}
+                      id='ownage'
+                      value={this.state.ownage}
+                      type='checkbox'
+                    />
+                  </label>
+                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
+                    Box
+                    <input
+                      onChange={this.handleChange.bind(this)}
+                      id='box'
+                      value={this.state.box}
+                      type='checkbox'
+                    />
+                  </label>
+                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
+                    Manual
+                    <input
+                      onChange={this.handleChange.bind(this)}
+                      id='manual'
+                      value={this.state.manual}
+                      type='checkbox'
+                    />
+                  </label>
+                </fieldset>
             </div>
                     </div>
 
@@ -294,6 +323,8 @@ class EditGame extends Component {
   handleChange(event) {
     const field = event.target.id
     var checkBox = document.getElementById('ownage')
+    var checkBoxManual = document.getElementById('manual')
+    var checkBoxBox = document.getElementById('box')
 
     if (field === 'title') {
       this.setState({ title: event.target.value })
@@ -320,6 +351,14 @@ class EditGame extends Component {
         preview: URL.createObjectURL(event.target.files[0]),
         file: event.target.files[0],
       })
+    } else if (checkBoxBox.checked === true) {
+      this.setState({ box: 'true' })
+    } else if (checkBoxBox.checked === false) {
+      this.setState({ box: 'false' })
+    } else if (checkBoxManual.checked === true) {
+      this.setState({ box: 'true' })
+    } else if (checkBoxManual.checked === false) {
+      this.setState({ manual: 'false' })
     } else if (checkBox.checked === true) {
       this.setState({ ownage: 'true', ownagePreviewOk: <>&#10004;</> })
       this.handleShowSuccess()
@@ -340,6 +379,8 @@ class EditGame extends Component {
     data.append('description', this.state.description)
     data.append('stars', this.state.stars)
     data.append('file', this.state.file)
+    data.append('box', this.state.box)
+    data.append('manual', this.state.manual)
     data.append('oldfilename', this.state.oldfilename)
 
     if (this.state.fileremoved === 'true') {

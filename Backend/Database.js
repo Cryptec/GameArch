@@ -38,7 +38,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             iswishlist text, 
             stars text,
             release text,
-            ovp text,
+            box text,
             manual text
             )`,
             (err) => {

@@ -58,6 +58,8 @@ renderGames = () => {
       const description = game.description
       const region = game.region
       const ownage = game.ownage
+      const manual = game.manual
+      const box = game.box
       const platform = game.platform
       const wishlist = game.iswishlist
       const stars = game.stars
@@ -76,6 +78,8 @@ renderGames = () => {
                              platform: platform,
                              region: region,
                              ownage: ownage,
+                             manual: manual,
+                             box: box,
                              wishlist: wishlist,
                              stars: stars }
                   }} >
