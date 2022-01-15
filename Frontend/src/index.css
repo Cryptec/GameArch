@@ -49,6 +49,7 @@ input[type=file] {
    --sidebar-width-light: 240px;
    --display-true-light: flex;
    --border-light: 1px solid rgb(105, 104, 104, 0.5);
+   --border-decent-light: 1px solid rgb(105, 104, 104, 0.5);
    --topbar-bottom-border-light: rgb(207, 207, 207);
    --table-border-light: 1px solid rgb(207, 207, 207);
 
@@ -67,6 +68,7 @@ input[type=file] {
    --sidebar-width-dark: 240px;
    --display-true-dark: flex;
    --border-dark: 1px solid #071126;
+   --border-decent-dark: 1px solid #04153a;
    --topbar-bottom-border-dark: #090913;
    --table-border-dark: none;
 }
@@ -88,6 +90,7 @@ input[type=file] {
     --sidebar-width: var(--sidebar-width-dark);
     --display-true: var(--display-true-dark);
     --border: var(--border-dark);
+    --border-decent: var(--border-decent-dark);
     --topbar-bottom-border: var(--topbar-bottom-border-dark);
     --table-border: var(--table-boder-dark);
   }
@@ -110,6 +113,7 @@ input[type=file] {
     --sidebar-width: var(--sidebar-width-light);
     --display-true: var(--display-true-light);
     --border: var(--border-light);
+    --border-decent: var(--border-decent-light);
     --topbar-bottom-border: var(--topbar-bottom-boder-light);
     --table-border: var(--table-border-light);
   }
@@ -131,6 +135,7 @@ input[type=file] {
   --sidebar-width: var(--sidebar-width-dark);
   --display-true: var(--display-true-dark);
   --border: var(--border-dark);
+  --border-decent: var(--border-decent-dark);
   --topbar-bottom-border: var(--topbar-bottom-border-dark);
   --table-border: var(--table-boder-dark);
 }
@@ -151,6 +156,7 @@ input[type=file] {
   --sidebar-width: var(--sidebar-width-light);
   --display-true: var(--display-true-light);
   --border: var(--border-light);
+  --border-decent: var(--border-decent-light);
   --topbar-bottom-border: var(--topbar-bottom-boder-light);
   --table-border: var(--table-border-light);
 }

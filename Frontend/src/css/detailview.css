@@ -16,13 +16,19 @@
     display: flex;
     box-sizing: border-box;
     flex-wrap : wrap;
-    padding: 20px;
+    padding: 0px 20px 0px 20px;
 }
 .BodyContainer {
     flex-direction: row;
     display: flex;
     box-sizing: border-box;
-    flex-wrap : wrap 
+    flex-wrap : wrap;
+}
+.BodyContainerContentWraper {
+    padding: 20px 20px 20px 20px;
+    border: var(--border-decent);
+    margin: 20px;
+    border-radius: 6px;
 }
 .imageWrapperDetail {
     max-width: 260px;
@@ -31,6 +37,7 @@
     height: auto;
     align-self: center;
     border-radius: 7px;
+    padding-bottom: 15px;
 }
 .imagePreviewDetail {
     max-width: 260px;
@@ -100,19 +107,23 @@
 .gametitledetail {
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 125%;
+    font-size: 210%;
     width: fit-content;
 }
 /* StarRating */
 
 .star-rating-detail {
-  display:flex;
+  display: flex;
   flex-direction: row-reverse;
   font-size:1.5em;
   justify-content:space-around;
-  padding:0 .2em;
+  padding: 0.2em;
   flex-wrap: wrap-reverse;
   
+}
+
+.star-detail {
+    padding-right: 4px;
 }
 
 .star-rating-detail input {

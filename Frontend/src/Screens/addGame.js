@@ -377,6 +377,7 @@ class AddGame extends Component {
           preview: ImagePlaceholder,
           price: '',
           platform: '',
+          released: '',
           description: '',
           file: '',
         })

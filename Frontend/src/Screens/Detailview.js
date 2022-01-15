@@ -113,19 +113,19 @@ SetWishlistFalse = async (id) => {
 RenderOwnageState = () => {
 
   if (this.props.location.state.ownage === "true") {
-    this.setState({ module: "Module: " + "✓" })
+    this.setState({ module: "Module: ✓" })
   } else {
-    this.setState({ module: "Module: " + "X" })
+    this.setState({ module: "Module: X" })
   }
   if (this.props.location.state.box === "true") {
-    this.setState({ box: "Box: " + "✓" })
+    this.setState({ box: "Box: ✓" })
   } else {
-    this.setState({ box: "Box: " + "X" })
+    this.setState({ box: "Box: X" })
   }
   if (this.props.location.state.manual === "true") {
-    this.setState({ manual: "Manual: " + "✓" })
+    this.setState({ manual: "Manual: ✓" })
   } else {
-    this.setState({ manual: "Manual: " + "X" })
+    this.setState({ manual: "Manual: X" })
   }
   
 }
@@ -151,13 +151,17 @@ RenderOwnageState = () => {
 
                   {this.props.location.state.filename !== "null" ? <img src={`${url}`} alt="" className="imagePreviewDetail" />
                     : <img src={`${ImagePlaceholder}`} alt="" className="imagePreviewDetail" />}
-
+                 
                 </div>
+                
                 <div style={{ flexDirection: "column" }}>
 
                   <div style={{ marginLeft: '35px'  }}>
+
+                    <div className='gametitledetail'>{this.props.location.state.titlename}&nbsp;&nbsp;</div>
+                    <div style={{display: 'inline-block'}}>
                     <div className="star-rating-detail">
-                    )
+                    
                     <input type="radio" id="5-stars" name="rating" value="5" />
                     <label htmlFor="5-stars" className="star-detail">&#9733;</label>
                     <input type="radio" id="4-stars" name="rating" value="4" />
@@ -168,13 +172,14 @@ RenderOwnageState = () => {
                     <label htmlFor="2-stars" className="star-detail">&#9733;</label>
                     <input type="radio" id="1-star" name="rating" value="1" />
                     <label htmlFor="1-star" className="star-detail">&#9733;</label>
-                    <div>{this.props.location.state.released},</div>
-                    (
-                      <div className='gametitledetail'>{this.props.location.state.titlename}&nbsp;&nbsp;</div>
+                    
+                    </div>
                     </div>
                   </div>
-
-                   <h4 style={{ color: 'var(--text-primary)', marginLeft: '40px', marginTop: '4px' }}>{this.props.location.state.platform}</h4>
+                  <div style={{ display: 'flex', flexDirection: 'row', marginTop: '-14px'}}>
+                   <h4 style={{ color: 'var(--text-primary)', marginLeft: '40px' }}>{this.props.location.state.platform}</h4>
+                   <h4 style={{ color: 'var(--text-primary)' }}>&nbsp;({this.props.location.state.released})</h4>
+                  </div>
                 </div>
               </div>
               <br /><br />
@@ -183,13 +188,14 @@ RenderOwnageState = () => {
               </div>
               <br />
               <div className="BodyContainer" style={{ color: 'var(--text-primary)', flexDirection: 'column' }}>
+                <div className="BodyContainerContentWraper">
                 <p>Region: {this.props.location.state.region}</p>
                  <p>
                    <div>{this.state.module}</div>
                    <div>{this.state.box}</div>
                    <div>{this.state.manual}</div>
                  </p>
-                 
+                </div>
                 <div className="gamePriceDetail">{this.props.location.state.price}&nbsp;{currency}</div>
               </div>
 
