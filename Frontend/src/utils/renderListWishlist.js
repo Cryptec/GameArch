@@ -65,6 +65,7 @@ class RenderListWishlist extends Component {
                     const price = game.price
                     const description = game.description
                     const region = game.region
+                    const released = game.released
                     const ownage = game.ownage
                     const manual = game.manual
                     const box = game.box
@@ -85,6 +86,7 @@ class RenderListWishlist extends Component {
                                     filename: imageName,
                                     platform: platform,
                                     region: region,
+                                    released: released,
                                     ownage: ownage,
                                     manual: manual,
                                     box: box,

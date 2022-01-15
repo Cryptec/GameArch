@@ -14,13 +14,17 @@ class Detailview extends Component {
     this.state = {
       wishstate: "",
       id: this.props.location.state.id,
-      filename: this.props.location.state.filename
+      filename: this.props.location.state.filename,
+      module: '',
+      manual: '',
+      box: ''
     };
   }
 
 async componentDidMount() {
    this.fetchWishlist()
    this.handleStarsPreview()
+   this.RenderOwnageState()
 }
 
 deleteTableRow = async (id) => {
@@ -105,6 +109,26 @@ SetWishlistFalse = async (id) => {
   })
   this.setState({ wishstate: "false" })
 }
+
+RenderOwnageState = () => {
+
+  if (this.props.location.state.ownage === "true") {
+    this.setState({ module: "Module: " + "✓" })
+  } else {
+    this.setState({ module: "Module: " + "X" })
+  }
+  if (this.props.location.state.box === "true") {
+    this.setState({ box: "Box: " + "✓" })
+  } else {
+    this.setState({ box: "Box: " + "X" })
+  }
+  if (this.props.location.state.manual === "true") {
+    this.setState({ manual: "Manual: " + "✓" })
+  } else {
+    this.setState({ manual: "Manual: " + "X" })
+  }
+  
+}
   render() {
 
 
@@ -144,6 +168,7 @@ SetWishlistFalse = async (id) => {
                     <label htmlFor="2-stars" className="star-detail">&#9733;</label>
                     <input type="radio" id="1-star" name="rating" value="1" />
                     <label htmlFor="1-star" className="star-detail">&#9733;</label>
+                    <div>{this.props.location.state.released},</div>
                     (
                       <div className='gametitledetail'>{this.props.location.state.titlename}&nbsp;&nbsp;</div>
                     </div>
@@ -158,7 +183,13 @@ SetWishlistFalse = async (id) => {
               </div>
               <br />
               <div className="BodyContainer" style={{ color: 'var(--text-primary)', flexDirection: 'column' }}>
-                <div>{this.props.location.state.region}</div>
+                <p>Region: {this.props.location.state.region}</p>
+                 <p>
+                   <div>{this.state.module}</div>
+                   <div>{this.state.box}</div>
+                   <div>{this.state.manual}</div>
+                 </p>
+                 
                 <div className="gamePriceDetail">{this.props.location.state.price}&nbsp;{currency}</div>
               </div>
 
@@ -167,8 +198,8 @@ SetWishlistFalse = async (id) => {
             <div className="overviewContainer" style={{ marginTop: "5px" }}>
 
               {this.state.wishstate !== "true" ?
-              <button onClick={() => this.SetWishlist(id)} className="WishlistButton">Add to Wishlist</button>
-                : <button onClick={() => this.SetWishlist(id)} className="WishlistButton">at Wishlist</button> 
+              <button onClick={() => this.SetWishlist(id)} className="WishlistButton">+ | Wishlist</button>
+                : <button onClick={() => this.SetWishlist(id)} className="WishlistButton">- | Wishlist</button> 
               }
             
               <Link className="GameEditButton" to={{
@@ -180,6 +211,7 @@ SetWishlistFalse = async (id) => {
                   platform: this.props.location.state.platform,
                   price: this.props.location.state.price,
                   region: this.props.location.state.region,
+                  released: this.props.location.state.released,
                   ownage: this.props.location.state.ownage,
                   id: this.props.location.state.id,
                   wishlist: this.props.location.state.wishlist,

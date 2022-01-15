@@ -21,6 +21,7 @@ class EditGame extends Component {
       box: '',
       manual: '',
       region: this.props.location.state.region,
+      released: this.props.location.state.released,
       oldfilename: this.props.location.state.filename,
       ownagePreviewOk: '',
       ownagePreviewFalse: '',
@@ -171,6 +172,9 @@ class EditGame extends Component {
               </label>
               <br />
               <br />
+              <div style={{ display: 'flex',
+                              flexDirection: 'row',
+                              justifyContent: 'space-between'}}>
               <label className='label'>
                 Region:
                 <br />
@@ -178,6 +182,7 @@ class EditGame extends Component {
                   list='regionlist'
                   name='region'
                   id='region'
+                  style={{ width: "80px" }}
                   className='currencydropdown'
                   value={this.state.region}
                   onChange={this.handleChange.bind(this)}
@@ -189,6 +194,20 @@ class EditGame extends Component {
                   <option>NTSC-C</option>
                 </select>
               </label>
+              <label className='label'>
+                  Released:
+                  <br />
+                  <input
+                    className='form-group-addgame'
+                    style={{width: "80px"}}
+                    onChange={this.handleChange.bind(this)}
+                    id='released'
+                    value={this.state.released}
+                    type='text'
+                    required
+                  />
+                </label>
+                </div>
               <br />
               <br />
             </div>
@@ -336,6 +355,8 @@ class EditGame extends Component {
       this.setState({ price: event.target.value })
     } else if (field === 'region') {
       this.setState({ region: event.target.value })
+    } else if (field === 'released') {
+        this.setState({ released: event.target.value })
     } else if (field === 'description') {
       this.setState({ description: event.target.value })
     } else if (field === '1-star') {
@@ -381,6 +402,7 @@ class EditGame extends Component {
     data.append('platform', this.state.platform)
     data.append('ownage', this.state.ownage)
     data.append('region', this.state.region)
+    data.append('released', this.state.released)
     data.append('description', this.state.description)
     data.append('stars', this.state.stars)
     data.append('file', this.state.file)
