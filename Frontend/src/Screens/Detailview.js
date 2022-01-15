@@ -17,7 +17,8 @@ class Detailview extends Component {
       filename: this.props.location.state.filename,
       module: '',
       manual: '',
-      box: ''
+      box: '',
+      cib: ''
     };
   }
 
@@ -111,21 +112,27 @@ SetWishlistFalse = async (id) => {
 }
 
 RenderOwnageState = () => {
+  const ownage = this.props.location.state.ownage
+  const box = this.props.location.state.box
+  const manual = this.props.location.state.manual
 
-  if (this.props.location.state.ownage === "true") {
+  if (ownage === "true") {
     this.setState({ module: "Module: ✓" })
   } else {
     this.setState({ module: "Module: X" })
   }
-  if (this.props.location.state.box === "true") {
+  if (box === "true") {
     this.setState({ box: "Box: ✓" })
   } else {
     this.setState({ box: "Box: X" })
   }
-  if (this.props.location.state.manual === "true") {
+  if (manual === "true") {
     this.setState({ manual: "Manual: ✓" })
   } else {
     this.setState({ manual: "Manual: X" })
+  }
+  if (ownage && box && manual === "true" ) {
+    this.setState({ cib: "CiB" })
   }
   
 }
@@ -177,8 +184,8 @@ RenderOwnageState = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'row', marginTop: '-14px'}}>
-                   <h4 style={{ color: 'var(--text-primary)', marginLeft: '40px' }}>{this.props.location.state.platform}</h4>
-                   <h4 style={{ color: 'var(--text-primary)' }}>&nbsp;({this.props.location.state.released})</h4>
+                    <h4 style={{ color: 'var(--text-primary)', marginLeft: '40px' }}>{this.props.location.state.platform}</h4>
+                    <h4 style={{ color: 'var(--text-primary)' }}>&nbsp;({this.props.location.state.released})</h4>
                   </div>
                 </div>
               </div>
