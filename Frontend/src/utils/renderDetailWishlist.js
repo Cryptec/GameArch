@@ -14,13 +14,14 @@ class RenderDetailWishlist extends Component {
             isError: false,
             ownagePreviewOk: <>&#10004;</>,
             ownagePreviewFalse: <>&#x2715;</>,
+            filter: localStorage.getItem('filter'),
             file: false
         }
     }
 
     async componentDidMount() {
         this.setState({ isLoading: true, file: ImagePlaceholder })
-        const response = await fetch(`${API_ENDPOINT}/api/wishlist`, { credentials: 'include' })
+        const response = await fetch(`${API_ENDPOINT}/api/wishlist/${this.state.filter}`, { credentials: 'include' })
         if (response.ok) {
             const games = await response.json()
             this.setState({ games, isLoading: false })

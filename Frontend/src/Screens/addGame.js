@@ -190,8 +190,16 @@ class AddGame extends Component {
                     id='platform'
                     value={this.state.platform}
                     type='text'
+                    list="platforms"
                     required
                   />
+                  <datalist id="platforms">
+                    <option value="Nintendo 64">Nintendo 64</option>
+                    <option value="Nintendo 3ds">Nintendo 3ds</option>
+                    <option value="PlayStation">PlayStation</option>
+                    <option value="PlayStation 2">PlayStation 2</option>
+                    <option value="Xbox One">Xbox One</option>
+                  </datalist>
                 </label>
                 <br />
                 <label className='label'>

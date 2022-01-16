@@ -11,7 +11,9 @@ class Overview extends Component {
     super(props)
     this.state = {
       settings: [],
+      platform: "all games",
       view: "",
+      count: 0,
       isActiveList: "false"   
     }
 }
@@ -60,11 +62,13 @@ handleSetGrid = () =>{
 
 handleDisplayType = () => {
   if (this.state.isActiveList === "true") {
-    return <RenderListView />
+    return <RenderListView key={this.state.count} />
   } else if (this.state.isActiveList === "false") {
-    return <RenderDetailView />
+    return <RenderDetailView key={this.state.count} />
   }
 }
+
+
 
   render() {
 
@@ -72,6 +76,20 @@ handleDisplayType = () => {
     
         <div id="contentpage">
           <div className="overviewContainer" style={{ marginBottom: "5px" }}>
+            
+          <select
+            list='platformlist'
+            name='platform'
+            id='platform'
+            className='filterdropdown'
+            value={localStorage.getItem('filter')}
+            onChange={this.handleChange.bind(this)}
+            required
+          >
+            <option>all games</option>
+            <option>Nintendo 64</option>
+            <option>PlayStation</option>
+          </select>
             <div className="girdViewButton" onClick={this.handleSetGrid}><GridIcon/></div>
             <div className="listViewButton" onClick={this.handleSetList}><ListIcon/></div>
           </div>
@@ -80,6 +98,22 @@ handleDisplayType = () => {
         </div>
     )
 }
+
+  handleChange(event) {
+    const field = event.target.id
+
+    if (field === 'platform') {
+      
+      if (event.target.value === 'all games') {
+        this.setState({ platform: event.target.value, count: this.state.count + 1 })
+        localStorage.setItem('filter', '')
+      } else {
+        this.setState({ platform: event.target.value, count: this.state.count + 1 })
+        localStorage.setItem('filter', event.target.value);
+      }
+    }
+  }
+
 
 }
 

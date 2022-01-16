@@ -28,7 +28,15 @@
 .inputForm {
     margin: 30px;
 }
-
+.filterdropdown{
+    border-radius: 5px;
+    border: var(--border);
+    background-color: var(--background);
+    color: var(--text-primary);
+    width: "120px";
+    padding: 5px;
+    margin-left: 5px;
+}
 .addGamesButton {
     height: 245px;
     width: 200px;
