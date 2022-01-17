@@ -3,6 +3,7 @@ import RenderDetailView from '../utils/renderDetailView'
 import RenderListView from '../utils/renderListView'
 import axios from 'axios'
 import { GridIcon, ListIcon } from '../assets/icons/index.jsx'
+import platforms from '../utils/platforms'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
@@ -20,6 +21,7 @@ class Overview extends Component {
 
 async componentDidMount() {
   this.FetchView()
+  this.getPlatforms()
 }
 
 async FetchView() {
@@ -68,7 +70,20 @@ handleDisplayType = () => {
   }
 }
 
-
+  getPlatforms = () => {
+    var select = document.getElementById('platform'); 
+    var options = platforms; 
+    
+    for(var i = 0; i < options.length; i++) {
+      var opt = options[i];
+  
+      var el = document.createElement("option");
+      el.text = opt;
+      el.value = opt;
+  
+      select.add(el);
+    }}
+  
 
   render() {
 
@@ -87,8 +102,6 @@ handleDisplayType = () => {
             required
           >
             <option>all games</option>
-            <option>Nintendo 64</option>
-            <option>PlayStation</option>
           </select>
             <div className="girdViewButton" onClick={this.handleSetGrid}><GridIcon/></div>
             <div className="listViewButton" onClick={this.handleSetList}><ListIcon/></div>
