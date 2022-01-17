@@ -56,8 +56,8 @@ router.post("/newgame", checkAuthentication, upload, async (req, res, next) => {
       stars: req.body.stars,
       filename: "null"
     }
-    var sql = 'INSERT INTO Games (title, price, platform, ownage, manual, box, filename, region, released, description, stars, iswishlist) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    var params = [data.title, data.price, data.platform, data.ownage, data.manual, data.box, data.filename, data.region, data.released, data.description, data.stars, data.iswishlist]
+    var sql = 'INSERT INTO Games (title, price, platform, ownage, manual, box, region, released, description, stars, iswishlist, filename) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    var params = [data.title, data.price, data.platform, data.ownage, data.manual, data.box, data.region, data.released, data.description, data.stars, data.iswishlist, data.filename]
   }
     db.run(sql, params, (err, rows) => {
       if (err) {
