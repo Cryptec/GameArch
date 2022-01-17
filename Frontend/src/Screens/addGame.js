@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 import Rendercurrency from '../utils/renderCurrency'
+import platforms from '../utils/platforms'
 import '../css/overview.css'
 import '../css/addnew.css'
 
@@ -38,6 +39,7 @@ class AddGame extends Component {
       stars: '3',
       ownagePreviewFalse: <>&#x2715;</>,
     })
+    this.getPlatforms()
     this.handleShow()
     document.getElementById('3-stars').checked = true
   }
@@ -67,7 +69,17 @@ class AddGame extends Component {
     this.setState({ preview: ImagePlaceholder, file: 'null' })
   }
 
+  getPlatforms = () => {
+    var list = document.getElementById('platforms');
+    platforms.forEach(function (item) {
+      var option = document.createElement('option');
+      option.value = item;
+      list.appendChild(option);
+    });
+  }
+
   render() {
+
     return (
       <div id='contentpage'>
         <form
@@ -194,11 +206,7 @@ class AddGame extends Component {
                     required
                   />
                   <datalist id="platforms">
-                    <option value="Nintendo 64">Nintendo 64</option>
-                    <option value="Nintendo 3ds">Nintendo 3ds</option>
-                    <option value="PlayStation">PlayStation</option>
-                    <option value="PlayStation 2">PlayStation 2</option>
-                    <option value="Xbox One">Xbox One</option>
+                   
                   </datalist>
                 </label>
                 <br />

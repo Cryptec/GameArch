@@ -1,6 +1,8 @@
 export const platforms = [
     'Nintendo 64',
-    'PlayStation'
+    'Nintendo 3ds',
+    'PlayStation',
+    'Xbox One'
 ]
 
 export default platforms
