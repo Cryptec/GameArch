@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 import Rendercurrency from '../utils/renderCurrency'
+import platforms from '../utils/platforms'
 import '../css/overview.css'
 import '../css/addnew.css'
 
@@ -37,6 +38,7 @@ class EditGame extends Component {
     this.handleImagePreview()
     this.handleOwnagePreview()
     this.handleStarsPreview()
+    this.getPlatforms()
   }
   handleShow = () => {
     document.getElementById('ownagefieldset').style.borderColor =
@@ -113,6 +115,15 @@ class EditGame extends Component {
   removeImage = () => {
     document.getElementById('image').value = null
     this.setState({ preview: ImagePlaceholder, fileremoved: 'true' })
+  }
+
+  getPlatforms = () => {
+    var list = document.getElementById('platforms');
+    platforms.forEach(function (item) {
+      var option = document.createElement('option');
+      option.value = item;
+      list.appendChild(option);
+    });
   }
 
   render() {
@@ -236,9 +247,13 @@ class EditGame extends Component {
                   onChange={this.handleChange.bind(this)}
                   id='platform'
                   value={this.state.platform}
+                  list="platforms"
                   type='text'
                   required
                 />
+                <datalist id="platforms">
+
+                </datalist>
               </label>
               <br />
               <label className='label'>
