@@ -25,6 +25,7 @@
     padding: 10px 16px;
     margin-bottom: 15px;
     font-size: 18px;
+    width: 230px;
     line-height: 1.3333333;
     border-radius: 6px;
 }
@@ -38,7 +39,7 @@
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.3333333;
   border-radius: 6px;
-  width: 40vw;
+  width: 42vw;
   
 }
 .addGameButton {

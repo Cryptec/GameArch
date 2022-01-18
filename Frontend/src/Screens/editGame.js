@@ -171,16 +171,20 @@ class EditGame extends Component {
                 </div>
               </div>
               <br />
-              <label className='label'>
-                Image:
-                <br />
+                <fieldset style={{
+                  display: "flex",
+                  maxWidth: "230px",
+                  flexDirection: "row",
+                  justifyContent: "space-between"
+                }}>
+                  <legend>Image:</legend>
                 <input
                   id='image'
                   type='file'
                   name='file'
                   onChange={this.handleChange.bind(this)}
                 />
-              </label>
+              </fieldset>
               <br />
               <br />
               <div style={{ display: 'flex',
