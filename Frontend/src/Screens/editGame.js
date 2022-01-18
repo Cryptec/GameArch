@@ -193,8 +193,8 @@ class EditGame extends Component {
                   list='regionlist'
                   name='region'
                   id='region'
-                  style={{ width: "80px" }}
-                  className='currencydropdown'
+                  style={{ width: "100px", paddingLeft: "8px" }}
+                  className='form-group-addgame'
                   value={this.state.region}
                   onChange={this.handleChange.bind(this)}
                   required
