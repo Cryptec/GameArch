@@ -1,6 +1,8 @@
 import React from 'react'
 import { LineChart, BarChart, DoughnutChart, getData } from '../components/Chart/Chart'
 
+import '../css/chart.css'
+
 class Entry extends React.Component {
   constructor(props) {
     super(props);

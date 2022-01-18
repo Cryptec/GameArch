@@ -20,7 +20,7 @@ function getRandomDateArray(numItems) {
   let data = [];
   let baseTime = new Date('2018-05-01T00:00:00').getTime();
   let dayMs = 24 * 60 * 60;
-  for(var i = 0; i < numItems; i++) {
+  for (var i = 0; i < numItems; i++) {
     data.push({
       time: 'Monday',
       value: Math.round(20 + 80 * Math.random())
