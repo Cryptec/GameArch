@@ -12,15 +12,46 @@ import Layout from './layout'
 import Forgot from './Screens/Forgot'
 import Redirect from './utils/Redirect'
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      registration: [],
+      registerstate: ""
+    }
+  }
+  componentDidMount = () => {
+    this.isRegistration()
+  }
+
+  
+isRegistration = async () => {
+  const response = await fetch(`${API_ENDPOINT}/api/registrationstate`, { credentials: 'include' })
+  if (response.ok) {
+    const registration = await response.json()
+    this.setState({ registration })
+    this.state.registration.map(register => {
+    this.setState({registerstate: register.registration})
+    return(true)
+    })
+  } else {
+    console.log("error")
+  }
+}
 
   render() {
+
     return (
       <Router>
       <Switch>
         <PublicRoute restricted={false} component={Login} path="/login" exact />
-        <PublicRoute restricted={false} component={Register} path="/signup" exact />
+
+        {this.state.registerstate === 'disabled' 
+        ? <PrivateRoute restricted={false} component={Register} path="/signup" exact /> 
+        : <PublicRoute restricted={false} component={Register} path="/signup" exact /> 
+        }
         <PublicRoute restricted={false} component={Forgot} path="/forgot" exact />
         <PublicRoute restricted={false} component={Redirect} path="/redirect" exact />
 
@@ -28,8 +59,7 @@ class App extends Component {
         <PrivateRoute restricted={false} component={Layout} />
       </Switch>
       </Router>
-    );
-  }
+    )}
 }
 
 export default App;
