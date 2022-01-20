@@ -241,6 +241,18 @@ router.delete("/user/:id", checkAuthentication, (req, res, next) => {
   });
 })
 
+router.get("/registrationstate", (req, res, next) => {
+  var sql = "select registration from Settings"
+  var params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(rows);
+  });
+});
+
 router.post('/logout', function(req, res, next) {
   req.logout();
   console.log('logged out')
