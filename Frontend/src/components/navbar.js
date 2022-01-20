@@ -34,9 +34,11 @@ class Navbar extends Component {
       
         SetRegistration = async () => {
             if (this.state.registerstate === "enabeld") {
-            return document.getElementById("register").style.display = "true";
+             document.getElementById("register").style.display = "true";
+             document.getElementById("login").style.display = "true";
           } else if (this.state.registerstate === "disabled") {
-            return document.getElementById("register").style.display = 'none';
+             document.getElementById("register").style.display = 'none';
+             document.getElementById("login").style.display = 'none';
            
           }
         }
@@ -46,7 +48,7 @@ class Navbar extends Component {
               
               <Link to="/" className="NavbarBrand" key="title" style={{marginLeft: "25px"}}>Game<b>Arch</b></Link>
               <Link to='/signup' id='register' className="navButtons" key="signup" style={{marginRight: "25px"}}>Signup</Link>
-              <Link to='/login' key="login" className="navButtons">Login</Link>
+              <Link to='/login' id='login' key="login" className="navButtons">Login</Link>
               
             </div>
         )
