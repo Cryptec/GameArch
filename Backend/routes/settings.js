@@ -78,11 +78,12 @@ router.post('/setcurrency', function(req,res){
   var data = {
     currency: req.body.currency,
     theme: req.body.theme,
+    registration: req.body.registration,
     id: req.body.id
 }
-  var params = [data.currency, data.theme, data.id]
+  var params = [data.currency, data.theme, data.registration, data.id]
   db.serialize(()=>{
-    db.run('UPDATE Settings SET currency = ?, theme = ? WHERE id = ?', params, function(err){
+    db.run('UPDATE Settings SET currency = ?, theme = ?, registration = ? WHERE id = ?', params, function(err){
       if(err){
         res.send("Error encountered while updating");
         return res.status(400).json({ error: true });

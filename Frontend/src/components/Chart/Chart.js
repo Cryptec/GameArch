@@ -22,8 +22,8 @@ function getRandomDateArray(numItems) {
   let dayMs = 24 * 60 * 60;
   for (var i = 0; i < numItems; i++) {
     data.push({
-      time: 'Monday',
-      value: Math.round(20 + 80 * Math.random())
+      time: new Date(baseTime + i * dayMs),
+      value: Math.round(20 + 80 * Math.random()),
     });
   }
   return data;
@@ -146,9 +146,9 @@ export class LineChart extends React.Component {
           data: this.props.data.map(d => d.value),
           fill: 'none',
           backgroundColor: this.props.color,
-          pointRadius: 2,
+          pointRadius: 0,
           borderColor: this.props.color,
-          borderWidth: 1,
+          borderWidth: 2,
           lineTension: 0
         }]
       }

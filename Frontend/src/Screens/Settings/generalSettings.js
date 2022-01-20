@@ -18,6 +18,7 @@ class GeneralSettings extends Component {
        successMessage: '',
        isActive: false,
        isActiveSuccess: false,
+       registration: '',
        themes: [],
        theme: ''
     };
@@ -29,7 +30,7 @@ componentDidMount = async () => {
     const fetchcurrency = await response.json()
     this.setState({ fetchcurrency })
     this.state.fetchcurrency.map(actualtheme => {
-    return this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, isLoading: false })
+    return this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, registration: actualtheme.registration, isLoading: false })
     })
   } else {
     this.setState({ isError: true, isLoading: false })
@@ -96,12 +97,31 @@ render() {
                       <option>dark</option>
                       <option>light</option>
                       <option>system</option>
+                    </select>        
+                    <br></br>
+                  <br />
+                  <label className='generallabel' >
+                   Registration:
+                  </label>
+                    <select
+                      list="registratonlist"
+                      name="Registration"
+                      id="Registration"
+                      className="currencydropdown"
+                      value={this.state.registration}
+                      onChange={this.handleChange.bind(this)}
+                      required
+                    > 
+                      <option>--Choose--</option>
+                      <option>enabled</option>
+                      <option>disabled</option>
                     </select>              
+                    <br></br>
+                    <br />
 
                   {this.state.isActive ? <p style={{color: "red"}}>{this.state.errorMessage}</p> : null}
                   {this.state.isActiveSuccess ? <p style={{color: "green"}}>{this.state.successMessage}</p> : null}
 
-                 <br /><br />
 
                  <button className="addButton">
                     Save
@@ -129,7 +149,9 @@ handleChange(event) {
       this.setState({ Currency: event.target.value }); 
   } else if (field === "Theme") {
       this.setState({ theme: event.target.value });
-  }
+  } else if (field === "Registration") {
+    this.setState({ registration: event.target.value });
+}
 }
 handleSubmit(event) {
 event.preventDefault();
@@ -140,7 +162,7 @@ axios({
     credentials: 'include',
     url: `${API_ENDPOINT}/api/setcurrency`,
     headers: { 'Content-Type': 'application/json' },
-    data: { currency: this.state.Currency, id: 1, theme: this.state.theme }
+    data: { currency: this.state.Currency, registration: this.state.registration, id: 1, theme: this.state.theme }
     
 }).then((response, props) => {
     console.log(response)
