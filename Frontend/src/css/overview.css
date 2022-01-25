@@ -146,8 +146,7 @@
 .gamesPreview {
     height: 245px;
     width: 200px;
-    min-width: 200px;
-    margin: 30px;
+    margin: 30px 60px 30px 60px;
     background: var(--background);
     border: var(--border);
     border-radius: 7px;

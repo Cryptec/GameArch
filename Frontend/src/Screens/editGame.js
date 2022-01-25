@@ -136,7 +136,7 @@ class EditGame extends Component {
         >
          <div className='addcontainer'>
           <div className='contentContainerInput'>
-            <div className='inputForm'>
+            <div className='inputFormAdd'>
               <div className='gamesPreview'>
                 <div
                   type='button'
@@ -173,7 +173,6 @@ class EditGame extends Component {
               <br />
                 <fieldset style={{
                   display: "flex",
-                  maxWidth: "230px",
                   flexDirection: "row",
                   justifyContent: "space-between"
                 }}>
@@ -226,7 +225,7 @@ class EditGame extends Component {
               <br />
               <br />
             </div>
-            <div className='inputForm'>
+            <div className='inputFormAdd'>
               <br />
               <br />
 

@@ -89,7 +89,7 @@ class AddGame extends Component {
         >
           <div className='addcontainer'>
             <div className='contentContainerInput'>
-              <div className='inputForm'>
+              <div className='inputFormAdd'>
                 <div className='gamesPreview'>
                   <div
                     type='button'
@@ -127,7 +127,6 @@ class AddGame extends Component {
                 <br />
                 <fieldset style={{
                   display: "flex",
-                  maxWidth: "230px",
                   flexDirection: "row",
                   justifyContent: "space-between"
                 }}>
@@ -181,7 +180,7 @@ class AddGame extends Component {
                 <br />
               </div>
 
-              <div className='inputForm'>
+              <div className='inputFormAdd'>
                 <br />
                 <br />
                 <label className='label'>
