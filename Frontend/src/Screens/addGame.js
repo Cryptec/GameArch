@@ -89,96 +89,6 @@ class AddGame extends Component {
         >
           <div className='addcontainer'>
             <div className='contentContainerInput'>
-              <div className='inputFormAdd'>
-                <div className='gamesPreview'>
-                  <div
-                    type='button'
-                    className='imgDelButton'
-                    onClick={() => this.removeImage()}
-                  >
-                    &#x2715;
-                  </div>
-
-                  <div className='imageWrapper' style={{ marginTop: '-25px' }}>
-                    <img
-                      src={this.state.preview}
-                      className='imagePreview'
-                      alt=''
-                    />
-                  </div>
-                  <div className='gameTitle'>{this.handleTitlePreview()}</div>
-
-                  <div className='bottomSection'>
-                    <div className='gamePrice'>
-                      {this.handlePricePreview()}&nbsp;
-                      <Rendercurrency />
-                    </div>
-                    {this.state.ownage === 'false' ? (
-                      <div className='ownagePreviewFalse'>
-                        {this.state.ownagePreviewFalse}
-                      </div>
-                    ) : (
-                      <div className='ownagePreviewOk'>
-                        {this.state.ownagePreviewOk}
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <br />
-                <fieldset style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between"
-                }}>
-                  <legend>Image:</legend>
-                  <input
-                    id='image'
-                    type='file'
-                    name='file'
-                    onChange={this.handleChange.bind(this)}
-                  />
-                </fieldset>
-                <br />
-                <br />
-                <div style={{ display: 'flex',
-                              flexDirection: 'row',
-                              justifyContent: 'space-between'}}>
-                <label className='label'>
-                  Region:
-                  <br />
-                  <select
-                    list='regionlist'
-                    name='region'
-                    id='region'
-                    style={{ width: "100px", paddingLeft: "8px" }}
-                    className='form-group-addgame'
-                    value={this.state.region}
-                    onChange={this.handleChange.bind(this)}
-                    required
-                  >
-                    <option>PAL</option>
-                    <option>NTSC</option>
-                    <option>NTSC-J</option>
-                    <option>NTSC-C</option>
-                  </select>
-                </label>
-                <label className='label'>
-                  Released:
-                  <br />
-                  <input
-                    className='form-group-addgame'
-                    style={{width: "80px"}}
-                    onChange={this.handleChange.bind(this)}
-                    id='released'
-                    value={this.state.released}
-                    type='text'
-                    required
-                  />
-                </label>
-                </div>
-                <br />
-                <br />
-              </div>
 
               <div className='inputFormAdd'>
                 <br />
@@ -289,6 +199,100 @@ class AddGame extends Component {
                   </label>
                 </fieldset>
               </div>
+
+              <div className='inputFormAdd'>
+                <div className='gamesPreview'>
+                  <div
+                    type='button'
+                    className='imgDelButton'
+                    onClick={() => this.removeImage()}
+                  >
+                    &#x2715;
+                  </div>
+
+                  <div className='imageWrapper' style={{ marginTop: '-25px' }}>
+                    <img
+                      src={this.state.preview}
+                      className='imagePreview'
+                      alt=''
+                    />
+                  </div>
+                  <div className='gameTitle'>{this.handleTitlePreview()}</div>
+
+                  <div className='bottomSection'>
+                    <div className='gamePrice'>
+                      {this.handlePricePreview()}&nbsp;
+                      <Rendercurrency />
+                    </div>
+                    {this.state.ownage === 'false' ? (
+                      <div className='ownagePreviewFalse'>
+                        {this.state.ownagePreviewFalse}
+                      </div>
+                    ) : (
+                      <div className='ownagePreviewOk'>
+                        {this.state.ownagePreviewOk}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <br />
+                <fieldset style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between"
+                }}>
+                  <legend>Image:</legend>
+                  <input
+                    id='image'
+                    type='file'
+                    name='file'
+                    onChange={this.handleChange.bind(this)}
+                  />
+                </fieldset>
+                <br />
+                <br />
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
+                }}>
+                  <label className='label'>
+                    Region:
+                    <br />
+                    <select
+                      list='regionlist'
+                      name='region'
+                      id='region'
+                      style={{ width: "100px", paddingLeft: "8px" }}
+                      className='form-group-addgame'
+                      value={this.state.region}
+                      onChange={this.handleChange.bind(this)}
+                      required
+                    >
+                      <option>PAL</option>
+                      <option>NTSC</option>
+                      <option>NTSC-J</option>
+                      <option>NTSC-C</option>
+                    </select>
+                  </label>
+                  <label className='label'>
+                    Released:
+                    <br />
+                    <input
+                      className='form-group-addgame'
+                      style={{ width: "80px" }}
+                      onChange={this.handleChange.bind(this)}
+                      id='released'
+                      value={this.state.released}
+                      type='text'
+                      required
+                    />
+                  </label>
+                </div>
+                <br />
+                <br />
+              </div>
+
             </div>
             <div className='bottomContainer'>
               <label className='label'>
