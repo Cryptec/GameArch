@@ -69,6 +69,7 @@ renderTableRows = () => {
        const id = game.id
        const title = game.title
        const price = game.price
+       const purchasedate = game.purchasedate
        const description = game.description
        const region = game.region
        const released = game.released
@@ -88,6 +89,7 @@ renderTableRows = () => {
               titlename: title,
               description: description,
               price: price,
+              purchasedate: purchasedate,
               id: id,
               filename: imageName,
               platform: platform,

@@ -24,6 +24,7 @@ class AddGame extends Component {
       ownagePreviewOk: '',
       ownagePreviewFalse: '',
       stars: '',
+      purchasedate: '',
       file: 'null',
       preview: null,
     }
@@ -137,67 +138,57 @@ class AddGame extends Component {
                 </label>
                 <br />
                 <label className='label'>
-                  Rating:
+                  Purchase date:
                   <br />
-                  <div
-                    className='star-rating'
+                  <input
+                    className='form-group-addgame'
                     onChange={this.handleChange.bind(this)}
-                  >
-                    <input type='radio' id='5-stars' name='rating' value='5' />
-                    <label htmlFor='5-stars' className='star'>
-                      &#9733;
-                    </label>
-                    <input type='radio' id='4-stars' name='rating' value='4' />
-                    <label htmlFor='4-stars' className='star'>
-                      &#9733;
-                    </label>
-                    <input type='radio' id='3-stars' name='rating' value='3' />
-                    <label htmlFor='3-stars' className='star'>
-                      &#9733;
-                    </label>
-                    <input type='radio' id='2-stars' name='rating' value='2' />
-                    <label htmlFor='2-stars' className='star'>
-                      &#9733;
-                    </label>
-                    <input type='radio' id='1-star' name='rating' value='1' />
-                    <label htmlFor='1-star' className='star'>
-                      &#9733;
-                    </label>
-                  </div>
+                    id='purchasedate'
+                    value={this.state.purchasedate}
+                    type='date'
+                    required
+                  />
                 </label>
                 <br />
-                <fieldset id='ownagefieldset' style={{ display: "flex", 
-                                                       flexDirection: "row", 
-                                                       justifyContent: "space-between"}}>
-                  <legend>I own:</legend>
-                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
-                    Module
-                    <input
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
+                }}>
+                  <label className='label'>
+                    Region:
+                    <br />
+                    <select
+                      list='regionlist'
+                      name='region'
+                      id='region'
+                      style={{ width: "100px", paddingLeft: "8px" }}
+                      className='form-group-addgame'
+                      value={this.state.region}
                       onChange={this.handleChange.bind(this)}
-                      id='ownage'
-                      value={this.state.ownage}
-                      type='checkbox'
+                      required
+                    >
+                      <option>PAL</option>
+                      <option>NTSC</option>
+                      <option>NTSC-J</option>
+                      <option>NTSC-C</option>
+                    </select>
+                  </label>
+                  <label className='label'>
+                    Released:
+                    <br />
+                    <input
+                      className='form-group-addgame'
+                      style={{ width: "80px" }}
+                      onChange={this.handleChange.bind(this)}
+                      id='released'
+                      value={this.state.released}
+                      type='text'
+                      required
                     />
                   </label>
-                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
-                    Box
-                    <input
-                      onChange={this.handleChange.bind(this)}
-                      id='box'
-                      value={this.state.box}
-                      type='checkbox'
-                    />
-                  </label>
-                  <label className='label' style={{ display: "flex", flexDirection: "column"}}>
-                    Manual
-                    <input
-                      onChange={this.handleChange.bind(this)}
-                      id='manual'
-                      value={this.state.manual}
-                      type='checkbox'
-                    />
-                  </label>
-                </fieldset>
+                </div>
+                <br />
               </div>
 
               <div className='inputFormAdd'>
@@ -250,45 +241,72 @@ class AddGame extends Component {
                   />
                 </fieldset>
                 <br />
+                <fieldset style={{ borderColor: '#f90' }}>
+                  <legend>Rating:</legend>
+                  <div
+                    className='star-rating'
+                    onChange={this.handleChange.bind(this)}
+                    style={{ fontSize: '2.5em' }}
+                  >
+                    <input type='radio' id='5-stars' name='rating' value='5' />
+                    <label htmlFor='5-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='4-stars' name='rating' value='4' />
+                    <label htmlFor='4-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='3-stars' name='rating' value='3' />
+                    <label htmlFor='3-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='2-stars' name='rating' value='2' />
+                    <label htmlFor='2-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='1-star' name='rating' value='1' />
+                    <label htmlFor='1-star' className='star'>
+                      &#9733;
+                    </label>
+                  </div>
+                </fieldset>
+
                 <br />
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
+                <fieldset id='ownagefieldset' style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between"
                 }}>
-                  <label className='label'>
-                    Region:
-                    <br />
-                    <select
-                      list='regionlist'
-                      name='region'
-                      id='region'
-                      style={{ width: "100px", paddingLeft: "8px" }}
-                      className='form-group-addgame'
-                      value={this.state.region}
-                      onChange={this.handleChange.bind(this)}
-                      required
-                    >
-                      <option>PAL</option>
-                      <option>NTSC</option>
-                      <option>NTSC-J</option>
-                      <option>NTSC-C</option>
-                    </select>
-                  </label>
-                  <label className='label'>
-                    Released:
-                    <br />
+                  <legend>I own:</legend>
+                  <label className='label' style={{ display: "flex", flexDirection: "column" }}>
+                    Module
                     <input
-                      className='form-group-addgame'
-                      style={{ width: "80px" }}
                       onChange={this.handleChange.bind(this)}
-                      id='released'
-                      value={this.state.released}
-                      type='text'
-                      required
+                      id='ownage'
+                      value={this.state.ownage}
+                      type='checkbox'
                     />
                   </label>
-                </div>
+                  <label className='label' style={{ display: "flex", flexDirection: "column" }}>
+                    Box
+                    <input
+                      onChange={this.handleChange.bind(this)}
+                      id='box'
+                      value={this.state.box}
+                      type='checkbox'
+                    />
+                  </label>
+                  <label className='label' style={{ display: "flex", flexDirection: "column" }}>
+                    Manual
+                    <input
+                      onChange={this.handleChange.bind(this)}
+                      id='manual'
+                      value={this.state.manual}
+                      type='checkbox'
+                    />
+                  </label>
+                </fieldset>
+
                 <br />
                 <br />
               </div>
@@ -328,6 +346,8 @@ class AddGame extends Component {
       this.setState({ title: event.target.value })
     } else if (field === 'price') {
       this.setState({ price: event.target.value })
+    } else if (field === 'purchasedate') {
+      this.setState({ purchasedate: event.target.value })
     } else if (field === 'region') {
       this.setState({ region: event.target.value })
     } else if (field === 'released') {
@@ -374,6 +394,7 @@ class AddGame extends Component {
     let data = new FormData()
     data.append('title', this.state.title)
     data.append('price', this.state.price)
+    data.append('purchasedate', this.state.purchasedate)
     data.append('platform', this.state.platform)
     data.append('ownage', this.state.ownage)
     data.append('region', this.state.region)
@@ -403,6 +424,7 @@ class AddGame extends Component {
           released: '',
           description: '',
           file: '',
+          purchasedate: ''
         })
         console.log('Successfully added game!')
       }

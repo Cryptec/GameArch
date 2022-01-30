@@ -39,7 +39,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             released text,
             ownage text,
             box text,
-            manual text
+            manual text,
+            purchasedate text
             )`,
             (err) => {
                 if (err) {

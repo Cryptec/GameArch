@@ -197,6 +197,7 @@ RenderOwnageState = () => {
               <div className="BodyContainer" style={{ color: 'var(--text-primary)', flexDirection: 'column' }}>
                 <div className="BodyContainerContentWraper">
                 <p>Region: {this.props.location.state.region}</p>
+                <p>Purchasedate: {this.props.location.state.purchasedate}</p>
                  <p>
                    <div>{this.state.module}</div>
                    <div>{this.state.box}</div>
@@ -222,6 +223,7 @@ RenderOwnageState = () => {
                   filename: this.props.location.state.filename,
                   title: this.props.location.state.titlename,
                   platform: this.props.location.state.platform,
+                  purchasedate: this.props.location.state.purchasedate,
                   price: this.props.location.state.price,
                   region: this.props.location.state.region,
                   released: this.props.location.state.released,

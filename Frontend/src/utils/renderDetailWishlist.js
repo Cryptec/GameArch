@@ -62,6 +62,7 @@ class RenderDetailWishlist extends Component {
             const id = game.id
             const title = game.title
             const price = game.price
+            const purchasedate = game.purchasedate
             const description = game.description
             const region = game.region
             const released = game.released
@@ -83,6 +84,7 @@ class RenderDetailWishlist extends Component {
                             titlename: title,
                             description: description,
                             price: price,
+                            purchasedate: purchasedate,
                             id: id,
                             filename: imageName,
                             platform: platform,
