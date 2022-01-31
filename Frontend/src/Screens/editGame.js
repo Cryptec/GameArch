@@ -17,7 +17,6 @@ class EditGame extends Component {
       platform: this.props.location.state.platform,
       price: this.props.location.state.price,
       purchasedate: this.props.location.state.purchasedate,
-      purchasedate: this.props.location.state.purchasedate,
       description: this.props.location.state.description,
       id: this.props.location.state.id,
       ownage: '',
@@ -210,7 +209,7 @@ class EditGame extends Component {
                       list='regionlist'
                       name='region'
                       id='region'
-                      style={{ width: "100px", paddingLeft: "8px" }}
+                      style={{ width: "130px", paddingLeft: "8px" }}
                       className='form-group-addgame'
                       value={this.state.region}
                       onChange={this.handleChange.bind(this)}
@@ -227,7 +226,7 @@ class EditGame extends Component {
                     <br />
                     <input
                       className='form-group-addgame'
-                      style={{ width: "80px" }}
+                      style={{ width: "130px" }}
                       onChange={this.handleChange.bind(this)}
                       id='released'
                       value={this.state.released}

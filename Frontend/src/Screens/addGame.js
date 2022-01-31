@@ -162,7 +162,7 @@ class AddGame extends Component {
                       list='regionlist'
                       name='region'
                       id='region'
-                      style={{ width: "100px", paddingLeft: "8px" }}
+                      style={{ width: "130px", paddingLeft: "8px" }}
                       className='form-group-addgame'
                       value={this.state.region}
                       onChange={this.handleChange.bind(this)}
@@ -179,7 +179,7 @@ class AddGame extends Component {
                     <br />
                     <input
                       className='form-group-addgame'
-                      style={{ width: "80px" }}
+                      style={{ width: "130px" }}
                       onChange={this.handleChange.bind(this)}
                       id='released'
                       value={this.state.released}
