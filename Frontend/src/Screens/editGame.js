@@ -235,11 +235,41 @@ class EditGame extends Component {
                     />
                   </label>
                 </div>
+                <fieldset style={{ borderColor: '#f90' }}>
+                  <legend>Rating:</legend>
+                  <div
+                    className='star-rating'
+                    onChange={this.handleChange.bind(this)}
+                    style={{ fontSize: '2.5em' }}
+                  >
+                    <input type='radio' id='5-stars' name='rating' value='5' />
+                    <label htmlFor='5-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='4-stars' name='rating' value='4' />
+                    <label htmlFor='4-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='3-stars' name='rating' value='3' />
+                    <label htmlFor='3-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='2-stars' name='rating' value='2' />
+                    <label htmlFor='2-stars' className='star'>
+                      &#9733;
+                    </label>
+                    <input type='radio' id='1-star' name='rating' value='1' />
+                    <label htmlFor='1-star' className='star'>
+                      &#9733;
+                    </label>
+                  </div>
+                </fieldset>
               <br />
                 
             </div>
 
               <div className='inputFormAdd'>
+              <br />
                 <div className='gamesPreview'>
                   <div
                     type='button'
@@ -287,37 +317,7 @@ class EditGame extends Component {
                     onChange={this.handleChange.bind(this)}
                   />
                 </fieldset>
-                <br />
-                <fieldset style={{ borderColor: '#f90' }}>
-                  <legend>Rating:</legend>
-                  <div
-                    className='star-rating'
-                    onChange={this.handleChange.bind(this)}
-                    style={{ fontSize: '2.5em' }}
-                  >
-                    <input type='radio' id='5-stars' name='rating' value='5' />
-                    <label htmlFor='5-stars' className='star'>
-                      &#9733;
-                    </label>
-                    <input type='radio' id='4-stars' name='rating' value='4' />
-                    <label htmlFor='4-stars' className='star'>
-                      &#9733;
-                    </label>
-                    <input type='radio' id='3-stars' name='rating' value='3' />
-                    <label htmlFor='3-stars' className='star'>
-                      &#9733;
-                    </label>
-                    <input type='radio' id='2-stars' name='rating' value='2' />
-                    <label htmlFor='2-stars' className='star'>
-                      &#9733;
-                    </label>
-                    <input type='radio' id='1-star' name='rating' value='1' />
-                    <label htmlFor='1-star' className='star'>
-                      &#9733;
-                    </label>
-                  </div>
-                </fieldset>
-                <br />
+                <br /><br />
                 <fieldset id='ownagefieldset' style={{
                   display: "flex",
                   flexDirection: "row",
