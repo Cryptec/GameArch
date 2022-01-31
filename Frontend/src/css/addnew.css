@@ -105,9 +105,10 @@ fieldset {
   flex-direction: row-reverse;
   font-size:2em;
   justify-content:space-around;
-  padding:0 .2em;
+  padding:0 .9em 0 .9em;
+  margin-top: -8px;
   text-align:center;
-  width:5em;
+  width:auto;
 }
 
 .star-rating input {
