@@ -33,16 +33,13 @@ async componentDidMount() {
   render() {
 
     return (
-      <div>
-
-        <div className="overviewContainer" style={{overflow: 'hidden'}}>
-        <h3>Last added:</h3>
-         <div style={{flexDirection: 'row', display: 'flex', flexDirection: 'row-reverse'}}>
+      
+      <div className="overviewContainer" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column'}}>
+        <h3 style={{ color: 'var(--text-primary)', marginLeft: '8px' }}>last added:</h3>
+         <div style={{ display: 'flex', flexDirection: 'row-reverse', marginRight: 'auto'}}>
            {this.renderGames()}
          </div>
         </div>
-
-      </div>
     )
 }
 
@@ -87,7 +84,7 @@ renderGames = () => {
                              wishlist: wishlist,
                              stars: stars }
                   }} >
-        <div className="imageWrapper" style={{margin: '12px', border: 'var(--border)'}}>
+        <div className="imageWrapper" style={{margin: '8px', border: 'var(--border)'}}>
         
             {imageName !== "null" ? <img src={`${url}`} alt="" className="imagePreview" />
               : <img src={`${ImagePlaceholder}`} alt="" className="imagePreview" />}
