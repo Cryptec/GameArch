@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../../assets/imageplaceholder.png'
-import Rendercurrency from '../../utils/renderCurrency'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
