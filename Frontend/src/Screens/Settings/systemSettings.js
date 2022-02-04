@@ -54,6 +54,10 @@ render() {
          </div>
          <br />
          <br />
+         <div>
+            email setup:
+         </div>
+         <br />
             <div>
                 You can send an email to test everyting is setup correctly.
                 If you hit 'Send' you should receive an email to <b>{this.state.email}</b>.
