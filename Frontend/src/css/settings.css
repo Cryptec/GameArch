@@ -34,6 +34,13 @@
     padding-bottom: 20px;
 }
 
+.systemcontent {
+    color: var(--text-primary);
+    margin-top: 50px;
+    margin-left: -50px;
+    padding-bottom: 20px;
+}
+
 .userlabel {
     display: inline-block;
     width: 150px;

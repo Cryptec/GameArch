@@ -47,18 +47,18 @@ render() {
            
            <div className="sectionDescription">System:</div>
            
-           <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="passwordInput">
+           <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="systemcontent">
 
-           <div>
+         <div>
             version:<b> {VERSION_NUMBER}</b>
          </div>
          <br />
          <br />
-            <div>You can send an email to test everyting is setup correctly.
-                 If you hit 'Send' you should receive an email to <b>{this.state.email}</b>.</div>
-                 <br />
-                 <p className='infotext'> &#9432; This setup is required for the 'forgot password' functionality.</p>
-          <br />
+            <div>
+                You can send an email to test everyting is setup correctly.
+                If you hit 'Send' you should receive an email to <b>{this.state.email}</b>.
+            </div>
+            <p className='infotext'> &#9432; This setup is required for the 'forgot password' functionality.</p>
           <br />
           <button className='addButton'>Send</button>
 
@@ -103,29 +103,6 @@ render() {
         this.handleShow()
       }
     })
-  }
-
-  handleChange(event) {
-    const field = event.target.id
-    if (field === 'password') {
-        this.setState({ password: event.target.value })
-      } else if (field === 'confirm_password') {
-        this.setState({ confirm_password: event.target.value })
-      } else if (field === 'change_email') {
-        this.setState({ email: event.target.value })
-      }
-  }
-  handleConfirmPassword = (event) => {
-    if (this.state.password !== null) {
-      document.getElementById("confirm_password").required = true;
-      this.setState({
-        errorMessage: "Please confirm the password"
-      })
-      if (event.target.value !== this.state.regpassword) {
-        console.log('error')
-        this.setState({ regconfirm_password: event.target.value })
-      }
-    } 
   }
 }
 
