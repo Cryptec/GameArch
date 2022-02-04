@@ -43,3 +43,11 @@
     display: inline-block;
     width: 90px;    
 }
+
+.infotext {
+    border-radius: 7px;
+    background-color: rgb(238, 183, 43);
+    color: black;
+    padding: 10px;
+    width: fit-content;
+}

@@ -259,4 +259,39 @@ router.post('/logout', function(req, res, next) {
   res.end()
 });
 
+router.post('/testemail', checkAuthentication, async (req, res) => {
+  var data = {
+    email: req.body.email
+}
+  var params = [data.email]
+  var sql = "SELECT * FROM Users WHERE email =? LIMIT 1"
+  db.get(sql, params, (err, row) => {
+    if (row) {
+      res.send({"answer":"Success"});
+      console.log("Exist")
+
+      const mail = {
+        from: mailemail,
+        to: data.email,
+        subject: "GameArch email test",
+        html: `<p>
+                  <p>Hi there,</p>
+                  <p>if you received this email, everything is working fine!</p>
+                  <p>your Mailrobot</p>
+              </p>`
+      };
+      contactEmail.sendMail(mail, (error) => {
+        if (error) {
+          res.json({ status: "failed" });
+        } else {
+          res.json({ status: "sent" });
+        }
+      });
+      return;
+    } else if (!row)
+    return res.json({"answer":"UserError"})
+    console.log("Dont exist")
+  });
+});
+
 module.exports = router;

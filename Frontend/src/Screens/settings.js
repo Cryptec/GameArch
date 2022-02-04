@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../css/settings.css'
 import GeneralSettings from './Settings/generalSettings';
+import SystemSettings from './Settings/systemSettings';
 import UserSettings from './Settings/userSettings';
 
 
@@ -23,9 +24,7 @@ render() {
           <br />
           <UserSettings />
           <br />
-          <div className="overviewContainer" style={{ color: 'var(--text-primary)' }}>
-            version: 0.6.0
-         </div>
+          <SystemSettings />
       </div>
       </div>
     )
