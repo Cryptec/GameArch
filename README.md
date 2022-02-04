@@ -24,4 +24,5 @@ First, you can edit the two dotenv files in the root of the project for enabling
 1. `yarn install` install the dependencys.
 2. `yarn start` in the Frontend directory starts the react app on port 3000.
 3. `yarn start` in the Backend directory starts the express server on port 5000.
+4. `yarn build` in the Frontend directory trigger a production build for the Frontend.
 
