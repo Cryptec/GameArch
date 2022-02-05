@@ -20,7 +20,7 @@ class LastAdded extends Component {
 
 async componentDidMount() {
   this.setState({ isLoading: true, file: ImagePlaceholder })
-  const response = await fetch(`${API_ENDPOINT}/api/gamedata/${this.state.filter}`, {credentials: 'include'})
+  const response = await fetch(`${API_ENDPOINT}/api/gamedata`, {credentials: 'include'})
   if (response.ok) {
     const games = await response.json()
     this.setState({ games, isLoading: false })
@@ -32,14 +32,13 @@ async componentDidMount() {
   render() {
 
     return (
-      <div className="overviewContainer" style={{paddingRight: '10px'}}>
+ 
       <div style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column'}}>
         <h3 style={{ color: 'var(--text-primary)', marginLeft: '8px' }}>last added:</h3>
          <div style={{ display: 'flex', flexDirection: 'row-reverse', marginRight: 'auto'}}>
            {this.renderGames()}
          </div>
         </div>
-      </div>
     )
 }
 
