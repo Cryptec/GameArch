@@ -112,7 +112,7 @@ renderTableRows = () => {
                <br />
                <div style={styles.platform}>{game.platform}</div>
           </td>
-          <td>{game.ownage}</td>
+          <td>{game.purchasedate}</td>
           <td><div style={styles.price}>{game.price}&nbsp;<Rendercurrency /></div></td>
         </tr>
       )
