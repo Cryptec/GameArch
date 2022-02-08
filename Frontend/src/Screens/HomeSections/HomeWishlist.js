@@ -30,8 +30,19 @@ class HomeWishlist extends Component {
     }
 
     render() {
+        const { games, isLoading, isError } = this.state
 
-        return (
+    if (isLoading) {
+      return <div id="contentpage">Loading...</div>
+    }
+
+    if (isError) {
+      return <div id="contentpage">Error</div>
+    }
+
+    return games.length > 0
+      ? (
+
 
             <div style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                 <h3 style={{ color: 'var(--text-primary)', marginLeft: '8px' }}>wishlist:</h3>
@@ -39,6 +50,8 @@ class HomeWishlist extends Component {
                     {this.renderGames()}
                 </div>
             </div>
+        ) : (
+            null
         )
     }
 

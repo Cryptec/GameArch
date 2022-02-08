@@ -8,8 +8,10 @@ function Entry() {
 
       <div id="contentpage">
       <div className="overviewContainer">
+      <div style={{display: 'flex', flexDirection: 'column'}}>
         <LastAdded />
         <HomeWishlist />
+      </div>
       </div>
       </div>
 
