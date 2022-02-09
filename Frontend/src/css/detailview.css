@@ -150,7 +150,7 @@
   
   #detailtblData td, #detailtblData th {
     border-bottom: var(--table-border);
-    padding: 1px 1px 1px 7px;
+    padding: 0px 0px 0px 7px;
     width: 25%;
     min-width: 140px;
   }
@@ -171,6 +171,11 @@
       display: flex;
       flex-direction: row;
   }
+
+  .tdTitle {
+      font-weight: bold;
+  }
+
   .detailtable {
     background-color: var(--table-background);
     padding: 0px;

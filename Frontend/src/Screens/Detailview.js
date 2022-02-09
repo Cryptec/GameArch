@@ -256,7 +256,7 @@ class Detailview extends Component {
                   <div className='detailtable'>
                     <tbody id='detailtblData'>
                       <tr>
-                        <td>In possession:</td>
+                        <td className='tdTitle'>In possession:</td>
                         <td>
                           {this.state.module}
                           {this.state.box}
@@ -264,15 +264,15 @@ class Detailview extends Component {
                         </td>
                       </tr>
                       <tr>
-                        <td>Region:</td>
+                        <td className='tdTitle'>Region:</td>
                         <td>{this.props.location.state.region}</td>
                       </tr>
                       <tr>
-                        <td>Purchasedate:</td>
+                        <td className='tdTitle'>Purchasedate:</td>
                         <td>{this.props.location.state.purchasedate}</td>
                       </tr>
                       <tr>
-                        <td>Price:</td>
+                        <td className='tdTitle'>Price:</td>
                         <td id='price'>
                           {this.props.location.state.price}&nbsp;{currency}
                         </td>
@@ -280,21 +280,21 @@ class Detailview extends Component {
                     </tbody>
                     <tbody id='detailtblData'>
                       <tr>
-                        <td>Platform:</td>
+                        <td className='tdTitle'>Platform:</td>
                         <td>
                           {this.props.location.state.platform}
                         </td>
                       </tr>
                       <tr>
-                        <td>Rating:</td>
+                        <td className='tdTitle'>Rating:</td>
                         <td>{this.props.location.state.stars}</td>
                       </tr>
                       <tr>
-                        <td>Released:</td>
+                        <td className='tdTitle'>Released:</td>
                         <td>{this.props.location.state.released}</td>
                       </tr>
                       <tr>
-                        <td>Wishlist:</td>
+                        <td className='tdTitle'>Wishlist:</td>
                         <td>
                           {this.props.location.state.wishlist}
                         </td>
