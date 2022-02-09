@@ -33,9 +33,9 @@ async componentDidMount() {
 
     return (
  
-      <div style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column'}}>
+      <div >
         <h3 style={{ color: 'var(--text-primary)', marginLeft: '8px' }}>last added:</h3>
-         <div style={{ display: 'flex', flexDirection: 'row-reverse', marginRight: 'auto'}}>
+         <div style={{ display: 'flex', flexDirection: 'row-reverse', marginRight: 'auto', justifyContent: 'flex-end'}}>
            {this.renderGames()}
          </div>
         </div>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import Rendercurrency from '../utils/renderCurrency'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 
+
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
 
@@ -117,19 +118,19 @@ RenderOwnageState = () => {
   const manual = this.props.location.state.manual
 
   if (ownage === "true") {
-    this.setState({ module: "Module: ✓" })
+    this.setState({ module: "Module" })
   } else {
-    this.setState({ module: "Module: X" })
+    this.setState({ module: "" })
   }
   if (box === "true") {
-    this.setState({ box: "Box: ✓" })
+    this.setState({ box: ", Box" })
   } else {
-    this.setState({ box: "Box: X" })
+    this.setState({ box: "" })
   }
   if (manual === "true") {
-    this.setState({ manual: "Manual: ✓" })
+    this.setState({ manual: ", Manual" })
   } else {
-    this.setState({ manual: "Manual: X" })
+    this.setState({ manual: "" })
   }
   if (ownage && box && manual === "true" ) {
     this.setState({ cib: "CiB" })
@@ -190,22 +191,38 @@ RenderOwnageState = () => {
                 </div>
               </div>
               <br /><br />
+              <div className="BodyContainer" style={{ color: 'var(--text-primary)', flexDirection: 'column' }}>
+                <div className="BodyContainerContentWraper">
+                <div className="detailtable">
+<tbody id="detailtblData">
+<tr>
+  <td>In possession:</td>
+  <td>{this.state.module}{this.state.box}{this.state.manual}</td>
+</tr>
+<tr>
+  <td>Region:</td>
+  <td>{this.props.location.state.region}</td>
+</tr>
+<tr>
+  <td>Purchasedate:</td>
+  <td>{this.props.location.state.purchasedate}</td>
+</tr>
+<tr>
+  <td>Price:</td>
+  <td id='price'>{this.props.location.state.price}&nbsp;{currency}</td>
+</tr>
+</tbody>
+</div>
+                </div>
+              </div>
+              <br /><br />
               <div className="descriptionContainer">
+
+
                 <div style={{ color: 'var(--text-primary)' }}>{this.props.location.state.description}</div>
               </div>
               <br />
-              <div className="BodyContainer" style={{ color: 'var(--text-primary)', flexDirection: 'column' }}>
-                <div className="BodyContainerContentWraper">
-                <p>Region: {this.props.location.state.region}</p>
-                <p>Purchasedate: {this.props.location.state.purchasedate}</p>
-                 <p>
-                   <div>{this.state.module}</div>
-                   <div>{this.state.box}</div>
-                   <div>{this.state.manual}</div>
-                 </p>
-                </div>
-                <div className="gamePriceDetail">{this.props.location.state.price}&nbsp;{currency}</div>
-              </div>
+
 
 
             </div>
