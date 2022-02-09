@@ -192,6 +192,12 @@ RenderOwnageState = () => {
               </div>
               <br /><br />
               <div className="BodyContainer" style={{ color: 'var(--text-primary)', flexDirection: 'column' }}>
+              <div className="descriptionContainer">
+
+
+<div style={{ color: 'var(--text-primary)' }}>{this.props.location.state.description}</div>
+</div>
+<br />
                 <div className="BodyContainerContentWraper">
                 <div className="detailtable">
 <tbody id="detailtblData">
@@ -216,12 +222,6 @@ RenderOwnageState = () => {
                 </div>
               </div>
               <br /><br />
-              <div className="descriptionContainer">
-
-
-                <div style={{ color: 'var(--text-primary)' }}>{this.props.location.state.description}</div>
-              </div>
-              <br />
 
 
 
