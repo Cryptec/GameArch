@@ -5,7 +5,7 @@ import '../../css/settings.css'
 
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
-const VERSION_NUMBER = '0.7.0'
+const VERSION_NUMBER = '0.7.2'
 
 
 class SystemSettings extends Component {

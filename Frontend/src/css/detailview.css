@@ -64,7 +64,7 @@
     font-size: medium;
     width: fit-content;
     border-radius: 7px;
-    color: var( --text-primary);
+    color: white;
     margin: 6px 8px;
     cursor: pointer;
     display: flex;
@@ -78,7 +78,7 @@
     font-size: medium;
     width: fit-content;
     border-radius: 7px;
-    color: var( --text-primary);
+    color: white;
     margin: 6px 8px;
     cursor: pointer;
     display: flex;
@@ -150,8 +150,9 @@
   
   #detailtblData td, #detailtblData th {
     border-bottom: var(--table-border);
-    padding: 2px;
-    width: 200px;
+    padding: 1px 1px 1px 7px;
+    width: 25%;
+    min-width: 140px;
   }
   
   #detailtblData tr:nth-child(even){background-color: var(--table-background-secondary) }
@@ -175,4 +176,6 @@
     padding: 0px;
     border-radius: 6px;
     border: var(--border);
+    flex-direction: row;
+    display: flex;
   }
