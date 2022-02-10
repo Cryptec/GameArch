@@ -247,9 +247,6 @@ class Detailview extends Component {
                 </div>
               <div
                 className='BodyContainer'
-                style={{
-                  color: 'var(--text-primary)'
-                }}
               >
                 <br />
                 <div className='BodyContainerContentWraper'>
