@@ -141,8 +141,8 @@
 #detailtblData {
     border-collapse: collapse;
     width: 100%;
-    border: var(--table-border);
     color: var(--text-primary); 
+    border: var(--border);
   }
 #detailtblData tr {
   line-height: 40px;
@@ -164,7 +164,7 @@
     padding-bottom: 10px;
     text-align: left;
     background-color: var(--content-background);
-    color: var(--text-primary); ;
+    color: var(--text-primary);
  
   }
   #price {
@@ -180,7 +180,6 @@
     background-color: var(--table-background);
     padding: 0px;
     border-radius: 6px;
-    border: var(--border);
     flex-direction: row;
     display: flex;
   }
