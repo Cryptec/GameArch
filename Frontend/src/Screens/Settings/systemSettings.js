@@ -43,7 +43,7 @@ render() {
     return (
       <div>
     
-          <div className="overviewContainer">
+          <div className="overviewContainer" style={{display: 'block'}}>
            
            <div className="sectionDescription">System:</div>
            

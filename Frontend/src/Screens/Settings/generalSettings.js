@@ -56,7 +56,7 @@ render() {
     return (
       <div>
     
-          <div className="overviewContainer">
+          <div className="overviewContainer" style={{display: 'block'}}>
            
           <div className="sectionDescription">General:</div>
            <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="currencyInput" >
