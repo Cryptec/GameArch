@@ -17,11 +17,11 @@
     box-sizing: border-box;
     flex-wrap : wrap;
     padding: 0px 20px 0px 20px;
+    font-size: 17.5px;
 }
 .BodyContainer {
     flex-direction: row;
     display: flex;
-    box-sizing: border-box;
     flex-wrap : wrap;
 }
 .BodyContainerContentWraper {
@@ -139,8 +139,6 @@
 
 
 #detailtblData {
-    border-collapse: collapse;
-    width: 100%;
     color: var(--text-primary); 
     border: var(--border);
   }
@@ -150,8 +148,7 @@
   
   #detailtblData td, #detailtblData th {
     border-bottom: var(--table-border);
-    padding: 0px 0px 0px 7px;
-    width: 25%;
+    padding: 0px 7px 0px 7px;
     min-width: 140px;
   }
   
@@ -176,10 +173,14 @@
       font-weight: bold;
   }
 
+  .tdContent {
+      width: auto;
+  }
   .detailtable {
     background-color: var(--table-background);
     padding: 0px;
     border-radius: 6px;
     flex-direction: row;
     display: flex;
+    flex-wrap: wrap;
   }

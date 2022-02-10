@@ -239,25 +239,25 @@ class Detailview extends Component {
               </div>
               <br />
               <br />
-              <div
-                className='BodyContainer'
-                style={{
-                  color: 'var(--text-primary)',
-                  flexDirection: 'column',
-                }}
-              >
-                <div className='descriptionContainer'>
+              <div className='descriptionContainer'>
                   <div style={{ color: 'var(--text-primary)' }}>
                     {this.props.location.state.description}
                   </div>
+                   <br />
                 </div>
+              <div
+                className='BodyContainer'
+                style={{
+                  color: 'var(--text-primary)'
+                }}
+              >
                 <br />
                 <div className='BodyContainerContentWraper'>
                   <div className='detailtable'>
                     <tbody id='detailtblData'>
                       <tr>
                         <td className='tdTitle'>In possession:</td>
-                        <td>
+                        <td className='tdContent'>
                           {this.state.module}
                           {this.state.box}
                           {this.state.manual}
@@ -265,15 +265,15 @@ class Detailview extends Component {
                       </tr>
                       <tr>
                         <td className='tdTitle'>Region:</td>
-                        <td>{this.props.location.state.region}</td>
+                        <td className='tdContent'>{this.props.location.state.region}</td>
                       </tr>
                       <tr>
                         <td className='tdTitle'>Purchasedate:</td>
-                        <td>{this.props.location.state.purchasedate}</td>
+                        <td className='tdContent'>{this.props.location.state.purchasedate}</td>
                       </tr>
                       <tr>
                         <td className='tdTitle'>Price:</td>
-                        <td id='price'>
+                        <td id='price' className='tdContent'>
                           {this.props.location.state.price}&nbsp;{currency}
                         </td>
                       </tr>
@@ -281,21 +281,21 @@ class Detailview extends Component {
                     <tbody id='detailtblData'>
                       <tr>
                         <td className='tdTitle'>Platform:</td>
-                        <td>
+                        <td className='tdContent'>
                           {this.props.location.state.platform}
                         </td>
                       </tr>
                       <tr>
                         <td className='tdTitle'>Rating:</td>
-                        <td>{this.props.location.state.stars}</td>
+                        <td className='tdContent'>{this.props.location.state.stars}/5</td>
                       </tr>
                       <tr>
                         <td className='tdTitle'>Released:</td>
-                        <td>{this.props.location.state.released}</td>
+                        <td className='tdContent'>{this.props.location.state.released}</td>
                       </tr>
                       <tr>
                         <td className='tdTitle'>Wishlist:</td>
-                        <td>
+                        <td className='tdContent'>
                           {this.props.location.state.wishlist}
                         </td>
                       </tr>
