@@ -6,7 +6,8 @@
     flex-direction: row;
     display: flex;
     box-sizing: border-box;
-    flex-wrap : wrap
+    flex-wrap : wrap;
+    min-width: 300px;
 }
 .contentContainerInputForm {
     background-color: var(--container-background);
