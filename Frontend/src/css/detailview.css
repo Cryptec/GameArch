@@ -152,7 +152,7 @@
 td {
   white-space:nowrap;
 }
-td:last-child {
+#detailtblData td:last-child {
   width:100%;
 }
   
