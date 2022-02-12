@@ -142,14 +142,16 @@
 
 #detailtblData {
     color: var(--text-primary); 
-    border: var(--border);
     width: 49%;
-    min-width: 360px;
+    min-width: 340px;
+    border-collapse: collapse;
   }
 #detailtblData tr {
   line-height: 40px;
+  border: var(--border);
+  
 }
-td {
+#detailtblData td {
   white-space:nowrap;
 }
 #detailtblData td:last-child {
@@ -157,9 +159,8 @@ td {
 }
   
   #detailtblData td, #detailtblData th {
-    border-bottom: var(--table-border);
+    
     padding: 0px 7px 0px 7px;
-    min-width: 180px;
   }
   #detailtblData tr:nth-child(even){background-color: var(--table-background-secondary) }
   
@@ -173,19 +174,11 @@ td {
     color: var(--text-primary);
  
   }
-  #price {
-      display: flex;
-      flex-direction: row;
-  }
 
   .tdTitle {
       font-weight: bold;
-      width: 180px;
-      min-width: 180px;
-  }
-
-  .tdContent {
-      min-width: 180px;
+      min-width: 150px;
+      
   }
   .detailtable {
     background-color: var(--table-background);

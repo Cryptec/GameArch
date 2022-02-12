@@ -270,8 +270,8 @@ class Detailview extends Component {
                       </tr>
                       <tr>
                         <td className='tdTitle'>Price:</td>
-                        <td id='price' className='tdContent'>
-                          {this.props.location.state.price}&nbsp;{currency}
+                        <td className='tdContent'>
+                          <div style={{display: 'inline-flex'}}>{this.props.location.state.price}&nbsp;{currency}</div>
                         </td>
                       </tr>
                     </tbody>
