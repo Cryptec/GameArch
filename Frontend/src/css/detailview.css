@@ -142,7 +142,7 @@
 
 #detailtblData {
     color: var(--text-primary); 
-    width: 49%;
+    width: 50%;
     min-width: 340px;
     border-collapse: collapse;
   }
