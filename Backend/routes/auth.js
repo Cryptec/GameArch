@@ -51,13 +51,23 @@ router.post('/register', async (req, res) => {
 
   // Validate
   const {error} = Joi.validate(req.body, schema)
-  if (error){
-    res.json({ "answer": "password_too_short"});
-    res.status(400)
-  } else {
-  const result = await register_user(req.body.name, req.body.email, req.body.password, res)
-  res.json({success: result, "answer": "successfully_registered"})
-  }
+
+  db.get(`SELECT * FROM Settings WHERE registration = ?`, ['disabled'], async (err, setting) => {
+    if (setting) {
+      console.log("registration is disabled!")
+      res.json({ "answer": "registration is disabled!" });
+      res.status(400)
+    } else {
+      if (error) {
+        res.json({ "answer": "password_too_short" });
+        res.status(400)
+      } else {
+        const result = await register_user(req.body.name, req.body.email, req.body.password, res)
+        res.json({ success: result, "answer": "successfully_registered" })
+      }
+    }
+  })
+
 })
 
 router.post('/forgot', async (req, res) => {
