@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+<center><h1>Game<b>Arch</b></h2></center>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- MarkdownTOC autolink="true" -->
+- [About](#About)
+- [Getting Started](#Getting-Started)
+  - [Commands](#Basic-Commands)
+- [Installation](#Getting-Started)
+  - [Self hosted](#Self-hosted)
+  - [Custom variables](#Self-hosted)
+<!-- /MarkdownTOC -->
+## About
 
-## Available Scripts
+GameArch (Game Archive) is a self-hosted open-source lool for your videogame collection. 
 
-In the project directory, you can run:
 
-### `yarn start`
+want to contribute? simply open a PR in the ```development``` branch, or get in touch. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+NOTE:
+The project is at a very early stage, so don´t expect it to work as it should already.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `yarn test`
+First, you can edit the two dotenv files in the root of the project for enabling / disabling the auto open for Browsers, and in the Backend folder to set the credentials for the Nodemailer, the initial created User and so on.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Basic Commands
+1. `yarn install` install the dependencys.
+2. `yarn start` in the Frontend directory starts the react app on port 3000.
+3. `yarn start` in the Backend directory starts the express server on port 5000.
+4. `yarn build` in the Frontend directory trigger a production build for the Frontend.
 
-### `yarn build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Self hosted
+1. clone the `main` branch to your machine with ` git clone   https://github.com/Cryptec/GameArch.git` and change the directory with `cd GameArch`.
+2. switch to the Frontend directory with `cd Frontend`, followed by `yarn install` install the dependencys. Repeat this in the Backend directory.
+3. in both directorys change the name of `example.env` to `.env`. To edit the files use your favourite editor like <code>nano</code>. <b>it is important to set the email settings, otherwise the reset password function will not work!</b>
+4. `yarn start` in the Backend directory starts the express server on port 5000.
+5. `yarn build` in the Frontend directory trigger a production build for the Frontend.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Custom variables
+1. define the platforms/consoles for your needs in   `/Frontend/src/utils/platforms.js`
