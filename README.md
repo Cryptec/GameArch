@@ -1,4 +1,4 @@
-# GameArch
+<center><h1>Game<b>Arch</b></h2></center>
 
 <!-- MarkdownTOC autolink="true" -->
 - [About](#About)
@@ -10,7 +10,7 @@
 <!-- /MarkdownTOC -->
 ## About
 
-GameArch (Game Archive) is an open-source Tool for your videogame collection.
+GameArch (Game Archive) is a self-hosted open-source lool for your videogame collection. 
 
 
 want to contribute? simply open a PR in the ```development``` branch, or get in touch. 
@@ -38,3 +38,4 @@ First, you can edit the two dotenv files in the root of the project for enabling
 5. `yarn build` in the Frontend directory trigger a production build for the Frontend.
 
 ### Custom variables
+1. define the platforms/consoles for your needs in   `/Frontend/src/utils/platforms.js`
