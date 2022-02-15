@@ -28,7 +28,7 @@ class Detailview extends Component {
       stars: '',
       file: '',
       filename: '',
-      title: '',
+      title: this.props.match.params.objecttitle,
       module: '',
       manual: '',
       box: '',
@@ -38,7 +38,6 @@ class Detailview extends Component {
 
   async componentDidMount() {
     this.fetchGame()
-    this.renderGame()
     this.fetchWishlist();
     this.handleStarsPreview();
     this.RenderOwnageState();
@@ -66,11 +65,27 @@ class Detailview extends Component {
   };
 
   fetchGame = async () => {
-    this.setState({ isLoading: true, file: ImagePlaceholder })
+    this.setState({ file: ImagePlaceholder })
     const response = await fetch(`${API_ENDPOINT}/api/detail/${this.props.match.params.objecttitle}`, {credentials: 'include'})
     if (response.ok) {
       const game = await response.json()
-      this.setState({ game, isLoading: false })
+      return this.setState({ 
+        id: game.id,
+        filename: game.filename,
+        title: game.title,
+        price: game.price,
+        purchasedate: game.purchasedate,
+        description: game.description,
+        region: game.region,
+        released: game.released,
+        ownage: game.ownage,
+        manual: game.manual,
+        box: game.box,
+        platform: game.platform,
+        wishlist: game.iswishlist,
+        stars: game.stars,
+        gameTitle: this.state.title
+       });
     } else {
       this.setState({ isError: true, isLoading: false })
     }
@@ -161,37 +176,6 @@ class Detailview extends Component {
       this.setState({ manual: '' });
     }
   };
-
-renderGame = () => {
-  const { game } = this.state
-
-  return game.length > 0
-            ? (this.state.game.map(detail => {
-
-    return  this.setState({
-      id: detail.id,
-      imageName: detail.filename,
-      title: detail.title,
-      price: detail.price,
-      purchasedate: detail.purchasedate,
-      description: detail.description,
-      region: detail.region,
-      released: detail.released,
-      ownage: detail.ownage,
-      manual: detail.manual,
-      box: detail.box,
-      platform: detail.platform,
-      wishlist: detail.iswishlist,
-      stars: detail.stars,
-      gameTitle: this.state.title })
-
-    })
-            ) : (
-                console.log("error fetching game")
-            )
-}
-
-
 
   render() {
     
