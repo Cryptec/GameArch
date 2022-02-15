@@ -5,24 +5,40 @@ import { Link } from 'react-router-dom';
 import Rendercurrency from '../utils/renderCurrency';
 import ImagePlaceholder from '../assets/imageplaceholder.png';
 
-const API_ENDPOINT =
-  process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/';
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000';
 
 class Detailview extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      game: [],
+      imageName: '',
+      price: '',
+      purchasedate: '',
+      description: '',
+      region: '',
+      released: '',
+      ownage: '',
+      platform: '',
+      wishlist: '',
+      url: '',
+      gameTitle: '',
       wishstate: '',
-      id: this.props.location.state.id,
-      filename: this.props.location.state.filename,
+      id: '',
+      stars: '',
+      file: '',
+      filename: '',
+      title: '',
       module: '',
       manual: '',
       box: '',
-      cib: '',
+      cib: ''
     };
   }
 
   async componentDidMount() {
+    this.fetchGame()
+    this.renderGame()
     this.fetchWishlist();
     this.handleStarsPreview();
     this.RenderOwnageState();
@@ -47,6 +63,17 @@ class Detailview extends Component {
         return console.error();
       }
     });
+  };
+
+  fetchGame = async () => {
+    this.setState({ isLoading: true, file: ImagePlaceholder })
+    const response = await fetch(`${API_ENDPOINT}/api/detail/${this.props.match.params.objecttitle}`, {credentials: 'include'})
+    if (response.ok) {
+      const game = await response.json()
+      this.setState({ game, isLoading: false })
+    } else {
+      this.setState({ isError: true, isLoading: false })
+    }
   };
 
   fetchWishlist = async () => {
@@ -82,21 +109,19 @@ class Detailview extends Component {
   };
 
   handleStarsPreview = () => {
-    if (this.props.location.state.stars === '1') {
+    const stars = this.state.stars
+
+    if (stars === '1') {
       document.getElementById('1-star').checked = true;
-      this.setState({ stars: '1' });
-    } else if (this.props.location.state.stars === '2') {
+    } else if (stars === '2') {
       document.getElementById('2-stars').checked = true;
-      this.setState({ stars: '2' });
-    } else if (this.props.location.state.stars === '3') {
+    } else if (stars === '3') {
       document.getElementById('3-stars').checked = true;
-      this.setState({ stars: '3' });
-    } else if (this.props.location.state.stars === '4') {
+    } else if (stars === '4') {
       document.getElementById('4-stars').checked = true;
-      this.setState({ stars: '4' });
-    } else if (this.props.location.state.stars === '5') {
+    } else if (stars === '5') {
       document.getElementById('5-stars').checked = true;
-      this.setState({ stars: '5' });
+      
     }
   };
 
@@ -113,9 +138,9 @@ class Detailview extends Component {
   };
 
   RenderOwnageState = () => {
-    const ownage = this.props.location.state.ownage;
-    const box = this.props.location.state.box;
-    const manual = this.props.location.state.manual;
+    const ownage = this.state.ownage;
+    const box = this.state.box;
+    const manual = this.state.manual;
 
     if (ownage === 'true') {
       this.setState({ module: 'Module' });
@@ -136,232 +161,264 @@ class Detailview extends Component {
       this.setState({ manual: '' });
     }
   };
+
+renderGame = () => {
+  const { game } = this.state
+
+  return game.length > 0
+            ? (this.state.game.map(detail => {
+
+    return  this.setState({
+      id: detail.id,
+      imageName: detail.filename,
+      title: detail.title,
+      price: detail.price,
+      purchasedate: detail.purchasedate,
+      description: detail.description,
+      region: detail.region,
+      released: detail.released,
+      ownage: detail.ownage,
+      manual: detail.manual,
+      box: detail.box,
+      platform: detail.platform,
+      wishlist: detail.iswishlist,
+      stars: detail.stars,
+      gameTitle: this.state.title })
+
+    })
+            ) : (
+                console.log("error fetching game")
+            )
+}
+
+
+
   render() {
-    const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
-    const gameTitle = this.props.location.state?.titlename;
+    
+    const url = `${API_ENDPOINT}/uploads/${this.state.filename}`
     const currency = <Rendercurrency />;
-    const url = `${API_ENDPOINT}/uploads/${this.props.location.state.filename}`;
-    const id = this.props.location.state.id;
+    const id = this.state.id
 
     return (
       <>
-        {gameTitle ? (
-          <div id='contentpage'>
-            <div className='pageContainer'>
-              <div className='HeaderContainer'>
-                <div className='imageWrapperDetail'>
-                  {this.props.location.state.filename !== 'null' ? (
-                    <img src={`${url}`} alt='' className='imagePreviewDetail' />
-                  ) : (
-                    <img
-                      src={`${ImagePlaceholder}`}
-                      alt=''
-                      className='imagePreviewDetail'
-                    />
-                  )}
-                </div>
+      {this.props.match.params.objecttitle ? (
+        <div id='contentpage'>
+          <div className='pageContainer'>
+            <div className='HeaderContainer'>
+              <div className='imageWrapperDetail'>
+                {this.state.filename !== 'null' ? (
+                  <img src={`${url}`} alt='' className='imagePreviewDetail' />
+                ) : (
+                  <img
+                    src={`${ImagePlaceholder}`}
+                    alt=''
+                    className='imagePreviewDetail'
+                  />
+                )}
+              </div>
 
-                <div style={{ flexDirection: 'column' }}>
-                  <div style={{ marginLeft: '35px' }}>
-                    <div className='gametitledetail'>
-                      {this.props.location.state.titlename}&nbsp;&nbsp;
-                    </div>
-                    <div style={{ display: 'inline-block' }}>
-                      <div className='star-rating-detail'>
-                        <input
-                          type='radio'
-                          id='5-stars'
-                          name='rating'
-                          value='5'
-                        />
-                        <label htmlFor='5-stars' className='star-detail'>
-                          &#9733;
-                        </label>
-                        <input
-                          type='radio'
-                          id='4-stars'
-                          name='rating'
-                          value='4'
-                        />
-                        <label htmlFor='4-stars' className='star-detail'>
-                          &#9733;
-                        </label>
-                        <input
-                          type='radio'
-                          id='3-stars'
-                          name='rating'
-                          value='3'
-                        />
-                        <label htmlFor='3-stars' className='star-detail'>
-                          &#9733;
-                        </label>
-                        <input
-                          type='radio'
-                          id='2-stars'
-                          name='rating'
-                          value='2'
-                        />
-                        <label htmlFor='2-stars' className='star-detail'>
-                          &#9733;
-                        </label>
-                        <input
-                          type='radio'
-                          id='1-star'
-                          name='rating'
-                          value='1'
-                        />
-                        <label htmlFor='1-star' className='star-detail'>
-                          &#9733;
-                        </label>
-                      </div>
+              <div style={{ flexDirection: 'column' }}>
+                <div style={{ marginLeft: '35px' }}>
+                  <div className='gametitledetail'>
+                    {this.state.title}&nbsp;&nbsp;
+                  </div>
+                  <div style={{ display: 'inline-block' }}>
+                    <div className='star-rating-detail'>
+                      <input
+                        type='radio'
+                        id='5-stars'
+                        name='rating'
+                        value='5'
+                      />
+                      <label htmlFor='5-stars' className='star-detail'>
+                        &#9733;
+                      </label>
+                      <input
+                        type='radio'
+                        id='4-stars'
+                        name='rating'
+                        value='4'
+                      />
+                      <label htmlFor='4-stars' className='star-detail'>
+                        &#9733;
+                      </label>
+                      <input
+                        type='radio'
+                        id='3-stars'
+                        name='rating'
+                        value='3'
+                      />
+                      <label htmlFor='3-stars' className='star-detail'>
+                        &#9733;
+                      </label>
+                      <input
+                        type='radio'
+                        id='2-stars'
+                        name='rating'
+                        value='2'
+                      />
+                      <label htmlFor='2-stars' className='star-detail'>
+                        &#9733;
+                      </label>
+                      <input
+                        type='radio'
+                        id='1-star'
+                        name='rating'
+                        value='1'
+                      />
+                      <label htmlFor='1-star' className='star-detail'>
+                        &#9733;
+                      </label>
                     </div>
                   </div>
-                  <div
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    marginTop: '-14px',
+                  }}
+                >
+                  <h4
                     style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      marginTop: '-14px',
+                      color: 'var(--text-primary)',
+                      marginLeft: '40px',
                     }}
                   >
-                    <h4
-                      style={{
-                        color: 'var(--text-primary)',
-                        marginLeft: '40px',
-                      }}
-                    >
-                      {this.props.location.state.platform}
-                    </h4>
-                    <h4 style={{ color: 'var(--text-primary)' }}>
-                      &nbsp;({this.props.location.state.released})
-                    </h4>
-                  </div>
+                    {this.state.platform}
+                  </h4>
+                  <h4 style={{ color: 'var(--text-primary)' }}>
+                    &nbsp;({this.state.released})
+                  </h4>
                 </div>
               </div>
-              <br />
-              <br />
-              <div className='descriptionContainer'>
-                  <div style={{ color: 'var(--text-primary)' }}>
-                    {this.props.location.state.description}
-                  </div>
-                   <br />
-                </div>
-              <div
-                className='BodyContainer'
-              >
-                <br />
-                <div className='BodyContainerContentWraper'>
-                  <div className='detailtable'>
-                    <tbody id='detailtblData'>
-                      <tr>
-                        <td className='tdTitle'>In possession:</td>
-                        <td className='tdContent'>
-                          {this.state.module}
-                          {this.state.box}
-                          {this.state.manual}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className='tdTitle'>Region:</td>
-                        <td className='tdContent'>{this.props.location.state.region}</td>
-                      </tr>
-                      <tr>
-                        <td className='tdTitle'>Purchasedate:</td>
-                        <td className='tdContent'>{this.props.location.state.purchasedate}</td>
-                      </tr>
-                      <tr>
-                        <td className='tdTitle'>Price:</td>
-                        <td className='tdContent'>
-                          <div style={{display: 'inline-flex'}}>{this.props.location.state.price}&nbsp;{currency}</div>
-                        </td>
-                      </tr>
-                    </tbody>
-                    <tbody id='detailtblData'>
-                      <tr>
-                        <td className='tdTitle'>Platform:</td>
-                        <td className='tdContent'>
-                          {this.props.location.state.platform}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className='tdTitle'>Rating:</td>
-                        <td className='tdContent'>{this.props.location.state.stars}/5</td>
-                      </tr>
-                      <tr>
-                        <td className='tdTitle'>Released:</td>
-                        <td className='tdContent'>{this.props.location.state.released}</td>
-                      </tr>
-                      <tr>
-                        <td className='tdTitle'>Wishlist:</td>
-                        <td className='tdContent'>
-                          {this.props.location.state.wishlist}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </div>
-                </div>
-              </div>
-              <br />
-              <br />
             </div>
-            <div className='overviewContainer' style={{ marginTop: '5px' }}>
-              {this.state.wishstate !== 'true' ? (
-                <button
-                  onClick={() => this.SetWishlist(id)}
-                  className='WishlistButton'
-                >
-                  + | Wishlist
-                </button>
-              ) : (
-                <button
-                  onClick={() => this.SetWishlist(id)}
-                  className='WishlistButton'
-                >
-                  - | Wishlist
-                </button>
-              )}
-
-              <Link
-                className='GameEditButton'
-                to={{
-                  pathname: `/editgame/${this.props.location.state.titlename}/${this.props.location.state.id}`,
-                  state: {
-                    description: this.props.location.state.description,
-                    filename: this.props.location.state.filename,
-                    title: this.props.location.state.titlename,
-                    platform: this.props.location.state.platform,
-                    purchasedate: this.props.location.state.purchasedate,
-                    price: this.props.location.state.price,
-                    region: this.props.location.state.region,
-                    released: this.props.location.state.released,
-                    ownage: this.props.location.state.ownage,
-                    id: this.props.location.state.id,
-                    wishlist: this.props.location.state.wishlist,
-                    stars: this.props.location.state.stars,
-                    box: this.props.location.state.box,
-                    manual: this.props.location.state.manual,
-                  },
-                }}
-              >
-                <div type='button'>Edit</div>
-              </Link>
+            <br />
+            <br />
+            <div className='descriptionContainer'>
+                <div style={{ color: 'var(--text-primary)' }}>
+                  {this.state.description}
+                </div>
+                 <br />
+              </div>
+            <div
+              className='BodyContainer'
+            >
+              <br />
+              <div className='BodyContainerContentWraper'>
+                <div className='detailtable'>
+                  <tbody id='detailtblData'>
+                    <tr>
+                      <td className='tdTitle'>In possession:</td>
+                      <td className='tdContent'>
+                        {this.state.module}
+                        {this.state.box}
+                        {this.state.manual}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='tdTitle'>Region:</td>
+                      <td className='tdContent'>{this.state.region}</td>
+                    </tr>
+                    <tr>
+                      <td className='tdTitle'>Purchasedate:</td>
+                      <td className='tdContent'>{this.state.purchasedate}</td>
+                    </tr>
+                    <tr>
+                      <td className='tdTitle'>Price:</td>
+                      <td className='tdContent'>
+                        <div style={{display: 'inline-flex'}}>{this.state.price}&nbsp;{currency}</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody id='detailtblData'>
+                    <tr>
+                      <td className='tdTitle'>Platform:</td>
+                      <td className='tdContent'>
+                        {this.state.platform}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='tdTitle'>Rating:</td>
+                      <td className='tdContent'>{this.state.stars}/5</td>
+                    </tr>
+                    <tr>
+                      <td className='tdTitle'>Released:</td>
+                      <td className='tdContent'>{this.state.released}</td>
+                    </tr>
+                    <tr>
+                      <td className='tdTitle'>Wishlist:</td>
+                      <td className='tdContent'>
+                        {this.state.wishlist}
+                      </td>
+                    </tr>
+                  </tbody>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+          </div>
+          <div className='overviewContainer' style={{ marginTop: '5px' }}>
+            {this.state.wishstate !== 'true' ? (
               <button
-                onClick={() => this.deleteTableRow(id)}
-                className='GameDeleteButton'
+                onClick={() => this.SetWishlist(id)}
+                className='WishlistButton'
               >
-                Delete
+                + | Wishlist
               </button>
-            </div>
+            ) : (
+              <button
+                onClick={() => this.SetWishlist(id)}
+                className='WishlistButton'
+              >
+                - | Wishlist
+              </button>
+            )}
+
+            <Link
+              className='GameEditButton'
+              to={{
+                pathname: `/editgame/${this.props.match.params.objecttitle}/${this.state.id}`,
+                state: {
+                  description: this.state.description,
+                  filename: this.state.filename,
+                  title: this.state.titlename,
+                  platform: this.state.platform,
+                  purchasedate: this.state.purchasedate,
+                  price: this.state.price,
+                  region: this.state.region,
+                  released: this.state.released,
+                  ownage: this.state.ownage,
+                  id: this.state.id,
+                  wishlist: this.state.wishlist,
+                  stars: this.state.stars,
+                  box: this.state.box,
+                  manual: this.state.manual,
+                },
+              }}
+            >
+              <div type='button'>Edit</div>
+            </Link>
+            <button
+              onClick={() => this.deleteTableRow(id)}
+              className='GameDeleteButton'
+            >
+              Delete
+            </button>
           </div>
-        ) : (
-          <div id='contentpage'>
-            <div className='overviewContainer'>
-              <h3 style={{ color: 'var(--text-primary)' }}>No Game Selected</h3>
-            </div>
+        </div>
+      ) : (
+        <div id='contentpage'>
+          <div className='overviewContainer'>
+            <h3 style={{ color: 'var(--text-primary)' }}>No Game Selected</h3>
           </div>
-        )}
-      </>
-    );
-  }
+        </div>
+      )}
+    </>
+    )
+  
+  } 
 }
 
 export default Detailview;

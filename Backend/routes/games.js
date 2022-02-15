@@ -267,6 +267,18 @@ router.get("/wishlist/:platform", checkAuthentication, (req, res, next) => {
   });
 });
 
+router.get("/detail/:title",checkAuthentication, (req, res, next) => {
+  var sql = "select * from Games where title = ?"
+  var params = [req.params.title]
+  db.get(sql, params, (err, row) => {
+      if (err) {
+        res.status(400).json({"error":err.message});
+        return;
+      }
+      res.status(200).json(row);
+    });
+});
+
 
 
   module.exports = router;
