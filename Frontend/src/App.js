@@ -8,6 +8,7 @@ import {
 
 import Login from './Screens/Login'
 import Register from './Screens/Register'
+import PublicDetailview from './Screens/PublicDetailview'
 import Layout from './layout'
 import Forgot from './Screens/Forgot'
 import Redirect from './utils/Redirect'
@@ -54,7 +55,7 @@ isRegistration = async () => {
         }
         <PublicRoute restricted={false} component={Forgot} path="/forgot" exact />
         <PublicRoute restricted={false} component={Redirect} path="/redirect" exact />
-
+        <PublicRoute restricted={false} component={PublicDetailview} path="/public/:objectid/game/:objecttitle" exact />
         
         <PrivateRoute restricted={false} component={Layout} />
       </Switch>

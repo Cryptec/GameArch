@@ -6,6 +6,7 @@ import Rendercurrency from '../utils/renderCurrency';
 import ImagePlaceholder from '../assets/imageplaceholder.png';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000';
+const SITE_URL = process.env.REACT_APP_SITE_URL || 'http://localhost:3000';
 
 class Detailview extends Component {
   constructor(props) {
@@ -35,7 +36,8 @@ class Detailview extends Component {
       ismanual: '',
       isbox: '',
       box: '',
-      cib: ''
+      cib: '',
+      publiclink: ''
     };
   }
 
@@ -90,7 +92,8 @@ class Detailview extends Component {
         platform: game.platform,
         wishlist: game.iswishlist,
         stars: game.stars,
-        gameTitle: game.title
+        gameTitle: game.title,
+        publiclink: `${SITE_URL}/public/${game.id}/game/${this.props.match.params.objecttitle}`
        });
     } else {
       this.setState({ isError: true, isLoading: false })
@@ -165,6 +168,10 @@ class Detailview extends Component {
       this.setState({ manual: '' });
     }
   };
+
+  Publiclink = () => {
+    navigator.clipboard.writeText(this.state.publiclink)
+  }
 
   render() {
     
@@ -333,6 +340,7 @@ class Detailview extends Component {
             <br />
           </div>
           <div className='overviewContainer' style={{ marginTop: '5px' }}>
+
             {this.state.wishstate !== 'true' ? (
               <button
                 onClick={() => this.SetWishlist(id)}
@@ -348,6 +356,8 @@ class Detailview extends Component {
                 - | Wishlist
               </button>
             )}
+              <div className='WishlistButton' onClick={() => this.Publiclink()}>share</div>
+
 
             <Link
               className='GameEditButton'

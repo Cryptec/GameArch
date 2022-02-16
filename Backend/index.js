@@ -8,7 +8,8 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const authRoute = require('./routes/auth');
 const analyticRoute = require('./routes/analytic');
-const gameRoute = require('./routes/games')
+const gameRoute = require('./routes/games');
+const publicRoute = require('./routes/public')
 const settingsRoute = require('./routes/settings')
 const checkAuthentication = require("./auth/is_authenticated")
 const db = require('./Database');
@@ -93,6 +94,7 @@ function setupExpress() {
 
   // Route Middlewares
   app.use('/api', authRoute);
+  app.use('/api', publicRoute);
   app.use('/api',checkAuthentication, analyticRoute);
   app.use('/api',checkAuthentication, gameRoute);
   app.use('/api',checkAuthentication, settingsRoute);
