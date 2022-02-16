@@ -37,7 +37,9 @@ class Detailview extends Component {
       isbox: '',
       box: '',
       cib: '',
-      publiclink: ''
+      publiclink: '',
+      successMessage: '',
+      isActive: false
     };
   }
 
@@ -171,6 +173,8 @@ class Detailview extends Component {
 
   Publiclink = () => {
     navigator.clipboard.writeText(this.state.publiclink)
+    this.setState({ successMessage: 'Public link copied to clipboard!', isActive: true })
+    setTimeout(() => {this.setState({ isActive: false })}, 3000);
   }
 
   render() {
@@ -178,6 +182,7 @@ class Detailview extends Component {
     const url = `${API_ENDPOINT}/uploads/${this.state.filename}`
     const currency = <Rendercurrency />;
     const id = this.state.id
+    let successMessage = this.state.successMessage
 
     return (
       <>
@@ -357,6 +362,8 @@ class Detailview extends Component {
               </button>
             )}
               <div className='WishlistButton' onClick={() => this.Publiclink()}>share</div>
+
+              {this.state.isActive ? <p className="shareMessage">{successMessage}</p> : null}
 
 
             <Link

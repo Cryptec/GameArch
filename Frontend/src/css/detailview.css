@@ -98,9 +98,21 @@
     margin: 6px 8px;
     cursor: pointer;
     display: flex;
-    border: none;
     background-color: var(--container-background);
     border: 1px solid var(--text-primary);
+}
+.shareMessage {
+    padding: 7px;
+    font-weight: 500;
+    font-size: medium;
+    width: fit-content;
+    border-radius: 7px;
+    color: green;
+    margin: 6px 8px;
+    cursor: pointer;
+    display: flex;
+    background-color: var(--container-background);
+    border: 1px solid green;
 }
 
 .gametitledetail {
