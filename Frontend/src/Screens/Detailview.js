@@ -28,19 +28,21 @@ class Detailview extends Component {
       stars: '',
       file: '',
       filename: '',
-      title: this.props.match.params.objecttitle,
+      title: '',
       module: '',
       manual: '',
+      isownage: '',
+      ismanual: '',
+      isbox: '',
       box: '',
       cib: ''
     };
   }
 
   async componentDidMount() {
-    this.fetchGame()
-    this.fetchWishlist();
-    this.handleStarsPreview();
-    this.RenderOwnageState();
+    await this.fetchGame();
+    await this.fetchWishlist();
+    await this.RenderOwnageState();
   }
 
   deleteTableRow = async (id) => {
@@ -69,6 +71,7 @@ class Detailview extends Component {
     const response = await fetch(`${API_ENDPOINT}/api/detail/${this.props.match.params.objecttitle}`, {credentials: 'include'})
     if (response.ok) {
       const game = await response.json()
+      document.getElementById(`${game.stars}-stars`).checked = true;
       return this.setState({ 
         id: game.id,
         filename: game.filename,
@@ -81,10 +84,13 @@ class Detailview extends Component {
         ownage: game.ownage,
         manual: game.manual,
         box: game.box,
+        isownage: game.ownage,
+        ismanual: game.manual,
+        isbox: game.box,
         platform: game.platform,
         wishlist: game.iswishlist,
         stars: game.stars,
-        gameTitle: this.state.title
+        gameTitle: game.title
        });
     } else {
       this.setState({ isError: true, isLoading: false })
@@ -123,23 +129,6 @@ class Detailview extends Component {
     this.setState({ wishstate: 'true' });
   };
 
-  handleStarsPreview = () => {
-    const stars = this.state.stars
-
-    if (stars === '1') {
-      document.getElementById('1-star').checked = true;
-    } else if (stars === '2') {
-      document.getElementById('2-stars').checked = true;
-    } else if (stars === '3') {
-      document.getElementById('3-stars').checked = true;
-    } else if (stars === '4') {
-      document.getElementById('4-stars').checked = true;
-    } else if (stars === '5') {
-      document.getElementById('5-stars').checked = true;
-      
-    }
-  };
-
   SetWishlistFalse = async (id) => {
     await axios({
       method: 'POST',
@@ -152,7 +141,7 @@ class Detailview extends Component {
     this.setState({ wishstate: 'false' });
   };
 
-  RenderOwnageState = () => {
+ RenderOwnageState = () => {
     const ownage = this.state.ownage;
     const box = this.state.box;
     const manual = this.state.manual;
@@ -246,11 +235,11 @@ class Detailview extends Component {
                       </label>
                       <input
                         type='radio'
-                        id='1-star'
+                        id='1-stars'
                         name='rating'
                         value='1'
                       />
-                      <label htmlFor='1-star' className='star-detail'>
+                      <label htmlFor='1-stars' className='star-detail'>
                         &#9733;
                       </label>
                     </div>
@@ -367,18 +356,18 @@ class Detailview extends Component {
                 state: {
                   description: this.state.description,
                   filename: this.state.filename,
-                  title: this.state.titlename,
+                  title: this.state.title,
                   platform: this.state.platform,
                   purchasedate: this.state.purchasedate,
                   price: this.state.price,
                   region: this.state.region,
                   released: this.state.released,
-                  ownage: this.state.ownage,
+                  ownage: this.state.isownage,
                   id: this.state.id,
                   wishlist: this.state.wishlist,
                   stars: this.state.stars,
-                  box: this.state.box,
-                  manual: this.state.manual,
+                  box: this.state.isbox,
+                  manual: this.state.ismanual,
                 },
               }}
             >

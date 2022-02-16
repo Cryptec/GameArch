@@ -53,41 +53,15 @@ renderGames = () => {
   return this.state.games.map(game => {
 
       const imageName = game.filename
-      const id = game.id
       const title = game.title
       const price = game.price
-      const purchasedate = game.purchasedate
-      const description = game.description
-      const region = game.region
-      const released = game.released
-      const ownage = game.ownage
-      const manual = game.manual
-      const box = game.box
-      const platform = game.platform
-      const wishlist = game.iswishlist
-      const stars = game.stars
       const url = `${API_ENDPOINT}/uploads/${imageName}`
      
     return (
          
        <div key={game.id} className="gamesShow">
 
-        <Link to={{ pathname: `/gamedetail/${title}`, 
-                    state: { titlename: title,
-                             description: description,
-                             price: price,
-                             purchasedate: purchasedate,
-                             id: id,
-                             filename: imageName,
-                             platform: platform,
-                             region: region,
-                             released: released,
-                             ownage: ownage,
-                             manual: manual,
-                             box: box,
-                             wishlist: wishlist,
-                             stars: stars }
-                  }} >
+        <Link to={{ pathname: `/gamedetail/${title}` }} >
         <div className="imageWrapper">
         
             {imageName !== "null" ? <img src={`${url}`} alt="" className="imagePreview" />

@@ -19,15 +19,15 @@ class EditGame extends Component {
       purchasedate: this.props.location.state.purchasedate,
       description: this.props.location.state.description,
       id: this.props.location.state.id,
-      ownage: '',
-      box: '',
-      manual: '',
+      ownage: this.props.location.state.ownage,
+      box: this.props.location.state.box,
+      manual: this.props.location.state.manual,
       region: this.props.location.state.region,
       released: this.props.location.state.released,
       oldfilename: this.props.location.state.filename,
       ownagePreviewOk: '',
       ownagePreviewFalse: '',
-      stars: '',
+      stars: this.props.location.state.stars,
       file: null,
       preview: null,
       isActive: false,
@@ -38,12 +38,11 @@ class EditGame extends Component {
   componentDidMount = () => {
     this.handleImagePreview()
     this.handleOwnagePreview()
-    this.handleStarsPreview()
     this.getPlatforms()
+    document.getElementById(`${this.state.stars}-stars`).checked = true
   }
   handleShow = () => {
-    document.getElementById('ownagefieldset').style.borderColor =
-      'rgb(209, 13, 13)'
+    document.getElementById('ownagefieldset').style.borderColor = 'rgb(209, 13, 13)'
   }
   handleShowSuccess = () => {
     document.getElementById('ownagefieldset').style.borderColor = 'green'
@@ -83,25 +82,6 @@ class EditGame extends Component {
     } else if (this.props.location.state.box === 'false') {
       this.setState({ box: 'false' })
     } 
-  }
-
-  handleStarsPreview = () => {
-    if (this.props.location.state.stars === '1') {
-      document.getElementById('1-star').checked = true
-      this.setState({ stars: '1' })
-    } else if (this.props.location.state.stars === '2') {
-      document.getElementById('2-stars').checked = true
-      this.setState({ stars: '2' })
-    } else if (this.props.location.state.stars === '3') {
-      document.getElementById('3-stars').checked = true
-      this.setState({ stars: '3' })
-    } else if (this.props.location.state.stars === '4') {
-      document.getElementById('4-stars').checked = true
-      this.setState({ stars: '4' })
-    } else if (this.props.location.state.stars === '5') {
-      document.getElementById('5-stars').checked = true
-      this.setState({ stars: '5' })
-    }
   }
 
   handleImagePreview = () => {
@@ -258,8 +238,8 @@ class EditGame extends Component {
                     <label htmlFor='2-stars' className='star'>
                       &#9733;
                     </label>
-                    <input type='radio' id='1-star' name='rating' value='1' />
-                    <label htmlFor='1-star' className='star'>
+                    <input type='radio' id='1-stars' name='rating' value='1' />
+                    <label htmlFor='1-stars' className='star'>
                       &#9733;
                     </label>
                   </div>
@@ -399,7 +379,7 @@ class EditGame extends Component {
         this.setState({ released: event.target.value })
     } else if (field === 'description') {
       this.setState({ description: event.target.value })
-    } else if (field === '1-star') {
+    } else if (field === '1-stars') {
       this.setState({ stars: event.target.value })
     } else if (field === '2-stars') {
       this.setState({ stars: event.target.value })
