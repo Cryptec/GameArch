@@ -287,3 +287,32 @@ export const WishListIcon = ({ color, size, title, className }) => {
         </svg>
     );
 };
+
+export const LinkIcon = ({ color, size, title, className }) => {
+    return (
+        <svg
+            stroke="currentColor"
+            fill="none"
+            strokeWidth="2"
+            stroke-linejoin="round"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            height={size ? size : "19px"}
+            width={size ? size : "19px"}
+            style={{ color, padding: '0px' }}
+            className={className ? className : 'ListIcon'}
+        >
+            { title ? <title>{title}</title> : null}
+            <path
+                stroke="currentColor"
+                strokeWidth="2"
+                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+            ></path>
+            <path
+                stroke="currentColor"
+                strokeWidth="2"
+                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+            ></path>
+        </svg>
+    );
+};

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../css/detailview.css';
 import { Link } from 'react-router-dom';
 import Rendercurrency from '../utils/renderCurrency';
 import ImagePlaceholder from '../assets/imageplaceholder.png';
+import { LinkIcon } from '../assets/icons';
+
+import '../css/detailview.css';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000';
 const SITE_URL = process.env.REACT_APP_SITE_URL || 'http://localhost:3000';
@@ -182,7 +184,6 @@ class Detailview extends Component {
     const url = `${API_ENDPOINT}/uploads/${this.state.filename}`
     const currency = <Rendercurrency />;
     const id = this.state.id
-    let successMessage = this.state.successMessage
 
     return (
       <>
@@ -361,9 +362,9 @@ class Detailview extends Component {
                 - | Wishlist
               </button>
             )}
-              <div className='WishlistButton' onClick={() => this.Publiclink()}>share</div>
+              <div className='WishlistButton' onClick={() => this.Publiclink()}><LinkIcon /></div>
 
-              {this.state.isActive ? <p className="shareMessage">{successMessage}</p> : null}
+              {this.state.isActive ? <p className="shareMessage">{this.state.successMessage}</p> : null}
 
 
             <Link
