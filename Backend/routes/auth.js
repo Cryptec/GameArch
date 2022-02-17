@@ -43,7 +43,7 @@ router.post('/register', async (req, res) => {
 
   // Validation
   const schema = {
-    name: Joi.string().min(4).required(),
+    name: Joi.string().min(3).required(),
     email: Joi.string().min(4).required().email(),
     password: Joi.string().min(4).required(),
   }
