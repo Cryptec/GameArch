@@ -15,4 +15,17 @@ router.get("/:id/detail/:title", (req, res, next) => {
     });
 });
 
+router.get("/public/currency", (req, res, next) => {
+    var params = [req.params.currency]
+    var sql = "select currency from Settings"
+    db.all(sql, params, (err, row) => {
+      if (err) {
+        res.status(400).json({ "error": err.message });
+        return;
+      }
+      res.status(200).json(row);
+    });
+  });
+
+
 module.exports = router;

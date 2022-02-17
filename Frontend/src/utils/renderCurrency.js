@@ -14,7 +14,7 @@ class Rendercurrency extends Component {
 }
 
 componentDidMount = async () => {
-    const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, {credentials: 'include'})
+    const response = await fetch(`${API_ENDPOINT}/api/public/currency`)
     if (response.ok) {
       const currency = await response.json()
       this.setState({ currency, isLoading: false })
