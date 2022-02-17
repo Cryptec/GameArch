@@ -13,7 +13,6 @@ require('dotenv').config()
 //JWT
 const JWT_SECRET = process.env.JWT_SECRET
 const ORIGIN = process.env.CORS_ORIGIN
-const FRONTEND_URL = process.env.FRONTEND_URL
 
 // Email
 const mailhost = process.env.MAIL_HOST
@@ -174,7 +173,8 @@ router.post("/reset-password/:id/:token", async (req, res, next) => {
             res.send("Error encountered while updating");
             return res.status(400).json({ error: true });
           }
-          res.status(301).redirect(`${FRONTEND_URL}/redirect`)
+          console.log('redirecting...')
+          return res.status(301).redirect(`${ORIGIN}/redirect`)
         });
       });
 
