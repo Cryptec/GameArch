@@ -17,7 +17,7 @@ class UserSettings extends Component {
         successMessage: '',
         name: '',
         email: '',
-        isActive: false,
+        isActiveError: false,
         isActiveSuccess: false
     };
 }
@@ -26,17 +26,19 @@ async componentDidMount() {
     await this.setState({name: userName(), email: email()});
 }
 
-handleShow = () =>{
+handleShowError = () =>{
     this.setState({
-        isActive: true,
+        isActiveError: true,
         isActiveSuccess: false
     })
+    setTimeout(() => { this.setState({ isActiveError: false }) }, 3000);
 }
 handleShowSuccess = () =>{
     this.setState({
         isActiveSuccess: true,
-        isActive: false,
+        isActiveError: false,
     })
+    setTimeout(() => { this.setState({ isActiveSuccess: false }) }, 3000);
 }
 
 render() {
@@ -92,11 +94,15 @@ render() {
             />
             <br />
             <br />
+
+          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+
           <button className='addButton'>Update</button>
 
-            {this.state.isActive ? <p style={{ color: "red" }}>{this.state.errorMessage}</p> : null}
-            {this.state.isActiveSuccess ? <p style={{ color: "green" }}>{this.state.successMessage}</p> : null}
+            {this.state.isActiveError ? <div className="updateErrorMessage">{this.state.errorMessage}</div> : null}
+            {this.state.isActiveSuccess ? <div className="updateSuccessMessage">{this.state.successMessage}</div> : null}
             
+          </div>
         </form>
 
           </div>
@@ -117,7 +123,7 @@ render() {
         this.setState({
           errorMessage: "The passwords doesn't match"
         })
-        this.handleShow()
+        this.handleShowError()
         return false // The form won't submit
       }
     } 
@@ -138,7 +144,7 @@ render() {
         this.setState({
           password: '',
           confirm_password: '',
-          isActive: false,
+          isActiveError: false,
           successMessage: 'Data successfully changed!',
         })
         console.log('Form sent')
@@ -149,13 +155,13 @@ render() {
         this.setState({
           errorMessage: 'Password length must be at least 4 characters long.',
         })
-        this.handleShow()
+        this.handleShowError()
       } else if (response.data.answer === 'Email_Changed') {
       this.setState({
         password: '',
         confirm_password: '',
         successMessage: 'email successfully changed!',
-        isActive: false,
+        isActiveError: false,
       })
       localStorage.setItem("emailAddress", this.state.email)
       console.log('successfully changed!')

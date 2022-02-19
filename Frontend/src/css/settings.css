@@ -57,3 +57,32 @@
     font-size: 15px;
     width: fit-content;
 }
+
+.updateSuccessMessage {
+    height: 40px;
+    line-height: 40px;
+    width: fit-content;
+    border-radius: 7px;
+    color: green;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    background-color: var(--container-background);
+    border: 1px solid green;
+}
+.updateErroMessage {
+    height: 40px;
+    line-height: 40px;
+    width: fit-content;
+    border-radius: 7px;
+    color: brown;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    background-color: var(--container-background);
+    border: 1px solid brown;
+}

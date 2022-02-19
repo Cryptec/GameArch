@@ -16,7 +16,7 @@ class GeneralSettings extends Component {
        fetchcurrency: [],
        errorMessage: '',
        successMessage: '',
-       isActive: false,
+       isActiveError: false,
        isActiveSuccess: false,
        registration: '',
        themes: [],
@@ -37,17 +37,19 @@ componentDidMount = async () => {
   }
 }
 
-handleShow = () =>{
+handleShowError = () =>{
   this.setState({
-      isActive: true,
+      isActiveError: true,
       isActiveSuccess: false
   })
+  setTimeout(() => { this.setState({ isActiveError: false }) }, 3000);
 }
 handleShowSuccess = () =>{
   this.setState({
       isActiveSuccess: true,
-      isActive: false,
+      isActiveError: false,
   })
+  setTimeout(() => { this.setState({ isActiveSuccess: false }) }, 3000);
 }
 
 
@@ -118,14 +120,16 @@ render() {
                     </select>              
                     <br></br>
                     <br />
+            <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
 
-                  {this.state.isActive ? <p style={{color: "red"}}>{this.state.errorMessage}</p> : null}
-                  {this.state.isActiveSuccess ? <p style={{color: "green"}}>{this.state.successMessage}</p> : null}
+            <button className="addButton">
+              Save
+            </button>
 
-
-                 <button className="addButton">
-                    Save
-                 </button>
+            {this.state.isActiveError ? <div className="updateErrorMessage">{this.state.errorMessage}</div> : null}
+            {this.state.isActiveSuccess ? <div className="updateSuccessMessage">{this.state.successMessage}</div> : null}
+           
+            </div>
             </form>
 
           </div>
@@ -170,14 +174,14 @@ axios({
         console.log("Successfully changed");
         this.setState({
           successMessage: 'successfully updated settings!',
-          isActive: false,
+          isActiveError: false,
         })
         const root = document.querySelector(':root');
         root.setAttribute('color-scheme', `${this.state.theme}`);
         this.handleShowSuccess()
   } else if (response.data.error) {
     this.setState({errorMessage: 'Failed updating settings',})
-    this.handleShow()
+    this.handleShowError()
   }
 });
 }}

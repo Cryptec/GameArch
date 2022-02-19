@@ -16,7 +16,7 @@ class SystemSettings extends Component {
         successMessage: '',
         name: '',
         email: '',
-        isActive: false,
+        isActiveError: false,
         isActiveSuccess: false
     };
 }
@@ -25,17 +25,19 @@ async componentDidMount() {
     await this.setState({name: userName(), email: email()});
 }
 
-handleShow = () =>{
+handleShowError = () =>{
     this.setState({
-        isActive: true,
+        isActiveError: true,
         isActiveSuccess: false
     })
+    setTimeout(() => { this.setState({ isActiveError: false }) }, 3000);
 }
 handleShowSuccess = () =>{
     this.setState({
         isActiveSuccess: true,
-        isActive: false,
+        isActiveError: false,
     })
+    setTimeout(() => { this.setState({ isActiveSuccess: false }) }, 3000);
 }
 
 render() {
@@ -64,11 +66,15 @@ render() {
             </div>
             <p className='infotext'> &#9432; This setup is required for the 'forgot password' functionality.</p>
           <br />
+
+          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+
           <button className='addButton'>Send</button>
 
-            {this.state.isActive ? <p style={{ color: "red" }}>{this.state.errorMessage}</p> : null}
-            {this.state.isActiveSuccess ? <p style={{ color: "green" }}>{this.state.successMessage}</p> : null}
-            
+            {this.state.isActiveError ? <div className="updateErrorMessage">{this.state.errorMessage}</div> : null}
+            {this.state.isActiveSuccess ? <div className="updateSuccessMessage">{this.state.successMessage}</div> : null}
+          
+          </div>
         </form>
 
           </div>
@@ -94,7 +100,7 @@ render() {
         this.setState({
           password: '',
           confirm_password: '',
-          isActive: false,
+          isActiveError: false,
           successMessage: 'An email was sent to you!',
         })
         console.log('Form sent')
@@ -104,7 +110,7 @@ render() {
         this.setState({
           errorMessage: 'Password length must be at least 4 characters long.',
         })
-        this.handleShow()
+        this.handleShowError()
       }
     })
   }
