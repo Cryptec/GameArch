@@ -27,5 +27,16 @@ router.get("/public/currency", (req, res, next) => {
     });
   });
 
+router.get("/public/wishlist", (req, res, next) => {
+  var sql = "select * from Games WHERE iswishlist = 'true'"
+  var params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(rows);
+  });
+});
 
 module.exports = router;

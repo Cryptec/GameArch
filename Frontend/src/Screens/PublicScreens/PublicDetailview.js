@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Rendercurrency from '../utils/renderCurrency';
-import ImagePlaceholder from '../assets/imageplaceholder.png';
+import Rendercurrency from '../../utils/renderCurrency';
+import ImagePlaceholder from '../../assets/imageplaceholder.png';
 
-import '../css/detailview.css';
+import '../../css/detailview.css';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000';
 
@@ -41,30 +40,8 @@ class PublicDetailview extends Component {
 
     async componentDidMount() {
         await this.fetchGame();
-        await this.fetchWishlist();
-        await this.RenderOwnageState();
+        this.RenderOwnageState();
     }
-
-    deleteTableRow = async (id) => {
-        await axios({
-            method: 'DELETE',
-            withCredentials: true,
-            credentials: 'include',
-            url: `${API_ENDPOINT}/api/game/${id}`,
-            headers: { 'Content-Type': 'application/json' },
-            data: {
-                id: this.state.id,
-                filename: this.state.filename,
-            },
-        }).then((response, props) => {
-            console.log(response);
-            if (response.data.success) {
-                return window.location.replace('/overview');
-            } else {
-                return console.error();
-            }
-        });
-    };
 
     fetchGame = async () => {
         this.setState({ file: ImagePlaceholder })
@@ -97,49 +74,7 @@ class PublicDetailview extends Component {
         }
     };
 
-    fetchWishlist = async () => {
-        const response = await fetch(`${API_ENDPOINT}/api/game/${this.state.id}`, {
-            credentials: 'include',
-        });
-        if (response.ok) {
-            const wishstate = await response.json();
-            return this.setState({ wishstate: wishstate.iswishlist });
-        } else {
-            return console.error();
-        }
-    };
-    SetWishlist = async (id) => {
-        await this.fetchWishlist();
-        if (this.state.wishstate === 'true') {
-            return this.SetWishlistFalse(id);
-        } else if (this.state.wishstate === 'false') {
-            return this.SetWishlistTrue(id);
-        }
-    };
 
-    SetWishlistTrue = async (id) => {
-        await axios({
-            method: 'POST',
-            withCredentials: true,
-            credentials: 'include',
-            url: `${API_ENDPOINT}/api/setwishlist/${id}`,
-            headers: { 'Content-Type': 'application/json' },
-            data: { iswishlist: 'true', id: id },
-        });
-        this.setState({ wishstate: 'true' });
-    };
-
-    SetWishlistFalse = async (id) => {
-        await axios({
-            method: 'POST',
-            withCredentials: true,
-            credentials: 'include',
-            url: `${API_ENDPOINT}/api/setwishlist/${id}`,
-            headers: { 'Content-Type': 'application/json' },
-            data: { iswishlist: 'false', id: id },
-        });
-        this.setState({ wishstate: 'false' });
-    };
 
     RenderOwnageState = () => {
         const ownage = this.state.ownage;

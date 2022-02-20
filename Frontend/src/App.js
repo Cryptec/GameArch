@@ -8,7 +8,7 @@ import {
 
 import Login from './Screens/Login'
 import Register from './Screens/Register'
-import PublicDetailview from './Screens/PublicDetailview'
+import PublicDetailview from './Screens/PublicScreens/PublicDetailview'
 import Layout from './layout'
 import Forgot from './Screens/Forgot'
 import Redirect from './utils/Redirect'
