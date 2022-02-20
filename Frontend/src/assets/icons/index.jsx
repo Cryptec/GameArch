@@ -316,3 +316,25 @@ export const LinkIcon = ({ color, size, title, className }) => {
         </svg>
     );
 };
+
+export const ShareIcon = ({ color, size, title, className }) => {
+    return (
+        <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 18 18"
+            xmlns="http://www.w3.org/2000/svg"
+            height={size ? size : "19px"}
+            width={size ? size : "19px"}
+            style={{ color }}
+            className={className ? className : 'ListIcon'}
+        >
+            { title ? <title>{title}</title> : null}
+            <path
+                stroke="currentColor"
+                strokeWidth="0"
+                d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"></path>
+        </svg>
+    );
+};

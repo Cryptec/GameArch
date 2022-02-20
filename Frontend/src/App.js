@@ -5,10 +5,10 @@ import PublicRoute from './Routes/PublicRoute'
 import {
   BrowserRouter as Router, Switch
 } from "react-router-dom"
-
 import Login from './Screens/Login'
 import Register from './Screens/Register'
 import PublicDetailview from './Screens/PublicScreens/PublicDetailview'
+import PublicWishlist from './Screens/PublicScreens/PublicWishlist'
 import Layout from './layout'
 import Forgot from './Screens/Forgot'
 import Redirect from './utils/Redirect'
@@ -56,6 +56,8 @@ isRegistration = async () => {
         <PublicRoute restricted={false} component={Forgot} path="/forgot" exact />
         <PublicRoute restricted={false} component={Redirect} path="/redirect" exact />
         <PublicRoute restricted={false} component={PublicDetailview} path="/public/:objectid/game/:objecttitle" exact />
+        <PublicRoute restricted={false} component={PublicWishlist} path="/public/wishlist" exact />
+
         
         <PrivateRoute restricted={false} component={Layout} />
       </Switch>

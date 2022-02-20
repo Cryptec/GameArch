@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { GridIcon, ListIcon } from '../assets/icons/index.jsx'
+import { GridIcon, ListIcon, ShareIcon } from '../assets/icons/index.jsx'
 import RenderDetailWishlist from '../utils/renderDetailWishlist'
 import RenderListWishlist from '../utils/renderListWishlist'
 import platforms from '../utils/platforms'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
+const SITE_URL = process.env.REACT_APP_SITE_URL || 'http://localhost:3000'
 
 class Wishlist extends Component {
     constructor(props) {
@@ -15,11 +16,14 @@ class Wishlist extends Component {
             platform: "all games",
             view: "",
             count: 0,
+            successMessage: '',
+            publiclink: '',
             isActiveList: "false"
         }
     }
 
     async componentDidMount() {
+        this.setState({ publiclink: `${SITE_URL}/public/wishlist`})
         this.FetchView()
         this.getPlatforms()
     }
@@ -83,6 +87,13 @@ getPlatforms = () => {
   
       select.add(el);
     }}
+
+Publiclink = () => {
+    navigator.clipboard.writeText(this.state.publiclink)
+    this.setState({ successMessage: 'Public link copied to clipboard!', isActive: true })
+    setTimeout(() => { this.setState({ isActive: false }) }, 3000);
+}
+
     render() {
 
         return (
@@ -101,6 +112,8 @@ getPlatforms = () => {
                         <option>all games</option>
 
                     </select>
+                    <div style={styles.wishShareButton} onClick={() => this.Publiclink()}><ShareIcon /></div>
+                    {this.state.isActive ? <p className="shareMessage">{this.state.successMessage}</p> : null}
                     <div className="girdViewButton" onClick={this.handleSetGrid}><GridIcon /></div>
                     <div className="listViewButton" onClick={this.handleSetList}><ListIcon /></div>
                 </div>
@@ -124,8 +137,15 @@ getPlatforms = () => {
             }
         }
     }
+}
 
+const styles = {};
 
+styles.wishShareButton = {
+    color: 'var(--text-primary)',
+    paddingLeft: '15px',
+    paddingTop: '5px',
+    cursor: 'pointer'
 }
 
 export default Wishlist
