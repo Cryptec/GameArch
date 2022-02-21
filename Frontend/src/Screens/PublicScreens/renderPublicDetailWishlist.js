@@ -35,7 +35,7 @@ class RenderPublicDetailWishlist extends Component {
         return (
             <div>
 
-                <div>
+                <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
                     {this.renderGames()}
                 </div>
 

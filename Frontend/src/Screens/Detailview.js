@@ -6,6 +6,7 @@ import ImagePlaceholder from '../assets/imageplaceholder.png';
 import { LinkIcon } from '../assets/icons';
 
 import '../css/detailview.css';
+import '../css/imagemodal.css';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000';
 const SITE_URL = process.env.REACT_APP_SITE_URL || 'http://localhost:3000';
@@ -179,12 +180,36 @@ class Detailview extends Component {
     setTimeout(() => {this.setState({ isActive: false })}, 3000);
   }
 
+  getModal = () => {
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("gameImg");
+    var modalImg = document.getElementById("img01");
+    const url = `${API_ENDPOINT}/uploads/${this.state.filename}`
+
+      modal.style.display = "block";
+      modalImg.src = `${url}`;
+    
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+  }
+
+  closeModal = () => {
+    // When the user clicks on <span> (x), close the modal
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
+
   render() {
     
     const url = `${API_ENDPOINT}/uploads/${this.state.filename}`
     const currency = <Rendercurrency />;
     const id = this.state.id
 
+  
     return (
       <>
       {this.props.match.params.objecttitle ? (
@@ -193,7 +218,8 @@ class Detailview extends Component {
             <div className='HeaderContainer'>
               <div className='imageWrapperDetail'>
                 {this.state.filename !== 'null' ? (
-                  <img src={`${url}`} alt='' className='imagePreviewDetail' />
+                  <img src={`${url}`} alt='' id='gameImg' onClick={this.getModal} />
+                  
                 ) : (
                   <img
                     src={`${ImagePlaceholder}`}
@@ -201,6 +227,10 @@ class Detailview extends Component {
                     className='imagePreviewDetail'
                   />
                 )}
+              </div>
+              <div id="myModal" className="modal">
+                <span className="close" onClick={this.closeModal}>&times;</span>
+                <img className="modal-content" id="img01" />
               </div>
 
               <div style={{ flexDirection: 'column' }}>

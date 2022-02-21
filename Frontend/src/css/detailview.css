@@ -46,6 +46,20 @@
     align-self: center;
     border-radius: 7px;
 }
+
+#gameImg {
+  cursor: pointer;
+  transition: 0.3s;
+  max-width: 260px;
+  width: auto;
+  max-height: 200px;
+  height: auto;
+  align-self: center;
+  border-radius: 7px;
+}
+
+#gameImg:hover {opacity: 0.7;}
+
 .gamePriceDetail {
     padding: 7px;
     font-weight: 600;
