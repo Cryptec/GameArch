@@ -4,7 +4,6 @@ import platforms from '../../utils/platforms'
 import RenderPublicListWishlist from './renderPublicListWishlist.js'
 import RenderPublicDetailWishlist from './renderPublicDetailWishlist.js'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 class PublicWishlist extends Component {
     constructor(props) {
