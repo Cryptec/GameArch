@@ -113,7 +113,7 @@ Publiclink = () => {
 
                     </select>
                     <div style={styles.wishShareButton} onClick={() => this.Publiclink()}><ShareIcon /></div>
-                    {this.state.isActive ? <p className="shareMessage">{this.state.successMessage}</p> : null}
+                    {this.state.isActive ? <div style={styles.wishShareMessage}>{this.state.successMessage}</div> : null}
                     <div className="girdViewButton" onClick={this.handleSetGrid}><GridIcon /></div>
                     <div className="listViewButton" onClick={this.handleSetList}><ListIcon /></div>
                 </div>
@@ -148,4 +148,15 @@ styles.wishShareButton = {
     cursor: 'pointer'
 }
 
+styles.wishShareMessage = {
+    padding: '3px',
+    fontWeight:' 500',
+    fontSize: 'medium',
+    width: 'fit-content',
+    borderRadius: '7px',
+    color: 'green',
+    marginLeft: '6px',
+    display: 'flex',
+    border:' 1px solid green',
+}
 export default Wishlist

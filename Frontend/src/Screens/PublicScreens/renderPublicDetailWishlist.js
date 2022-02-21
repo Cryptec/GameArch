@@ -35,7 +35,7 @@ class RenderPublicDetailWishlist extends Component {
         return (
             <div>
 
-                <div className="overviewContainer">
+                <div>
                     {this.renderGames()}
                 </div>
 

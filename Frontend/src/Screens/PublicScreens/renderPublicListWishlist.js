@@ -35,7 +35,7 @@ class RenderPublicListWishlist extends Component {
         return (
 
             <div className="userstable">
-                <table id="tblData">
+                <table id="tblData" style={{border: 'none'}}>
                     <tbody>
                         {this.renderTableRows()}
                     </tbody>
