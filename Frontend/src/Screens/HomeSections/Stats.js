@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Rendercurrency from '../../utils/renderCurrency'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
@@ -7,12 +8,15 @@ class Stats extends Component {
         super(props)
         this.state = {
             gamecount: [],
-            fetchgamecount: ""
+            valuecount: [],
+            fetchgamecount: "",
+            fetchvaluecount: ""
         }
     }
 
     componentDidMount() {
         this.FetchGameCount()
+        this.FetchValueCount()
     }
 
     async FetchGameCount() {
@@ -33,13 +37,43 @@ class Stats extends Component {
         }
     }
 
+    async FetchValueCount() {
+
+        const response = await fetch(`${API_ENDPOINT}/api/totalvalue`, { credentials: 'include' })
+        if (response.ok) {
+            const valuecount = await response.json()
+            this.setState({ valuecount })
+            return valuecount.length > 0
+                ? (this.state.valuecount.map(values => {
+                    return this.setState({ fetchvaluecount: `${values.price}` })
+                })
+                ) : (
+                    console.log("error fetching total value count")
+                )
+        } else {
+            console.log('error fetching valuecount')
+        }
+    }
+
     renderGameCount = () => {
         return (
             <div style={{padding: '20px', width: '100%'}}>
             <div style={styles.topSubContainer}>
-            <p>Total:</p>
+                    <div>Games owned<br />total:</div>
             </div>
-            <div style={{paddingTop: '20px'}}>{this.state.fetchgamecount}</div>
+            <div style={styles.bottomSubContainer}>{this.state.fetchgamecount}</div>
+            </div>
+        )
+    }
+
+    renderValueCount = () => {
+        const val = this.state.fetchvaluecount
+        return (
+            <div style={{ padding: '20px', width: '100%' }}>
+                <div style={styles.topSubContainer}>
+                    <div>Total games<br />value:</div>
+                </div>
+                <div style={styles.bottomSubContainer}>{val} <Rendercurrency /></div>
             </div>
         )
     }
@@ -49,7 +83,7 @@ render() {
     return (
    
         <div className="overviewContainer" style={{marginBottom: '5px', justifyContent: 'space-between'}}>
-            <div style={styles.subcontainer}>1</div>
+            <div style={styles.subcontainer}>{this.renderValueCount()}</div>
             <div style={styles.subcontainer}>{this.renderGameCount()}</div>
             <div style={styles.subcontainer}>3</div>
             <div style={styles.subcontainer}>4</div>
@@ -66,11 +100,22 @@ styles.subcontainer = {
     display: 'flex',
     backgroundColor: 'var(--secondary)',
     borderRadius: '5px',
-    color: 'white',
+    color: '#B9BCC3',
+    minWidth: '200px'
 }
 styles.topSubContainer = {
-    borderBottom: '2px solid white',
+    borderBottom: '1.5px solid #B9BCC3',
     width: '100%',
-    display: 'flex'
+    height: '60px',
+    display: 'flex',
+    fontSize: '19px'
+}
+styles.bottomSubContainer = {
+    paddingTop: '20px',
+    fontSize: '21px',
+    color: 'white',
+    display: 'flex',
+    flexDirection: 'row'
+    
 }
 export default Stats
