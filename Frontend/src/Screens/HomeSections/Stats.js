@@ -23,7 +23,8 @@ styles.subcontainer = {
     width: '24%',
     height: '140px',
     display: 'flex',
-    backgroundColor: 'blue'
+    backgroundColor: 'var(--secondary)',
+    borderRadius: '7px'
 }
 
 export default Stats
