@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
@@ -34,13 +33,24 @@ class Stats extends Component {
         }
     }
 
+    renderGameCount = () => {
+        return (
+            <div style={{padding: '20px', width: '100%'}}>
+            <div style={styles.topSubContainer}>
+            <p>Total:</p>
+            </div>
+            <div style={{paddingTop: '20px'}}>{this.state.fetchgamecount}</div>
+            </div>
+        )
+    }
+
 render() {
 
     return (
    
         <div className="overviewContainer" style={{marginBottom: '5px', justifyContent: 'space-between'}}>
             <div style={styles.subcontainer}>1</div>
-            <div style={styles.subcontainer}>{this.state.fetchgamecount}</div>
+            <div style={styles.subcontainer}>{this.renderGameCount()}</div>
             <div style={styles.subcontainer}>3</div>
             <div style={styles.subcontainer}>4</div>
         </div>
@@ -55,8 +65,12 @@ styles.subcontainer = {
     height: '140px',
     display: 'flex',
     backgroundColor: 'var(--secondary)',
-    borderRadius: '7px',
-    color: 'var(--text-primary)'
+    borderRadius: '5px',
+    color: 'white',
 }
-
+styles.topSubContainer = {
+    borderBottom: '2px solid white',
+    width: '100%',
+    display: 'flex'
+}
 export default Stats
