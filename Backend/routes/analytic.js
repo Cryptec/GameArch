@@ -6,14 +6,14 @@ require('dotenv').config()
 
 router.get('/gamecount', checkAuthentication, async function (req, res) {
 
-    var sql = "SELECT COUNT(*) FROM Games WHERE ownage = 'true'"
+    var sql = "SELECT COUNT(*) AS total FROM Games WHERE ownage = 'true'"
     var params = []
-    db.get(sql, params, (err, rows) => {
+    db.all(sql, params, (err, total) => {
       if (err) {
         res.status(400).json({ "error": err.message });
         return;
       }
-      res.status(200).json(rows);
+      res.status(200).json(total);
     });
 
 });
