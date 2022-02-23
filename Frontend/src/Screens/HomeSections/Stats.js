@@ -56,6 +56,7 @@ class Stats extends Component {
     }
 
     renderGameCount = () => {
+        
         return (
             <div style={{padding: '20px', width: '100%'}}>
             <div style={styles.topSubContainer}>
@@ -66,14 +67,22 @@ class Stats extends Component {
         )
     }
 
+          
+
     renderValueCount = () => {
-        const val = this.state.fetchvaluecount
+
+        const data = this.state.valuecount
+        const sumPrices = data.reduce((sum, ele) => {
+            if(typeof(ele.price) === "string") return sum + parseInt(ele.price)
+            else return sum + ele.price
+          }, 0);
+
         return (
             <div style={{ padding: '20px', width: '100%' }}>
                 <div style={styles.topSubContainer}>
                     <div>Total games<br />value:</div>
                 </div>
-                <div style={styles.bottomSubContainer}>{val} <Rendercurrency /></div>
+                <div style={styles.bottomSubContainer}>{sumPrices} <Rendercurrency /></div>
             </div>
         )
     }
