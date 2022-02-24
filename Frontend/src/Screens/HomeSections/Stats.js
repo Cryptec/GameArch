@@ -11,9 +11,9 @@ class Stats extends Component {
             gametotalcount: [],
             platformcount: [],
             valuecount: [{'price': '0'}],
-            fetchgamecount: "",
-            fetchtotalgamecount: "",
-            fetchmostplatform: ""
+            fetchgamecount: "0",
+            fetchtotalgamecount: "0",
+            fetchmostplatform: "-"
         }
     }
 
