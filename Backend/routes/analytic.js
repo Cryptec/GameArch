@@ -18,6 +18,20 @@ router.get('/gamecount', checkAuthentication, async function (req, res) {
 
 });
 
+router.get('/gametotalcount', checkAuthentication, async function (req, res) {
+
+  var sql = "SELECT COUNT(*) AS total FROM Games"
+  var params = []
+  db.all(sql, params, (err, total) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(total);
+  });
+
+});
+
 router.get('/totalvalue', checkAuthentication, async function (req, res) {
 
   var sql = "SELECT price FROM Games WHERE ownage = 'true'"

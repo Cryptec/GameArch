@@ -8,17 +8,20 @@ class Stats extends Component {
         super(props)
         this.state = {
             gamecount: [],
+            gametotalcount: [],
             valuecount: [{'price': '0'}],
-            fetchgamecount: ""
+            fetchgamecount: "",
+            fetchtotalgamecount: ""
         }
     }
 
     componentDidMount() {
-        this.FetchGameCount()
+        this.FetchGamesOwnedCount()
         this.FetchValueCount()
+        this.FetchGamesCount()
     }
 
-    async FetchGameCount() {
+    async FetchGamesOwnedCount() {
         
         const response = await fetch(`${API_ENDPOINT}/api/gamecount`, {credentials: 'include'})
         if (response.ok) {
@@ -27,6 +30,24 @@ class Stats extends Component {
             return gamecount.length > 0
                 ? (this.state.gamecount.map(counter => {
                   return this.setState({ fetchgamecount: `${counter.total}`})
+                })
+                ) : (
+                  console.log("error fetching game count")
+                )
+        } else {
+            console.log('error fetching gamecount')
+        }
+    }
+
+    async FetchGamesCount() {
+        
+        const response = await fetch(`${API_ENDPOINT}/api/gametotalcount`, {credentials: 'include'})
+        if (response.ok) {
+            const gametotalcount = await response.json()
+            this.setState({ gametotalcount })
+            return gametotalcount.length > 0
+                ? (this.state.gametotalcount.map(counter => {
+                  return this.setState({ fetchtotalgamecount: `${counter.total}`})
                 })
                 ) : (
                   console.log("error fetching total game count")
@@ -51,7 +72,7 @@ class Stats extends Component {
         }
     }
 
-    renderGameCount = () => {
+    renderGamesOwnedCount = () => {
         
         return (
             <div style={{padding: '20px', width: '100%'}}>
@@ -59,6 +80,18 @@ class Stats extends Component {
                     <div>Games owned<br />total:</div>
             </div>
             <div style={styles.bottomSubContainer}>{this.state.fetchgamecount}</div>
+            </div>
+        )
+    }
+
+    renderGamesCount = () => {
+        
+        return (
+            <div style={{padding: '20px', width: '100%'}}>
+            <div style={styles.topSubContainer}>
+                    <div>Games registered<br />in GameArch:</div>
+            </div>
+            <div style={styles.bottomSubContainer}>{this.state.fetchtotalgamecount}</div>
             </div>
         )
     }
@@ -110,8 +143,8 @@ render() {
    
         <div className="overviewContainer" style={{marginBottom: '5px', justifyContent: 'space-between'}}>
             <div style={styles.subcontainer}>{this.renderValueCount()}</div>
-            <div style={styles.subcontainer}>{this.renderGameCount()}</div>
-            <div style={styles.subcontainer}>3</div>
+            <div style={styles.subcontainer}>{this.renderGamesOwnedCount()}</div>
+            <div style={styles.subcontainer}>{this.renderGamesCount()}</div>
             <div style={styles.subcontainer}>4</div>
         </div>
     )
