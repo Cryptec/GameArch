@@ -8,7 +8,7 @@ class Stats extends Component {
         super(props)
         this.state = {
             gamecount: [],
-            valuecount: [],
+            valuecount: [{'price': '0'}],
             fetchgamecount: "",
             fetchvaluecount: ""
         }
@@ -95,14 +95,15 @@ class Stats extends Component {
           
 
     renderValueCount = () => {
-
-        let test = this.sum([{ "price": "5.9" }, { "price": "1.2" }], ',')
+        const test = this.state.valuecount
+        let testvalue = [{ "price": "5,9" }, { "price": "2,3" }] 
+        let sumval = this.sum(test, ',')
         return (
             <div style={{ padding: '20px', width: '100%' }}>
                 <div style={styles.topSubContainer}>
                     <div>Total games<br />value:</div>
                 </div>
-                <div style={styles.bottomSubContainer}>{test} <Rendercurrency /></div>
+                <div style={styles.bottomSubContainer}>{sumval} <Rendercurrency /></div>
             </div>
         )
     }
