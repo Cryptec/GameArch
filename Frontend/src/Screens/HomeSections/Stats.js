@@ -9,8 +9,7 @@ class Stats extends Component {
         this.state = {
             gamecount: [],
             valuecount: [{'price': '0'}],
-            fetchgamecount: "",
-            fetchvaluecount: ""
+            fetchgamecount: ""
         }
     }
 
@@ -42,11 +41,8 @@ class Stats extends Component {
         const response = await fetch(`${API_ENDPOINT}/api/totalvalue`, { credentials: 'include' })
         if (response.ok) {
             const valuecount = await response.json()
-            this.setState({ valuecount })
             return valuecount.length > 0
-                ? (this.state.valuecount.map(values => {
-                    return this.setState({ fetchvaluecount: `${values.price}` })
-                })
+                ? (this.setState({ valuecount })
                 ) : (
                     console.log("error fetching total value count")
                 )
