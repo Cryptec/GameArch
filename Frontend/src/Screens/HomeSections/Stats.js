@@ -67,22 +67,42 @@ class Stats extends Component {
         )
     }
 
+    add = (l, r, sep) => {
+        if (!sep) sep = '.';
+        const [ll, lr] = l.split(/[,.]/).map(el => el.split('').map(Number));
+        const [rl, rr] = r.split(/[,.]/).map(el => el.split('').map(Number));
+        let carry = 0;
+        const result = [[], []];
+        for (let i = Math.max(lr?.length ?? 0, rr?.length ?? 0); i > 0; --i) {
+            result[1][i - 1] = (lr?.[i - 1] ?? 0) + (rr?.[i - 1] ?? 0) + carry;
+            carry = Math.floor(result[1][i - 1] / 10);
+            result[1][i - 1] %= 10;
+        }
+
+        for (let il = ll.length, ir = rl.length, iResult = Math.max(ll.length, rl.length); iResult > 0; --il, --ir, --iResult) {
+            result[0][iResult - 1] = (ll[il - 1] ?? 0) + (rl[ir - 1] ?? 0) + carry;
+            carry = Math.floor(result[0][iResult - 1] / 10);
+            result[0][iResult - 1] %= 10;
+        }
+        if (carry) result[0] = [carry, ...result[0]];
+        return result[0].join('') + sep + result[1].join('');
+    }
+
+    sum = (arr, sep) => {
+        return arr.map(el => String(el.price)).reduce((acc, el) => this.add(acc, el, sep));
+    }
+
           
 
     renderValueCount = () => {
 
-        const data = this.state.valuecount
-        const sumPrices = data.reduce((sum, ele) => {
-            if(typeof(ele.price) === "string") return sum + parseInt(ele.price)
-            else return sum + ele.price
-          }, 0);
-
+        let test = this.sum([{ "price": "5.9" }, { "price": "1.2" }], ',')
         return (
             <div style={{ padding: '20px', width: '100%' }}>
                 <div style={styles.topSubContainer}>
                     <div>Total games<br />value:</div>
                 </div>
-                <div style={styles.bottomSubContainer}>{sumPrices} <Rendercurrency /></div>
+                <div style={styles.bottomSubContainer}>{test} <Rendercurrency /></div>
             </div>
         )
     }
