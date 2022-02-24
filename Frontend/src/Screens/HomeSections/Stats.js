@@ -9,15 +9,18 @@ class Stats extends Component {
         this.state = {
             gamecount: [],
             gametotalcount: [],
+            platformcount: [],
             valuecount: [{'price': '0'}],
             fetchgamecount: "",
-            fetchtotalgamecount: ""
+            fetchtotalgamecount: "",
+            fetchmostplatform: ""
         }
     }
 
     componentDidMount() {
         this.FetchGamesOwnedCount()
         this.FetchValueCount()
+        this.FetchMostRepresented()
         this.FetchGamesCount()
     }
 
@@ -72,6 +75,24 @@ class Stats extends Component {
         }
     }
 
+    async FetchMostRepresented() {
+
+        const response = await fetch(`${API_ENDPOINT}/api/mostplatform`, { credentials: 'include' })
+        if (response.ok) {
+            const platformcount = await response.json()
+            this.setState({ platformcount })
+            return platformcount.length > 0
+                ? (this.state.platformcount.map(counter => {
+                    return this.setState({ fetchmostplatform: `${counter.platform}` })
+                })
+                ) : (
+                    console.log("error fetching total value count")
+                )
+        } else {
+            console.log('error fetching valuecount')
+        }
+    }
+
     renderGamesOwnedCount = () => {
         
         return (
@@ -92,6 +113,18 @@ class Stats extends Component {
                     <div>Games registered<br />in GameArch:</div>
             </div>
             <div style={styles.bottomSubContainer}>{this.state.fetchtotalgamecount}</div>
+            </div>
+        )
+    }
+
+    renderPlatformCount = () => {
+
+        return (
+            <div style={{ padding: '20px', width: '100%' }}>
+                <div style={styles.topSubContainer}>
+                    <div>Most represented<br />in collection:</div>
+                </div>
+                <div style={styles.bottomSubContainer}>{this.state.fetchmostplatform}</div>
             </div>
         )
     }
@@ -130,9 +163,9 @@ class Stats extends Component {
         return (
             <div style={{ padding: '20px', width: '100%' }}>
                 <div style={styles.topSubContainer}>
-                    <div>Total games<br />value:</div>
+                    <div>Total owned<br />value:</div>
                 </div>
-                <div style={styles.bottomSubContainer}>{sumval} <Rendercurrency /></div>
+                <div style={styles.bottomSubContainer}>{sumval}&nbsp;<Rendercurrency /></div>
             </div>
         )
     }
@@ -145,7 +178,7 @@ render() {
             <div style={styles.subcontainer}>{this.renderValueCount()}</div>
             <div style={styles.subcontainer}>{this.renderGamesOwnedCount()}</div>
             <div style={styles.subcontainer}>{this.renderGamesCount()}</div>
-            <div style={styles.subcontainer}>4</div>
+            <div style={styles.subcontainer}>{this.renderPlatformCount()}</div>
         </div>
     )
 }
@@ -165,12 +198,12 @@ styles.subcontainer = {
 styles.topSubContainer = {
     borderBottom: '1.5px solid #B9BCC3',
     width: '100%',
-    height: '60px',
+    height: '65px',
     display: 'flex',
     fontSize: '19px'
 }
 styles.bottomSubContainer = {
-    paddingTop: '20px',
+    paddingTop: '15px',
     fontSize: '21px',
     color: 'white',
     display: 'flex',

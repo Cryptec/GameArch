@@ -46,4 +46,18 @@ router.get('/totalvalue', checkAuthentication, async function (req, res) {
 
 });
 
+router.get('/mostplatform', checkAuthentication, async function (req, res) {
+
+  var sql = "SELECT platform FROM Games WHERE ownage = 'true' GROUP BY platform ORDER BY COUNT(*) DESC LIMIT 1"
+          var params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(rows);
+  });
+
+});
+
 module.exports = router;
