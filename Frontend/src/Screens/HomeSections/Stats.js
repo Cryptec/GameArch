@@ -157,9 +157,8 @@ class Stats extends Component {
           
 
     renderValueCount = () => {
-        const test = this.state.valuecount
-        let testvalue = [{ "price": "5,9" }, { "price": "2,3" }] 
-        let sumval = this.sum(test, ',')
+        const val = this.state.valuecount
+        let sumval = this.sum(val, ',')
         return (
             <div style={{ padding: '20px', width: '100%' }}>
                 <div style={styles.topSubContainer}>
