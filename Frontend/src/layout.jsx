@@ -24,6 +24,7 @@ render() {
 
             <div>
                 <Sidebar/>
+                <div style={{height: '30px', position: 'fixed', backgroundColor: 'var(--secondary)'}}></div>
                 <Topbar />
                 <Routes />
             </div>

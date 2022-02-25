@@ -23,10 +23,9 @@ input[type=file] {
 #contentpage {
   overflow-x: hidden;
   margin-left: var(--sidebar-width);
-  height: 100%;
   transition: 0.5s;
   padding: 25px;
-  height: calc(100vh - 81px);
+  height: calc(100vh - 111px);
   background-color: var(--background);
 }
 .ListIcon {

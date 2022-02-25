@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import WindowButtons from './components/WindowButtons'
+
+import './components/MenuHandler'
 
 ReactDOM.render(
   <React.StrictMode>
+    <WindowButtons />
     <App />
   </React.StrictMode>,
   document.getElementById('root')

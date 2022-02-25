@@ -1,0 +1,73 @@
+#ButtonContainer {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height:30px;
+    width: 100%;
+    -webkit-app-region: drag;
+}
+
+#container nav{
+    display: block;
+    height:30px;
+    -webkit-app-region: drag;
+}
+
+#container nav #buttons{
+    float: right;
+    width: 150px;
+    height: 100%;
+    line-height: 45px;
+    -webkit-app-region: no-drag;
+}
+
+#buttons>#minimize, #buttons>#maximize, #buttons>#close {
+    float: right;
+    height: 100%;
+    width: 40px;
+    text-align: center;
+    color: var(--text-primary);
+    transition: all ease-in-out .2s;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+}
+
+#buttons>#close>#close-font {
+    font-size: 20px;
+    font-family: monospace;
+    
+}
+
+#buttons>#close>#close-font:hover {
+    color: var(--text-hover)
+}
+
+#buttons>#maximize>#size-font {
+    font-size: 25px;
+    font-family: monospace;
+}
+
+#buttons>#maximize>#size-font:hover {
+    color: var(--text-hover)
+}
+
+#buttons>#minimize>#minimize-font {
+    font-size: 25px;
+    font-family: monospace;
+
+}
+
+#buttons>#minimize>#minimize-font:hover {
+    color: var(--text-hover)
+}
+
+#sidebar nav #menu{
+    float: left;
+    width: 120%;
+    height: 100%;
+    line-height: 5px;
+    -webkit-app-region: no-drag;
+  
+
+}

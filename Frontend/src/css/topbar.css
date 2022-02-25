@@ -1,6 +1,8 @@
 .topbar {
     background-color: var(--topbar-background);
     line-height: 30px;
+    padding-top: 30px;
+    height: 30px;
     overflow-x: hidden;
     margin-left: var(--sidebar-width);
     border-bottom: 1px solid var(--topbar-bottom-border);

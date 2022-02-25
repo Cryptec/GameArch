@@ -82,6 +82,7 @@ toggleNav = () => {
        const activeUser = this.state.user || 'Guest'
 
         return (
+            
             <div className="topbar" id="topbar">
                 <div className="sidebarbutton" onClick={this.toggleNav}>
                     &#9776;
