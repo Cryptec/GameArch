@@ -4,6 +4,7 @@ import RenderListView from '../utils/renderListView'
 import axios from 'axios'
 import { GridIcon, ListIcon } from '../assets/icons/index.jsx'
 import platforms from '../utils/platforms'
+import RenderPlatformValue from '../utils/RenderPlatformValue'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
@@ -103,6 +104,8 @@ handleDisplayType = () => {
           >
             <option>all games</option>
           </select>
+          <RenderPlatformValue key={this.state.count}/>
+          
             <div className="girdViewButton" onClick={this.handleSetGrid}><GridIcon/></div>
             <div className="listViewButton" onClick={this.handleSetList}><ListIcon/></div>
           </div>
