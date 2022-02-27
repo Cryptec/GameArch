@@ -148,7 +148,7 @@ class PublicDetailview extends Component {
                                 </div>
 
                                 <div style={{ flexDirection: 'column' }}>
-                                    <div style={{ marginLeft: '35px' }}>
+                                    <div>
                                         <div className='gametitledetail'>
                                             {this.state.title}&nbsp;&nbsp;
                   </div>
@@ -211,8 +211,7 @@ class PublicDetailview extends Component {
                                     >
                                         <h4
                                             style={{
-                                                color: 'var(--text-primary)',
-                                                marginLeft: '40px',
+                                                color: 'var(--text-primary)'
                                             }}
                                         >
                                             {this.state.platform}
@@ -278,7 +277,7 @@ class PublicDetailview extends Component {
                                             </tr>
                                             <tr>
                                                 <td className='tdTitle'>Wishlist:</td>
-                                                <td className='tdContent'>
+                                                <td className='tdContent' style={{color: 'var(--text-primary)'}}>
                                                     {this.state.wishlist === 'true' ? '✔' : '✖'}
                                                 </td>
                                             </tr>
