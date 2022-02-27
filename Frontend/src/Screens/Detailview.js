@@ -360,7 +360,7 @@ class Detailview extends Component {
                     <tr>
                       <td className='tdTitle'>Wishlist:</td>
                       <td className='tdContent'>
-                        {this.state.wishlist}
+                          {this.state.wishlist === 'true' ? '✔' : '✖'}
                       </td>
                     </tr>
                   </tbody>
