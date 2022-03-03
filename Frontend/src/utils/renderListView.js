@@ -51,19 +51,16 @@ render() {
 
 
 renderTableRows = () => {
-  const { games, isLoading, isError } = this.state
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (isError) {
-    return <div>Error</div>
-  }
   
-  return games.length > 0
-  ? (
-     this.state.games.map(game => {
+  const filteredData = this.state.games.filter((el) => {
+    if (this.props.input === '') {
+        return el;
+    } else {
+        return el.title.toLowerCase().includes(this.props.input)
+    }
+})
+
+return filteredData.map(game => {
 
        const imageName = game.filename
        const title = game.title
@@ -88,11 +85,6 @@ renderTableRows = () => {
         </tr>
       )
     })
-    ) : (
-        <div>
-          No games.
-      </div>
-      )
   }
 
 
