@@ -4,6 +4,7 @@ import RenderListView from '../utils/renderListView'
 import axios from 'axios'
 import { GridIcon, ListIcon } from '../assets/icons/index.jsx'
 import platforms from '../utils/platforms'
+import RenderPlatformValue from '../utils/RenderPlatformValue'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
@@ -15,7 +16,8 @@ class Overview extends Component {
       platform: "all games",
       view: "",
       count: 0,
-      isActiveList: "false"   
+      isActiveList: "false",
+      inputText: ''   
     }
 }
 
@@ -64,9 +66,9 @@ handleSetGrid = () =>{
 
 handleDisplayType = () => {
   if (this.state.isActiveList === "true") {
-    return <RenderListView key={this.state.count} />
+    return <RenderListView input={this.state.inputText} key={this.state.count} />
   } else if (this.state.isActiveList === "false") {
-    return <RenderDetailView key={this.state.count} />
+    return <RenderDetailView input={this.state.inputText} key={this.state.count} />
   }
 }
 
@@ -83,6 +85,12 @@ handleDisplayType = () => {
   
       select.add(el);
     }}
+  
+    inputHandler = (e) => {
+        //convert input text to lower case
+        var lowerCase = e.target.value.toLowerCase();
+        this.setState({ inputText: lowerCase});
+    };
   
 
   render() {
@@ -103,6 +111,15 @@ handleDisplayType = () => {
           >
             <option>all games</option>
           </select>
+          <RenderPlatformValue key={this.state.count}/>
+    
+                <input
+                    onChange={this.inputHandler}
+                    id='search'
+                    placeholder="&#x1F50E;&#xFE0E;"
+                />
+        
+          
             <div className="girdViewButton" onClick={this.handleSetGrid}><GridIcon/></div>
             <div className="listViewButton" onClick={this.handleSetList}><ListIcon/></div>
           </div>

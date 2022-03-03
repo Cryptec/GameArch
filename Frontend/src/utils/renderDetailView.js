@@ -50,7 +50,15 @@ async componentDidMount() {
 
 renderGames = () => {
 
-  return this.state.games.map(game => {
+  const filteredData = this.state.games.filter((el) => {
+    if (this.props.input === '') {
+        return el;
+    } else {
+        return el.title.toLowerCase().includes(this.props.input)
+    }
+})
+
+return filteredData.map(game => {
 
       const imageName = game.filename
       const title = game.title
