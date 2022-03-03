@@ -190,3 +190,20 @@
 .girdViewButton:hover {
     color: var(--text-hover);    
 }
+
+#search {
+    border-radius: 5px;
+    border: var(--border);
+    background-color: var(--background);
+    color: var(--text-primary);
+    width: 20px;
+    padding-left: 8px;
+    margin-left: 10px;
+    transition:0.5s;
+    cursor: pointer;
+}
+#search:focus {
+    width: 120px;
+    transition:0.5s;
+    cursor: text;
+}
