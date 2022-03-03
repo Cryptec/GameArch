@@ -197,7 +197,7 @@
     background-color: var(--background);
     color: var(--text-primary);
     width: 20px;
-    padding: 5px;
+    padding-left: 8px;
     margin-left: 10px;
     transition:0.5s;
     cursor: pointer;
@@ -206,7 +206,4 @@
     width: 120px;
     transition:0.5s;
     cursor: text;
-}
-#search::placeholder {
-    padding-left: 3px;
 }
