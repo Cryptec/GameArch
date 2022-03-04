@@ -332,7 +332,7 @@ class Detailview extends Component {
                     </tr>
                     <tr>
                       <td className='tdTitle'>Purchasedate:</td>
-                      <td className='tdContent'>{this.state.purchasedate}</td>
+                      <td className='tdContent'>{this.state.purchasedate === '' ? '-' : this.state.purchasedate}</td>
                     </tr>
                     <tr>
                       <td className='tdTitle'>Price:</td>
