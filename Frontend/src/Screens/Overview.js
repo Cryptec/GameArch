@@ -98,7 +98,7 @@ handleDisplayType = () => {
     return (
     
         <div id="contentpage">
-          <div className="overviewContainer" style={{ marginBottom: "5px" }}>
+          <div className="overviewContainer" style={{ marginBottom: "10px"}}>
             
           <select
             list='platformlist'
@@ -119,7 +119,6 @@ handleDisplayType = () => {
                     placeholder="&#x1F50E;&#xFE0E;"
                 />
         
-          
             <div className="girdViewButton" onClick={this.handleSetGrid}><GridIcon/></div>
             <div className="listViewButton" onClick={this.handleSetList}><ListIcon/></div>
           </div>

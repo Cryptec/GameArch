@@ -369,21 +369,21 @@ class Detailview extends Component {
             <br />
             <br />
           </div>
-          <div className='overviewContainer' style={{ marginTop: '5px' }}>
+          <div className='overviewContainer' style={{ marginTop: '10px' }}>
 
             {this.state.wishstate !== 'true' ? (
               <button
                 onClick={() => this.SetWishlist(id)}
                 className='WishlistButton'
               >
-                + | Wishlist
+                  ✖ | Wishlist
               </button>
             ) : (
               <button
                 onClick={() => this.SetWishlist(id)}
                 className='WishlistButton'
               >
-                - | Wishlist
+                    ✔ | Wishlist
               </button>
             )}
               <div className='WishlistButton' onClick={() => this.Publiclink()}><LinkIcon /></div>
