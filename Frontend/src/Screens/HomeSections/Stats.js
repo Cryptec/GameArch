@@ -173,7 +173,7 @@ render() {
 
     return (
    
-        <div className="overviewContainer" style={{marginBottom: '5px', justifyContent: 'space-between'}}>
+        <div className="overviewContainer" style={{marginBottom: '10px', justifyContent: 'space-between'}}>
             <div style={styles.subcontainer}>{this.renderValueCount()}</div>
             <div style={styles.subcontainer}>{this.renderGamesOwnedCount()}</div>
             <div style={styles.subcontainer}>{this.renderGamesCount()}</div>

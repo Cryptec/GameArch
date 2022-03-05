@@ -161,12 +161,14 @@
     min-width: 200px;
     margin: 10px;
     background: var(--background);
-    border: var(--border);
     border-radius: 7px;
     flex-direction: column;
     display: flex;
     overflow: hidden;
   }
+.gamesShow:hover {
+    box-shadow: var(--box-shadow);
+}
 .addButton {
     width: 100px;
     height: 40px;
@@ -179,10 +181,12 @@
     cursor: pointer;
     display: flex;
     margin-left: auto;
+    margin-top: 3px;
 }
 .listViewButton {
     color: var( --text-primary);
     cursor: pointer;
+    margin-top: 3px;
 }
 .listViewButton:hover {
     color: var(--text-hover);

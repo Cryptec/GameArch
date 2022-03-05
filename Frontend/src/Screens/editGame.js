@@ -173,7 +173,6 @@ class EditGame extends Component {
                     id='purchasedate'
                     value={this.state.purchasedate}
                     type='date'
-                    required
                   />
                 </label>
                 <br />
@@ -348,7 +347,6 @@ class EditGame extends Component {
                   value={this.state.description}
                   type='text'
                   rows='4'
-                  required
                 />
               </label>
               <br />

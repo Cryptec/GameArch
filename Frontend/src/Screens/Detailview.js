@@ -332,7 +332,7 @@ class Detailview extends Component {
                     </tr>
                     <tr>
                       <td className='tdTitle'>Purchasedate:</td>
-                      <td className='tdContent'>{this.state.purchasedate}</td>
+                      <td className='tdContent'>{this.state.purchasedate === '' ? '-' : this.state.purchasedate}</td>
                     </tr>
                     <tr>
                       <td className='tdTitle'>Price:</td>
@@ -369,21 +369,21 @@ class Detailview extends Component {
             <br />
             <br />
           </div>
-          <div className='overviewContainer' style={{ marginTop: '5px' }}>
+          <div className='overviewContainer' style={{ marginTop: '10px' }}>
 
             {this.state.wishstate !== 'true' ? (
               <button
                 onClick={() => this.SetWishlist(id)}
                 className='WishlistButton'
               >
-                + | Wishlist
+                  ✖ | Wishlist
               </button>
             ) : (
               <button
                 onClick={() => this.SetWishlist(id)}
                 className='WishlistButton'
               >
-                - | Wishlist
+                    ✔ | Wishlist
               </button>
             )}
               <div className='WishlistButton' onClick={() => this.Publiclink()}><LinkIcon /></div>
