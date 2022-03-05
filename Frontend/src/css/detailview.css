@@ -18,6 +18,7 @@
     flex-wrap : wrap;
     padding: 0px 20px 0px 20px;
     font-size: 17.5px;
+    white-space: pre-wrap;
 }
 .BodyContainer {
     color: 'var(--text-primary)';
