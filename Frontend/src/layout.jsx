@@ -3,7 +3,7 @@ import Routes from './routes'
 import Sidebar from './components/sidebar'
 import Topbar from './components/topbar'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
 class Layout extends Component {
 

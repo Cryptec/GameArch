@@ -23,3 +23,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 db.sqlite
+
+# env files
+/public/env-config.js
+env-config.js

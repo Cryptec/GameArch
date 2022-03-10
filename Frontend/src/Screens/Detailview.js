@@ -8,8 +8,8 @@ import { LinkIcon } from '../assets/icons';
 import '../css/detailview.css';
 import '../css/imagemodal.css';
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000';
-const SITE_URL = process.env.REACT_APP_SITE_URL || 'http://localhost:3000';
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000';
+const SITE_URL = window._env_.REACT_APP_SITE_URL || 'http://localhost:3000';
 
 class Detailview extends Component {
   constructor(props) {
