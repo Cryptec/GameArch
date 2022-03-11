@@ -19,6 +19,7 @@ class GeneralSettings extends Component {
        isActiveError: false,
        isActiveSuccess: false,
        registration: '',
+       resolution: '',
        themes: [],
        theme: ''
     };
@@ -30,7 +31,7 @@ componentDidMount = async () => {
     const fetchcurrency = await response.json()
     this.setState({ fetchcurrency })
     this.state.fetchcurrency.map(actualtheme => {
-    return this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, registration: actualtheme.registration, isLoading: false })
+    return this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, registration: actualtheme.registration, resolution: actualtheme.resolution, isLoading: false })
     })
   } else {
     this.setState({ isError: true, isLoading: false })
@@ -120,6 +121,24 @@ render() {
                     </select>              
                     <br></br>
                     <br />
+                  <label className='generallabel' >
+                   Resolution:
+                  </label>
+                    <select
+                      list="resolutionlist"
+                      name="Resolution"
+                      id="Resolution"
+                      className="currencydropdown"
+                      value={this.state.resolution}
+                      onChange={this.handleChange.bind(this)}
+                      required
+                    > 
+                      <option>--Choose--</option>
+                      <option>enabled</option>
+                      <option>disabled</option>
+                    </select>              
+                    <br></br>
+                    <br />
             <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
 
             <button className="addButton">
@@ -155,7 +174,9 @@ handleChange(event) {
       this.setState({ theme: event.target.value });
   } else if (field === "Registration") {
     this.setState({ registration: event.target.value });
-}
+  } else if (field === "Resolution") {
+    this.setState({ resolution: event.target.value });
+  }
 }
 handleSubmit(event) {
 event.preventDefault();
@@ -166,7 +187,7 @@ axios({
     credentials: 'include',
     url: `${API_ENDPOINT}/api/setcurrency`,
     headers: { 'Content-Type': 'application/json' },
-    data: { currency: this.state.Currency, registration: this.state.registration, id: 1, theme: this.state.theme }
+    data: { currency: this.state.Currency, registration: this.state.registration, resolution: this.state.resolution, id: 1, theme: this.state.theme }
     
 }).then((response, props) => {
     console.log(response)
