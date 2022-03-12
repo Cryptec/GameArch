@@ -13,9 +13,12 @@ class EditGame extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      fetchdata: [],
+      resolution: '',
       title: this.props.location.state.title,
       platform: this.props.location.state.platform,
       price: this.props.location.state.price,
+      saleprice: this.props.location.state.saleprice,
       purchasedate: this.props.location.state.purchasedate,
       description: this.props.location.state.description,
       id: this.props.location.state.id,
@@ -35,10 +38,21 @@ class EditGame extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, { credentials: 'include' })
+    if (response.ok) {
+      const fetchdata = await response.json()
+      this.setState({ fetchdata })
+      this.state.fetchdata.map(data => {
+        return this.setState({ resolution: data.resolution })
+      })
+    } else {
+      this.setState({ isError: true, isLoading: false })
+    }
     this.handleImagePreview()
     this.handleOwnagePreview()
     this.getPlatforms()
+    this.setMode()
     document.getElementById(`${this.state.stars}-stars`).checked = true
   }
   handleShow = () => {
@@ -107,6 +121,14 @@ class EditGame extends Component {
     });
   }
 
+  setMode = () => {
+    if (this.state.resolution === 'disabled') {
+      document.getElementById('saleprice').style.display = 'none'
+      document.getElementById('salepricelabel').style.display = 'none'
+      document.getElementById('price').style.width = '300px'
+    }
+  }
+
   render() {
     return (
       <div id='contentpage'>
@@ -151,6 +173,12 @@ class EditGame extends Component {
                 </datalist>
               </label>
               <br />
+              <div style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginBottom: '-10px'
+                }}>
               <label className='label'>
                 Price:
                 <br />
@@ -160,10 +188,23 @@ class EditGame extends Component {
                   id='price'
                   value={this.state.price}
                   type='text'
+                  style={{ width: "120px", paddingLeft: "8px" }}
                   required
                 />
               </label>
-                <br />
+              <label className='label' id='salepricelabel'>
+                  Saleprice:
+                  <br />
+                  <input
+                    className='form-group-addgame'
+                    onChange={this.handleChange.bind(this)}
+                    id='saleprice'
+                    value={this.state.saleprice}
+                    type='text'
+                    style={{ width: '120px'}}
+                  />
+              </label>
+            </div>
                 <label className='label'>
                   Purchase date:
                   <br />
@@ -369,6 +410,8 @@ class EditGame extends Component {
       this.setState({ title: event.target.value })
     } else if (field === 'price') {
       this.setState({ price: event.target.value })
+    } else if (field === 'saleprice' && this.state.resolution === 'enabled') {
+      this.setState({ saleprice: event.target.value })
     } else if (field === 'purchasedate') {
       this.setState({ purchasedate: event.target.value })
     } else if (field === 'region') {
@@ -417,6 +460,7 @@ class EditGame extends Component {
     data.append('id', this.state.id)
     data.append('title', this.state.title)
     data.append('price', this.state.price)
+    data.append('saleprice', this.state.saleprice)
     data.append('purchasedate', this.state.purchasedate)
     data.append('platform', this.state.platform)
     data.append('ownage', this.state.ownage)
