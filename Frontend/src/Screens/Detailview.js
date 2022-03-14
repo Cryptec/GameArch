@@ -352,16 +352,25 @@ class Detailview extends Component {
                   <div className='detailtable'>
                     <tbody id='detailtblData'>
                       <tr>
-                        <td className='tdTitle'>In possession:</td>
                         {this.state.resolution === 'enabled' &&
                         this.state.saleprice !== '' ? (
-                          <td className='tdContent'>SOLD</td>
+                          <>
+                          <td className='tdTitle'>Sold for:</td>
+                          <td className='tdContent'>
+                          <div style={{ display: 'inline-flex' }}>
+                            {this.state.saleprice}&nbsp;{currency}
+                          </div>
+                          </td>
+                          </>
                         ) : (
+                          <>
+                          <td className='tdTitle'>In possession:</td>
                           <td className='tdContent'>
                             {this.state.module}
                             {this.state.box}
                             {this.state.manual}
                           </td>
+                          </>
                         )}
                       </tr>
                       <tr>
