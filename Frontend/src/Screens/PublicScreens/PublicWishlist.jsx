@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { GridIcon, ListIcon } from '../../assets/icons/index.jsx'
 import platforms from '../../utils/platforms'
-import RenderPublicListWishlist from './renderPublicListWishlist.js'
-import RenderPublicDetailWishlist from './renderPublicDetailWishlist.js'
+import RenderPublicListWishlist from './renderPublicListWishlist'
+import RenderPublicDetailWishlist from './renderPublicDetailWishlist'
 
 
 class PublicWishlist extends Component {
