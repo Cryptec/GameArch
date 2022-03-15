@@ -15,7 +15,7 @@ class RenderDetailView extends Component {
       resolution: '',
       ownagePreviewOk: <>&#10004;</>,
       ownagePreviewFalse: <>&#x2715;</>,
-      ownagePreviewSold: <> S </>,
+      ownagePreviewSold: <div style={{marginLeft: '2px', marginRight: '2px'}}>&#83;</div>,
       filter: localStorage.getItem('filter'),
       file: false,
     }

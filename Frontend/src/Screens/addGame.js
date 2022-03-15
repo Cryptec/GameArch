@@ -26,7 +26,7 @@ class AddGame extends Component {
       released: '',
       ownagePreviewOk: '',
       ownagePreviewFalse: '',
-      ownagePreviewSold: <> S </>,
+      ownagePreviewSold: <div style={{ marginLeft: '2px', marginRight: '2px' }}>&#83;</div>,
       stars: '',
       purchasedate: '',
       file: 'null',

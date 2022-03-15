@@ -30,7 +30,7 @@ class EditGame extends Component {
       oldfilename: this.props.location.state.filename,
       ownagePreviewOk: '',
       ownagePreviewFalse: '',
-      ownagePreviewSold: <> S </>,
+      ownagePreviewSold: <div style={{ marginLeft: '2px', marginRight: '2px' }}>&#83;</div>,
       stars: this.props.location.state.stars,
       file: null,
       preview: null,
