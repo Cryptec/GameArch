@@ -26,10 +26,11 @@ class AddGame extends Component {
       released: '',
       ownagePreviewOk: '',
       ownagePreviewFalse: '',
+      ownagePreviewSold: <> S </>,
       stars: '',
       purchasedate: '',
       file: 'null',
-      preview: null,
+      preview: null, 
     }
   }
 
@@ -55,6 +56,13 @@ class AddGame extends Component {
     this.handleShow()
     this.setMode()
   }
+
+  componentDidUpdate = () => {
+    if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
+      document.getElementById('ownage').checked = false
+    }
+  }
+
   handleShow = () => {
     document.getElementById('ownagefieldset').style.borderColor =
       'rgb(209, 13, 13)'
@@ -282,6 +290,8 @@ class AddGame extends Component {
                       {this.handlePricePreview()}&nbsp;
                       <Rendercurrency />
                     </div>
+                    { this.state.saleprice === '' && this.state.resolution === 'enabled' ? (
+                      <div>
                     {this.state.ownage === 'false' ? (
                       <div className='ownagePreviewFalse'>
                         {this.state.ownagePreviewFalse}
@@ -290,6 +300,28 @@ class AddGame extends Component {
                       <div className='ownagePreviewOk'>
                         {this.state.ownagePreviewOk}
                       </div>
+                    )}
+                      </div>
+                    ) : (
+
+                       this.state.resolution === 'disabled' ? (
+                        <div>
+                    {this.state.ownage === 'false' ? (
+                      <div className='ownagePreviewFalse'>
+                        {this.state.ownagePreviewFalse}
+                      </div>
+                    ) : (
+                      <div className='ownagePreviewOk'>
+                        {this.state.ownagePreviewOk}
+                      </div>
+                    )}
+                      </div>
+                      ) : (
+                        <div className='ownagePreviewSold'>
+                        {this.state.ownagePreviewSold}
+                        </div>
+                      )
+                      
                     )}
                   </div>
                 </div>
@@ -426,6 +458,10 @@ class AddGame extends Component {
     } else  {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
+    } 
+    
+    if (this.state.saleprice !== '') {
+      this.setState({  ownage: 'false' })
     }
   }
   handleSubmit(event) {

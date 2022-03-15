@@ -467,6 +467,7 @@ class Detailview extends Component {
                     stars: this.state.stars,
                     box: this.state.isbox,
                     manual: this.state.ismanual,
+                    resolution: this.state.resolution
                   },
                 }}
               >

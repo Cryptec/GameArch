@@ -14,7 +14,7 @@ class EditGame extends Component {
     super(props)
     this.state = {
       fetchdata: [],
-      resolution: '',
+      resolution: this.props.location.state.resolution,
       title: this.props.location.state.title,
       platform: this.props.location.state.platform,
       price: this.props.location.state.price,
@@ -30,6 +30,7 @@ class EditGame extends Component {
       oldfilename: this.props.location.state.filename,
       ownagePreviewOk: '',
       ownagePreviewFalse: '',
+      ownagePreviewSold: <> S </>,
       stars: this.props.location.state.stars,
       file: null,
       preview: null,
@@ -39,6 +40,7 @@ class EditGame extends Component {
   }
 
   componentDidMount = async () => {
+    document.getElementById(`${this.state.stars}-stars`).checked = true
     const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, { credentials: 'include' })
     if (response.ok) {
       const fetchdata = await response.json()
@@ -53,8 +55,14 @@ class EditGame extends Component {
     this.handleOwnagePreview()
     this.getPlatforms()
     this.setMode()
-    document.getElementById(`${this.state.stars}-stars`).checked = true
   }
+
+  componentDidUpdate = () => {
+    if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
+      document.getElementById('ownage').checked = false
+    }
+  }
+  
   handleShow = () => {
     document.getElementById('ownagefieldset').style.borderColor = 'rgb(209, 13, 13)'
   }
@@ -83,7 +91,9 @@ class EditGame extends Component {
     } else if (this.props.location.state.ownage === 'false') {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
-    } 
+    } else if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
+      this.setState({  ownage: 'false' })
+    }
     if (this.props.location.state.manual === 'true') {
       document.getElementById('manual').checked = true
       this.setState({ manual: 'true'})
@@ -312,6 +322,8 @@ class EditGame extends Component {
                       {this.handlePricePreview()}&nbsp;
                       <Rendercurrency />
                     </div>
+                    { this.state.saleprice === '' && this.state.resolution === 'enabled' ? (
+                      <div>
                     {this.state.ownage === 'false' ? (
                       <div className='ownagePreviewFalse'>
                         {this.state.ownagePreviewFalse}
@@ -320,6 +332,28 @@ class EditGame extends Component {
                       <div className='ownagePreviewOk'>
                         {this.state.ownagePreviewOk}
                       </div>
+                    )}
+                      </div>
+                    ) : (
+
+                       this.state.resolution === 'disabled' ? (
+                        <div>
+                    {this.state.ownage === 'false' ? (
+                      <div className='ownagePreviewFalse'>
+                        {this.state.ownagePreviewFalse}
+                      </div>
+                    ) : (
+                      <div className='ownagePreviewOk'>
+                        {this.state.ownagePreviewOk}
+                      </div>
+                    )}
+                      </div>
+                      ) : (
+                        <div className='ownagePreviewSold'>
+                        {this.state.ownagePreviewSold}
+                        </div>
+                      )
+                      
                     )}
                   </div>
                 </div>
