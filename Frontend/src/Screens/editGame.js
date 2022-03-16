@@ -488,7 +488,7 @@ class EditGame extends Component {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
     }
-    if (this.state.saleprice !== '') {
+    if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
       this.setState({  ownage: 'false' })
     }
   }

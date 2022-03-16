@@ -461,7 +461,7 @@ class AddGame extends Component {
       this.handleShow()
     } 
     
-    if (this.state.saleprice !== '') {
+    if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
       this.setState({  ownage: 'false' })
     }
   }
