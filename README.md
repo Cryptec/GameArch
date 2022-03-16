@@ -6,6 +6,7 @@
   - [Commands](#Basic-Commands)
 - [Installation](#Getting-Started)
   - [Self hosted](#Self-hosted)
+  - [Docker](#Docker)
   - [Custom variables](#Self-hosted)
 <!-- /MarkdownTOC -->
 ## About
@@ -36,6 +37,11 @@ First, you can edit the two dotenv files in the root of the project for enabling
 3. in both directorys change the name of `example.env` to `.env`. To edit the files use your favourite editor like <code>nano</code>. <b>it is important to set the email settings, otherwise the reset password function will not work!</b>
 4. `yarn start` in the Backend directory starts the express server on port 5000.
 5. `yarn build` in the Frontend directory trigger a production build for the Frontend.
+
+### Docker
+
+Thanks to christophkoenig there is also a Docker conatiner available. You can find the instructions in his 
+repository <https://github.com/christophkoenig/docker-gamearch>
 
 ### Custom variables
 1. define the platforms/consoles for your needs in   `/Frontend/src/utils/platforms.js`

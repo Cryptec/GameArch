@@ -135,13 +135,23 @@
     float: right;
 }
 .ownagePreviewFalse {
-    padding: 6px 9px;
+    padding: 6px 10px;
     font-weight: 600;
     font-size: small;
     border-radius: 7px;
     color: white;
     margin: 6px 8px;
     background-color: brown;
+    float: right;
+}
+.ownagePreviewSold {
+    padding: 6px 9px;
+    font-weight: 800;
+    font-size: small;
+    border-radius: 7px;
+    color: rgb(0, 0, 0);
+    margin: 6px 8px;
+    background-color: rgb(216, 206, 206);
     float: right;
 }
 .gamesPreview {

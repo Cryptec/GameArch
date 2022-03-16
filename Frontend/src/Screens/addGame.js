@@ -6,44 +6,64 @@ import platforms from '../utils/platforms'
 import '../css/overview.css'
 import '../css/addnew.css'
 
-const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class AddGame extends Component {
   constructor() {
     super()
     this.state = {
+      fetchdata: [],
+      resolution: '',
       title: '',
-      platform: '',
       price: '',
-      ownage: '',
-      box: '',
-      manual: '',
+      saleprice: '',
+      platform: '',
+      ownage: 'false',
+      box: 'false',
+      manual: 'false',
       region: '',
       description: '',
       released: '',
       ownagePreviewOk: '',
       ownagePreviewFalse: '',
+      ownagePreviewSold: <div style={{ marginLeft: '2px', marginRight: '2px' }}>&#83;</div>,
       stars: '',
       purchasedate: '',
       file: 'null',
-      preview: null,
+      preview: null, 
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     this.setState({
       preview: ImagePlaceholder,
-      ownage: 'false',
-      box: 'false',
-      manual: 'false',
       region: 'PAL',
       stars: '3',
       ownagePreviewFalse: <>&#x2715;</>,
     })
+    document.getElementById('3-stars').checked = true
+    const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, { credentials: 'include' })
+      if (response.ok) {
+        const fetchdata = await response.json()
+        this.setState({ fetchdata })
+        this.state.fetchdata.map(data => {
+          return this.setState({ resolution: data.resolution })
+        })
+      } else {
+        this.setState({ isError: true, isLoading: false })
+      }
     this.getPlatforms()
     this.handleShow()
-    document.getElementById('3-stars').checked = true
+    this.setMode()
   }
+
+  componentDidUpdate = () => {
+    if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
+      document.getElementById('ownage').checked = false
+      document.getElementById('ownagefieldset').style.borderColor ='rgb(209, 13, 13)'
+    }
+  }
+
   handleShow = () => {
     document.getElementById('ownagefieldset').style.borderColor =
       'rgb(209, 13, 13)'
@@ -77,6 +97,14 @@ class AddGame extends Component {
       option.value = item;
       list.appendChild(option);
     });
+  }
+
+  setMode = () => {
+    if(this.state.resolution === 'disabled') {
+      document.getElementById('saleprice').style.display = 'none'
+      document.getElementById('salepricelabel').style.display = 'none'
+      document.getElementById('price').style.width = '300px'
+    }
   }
 
   render() {
@@ -124,6 +152,12 @@ class AddGame extends Component {
                   </datalist>
                 </label>
                 <br />
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginBottom: '-10px'
+                }}>
                 <label className='label'>
                   Price:
                   <br />
@@ -133,10 +167,23 @@ class AddGame extends Component {
                     id='price'
                     value={this.state.price}
                     type='text'
+                    style={{ width: "120px", paddingLeft: "8px" }}
                     required
                   />
                 </label>
-                <br />
+                  <label className='label' id='salepricelabel'>
+                  Saleprice:
+                  <br />
+                  <input
+                    className='form-group-addgame'
+                    onChange={this.handleChange.bind(this)}
+                    id='saleprice'
+                    value={this.state.saleprice}
+                    type='text'
+                    style={{ width: '120px'}}
+                  />
+                </label>
+            </div>
                 <label className='label'>
                   Purchase date:
                   <br />
@@ -244,6 +291,8 @@ class AddGame extends Component {
                       {this.handlePricePreview()}&nbsp;
                       <Rendercurrency />
                     </div>
+                    { this.state.saleprice === '' && this.state.resolution === 'enabled' ? (
+                      <div>
                     {this.state.ownage === 'false' ? (
                       <div className='ownagePreviewFalse'>
                         {this.state.ownagePreviewFalse}
@@ -252,6 +301,28 @@ class AddGame extends Component {
                       <div className='ownagePreviewOk'>
                         {this.state.ownagePreviewOk}
                       </div>
+                    )}
+                      </div>
+                    ) : (
+
+                       this.state.resolution === 'disabled' ? (
+                        <div>
+                    {this.state.ownage === 'false' ? (
+                      <div className='ownagePreviewFalse'>
+                        {this.state.ownagePreviewFalse}
+                      </div>
+                    ) : (
+                      <div className='ownagePreviewOk'>
+                        {this.state.ownagePreviewOk}
+                      </div>
+                    )}
+                      </div>
+                      ) : (
+                        <div className='ownagePreviewSold'>
+                        {this.state.ownagePreviewSold}
+                        </div>
+                      )
+                      
                     )}
                   </div>
                 </div>
@@ -345,6 +416,8 @@ class AddGame extends Component {
       this.setState({ title: event.target.value })
     } else if (field === 'price') {
       this.setState({ price: event.target.value })
+    } else if ( field === 'saleprice' && this.state.resolution === 'enabled') {
+      this.setState({ saleprice: event.target.value })
     } else if (field === 'purchasedate') {
       this.setState({ purchasedate: event.target.value })
     } else if (field === 'region') {
@@ -386,6 +459,10 @@ class AddGame extends Component {
     } else  {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
+    } 
+    
+    if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
+      this.setState({  ownage: 'false' })
     }
   }
   handleSubmit(event) {
@@ -393,6 +470,7 @@ class AddGame extends Component {
     let data = new FormData()
     data.append('title', this.state.title)
     data.append('price', this.state.price)
+    data.append('saleprice', this.state.saleprice)
     data.append('purchasedate', this.state.purchasedate)
     data.append('platform', this.state.platform)
     data.append('ownage', this.state.ownage)
@@ -419,6 +497,7 @@ class AddGame extends Component {
           title: '',
           preview: ImagePlaceholder,
           price: '',
+          saleprice: '',
           platform: '',
           released: '',
           description: '',
