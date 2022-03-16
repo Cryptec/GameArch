@@ -60,6 +60,7 @@ class EditGame extends Component {
   componentDidUpdate = () => {
     if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
       document.getElementById('ownage').checked = false
+      document.getElementById('ownagefieldset').style.borderColor = 'rgb(209, 13, 13)'
     }
   }
   
@@ -84,11 +85,11 @@ class EditGame extends Component {
     }
   }
   handleOwnagePreview = () => {
-    if (this.props.location.state.ownage === 'true') {
+    if (this.state.ownage === 'true') {
       document.getElementById('ownage').checked = true
       this.setState({ ownage: 'true', ownagePreviewOk: <>&#10004;</> })
       this.handleShowSuccess()
-    } else if (this.props.location.state.ownage === 'false') {
+    } else if (this.state.ownage === 'false') {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
     } else if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
@@ -486,6 +487,9 @@ class EditGame extends Component {
     } else  {
       this.setState({ ownage: 'false', ownagePreviewFalse: <>&#x2715;</> })
       this.handleShow()
+    }
+    if (this.state.saleprice !== '') {
+      this.setState({  ownage: 'false' })
     }
   }
   handleSubmit(event) {

@@ -60,6 +60,7 @@ class AddGame extends Component {
   componentDidUpdate = () => {
     if (this.state.saleprice !== '' && this.state.resolution === 'enabled') {
       document.getElementById('ownage').checked = false
+      document.getElementById('ownagefieldset').style.borderColor ='rgb(209, 13, 13)'
     }
   }
 
