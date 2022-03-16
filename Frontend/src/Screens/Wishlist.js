@@ -5,8 +5,8 @@ import RenderDetailWishlist from '../utils/renderDetailWishlist'
 import RenderListWishlist from '../utils/renderListWishlist'
 import platforms from '../utils/platforms'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
-const SITE_URL = process.env.REACT_APP_SITE_URL || 'http://localhost:3000'
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
+const SITE_URL = window._env_.REACT_APP_SITE_URL || 'http://localhost:3000'
 
 class Wishlist extends Component {
     constructor(props) {

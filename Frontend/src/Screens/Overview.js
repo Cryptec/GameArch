@@ -6,7 +6,7 @@ import { GridIcon, ListIcon } from '../assets/icons/index.jsx'
 import platforms from '../utils/platforms'
 import RenderPlatformValue from '../utils/RenderPlatformValue'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT
 
 class Overview extends Component {
   constructor(props) {

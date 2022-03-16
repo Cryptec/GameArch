@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import '../css/table.css'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT
 
 class Coworker extends Component {
   constructor(props) {

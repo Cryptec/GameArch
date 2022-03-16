@@ -4,7 +4,7 @@ import { userName, email } from '../../utils'
 import '../../css/settings.css'
 
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 const VERSION_NUMBER = '0.8.5 beta'
 
 
