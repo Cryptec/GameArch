@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 import Rendercurrency from '../utils/renderCurrency'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT
 
 class RenderListWishlist extends Component {
     constructor(props) {

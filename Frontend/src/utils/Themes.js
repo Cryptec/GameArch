@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT
 
 class Themes extends Component {
     constructor(props) {

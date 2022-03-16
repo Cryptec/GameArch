@@ -7,7 +7,7 @@ import '../css/overview.css'
 import '../css/addnew.css'
 
 const API_ENDPOINT =
-  process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
+  window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class EditGame extends Component {
   constructor(props) {

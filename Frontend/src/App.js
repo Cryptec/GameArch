@@ -13,7 +13,7 @@ import Layout from './layout'
 import Forgot from './Screens/Forgot'
 import Redirect from './utils/Redirect'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
 class App extends Component {
   constructor() {

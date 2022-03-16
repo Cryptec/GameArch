@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 import Rendercurrency from './renderCurrency'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT
 
 class RenderDetailView extends Component {
   constructor(props) {
@@ -75,6 +75,7 @@ class RenderDetailView extends Component {
     })
 
     return filteredData.map((game) => {
+      
       const imageName = game.filename
       const title = game.title
       const price = game.price

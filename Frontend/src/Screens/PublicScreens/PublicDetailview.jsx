@@ -5,8 +5,7 @@ import ImagePlaceholder from '../../assets/imageplaceholder.png'
 import '../../css/detailview.css'
 import '../../css/imagemodal.css'
 
-const API_ENDPOINT =
-  process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000';
 
 class PublicDetailview extends Component {
   constructor(props) {
@@ -361,3 +360,4 @@ styles.pagecontainer = {
 }
 
 export default PublicDetailview
+

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Rendercurrency from '../../utils/renderCurrency'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class Stats extends Component {
     constructor(props) {

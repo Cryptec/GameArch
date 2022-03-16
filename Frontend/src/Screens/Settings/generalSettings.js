@@ -3,7 +3,7 @@ import axios from 'axios'
 import '../../css/settings.css'
 
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
+const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
 
 class GeneralSettings extends Component {
