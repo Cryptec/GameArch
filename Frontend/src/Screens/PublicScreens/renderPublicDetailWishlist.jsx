@@ -10,7 +10,8 @@ class RenderPublicDetailWishlist extends Component {
         super(props)
         this.state = {
             games: [],
-            fetchdata: [],
+            resolution: [],
+            isresolution: '',
             isLoading: false,
             isError: false,
             ownagePreviewOk: <>&#10004;</>,
@@ -34,14 +35,15 @@ class RenderPublicDetailWishlist extends Component {
     }
 
     fetchMode = async () => {
-        const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, {
+        const response = await fetch(`${API_ENDPOINT}/api/public/resstate`, {
             credentials: 'include',
         })
         if (response.ok) {
-            const fetchdata = await response.json()
-            this.setState({ fetchdata })
-            this.state.fetchdata.map((data) => {
-                return this.setState({ resolution: data.resolution })
+            const resolution = await response.json()
+            this.setState({ resolution })
+            this.state.resolution.map(resolutionstate => {
+                this.setState({ isresolution: resolutionstate.resolution })
+                return (true)
             })
         } else {
             this.setState({ isError: true, isLoading: false })
@@ -98,7 +100,7 @@ class RenderPublicDetailWishlist extends Component {
                     <div className="gameTitle">{title}</div>
                     <div className="bottomSection">
                         <div className="gamePrice">{price}&nbsp;<Rendercurrency /></div>
-                        {game.saleprice === '' && this.state.resolution === 'enabled' ? (
+                        {game.saleprice === '' && this.state.isresolution === 'enabled' ? (
                             <div>
                                 {game.ownage === 'false' ? (
                                     <div className='ownagePreviewFalse'>
@@ -110,7 +112,7 @@ class RenderPublicDetailWishlist extends Component {
                                     </div>
                                 )}
                             </div>
-                        ) : this.state.resolution === 'disabled' ? (
+                        ) : this.state.isresolution === 'disabled' ? (
                             <div>
                                 {game.ownage === 'false' ? (
                                     <div className='ownagePreviewFalse'>

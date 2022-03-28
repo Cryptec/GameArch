@@ -54,4 +54,16 @@ router.get("/public/wishlist/:platform", (req, res, next) => {
   });
 });
 
+router.get("/public/resstate", (req, res, next) => {
+  var sql = "select resolution from Settings"
+  var params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(rows);
+  });
+});
+
 module.exports = router;
