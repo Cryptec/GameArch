@@ -8,10 +8,13 @@
   - [Self hosted](#Self-hosted)
   - [Docker](#Docker)
   - [Custom variables](#Self-hosted)
+- [Information](#Information)
+  - [Resolution mode](#Resolution-Mode)
+  - [Images](#Images)
 <!-- /MarkdownTOC -->
 ## About
 
-GameArch (Game Archive) is a self-hosted open-source lool for your videogame collection. 
+GameArch (Game Archive) is a self-hosted open-source tool for your videogame collection. 
 
 
 want to contribute? simply open a PR in the ```development``` branch, or get in touch. 
@@ -45,3 +48,15 @@ repository <https://github.com/christophkoenig/docker-gamearch>
 
 ### Custom variables
 1. define the platforms/consoles for your needs in   `/Frontend/src/utils/platforms.js`
+
+## Information
+
+### Resolution-Mode
+
+once a sale price is given, the game is automatically marked as 'Not Owned' and of course no longer counts towards the total value of the collection. If you want to undo the whole thing, you should also do this using the resolution mode, namely delete the sale price and, if necessary, mark the game as 'owned' again. You can also simply mark the game as owned again in 'normal' mode, but this changes automatically as soon as you switch back to sale mode, because this recognizes the specified sale price in the database.
+
+Long story short: if you own the game again, delete the sale price!
+
+### Images
+
+the ideal resolution for Boxcover like N64 or SNES to display perfectly in the 'Grid-view' is 800px x 560px!
