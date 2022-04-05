@@ -1,4 +1,1 @@
-echo window._env_ = { > ./env-config.js
-findstr /v # .env >> ./env-config.js
-echo } >> ./env-config.js
-
+@(echo window._env_ = {& (for /F "tokens=1* delims== eol=#" %%I in (.env) do @echo %%I: "%%J",) & echo })> .\env-config.js
