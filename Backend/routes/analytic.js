@@ -46,6 +46,20 @@ router.get('/totalvalue', checkAuthentication, async function (req, res) {
 
 });
 
+router.get('/totalincome', checkAuthentication, async function (req, res) {
+
+  var sql = "SELECT saleprice FROM Games WHERE ownage = 'false'"
+  var params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(rows);
+  });
+
+});
+
 router.get('/totalvalue/:platform', checkAuthentication, async function (req, res) {
   var data = {
     platform: req.params.platform,

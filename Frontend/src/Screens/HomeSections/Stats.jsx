@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Rendercurrency from '../../utils/renderCurrency'
+import Rendersellprice from '../../utils/rendersellprice'
 
 const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
@@ -190,12 +191,12 @@ render() {
    
         <div className="overviewContainer" style={{marginBottom: '10px', justifyContent: 'space-between'}}>
             <div style={styles.subcontainer}>{this.renderValueCount()}</div>
-            <div style={styles.subcontainer}>{this.renderGamesOwnedCount()}</div>
-            <div style={styles.subcontainer}>{this.renderGamesCount()}</div>
             {this.state.resolution === 'enabled' ? 
-            <div style={styles.subcontainer}>enabled</div> :
+            <div style={styles.subcontainer}><Rendersellprice /></div> :
             <div style={styles.subcontainer}>{this.renderPlatformCount()}</div>
             }
+            <div style={styles.subcontainer}>{this.renderGamesOwnedCount()}</div>
+            <div style={styles.subcontainer}>{this.renderGamesCount()}</div>
         </div>
     )
 }
