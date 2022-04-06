@@ -13,7 +13,8 @@ class Stats extends Component {
             valuecount: [{'price': '0'}],
             fetchgamecount: "0",
             fetchtotalgamecount: "0",
-            fetchmostplatform: "-"
+            fetchmostplatform: "-",
+            resolution: ''
         }
     }
 
@@ -22,6 +23,7 @@ class Stats extends Component {
         this.FetchValueCount()
         this.FetchMostRepresented()
         this.FetchGamesCount()
+        this.resolutionMode()
     }
 
     async FetchGamesOwnedCount() {
@@ -169,6 +171,19 @@ class Stats extends Component {
         )
     }
 
+    resolutionMode = async () => {
+        const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, { credentials: 'include' })
+        if (response.ok) {
+            const fetchdata = await response.json()
+            this.setState({ fetchdata })
+            this.state.fetchdata.map(data => {
+                return this.setState({ resolution: data.resolution })
+            })
+        } else {
+            this.setState({ isError: true, isLoading: false })
+        }
+    }
+
 render() {
 
     return (
@@ -177,7 +192,10 @@ render() {
             <div style={styles.subcontainer}>{this.renderValueCount()}</div>
             <div style={styles.subcontainer}>{this.renderGamesOwnedCount()}</div>
             <div style={styles.subcontainer}>{this.renderGamesCount()}</div>
+            {this.state.resolution === 'enabled' ? 
+            <div style={styles.subcontainer}>enabled</div> :
             <div style={styles.subcontainer}>{this.renderPlatformCount()}</div>
+            }
         </div>
     )
 }
