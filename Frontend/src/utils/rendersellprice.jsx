@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Rendercurrency from './renderCurrency'
 
 const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT
 
