@@ -172,6 +172,17 @@ class Stats extends Component {
         )
     }
 
+    renderSellprice = () => {
+        return (
+            <div style={{ padding: '20px', width: '100%' }}>
+            <div style={styles.topSubContainer}>
+                <div>Total income:</div>
+            </div>
+            <div style={styles.bottomSubContainer}><Rendersellprice />&nbsp;<Rendercurrency /></div>
+        </div>
+        )
+    }
+
     resolutionMode = async () => {
         const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, { credentials: 'include' })
         if (response.ok) {
@@ -192,7 +203,7 @@ render() {
         <div className="overviewContainer" style={{marginBottom: '10px', justifyContent: 'space-between'}}>
             <div style={styles.subcontainer}>{this.renderValueCount()}</div>
             {this.state.resolution === 'enabled' ? 
-            <div style={styles.subcontainer}><Rendersellprice /></div> :
+            <div style={styles.subcontainer}>{this.renderSellprice()}</div> :
             <div style={styles.subcontainer}>{this.renderPlatformCount()}</div>
             }
             <div style={styles.subcontainer}>{this.renderGamesOwnedCount()}</div>
