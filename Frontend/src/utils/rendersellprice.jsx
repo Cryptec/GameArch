@@ -67,7 +67,7 @@ renderValueCount = () => {
     let sumval = this.sum(val, ',')
     return (
         <>
-        {sumval}
+        {sumval === '' ? '0,00' : sumval}
         </>
     )
 }
