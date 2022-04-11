@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Rendercurrency from '../../utils/renderCurrency'
 import Rendersellprice from '../../utils/rendersellprice'
+import RenderTotalSpent from '../../utils/rendertotalspent'
 
 const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
@@ -176,9 +177,9 @@ class Stats extends Component {
         return (
             <div style={{ padding: '20px', width: '100%' }}>
             <div style={styles.topSubContainer}>
-                <div>Total income:</div>
+                <div>Total Spent / Total income:</div>
             </div>
-            <div style={styles.bottomSubContainer}><Rendersellprice />&nbsp;<Rendercurrency /></div>
+            <div style={styles.bottomSubContainer}><RenderTotalSpent />&nbsp;<Rendercurrency /> &nbsp;/&nbsp; <Rendersellprice />&nbsp;<Rendercurrency /></div>
         </div>
         )
     }

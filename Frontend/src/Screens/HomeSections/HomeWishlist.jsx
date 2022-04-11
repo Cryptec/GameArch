@@ -45,7 +45,7 @@ class HomeWishlist extends Component {
 
 
             <div>
-                <h3 style={{ color: 'var(--text-primary)', marginLeft: '8px' }}>wishlist:</h3>
+                <h3 style={{ color: 'var(--text-primary)', marginLeft: '8px', marginBottom: '-5px' }}>wishlist:</h3>
                 <div style={{ display: 'flex', flexDirection: 'row-reverse', marginRight: 'auto', justifyContent: 'flex-end' }}>
                     {this.renderGames()}
                 </div>
