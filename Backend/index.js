@@ -82,7 +82,7 @@ function setupExpress() {
       resave: false,
       rolling: true,
       cookie: { secure: false,
-                _expires : 14400000 } // 14400000 = 4h
+                _expires : 1800000 } // 1800000 = 30min, 14400000 = 4h
     }),
   );
 
