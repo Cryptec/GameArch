@@ -11,6 +11,7 @@
 - [Information](#Information)
   - [Resolution mode](#Resolution-Mode)
   - [Images](#Images)
+  - [Backup](#Backup)
 <!-- /MarkdownTOC -->
 ## About
 
@@ -61,3 +62,8 @@ Long story short: if you own the game again, delete the sale price!
 ### Images
 
 the ideal resolution for Boxcover like N64 or SNES to display perfectly in the 'Grid-view' is 800px x 560px!
+
+### Backup
+
+If you want to backup your GameArch Data, you need to save your `db.sqlite` file from the `/Backend/db` folder, and also the images from the `/Backend/public/uploads` folder. 
+To restore simply copy the db file and the images back in place in your new installation.
