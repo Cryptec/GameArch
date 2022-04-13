@@ -80,7 +80,9 @@ function setupExpress() {
       secret: sessionSecret,
       saveUninitialized: true,
       resave: false,
-      cookie: { secure: false }
+      rolling: true,
+      cookie: { secure: false,
+                _expires : 14400000 } // 14400000 = 4h
     }),
   );
 

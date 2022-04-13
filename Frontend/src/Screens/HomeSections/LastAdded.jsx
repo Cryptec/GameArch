@@ -31,6 +31,12 @@ async componentDidMount() {
 
   render() {
 
+    const { isError } = this.state
+
+    if(isError) {
+      return <div>Error</div>
+    }
+
     return (
  
       <div >

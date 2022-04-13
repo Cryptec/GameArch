@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
+import { GridViewError, GridViewLoading } from './placeholder'
 import Rendercurrency from './renderCurrency'
 
 const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT
@@ -22,8 +23,8 @@ class RenderDetailView extends Component {
   }
 
   async componentDidMount() {
-    this.fetchMode()
     this.setState({ isLoading: true, file: ImagePlaceholder })
+    this.fetchMode()
     const response = await fetch(
       `${API_ENDPOINT}/api/gamedata/${this.state.filter}`,
       { credentials: 'include' }
@@ -74,8 +75,17 @@ class RenderDetailView extends Component {
       }
     })
 
-    return filteredData.map((game) => {
-      
+      const { isLoading, isError } = this.state
+
+      if (isLoading) {
+        return <GridViewLoading />
+      }
+      if (isError) {
+          return <GridViewError />
+      }
+
+      return filteredData.map((game) => {
+        
       const imageName = game.filename
       const title = game.title
       const price = game.price

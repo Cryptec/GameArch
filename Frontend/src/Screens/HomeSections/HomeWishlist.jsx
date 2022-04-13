@@ -9,8 +9,6 @@ class HomeWishlist extends Component {
         super(props)
         this.state = {
             games: [],
-            isLoading: false,
-            isError: false,
             ownagePreviewOk: <>&#10004;</>,
             ownagePreviewFalse: <>&#x2715;</>,
             filter: localStorage.getItem('filter'),
@@ -23,22 +21,15 @@ class HomeWishlist extends Component {
         const response = await fetch(`${API_ENDPOINT}/api/wishlist`, { credentials: 'include' })
         if (response.ok) {
             const games = await response.json()
-            this.setState({ games, isLoading: false })
+            this.setState({ games })
         } else {
-            this.setState({ isError: true, isLoading: false })
+            this.setState({ isError: true })
         }
     }
 
     render() {
-        const { games, isLoading, isError } = this.state
 
-    if (isLoading) {
-      return <div id="contentpage">Loading...</div>
-    }
-
-    if (isError) {
-      return <div id="contentpage">Error</div>
-    }
+      const { games } = this.state
 
     return games.length > 0
       ? (
