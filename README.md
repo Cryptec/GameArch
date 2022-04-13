@@ -18,7 +18,7 @@
 GameArch (Game Archive) is a self-hosted open-source tool for your videogame collection. 
 
 
-want to contribute? simply open a PR in the ```development``` branch, or get in touch. 
+want to contribute? simply open a PR in the ```dev``` branch, or get in touch. 
 
 NOTE:
 The project is at a very early stage, so don´t expect it to work as it should already.
