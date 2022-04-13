@@ -38,6 +38,7 @@ export const isSession = async () => {
         return true
     } 
     localStorage.removeItem(TOKEN_KEY)
+    window.location.replace("/login");
     return false
     
 }
