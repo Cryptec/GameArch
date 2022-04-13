@@ -32,4 +32,14 @@ export const isLogin = () => {
     return false;
 }
 
+export const isSession = async () => {
+    const response = await fetch(`${API_ENDPOINT}/api/users`, {credentials: 'include'})
+    if (response.ok) {
+        return true
+    } 
+    localStorage.removeItem(TOKEN_KEY)
+    return false
+    
+}
+
 export default login
