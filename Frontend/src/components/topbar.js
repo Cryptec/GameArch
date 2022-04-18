@@ -14,6 +14,7 @@ class Topbar extends Component {
 
         this.state = {
             isLogin: isLogin(),
+            sidebarState: localStorage.getItem('sidebar-collapsed'),
             nav: true,
             user: "",
             open: false,
@@ -23,6 +24,7 @@ class Topbar extends Component {
 async componentDidMount() {
     await this.setState({user: userName()});
     document.addEventListener("mousedown", this.handleClickOutside);
+    this.state.sidebarState !== null ? this.setState({ nav: false }) : this.setState({ nav: true })
 }
 
 componentWillUnmount() {
@@ -65,11 +67,13 @@ handleLogout = () => {
 
 toggleOpen = () => {
     openNav()
+    localStorage.removeItem('sidebar-collapsed')
     this.setState({nav: true})
 }
 
 toggleClose = () => {
     closeNav()
+    localStorage.setItem('sidebar-collapsed', true)
     this.setState({ nav: false })
 }
 

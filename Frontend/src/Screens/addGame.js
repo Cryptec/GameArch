@@ -3,6 +3,7 @@ import axios from 'axios'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 import Rendercurrency from '../utils/renderCurrency'
 import platforms from '../utils/platforms'
+import { openNav, closeNav } from '../components/handler'
 import '../css/overview.css'
 import '../css/addnew.css'
 
@@ -13,6 +14,7 @@ class AddGame extends Component {
     super()
     this.state = {
       fetchdata: [],
+      sidebarState: localStorage.getItem('sidebar-collapsed'),
       resolution: '',
       title: '',
       price: '',
@@ -35,6 +37,7 @@ class AddGame extends Component {
   }
 
   componentDidMount = async () => {
+    this.state.sidebarState !== null ? closeNav() : openNav()
     this.setState({
       preview: ImagePlaceholder,
       region: 'PAL',

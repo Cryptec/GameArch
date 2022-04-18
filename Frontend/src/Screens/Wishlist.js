@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { GridIcon, ListIcon, ShareIcon } from '../assets/icons/index.jsx'
+import { openNav, closeNav } from '../components/handler'
 import RenderDetailWishlist from '../utils/renderDetailWishlist'
 import RenderListWishlist from '../utils/renderListWishlist'
 import platforms from '../utils/platforms'
@@ -13,6 +14,7 @@ class Wishlist extends Component {
         super(props)
         this.state = {
             settings: [],
+            sidebarState: localStorage.getItem('sidebar-collapsed'),
             platform: "all games",
             view: "",
             count: 0,
@@ -23,6 +25,7 @@ class Wishlist extends Component {
     }
 
     async componentDidMount() {
+        this.state.sidebarState !== null ? closeNav() : openNav()
         this.setState({ publiclink: `${SITE_URL}/public/wishlist`})
         this.FetchView()
         this.getPlatforms()

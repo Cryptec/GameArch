@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { openNav, closeNav } from '../components/handler'
 
 import '../css/table.css'
 
@@ -9,6 +10,7 @@ class Coworker extends Component {
     super(props)
     this.state = {
       users: [],
+      sidebarState: localStorage.getItem('sidebar-collapsed'),
       isLoading: false,
       isError: false
     }
@@ -17,6 +19,7 @@ class Coworker extends Component {
 
 async componentDidMount() {
     this.setState({ isLoading: true })
+    this.state.sidebarState !== null ? closeNav() : openNav()
     const response = await fetch(`${API_ENDPOINT}/api/users`, {credentials: 'include'})
     if (response.ok) {
       const users = await response.json()
@@ -27,18 +30,8 @@ async componentDidMount() {
   }
 
 render() {
-    const { users, isLoading, isError } = this.state
 
-    if (isLoading) {
-      return <div id="contentpage">Loading...</div>
-    }
-
-    if (isError) {
-      return <div id="contentpage">Error</div>
-    }
-
-    return users.length > 0
-      ? (
+  return (
         <div id="contentpage">
         <div className="userstable">
         <table id="tblData">
@@ -55,11 +48,7 @@ render() {
         </table>
         </div>
         </div>
-      ) : (
-        <div>
-          No users.
-      </div>
-      )
+  )
   }
 
 renderTableHeader = () => {
@@ -70,7 +59,19 @@ renderTableHeader = () => {
   }
 
 renderTableRows = () => {
-    return this.state.users.map(user => {
+  const { users, isLoading, isError } = this.state
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (isError) {
+    return <div>Error</div>
+  }
+
+  return users.length > 0
+    ? (
+     this.state.users.map(user => {
 
       return (
         <tr key={user.id}>
@@ -80,6 +81,11 @@ renderTableRows = () => {
         </tr>
       )
     })
+       ) : (
+    <div>
+      No users.
+    </div>
+  )
   }
 
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Rendercurrency from '../utils/renderCurrency'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 import { LinkIcon } from '../assets/icons'
+import { openNav, closeNav } from '../components/handler'
 
 import '../css/detailview.css'
 import '../css/imagemodal.css'
@@ -16,6 +17,7 @@ class Detailview extends Component {
     super(props)
     this.state = {
       game: [],
+      sidebarState: localStorage.getItem('sidebar-collapsed'),
       resolution: '',
       imageName: '',
       price: '',
@@ -49,6 +51,7 @@ class Detailview extends Component {
   }
 
   async componentDidMount() {
+    this.state.sidebarState !== null ? closeNav() : openNav()
     await this.fetchGame()
     await this.fetchWishlist()
     await this.RenderOwnageState()

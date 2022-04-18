@@ -3,6 +3,7 @@ import RenderDetailView from '../utils/renderDetailView'
 import RenderListView from '../utils/renderListView'
 import axios from 'axios'
 import { GridIcon, ListIcon } from '../assets/icons/index.jsx'
+import { openNav, closeNav } from '../components/handler'
 import platforms from '../utils/platforms'
 import RenderPlatformValue from '../utils/RenderPlatformValue'
 
@@ -13,6 +14,7 @@ class Overview extends Component {
     super(props)
     this.state = {
       settings: [],
+      sidebarState: localStorage.getItem('sidebar-collapsed'),
       platform: "all games",
       view: "",
       count: 0,
@@ -22,6 +24,7 @@ class Overview extends Component {
 }
 
 async componentDidMount() {
+  this.state.sidebarState !== null ? closeNav() : openNav()
   this.FetchView()
   this.getPlatforms()
 }

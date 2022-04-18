@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import ImagePlaceholder from '../assets/imageplaceholder.png'
 import Rendercurrency from '../utils/renderCurrency'
+import { openNav, closeNav } from '../components/handler'
 import platforms from '../utils/platforms'
 import '../css/overview.css'
 import '../css/addnew.css'
@@ -14,6 +15,7 @@ class EditGame extends Component {
     super(props)
     this.state = {
       fetchdata: [],
+      sidebarState: localStorage.getItem('sidebar-collapsed'),
       resolution: this.props.location.state.resolution,
       title: this.props.location.state.title,
       platform: this.props.location.state.platform,
@@ -40,6 +42,7 @@ class EditGame extends Component {
   }
 
   componentDidMount = async () => {
+    this.state.sidebarState !== null ? closeNav() : openNav()
     document.getElementById(`${this.state.stars}-stars`).checked = true
     const response = await fetch(`${API_ENDPOINT}/api/settingsdata`, { credentials: 'include' })
     if (response.ok) {

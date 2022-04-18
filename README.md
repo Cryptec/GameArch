@@ -20,9 +20,6 @@ GameArch (Game Archive) is a self-hosted open-source tool for your videogame col
 
 want to contribute? simply open a PR in the ```dev``` branch, or get in touch. 
 
-NOTE:
-The project is at a very early stage, so don´t expect it to work as it should already.
-
 ## Getting Started
 
 First, you can edit the two dotenv files in the root of the project for enabling / disabling the auto open for Browsers, and in the Backend folder to set the credentials for the Nodemailer, the initial created User and so on.
