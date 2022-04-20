@@ -112,7 +112,7 @@ toggleNav = () => {
                             </Link>
                             <li key="logout" className="list-item">
                                     {this.state.isLogin ? (
-                                        <div onClick={() => this.handleLogout()}>Logout</div>
+                                        <div style={{ color: 'black' }} onClick={() => this.handleLogout()}>Logout</div>
                                     ) : (
                                         <Link to='/login' onClick={() => this.handleLogout()}>
                                             Logout

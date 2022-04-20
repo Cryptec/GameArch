@@ -201,7 +201,7 @@ render() {
 
     return (
    
-        <div className="overviewContainer" style={{marginBottom: '10px', justifyContent: 'space-between'}}>
+        <div className="overviewContainer" style={{ backgroundColor: 'var(--background)', padding: '0px', marginBottom: '10px', justifyContent: 'space-between'}}>
             <div style={styles.subcontainer}>{this.renderValueCount()}</div>
             {this.state.resolution === 'enabled' ? 
             <div style={styles.subcontainer}>{this.renderSellprice()}</div> :
@@ -220,13 +220,13 @@ styles.subcontainer = {
     width: '24%',
     height: '140px',
     display: 'flex',
-    backgroundColor: 'var(--secondary)',
+    backgroundColor: 'var(--container-background)',
     borderRadius: '5px',
-    color: '#B9BCC3',
+    color: 'var(--text-primary)',
     minWidth: '200px'
 }
 styles.topSubContainer = {
-    borderBottom: '1.5px solid #B9BCC3',
+    borderBottom: '1.5px solid var(--text-primary)',
     width: '100%',
     height: '65px',
     display: 'flex',
@@ -235,7 +235,7 @@ styles.topSubContainer = {
 styles.bottomSubContainer = {
     paddingTop: '15px',
     fontSize: '21px',
-    color: 'white',
+    color: 'var(--text-primary)',
     display: 'flex',
     flexDirection: 'row'
     
