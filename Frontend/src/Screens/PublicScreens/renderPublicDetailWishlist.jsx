@@ -55,7 +55,7 @@ class RenderPublicDetailWishlist extends Component {
         return (
             <div>
 
-                <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+                <div className='gridViewContainer' style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
                     {this.renderGames()}
                 </div>
 
