@@ -89,7 +89,7 @@ class RenderPublicDetailWishlist extends Component {
                 <div key={game.id} className="gamesShow">
 
                     <Link to={{
-                        pathname: `/public/${id}/game/${title}`}} >
+                        pathname: `/public/wishlist/${id}/game/${title}`}} >
                         <div className="imageWrapper">
 
                             {imageName !== "null" ? <img src={`${url}`} alt="" className="imagePreview" />

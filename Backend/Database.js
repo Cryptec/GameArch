@@ -58,14 +58,15 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             theme text,
             registration text,
             resolution text,
+            private text,
             CONSTRAINT currency_unique UNIQUE (currency)
             )`,
             (err) => {
                 if (err) {
                     // Table already created
                 } else {
-                    var initialSettings = 'INSERT INTO Settings (currency, listview, theme, registration, resolution) VALUES (?, ?, ?, ?, ?)'
-                    db.run(initialSettings, "EUR", "false", "light", "enabled", "disabled")
+                    var initialSettings = 'INSERT INTO Settings (currency, listview, theme, registration, resolution, private) VALUES (?, ?, ?, ?, ?, ?)'
+                    db.run(initialSettings, "EUR", "false", "light", "enabled", "disabled", "enabled")
                     console.log("First start, Create Settings Table!")
                 }
             })

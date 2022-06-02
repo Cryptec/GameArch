@@ -14,6 +14,7 @@ const settingsRoute = require('./routes/settings')
 const checkAuthentication = require("./auth/is_authenticated")
 const db = require('./Database');
 const check_first_start = require("./database/check_first_start")
+const check_db_state = require("./database/check_db_state")
 const argon2 = require("argon2")
 const session = require('express-session')
 const register_user = require("./database/register_user")
@@ -109,6 +110,7 @@ function setupExpress() {
   // Start server
   app.listen(HTTP_PORT, () => {
     console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
+    check_db_state()
     configure_first_start()
   }); 
 }

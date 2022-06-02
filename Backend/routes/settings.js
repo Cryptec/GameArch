@@ -80,11 +80,12 @@ router.post('/setcurrency', function(req,res){
     theme: req.body.theme,
     registration: req.body.registration,
     resolution: req.body.resolution,
+    private: req.body.private,
     id: req.body.id
 }
-  var params = [data.currency, data.theme, data.registration, data.resolution, data.id]
+  var params = [data.currency, data.theme, data.registration, data.resolution, data.private, data.id]
   db.serialize(()=>{
-    db.run('UPDATE Settings SET currency = ?, theme = ?, registration = ?, resolution = ? WHERE id = ?', params, function(err){
+    db.run('UPDATE Settings SET currency = ?, theme = ?, registration = ?, resolution = ?, private = ? WHERE id = ?', params, function(err){
       if(err){
         return res.status(400).json({ error: true });
       }
@@ -118,6 +119,23 @@ router.post('/settheme', function (req, res) {
   var params = [data.theme, data.id]
   db.serialize(() => {
     db.run('UPDATE Settings SET theme = ? WHERE id = ?', params, function (err) {
+      if (err) {
+        res.send("Error encountered while updating");
+        return res.status(400).json({ error: true });
+      }
+      return res.send({ success: true });
+    });
+  });
+});
+
+router.post('/setprivacy', function (req, res) {
+  var data = {
+    private: req.body.private,
+    id: req.body.id
+  }
+  var params = [data.private, data.id]
+  db.serialize(() => {
+    db.run('UPDATE Settings SET private = ? WHERE id = ?', params, function (err) {
       if (err) {
         res.send("Error encountered while updating");
         return res.status(400).json({ error: true });
