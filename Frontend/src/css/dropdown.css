@@ -18,6 +18,8 @@
   display: inline-block;
   z-index: 5;
   width: 150px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 .list-item {
   padding: 8px;
@@ -31,5 +33,5 @@
 }
 .list-item:hover,
 .list-item:active {
-  background-color: #f3f3f3;
+  background-color: #e4e2e2;
 }

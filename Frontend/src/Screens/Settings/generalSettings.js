@@ -20,6 +20,7 @@ class GeneralSettings extends Component {
        isActiveSuccess: false,
        registration: '',
        resolution: '',
+       private: '',
        themes: [],
        theme: ''
     };
@@ -31,7 +32,7 @@ componentDidMount = async () => {
     const fetchcurrency = await response.json()
     this.setState({ fetchcurrency })
     this.state.fetchcurrency.map(actualtheme => {
-    return this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, registration: actualtheme.registration, resolution: actualtheme.resolution, isLoading: false })
+    return this.setState({ theme: actualtheme.theme, fetchcurrency, Currency: actualtheme.currency, registration: actualtheme.registration, resolution: actualtheme.resolution, private: actualtheme.private, isLoading: false })
     })
   } else {
     this.setState({ isError: true, isLoading: false })
@@ -60,10 +61,10 @@ render() {
       <div>
     
           <div className="overviewContainer" style={{display: 'block'}}>
-           
+          
           <div className="sectionDescription">General:</div>
            <form onSubmit={this.handleSubmit.bind(this)} method="POST" className="currencyInput" >
-           
+           <div className='generalcolumn'>
                  <label className='generallabel' >
                   Currency:
                  </label>
@@ -74,6 +75,7 @@ render() {
                       className="currencydropdown"
                       value={this.state.Currency}
                       onChange={this.handleChange.bind(this)}
+                      style={{marginRight: '25px'}}
                       required
                     > 
                       <option>--Choose--</option>
@@ -103,6 +105,8 @@ render() {
                     </select>        
                     <br></br>
                   <br />
+            </div>
+            <div className='generalcolumn'>
                   <label className='generallabel' >
                    Registration:
                   </label>
@@ -113,6 +117,7 @@ render() {
                       className="currencydropdown"
                       value={this.state.registration}
                       onChange={this.handleChange.bind(this)}
+                      style={{ marginRight: '25px' }}
                       required
                     > 
                       <option>--Choose--</option>
@@ -139,6 +144,27 @@ render() {
                     </select>              
                     <br></br>
                     <br />
+                  </div>
+             <div className='generalcolumn'>
+                  <label className='generallabel' >
+                   Privatemode:
+                  </label>
+                    <select
+                      list="privatelist"
+                      name="Privatemode"
+                      id="Private"
+                      className="currencydropdown"
+                      value={this.state.private}
+                      onChange={this.handleChange.bind(this)}
+                      required
+                    > 
+                      <option>--Choose--</option>
+                      <option>enabled</option>
+                      <option>disabled</option>
+                    </select>              
+                    <br></br>
+                    <br />
+            </div>
             <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
 
             <button className="addButton">
@@ -176,6 +202,8 @@ handleChange(event) {
     this.setState({ registration: event.target.value });
   } else if (field === "Resolution") {
     this.setState({ resolution: event.target.value });
+  } else if (field === "Private") {
+    this.setState({ private: event.target.value });
   }
 }
 handleSubmit(event) {
@@ -187,7 +215,7 @@ axios({
     credentials: 'include',
     url: `${API_ENDPOINT}/api/setcurrency`,
     headers: { 'Content-Type': 'application/json' },
-    data: { currency: this.state.Currency, registration: this.state.registration, resolution: this.state.resolution, id: 1, theme: this.state.theme }
+  data: { currency: this.state.Currency, registration: this.state.registration, resolution: this.state.resolution, theme: this.state.theme, private: this.state.private, id: 1 }
     
 }).then((response, props) => {
     console.log(response)

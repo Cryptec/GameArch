@@ -6,14 +6,60 @@ require('dotenv').config()
 router.get("/:id/detail/:title", (req, res, next) => {
     var sql = "select * from Games where title = ? AND id = ?"
     var params = [req.params.title, req.params.id]
-    db.get(sql, params, (err, row) => {
+
+    db.get(`SELECT * FROM Settings WHERE private = ?`, ['disabled'], async (err, setting) => {
+    if (setting) {
+      db.get(sql, params, (err, row) => {
         if (err) {
-            res.status(400).json({ "error": err.message });
-            return;
+          res.status(400).json({ "error": err.message });
+          return;
         }
-        res.status(200).json(row);
-    });
+        return res.status(200).json(row);
+      });
+     }
+    else {
+      db.get(sql, params, (err, row) => {
+        if (err) {
+          res.status(400).json({ "error": err.message });
+          return;
+        }
+        return res.status(200).json({
+          id: row.id,
+          filename: row.filename,
+          title: row.title,
+          price: "hidden",
+          saleprice: row.saleprice,
+          purchasedate: row.purchasedate,
+          description: row.description,
+          region: row.region,
+          released: row.released,
+          ownage: row.ownage,
+          manual: row.manual,
+          box: row.box,
+          isownage: row.ownage,
+          ismanual: row.manual,
+          isbox: row.box,
+          platform: row.platform,
+          wishlist: row.iswishlist,
+          stars: row.stars,
+          gameTitle: row.title
+          });
+      });
+    }
+    }) 
 });
+
+router.get("/wishlist/:id/detail/:title", (req, res, next) => {
+  var sql = "select * from Games where title = ? AND id = ? AND iswishlist = 'true'"
+  var params = [req.params.title, req.params.id]
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(row);
+  });
+})
 
 router.get("/public/currency", (req, res, next) => {
     var params = [req.params.currency]

@@ -14,6 +14,7 @@ import Settings from "./Screens/settings";
 import Detailview from "./Screens/Detailview";
 import EditGame from "./Screens/editGame";
 import Wishlist from "./Screens/Wishlist";
+import PrivateWishlistDetailview from "./Screens/PrivateWishlistDetailview";
 
 function Routes() {
     return (
@@ -29,6 +30,8 @@ function Routes() {
           <PrivateRoute restricted={false} component={EditGame} path="/editgame/:objecttitle/:objectid" exact />
           <PrivateRoute restricted={false} component={Settings} path="/settings" exact />
           <PrivateRoute restricted={false} component={Detailview} path="/gamedetail/:objecttitle" exact />
+          <PrivateRoute restricted={false} component={PrivateWishlistDetailview} path="/wishlist/:objecttitle" exact />
+
 
           <PublicRoute restricted={false} component={NotFound}/>
  

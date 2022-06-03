@@ -45,8 +45,9 @@
 }
 
 .generallabel {
-    display: inline-block;
-    width: 90px;    
+    display: flex;
+    flex-direction: row;
+    width: 110px;    
 }
 
 .infotext {
@@ -86,3 +87,23 @@
     background-color: var(--container-background);
     border: 1px solid brown;
 }
+
+.generalcolumn {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    flex-wrap : wrap;
+}
+
+/* On smaller screens, where width is less than 600px, change the style*/
+@media screen and (max-width: 600px) {
+  .generalcolumn select {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .generalcolumn label {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+}
+

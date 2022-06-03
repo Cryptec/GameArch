@@ -85,7 +85,7 @@ class RenderDetailWishlist extends Component {
                 <div key={game.id} className="gamesShow">
 
                     <Link to={{
-                        pathname: `/gamedetail/${title}` }} >
+                        pathname: `/wishlist/${title}` }} >
                         <div className="imageWrapper">
 
                             {imageName !== "null" ? <img src={`${url}`} alt="" className="imagePreview" />

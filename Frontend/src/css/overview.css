@@ -221,3 +221,8 @@
     transition:0.5s;
     cursor: text;
 }
+@media only screen and (max-width: 480px) {
+  .gridViewContainer {
+    justify-content: center;
+  }
+}

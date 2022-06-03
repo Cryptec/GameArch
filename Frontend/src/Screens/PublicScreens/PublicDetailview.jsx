@@ -295,12 +295,25 @@ class PublicDetailview extends Component {
                         <td className='tdContent'>{this.state.purchasedate}</td>
                       </tr>
                       <tr>
+                        {this.state.price === 'hidden' ? (
+                          <>
                         <td className='tdTitle'>Price:</td>
                         <td className='tdContent'>
                           <div style={{ display: 'inline-flex' }}>
-                            {this.state.price}&nbsp;{currency}
+                            {this.state.price}
                           </div>
                         </td>
+                        </> 
+                        ) : (
+                            <>
+                              <td className='tdTitle'>Price:</td>
+                              <td className='tdContent'>
+                                <div style={{ display: 'inline-flex' }}>
+                                  {this.state.price}&nbsp;{currency}
+                                </div>
+                              </td>
+                            </> 
+                        )}
                       </tr>
                     </tbody>
                     <tbody id='detailtblData'>

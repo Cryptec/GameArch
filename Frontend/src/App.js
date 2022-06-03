@@ -12,6 +12,7 @@ import PublicWishlist from './Screens/PublicScreens/PublicWishlist'
 import Layout from './layout'
 import Forgot from './Screens/Forgot'
 import Redirect from './utils/Redirect'
+import WishlistDetailview from './Screens/PublicScreens/WishlistDetailview'
 
 const API_ENDPOINT = window._env_.REACT_APP_API_ENDPOINT || 'http://localhost/api/'
 
@@ -56,6 +57,7 @@ isRegistration = async () => {
         <PublicRoute restricted={false} component={Forgot} path="/forgot" exact />
         <PublicRoute restricted={false} component={Redirect} path="/redirect" exact />
         <PublicRoute restricted={false} component={PublicDetailview} path="/public/:objectid/game/:objecttitle" exact />
+        <PublicRoute restricted={false} component={WishlistDetailview} path="/public/wishlist/:objectid/game/:objecttitle" exact />
         <PublicRoute restricted={false} component={PublicWishlist} path="/public/wishlist" exact />
 
         

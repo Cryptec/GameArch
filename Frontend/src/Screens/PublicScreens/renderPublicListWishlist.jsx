@@ -68,7 +68,7 @@ class RenderPublicListWishlist extends Component {
                     return (
                         <tr key={game.id}>
                             <Link to={{
-                                pathname: `/public/${id}/game/${title}`}} >
+                                pathname: `/public/wishlist/${id}/game/${title}`}} >
                                 <td>
                                     {imageName !== "null" ? <img src={`${url}`} alt="" style={styles.imagePreviewList} />
                                         : <img src={`${ImagePlaceholder}`} alt="" style={styles.imagePreviewList} />}
