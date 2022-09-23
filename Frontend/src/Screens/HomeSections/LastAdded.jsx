@@ -91,7 +91,7 @@ renderGames = () => {
                   }} >
         <div className="lastImageWrapper" style={{margin: '8px'}}>
         
-            {imageName !== "null" ? <img src={`${url}`} alt="" className="imagePreview" />
+            {imageName !== "null" ? <img src={`${url}`} alt="" loading='lazy' className="imagePreview" />
               : <img src={`${ImagePlaceholder}`} alt="" className="imagePreview" />}
 
         </div>

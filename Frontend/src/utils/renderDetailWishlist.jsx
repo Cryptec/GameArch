@@ -88,7 +88,7 @@ class RenderDetailWishlist extends Component {
                         pathname: `/wishlist/${title}` }} >
                         <div className="imageWrapper">
 
-                            {imageName !== "null" ? <img src={`${url}`} alt="" className="imagePreview" />
+                            {imageName !== "null" ? <img src={`${url}`} alt="" loading='lazy' className="imagePreview" />
                                 : <img src={`${ImagePlaceholder}`} alt="" className="imagePreview" />}
 
                         </div>

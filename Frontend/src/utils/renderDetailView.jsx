@@ -96,7 +96,7 @@ class RenderDetailView extends Component {
           <Link to={{ pathname: `/gamedetail/${title}` }}>
             <div className='imageWrapper'>
               {imageName !== 'null' ? (
-                <img src={`${url}`} alt='' className='imagePreview' />
+                <img src={`${url}`} alt='' loading='lazy' className='imagePreview' />
               ) : (
                 <img
                   src={`${ImagePlaceholder}`}
