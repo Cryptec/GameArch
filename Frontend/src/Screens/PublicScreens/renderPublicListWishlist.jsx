@@ -66,21 +66,25 @@ class RenderPublicListWishlist extends Component {
                     const url = `${API_ENDPOINT}/uploads/${imageName}`
 
                     return (
-                        <tr key={game.id}>
+                        <tr key={game.id} style={{ display: 'flex', flexDirection: 'row' }}>
                             <Link to={{
                                 pathname: `/public/wishlist/${id}/game/${title}`}} >
-                                <td>
+                                <div>
                                     {imageName !== "null" ? <img src={`${url}`} alt="" style={styles.imagePreviewList} />
                                         : <img src={`${ImagePlaceholder}`} alt="" style={styles.imagePreviewList} />}
-                                </td>
+                                </div>
 
                             </Link>
-                            <td><div style={styles.title}>{game.title}</div>
-                                <br />
-                                <div style={styles.platform}>{game.platform}</div>
-                            </td>
-                            <td>{game.purchasedate}</td>
-                            <td><div style={styles.price}>{game.price}&nbsp;<Rendercurrency /></div></td>
+                            <div style={styles.container}>
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <div style={styles.title}>{game.title}</div>
+                                    <br />
+                                    <div style={styles.platform}>{game.platform}</div>
+                                    <br />
+                                    <div style={styles.purchasedate}>{`(${game.purchasedate})`}</div>
+                                </div>
+                                <div style={{ marginLeft: 'auto' }}><div style={styles.price}>{game.price}&nbsp;<Rendercurrency /></div></div>
+                            </div>
                         </tr>
                     )
                 })
@@ -97,18 +101,26 @@ class RenderPublicListWishlist extends Component {
 }
 
 const styles = {};
-
+styles.container = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%'
+}
 styles.imagePreviewList = {
     maxWidth: '180px',
     width: 'auto',
     maxHeight: '120px',
     height: 'auto',
     alignSelf: 'center',
-    marginTop: '12px',
+    margin: '10px 30px -5px 10px',
     borderRadius: '5px'
 }
 styles.title = {
-    fontWeight: '600'
+    fontWeight: '700',
+    fontSize: '1.2em',
+    marginRight: '30px',
+    marginTop: '10px'
 }
 styles.platform = {
     marginTop: '-50px'
@@ -116,13 +128,17 @@ styles.platform = {
 styles.price = {
     padding: '7px',
     fontWeight: 600,
-    width: 'fit-content',
     borderRadius: '7px',
     color: 'var(--text-primary)',
     backgroundColor: 'var(--hilight)',
     justifyContent: 'center',
-    flexDirection: 'row',
-    display: 'flex'
+    display: 'flex',
+    marginTop: '40px',
+    marginRight: '30px'
+}
+styles.purchasedate = {
+    marginTop: '-50px',
+    opacity: '0.5'
 }
 
 export default RenderPublicListWishlist
