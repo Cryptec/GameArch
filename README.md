@@ -8,6 +8,8 @@
   - [Self hosted](#Self-hosted)
   - [Docker](#Docker)
   - [Custom variables](#Self-hosted)
+- [Extras](#Extras)
+  - [Telegram Bot](#Telegram-Bot)
 - [Information](#Information)
   - [Resolution mode](#Resolution-Mode)
   - [Images](#Images)
@@ -47,6 +49,22 @@ repository <https://github.com/christophkoenig/docker-gamearch>
 
 ### Custom variables
 1. define the platforms/consoles for your needs in   `/Frontend/src/utils/platforms.js`
+
+## Extras
+
+### Telegram-Bot
+
+The Telegram bot is an experimental feature in development, to easily check infos about the collection or gameinfos "on the go".
+To use the bot, you need to start the Telegram bot [BotFather](https://telegram.me/BotFather) to receive a Bot-token.
+Add this token in the `/Backend/.env` file to `BOT_TOKEN`, and set `TELEGRAM_BOT` to enabled (default is disabled!). Now your created bot is connected with your GameArch installation.
+
+Some commands to use are: 
+
+`/find <GameTitle>` - Checks if the game is in the collection and replies with title and some infos.
+`/info <GameTitle>` - Replies the description of the provided title.
+`/wishlist` - Replies the wishlist.
+
+More detailed infos will be provided in the Bot itself.
 
 ## Information
 

@@ -15,9 +15,11 @@ const checkAuthentication = require("./auth/is_authenticated")
 const db = require('./Database');
 const check_first_start = require("./database/check_first_start")
 const check_db_state = require("./database/check_db_state")
+const check_botstatus = require("./bot/check_botstatus")
 const argon2 = require("argon2")
 const session = require('express-session')
 const register_user = require("./database/register_user")
+const telegram_bot = require("./bot/telegram_bot.js")
 
 const crypto = require("crypto")
 require('dotenv').config()
@@ -113,6 +115,7 @@ function setupExpress() {
     console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
     check_db_state()
     configure_first_start()
+    configure_telegram_bot()
   }); 
 }
 
@@ -132,6 +135,19 @@ function configure_first_start()
         register_user("admin", ADMINMAIL, ADMIN_PW)
       else
         console.log("Please configure admin user in env file accordingly to the example.")
+    }
+  })
+}
+
+function configure_telegram_bot() {
+  check_botstatus((is_enabled) => {
+    console.log("TELEGRAM BOT IS ENABLED: " + is_enabled)
+    const ADMINMAIL = process.env.ADMIN_EMAIL
+    const ADMIN_PW = process.env.INITIAL_ADMIN_PASSWORD
+    if (is_enabled) {
+        telegram_bot()
+    } else {
+        console.log("Bot not started!")
     }
   })
 }

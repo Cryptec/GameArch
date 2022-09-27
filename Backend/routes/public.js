@@ -112,4 +112,20 @@ router.get("/public/resstate", (req, res, next) => {
   });
 });
 
+router.get("/public/game/:title", (req, res, next) => {
+  var sql = "select * from Games where title = ?"
+  var params = [req.params.title]
+  db.get(sql, params, (err, row) => {
+    if (row) {
+      res.status(200).json(row);
+    } else if (!row) {
+      console.log("Dont exist")
+      return res.json({ "answer": "NoGame" })
+    } else if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+  });
+});
+
 module.exports = router;
