@@ -112,6 +112,21 @@ router.get("/public/resstate", (req, res, next) => {
   });
 });
 
+router.get("/public/gamelist/:letter", (req, res, next) => {
+  var sql = "SELECT title FROM Games WHERE title LIKE ? || '%' AND ownage = 'true'"
+  var params = [req.params.letter]
+  db.all(sql, params, (err, rows) => {
+    if (rows) {
+      return res.status(200).json(rows);
+    } else if (!rows) {
+      return res.json({ "answer": "NoGame" })
+    } else if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+  });
+});
+
 router.get("/public/game/:title", (req, res, next) => {
   var sql = "select * from Games where title = ?"
   var params = [req.params.title]
