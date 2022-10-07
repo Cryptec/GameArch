@@ -22,17 +22,16 @@ const by_letter = function by_letter() {
                     .then(response => {
                         if (response.ok) {
                             response.json().then((data) => {
-                                data.map(data => {
-                                if (data.answer === 'NoGame') {
-                                    return ctx.reply('Game not Found!')
+                                if (data.length === 0) {
+                                    return ctx.reply('No games found!')
                                 } else {
+                                data.map(data => {
                                     return ctx.reply(`${data.title}`)
-                                }
                                 })
-                            });
-                        } else {
-                            throw 'there is something wrong';
-                        }
+                            }
+                        });
+                        
+                    }
                     })
                     .catch(error => {
                         ctx.reply(error)
@@ -45,14 +44,15 @@ const by_letter = function by_letter() {
                     .then(response => {
                         if (response.ok) {
                             response.json().then((data) => {
-                                if (data.answer === 'NoGame') {
-                                    return ctx.reply('Game not Found!')
+                                if (data.length === 0) {
+                                    return ctx.reply('No games found!')
                                 } else {
-                                    return ctx.reply(`${data.title}`)
+                                    data.map(data => {
+                                        return ctx.reply(`${data.title}`)
+                                    })
                                 }
                             });
-                        } else {
-                            throw 'there is something wrong';
+
                         }
                     })
                     .catch(error => {
