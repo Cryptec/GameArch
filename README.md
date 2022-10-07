@@ -60,9 +60,13 @@ Add this token in the `/Backend/.env` file to `BOT_TOKEN`, and set `TELEGRAM_BOT
 
 Some commands to use are: 
 
-`/find <GameTitle>` - Checks if the game is in the collection and replies with title and some infos.
-`/info <GameTitle>` - Replies the description of the provided title.
-`/wishlist` - Replies the wishlist.
+`/start` - Start the bot.\
+`/help` - List all commands.\
+`/games <FirstLetter>` - Lists all owned game titles that start with the mentioned letter.\
+`/find <GameTitle>` - Checks if the game is in the collection and replies with title and some infos.\
+`/info <GameTitle>` - Replies the description of the provided title.\
+`/wishlist` - Replies the wishlist.\
+
 
 More detailed infos will be provided in the Bot itself.
 

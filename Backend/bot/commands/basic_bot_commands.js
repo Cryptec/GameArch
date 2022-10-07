@@ -14,12 +14,15 @@ const basic_bot_commands = function basic_bot_commands() {
 
     bot.start((ctx) => {
         const helpMsg = [
+            `<b>Welcome, i am your GameArch 🗃 Bot.</b>`,
+            ``,
             `<b>Available Commands : </b>`,
-            `/start : Start the Bot`,
+            `/start : Start the Bot.`,
             `/help : Show Help Menu.`,
-            `/find + title : Search the game`,
-            `/info + title : show the game info and description`,
-            `/wishlist : show the wishlist`,
+            `/games <b>+ first letter</b>: Lists all owned game titles that start with the mentioned letter.`,
+            `/find <b>+ title</b>: Search the game by title.`,
+            `/info <b>+ title</b>: show the game info and description.`,
+            `/wishlist : show the wishlist.`,
         ].join("\n");
         return ctx.reply(helpMsg, { parse_mode: "HTML" });
     })
@@ -27,11 +30,12 @@ const basic_bot_commands = function basic_bot_commands() {
     bot.help((ctx) => {
         const helpMsg = [
             `<b>Available Commands : </b>`,
-            `/start : Start the Bot`,
+            `/start : Start the Bot.`,
             `/help : Show Help Menu.`,
-            `/find + title : Search the game`,
-            `/info + title : show the game info and description`,
-            `/wishlist : show the wishlist`,
+            `/games <b>+ first letter</b>: Lists all owned game titles that start with the mentioned letter.`,
+            `/find <b>+ title</b>: Search the game by title.`,
+            `/info <b>+ title</b>: show the game info and description.`,
+            `/wishlist : show the wishlist.`,
         ].join("\n");
         return ctx.reply(helpMsg, { parse_mode: "HTML" });
     })
