@@ -65,9 +65,9 @@ Some commands to use are:
 `/games <FirstLetter>` - Lists all owned game titles that start with the mentioned letter.\
 `/find <GameTitle>` - Checks if the game is in the collection and replies with title and some infos.\
 `/info <GameTitle>` - Replies the description of the provided title.\
-`/wishlist` - Replies the wishlist.\
+`/wishlist` - Replies the wishlist.
 
-
+All commands also work on reply to a message. For example, list all games beginning with the letter 'B', and then reply to a game with `/info`.\
 More detailed infos will be provided in the Bot itself.
 
 ## Information
