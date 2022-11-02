@@ -1,6 +1,7 @@
 process.env["NTBA_FIX_319"] = 1;
 const bot = require('../bot')
-const fetch = require("node-fetch")
+const fetch = require("node-fetch");
+const currency = require('../utils/currency');
 
 require('dotenv').config()
 
@@ -8,7 +9,11 @@ const find_command = function find_command() {
 
 const uri = process.env.BACKEND_URL
 
+
 bot.hears(/^!find|^\/find/i, async (ctx) => {
+    
+        const CURRENCY = await currency.getcurrency()
+
         var checkreply = ctx.message.reply_to_message
         if (checkreply === undefined) {
             let getmsg = ctx.message.text
@@ -25,9 +30,9 @@ bot.hears(/^!find|^\/find/i, async (ctx) => {
                                 if (data.answer === 'NoGame') {
                                     return ctx.reply('Game not Found!')
                                 } else if (data.iswishlist === 'true') {
-                                    return ctx.reply(`The Game is on your Wishlist!\r\n \r\n ${data.title}\r\n${data.price},-`)
+                                    return ctx.reply(`The Game is on your Wishlist!\r\n \r\n ${data.title}\r\n${data.price}${CURRENCY}`)
                                 } else {
-                                    return ctx.reply(`${data.title}\r\n${data.price},-`)
+                                    return ctx.reply(`${data.title}\r\n${data.price}${CURRENCY}`)
                                 }
                             });
                         } else {
@@ -48,9 +53,9 @@ bot.hears(/^!find|^\/find/i, async (ctx) => {
                                 if (data.answer === 'NoGame') {
                                     return ctx.reply('Game not Found!')
                                 } else if (data.iswishlist === 'true') {
-                                    return ctx.reply(`The Game is on your Wishlist!\r\n \r\n ${data.title}\r\n${data.price},-`)
+                                    return ctx.reply(`The Game is on your Wishlist!\r\n \r\n ${data.title}\r\n${data.price}${CURRENCY}`)
                                 } else {
-                                    return ctx.reply(`${data.title}\r\n${data.price} ,-`)
+                                    return ctx.reply(`${data.title}\r\n${data.price}${CURRENCY}`)
                                 }
                             });
                         } else {

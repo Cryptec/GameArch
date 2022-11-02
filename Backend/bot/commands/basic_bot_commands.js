@@ -24,7 +24,7 @@ const basic_bot_commands = function basic_bot_commands() {
             `/info <b>+ title</b>: show the game info and description.`,
             `/wishlist : show the wishlist.`,
             ``,
-            `All commands also work on reply to a message. For example, list all games beginning with the letter 'B', and then reply to a game with /info.`
+            `All commands also work at reply to a message. For example, list all games beginning with the letter 'B', and then reply to a game with /info.`
         ].join("\n");
         return ctx.reply(helpMsg, { parse_mode: "HTML" });
     })
@@ -39,7 +39,7 @@ const basic_bot_commands = function basic_bot_commands() {
             `/info <b>+ title</b>: show the game info and description.`,
             `/wishlist : show the wishlist.`,
             ``,
-            `All commands also work on reply to a message. For example, list all games beginning with the letter 'B', and then reply to a game with /info.`
+            `All commands also work at reply to a message. For example, list all games beginning with the letter 'B', and then reply to a game with /info.`
         ].join("\n");
         return ctx.reply(helpMsg, { parse_mode: "HTML" });
     })

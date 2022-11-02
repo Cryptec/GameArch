@@ -67,7 +67,7 @@ Some commands to use are:
 `/info <GameTitle>` - Replies the description of the provided title.\
 `/wishlist` - Replies the wishlist.
 
-All commands also work on reply to a message. For example, list all games beginning with the letter 'B', and then reply to a game with `/info`.\
+All commands also work at reply to a message. For example, list all games beginning with the letter 'B', and then reply to a game with `/info`.\
 More detailed infos will be provided in the Bot itself.
 
 ## Information

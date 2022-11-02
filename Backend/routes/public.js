@@ -62,7 +62,7 @@ router.get("/wishlist/:id/detail/:title", (req, res, next) => {
 })
 
 router.get("/public/currency", (req, res, next) => {
-    var params = [req.params.currency]
+    var params = []
     var sql = "select currency from Settings"
     db.all(sql, params, (err, row) => {
       if (err) {
